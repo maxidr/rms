@@ -1,4 +1,6 @@
 Rms::Application.routes.draw do
+  resources :sectores
+
   resources :empresas
 
   # The priority is based upon order of creation:

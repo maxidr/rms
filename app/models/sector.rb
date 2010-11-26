@@ -1,3 +1,3 @@
-class Empresa < ActiveRecord::Base
+class Sector < ActiveRecord::Base
   validates :nombre, :presence => true
 end
