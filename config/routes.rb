@@ -1,4 +1,10 @@
 Rms::Application.routes.draw do
+  resources :requerimientos
+
+  resources :usuarios
+
+  resources :rubros
+
   resources :sectores
 
   resources :empresas

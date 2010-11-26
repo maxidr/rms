@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Solicitante:</b>
+  <%= @requerimiento.solicitante %>
+</p>
+
+<p>
+  <b>Empresa:</b>
+  <%= @requerimiento.empresa %>
+</p>
+
+<p>
+  <b>Sector:</b>
+  <%= @requerimiento.sector %>
+</p>
+
+<p>
+  <b>Rubro:</b>
+  <%= @requerimiento.rubro %>
+</p>
+
+
+<%= link_to 'Edit', edit_requerimiento_path(@requerimiento) %> |
+<%= link_to 'Back', requerimientos_path %>
