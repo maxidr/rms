@@ -7,7 +7,21 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+  <div id="menu">
+    <ul id="nav">
+      <li><%= link_to "Requerimientos", requerimientos_path %></li>
+      <li>
+        <a href="">Configuración</a>
+        <ul>          
+          <li><%= link_to "Usuarios", usuarios_path %></li>
+          <li><%= link_to "Sectores", sectores_path %></li>
+          <li><%= link_to "Rubros", rubros_path %></li>
+          <li><%= link_to "Empresas", empresas_path %></li>
+        </ul>
+      </li>
 
+    </ul>
+  </div>
 <%= yield %>
 
 </body>
