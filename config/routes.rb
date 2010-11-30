@@ -1,5 +1,7 @@
 Rms::Application.routes.draw do
-  resources :requerimientos
+  resources :requerimientos do
+    resources :materiales
+  end
 
   resources :usuarios
 

@@ -1,10 +1,12 @@
 # == Schema Information
 # Schema version: 20101130010846
 #
-# Table name: sectores
+# Table name: materiales
 #
 #  id         :integer         not null, primary key
-#  nombre     :string(255)
+#  material   :string(255)
+#  cantidad   :string(255)
+#  detalle    :text
 #  created_at :datetime
 #  updated_at :datetime
 #
@@ -12,7 +14,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  nombre: MyString
+  material: MyString
+  cantidad: MyString
+  detalle: MyText
 
 two:
-  nombre: MyString
+  material: MyString
+  cantidad: MyString
+  detalle: MyText

@@ -30,6 +30,6 @@
     <%= select("requerimiento", "rubro_id", Rubro.all.collect{|r| [r.nombre, r.id]}, { :include_blank => true  } ) %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Continuar"%>
   </div>
 <% end %>
