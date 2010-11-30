@@ -11,10 +11,9 @@
 #  updated_at :datetime
 #
 
-class Material < ActiveRecord::Base
-  belongs_to :requerimiento
-	
-  validate :material, :presence => true
-  validate :cantidad, :presence => true
+class Material < ActiveRecord::Base	
+  validates :material, :presence => true
+  validates :cantidad, :presence => true
   
+  belongs_to :requerimiento  
 end

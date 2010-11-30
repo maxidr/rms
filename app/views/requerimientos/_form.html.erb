@@ -1,7 +1,7 @@
 <%= form_for(@requerimiento) do |f| %>
   <% if @requerimiento.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@requerimiento.errors.count, "error") %> prohibited this requerimiento from being saved:</h2>
+      <h2><%= pluralize(@requerimiento.errors.count, "error evita", "errores evitan") %> que el requerimiento se grabe:</h2>
 
       <ul>
       <% @requerimiento.errors.full_messages.each do |msg| %>
