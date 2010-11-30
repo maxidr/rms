@@ -15,7 +15,7 @@
     <b>Solicitante:</b>
     <%= @requerimiento.solicitante %>
   </p>
-
+	<%= f.hidden_field :solicitante_id, :value => @requerimiento.solicitante.id %>
 
   <div class="field">
     <%= f.label :empresa %><br />

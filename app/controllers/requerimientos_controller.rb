@@ -7,6 +7,7 @@ class RequerimientosController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @requerimientos }
+      format.json { render :json => @requerimientos }
     end
   end
 
@@ -46,7 +47,7 @@ class RequerimientosController < ApplicationController
 
     respond_to do |format|
       if @requerimiento.save
-        format.html { redirect_to(@requerimiento, :notice => 'Requerimiento was successfully created.') }
+        format.html { redirect_to new_requerimiento_material_url(@requerimiento) }
         format.xml  { render :xml => @requerimiento, :status => :created, :location => @requerimiento }
       else
         format.html { render :action => "new" }

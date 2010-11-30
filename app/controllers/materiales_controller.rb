@@ -24,6 +24,8 @@ class MaterialesController < ApplicationController
   # GET /materiales/new
   # GET /materiales/new.xml
   def new
+  	logger.debug("requerimiento #{params[:requerimiento_id]}")
+  	@requerimiento = Requerimiento.find(params[:requerimiento_id])
     @material = Material.new
 
     respond_to do |format|
@@ -40,12 +42,15 @@ class MaterialesController < ApplicationController
   # POST /materiales
   # POST /materiales.xml
   def create
-    @material = Material.new(params[:material])
+  	@requerimiento = Requerimiento.find(params[:requerimiento_id]) 
+  	@material = @requerimiento.materiales.create(params[:material])
+
+    logger.debug("Material a crear: #{@material}")
 
     respond_to do |format|
       if @material.save
-        format.html { redirect_to(@material, :notice => 'Material was successfully created.') }
-        format.xml  { render :xml => @material, :status => :created, :location => @material }
+        format.html { redirect_to(@requerimiento, :notice => "Se asigno el material al requerimiento nro: #{@requerimiento.id}") }
+        format.xml  { render :xml => @material, :status => :created, :location => @requerimiento }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @material.errors, :status => :unprocessable_entity }
@@ -76,7 +81,7 @@ class MaterialesController < ApplicationController
     @material.destroy
 
     respond_to do |format|
-      format.html { redirect_to(materiales_url) }
+      format.html { redirect_to(requerimiento_url(@material.requerimiento), :notice => "Se elimino el material \"#{@material.material}\"") }
       format.xml  { head :ok }
     end
   end

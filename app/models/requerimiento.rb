@@ -19,5 +19,5 @@ class Requerimiento < ActiveRecord::Base
   belongs_to :rubro
   has_many :materiales
 
-  validates_presence_of :empresa, :sector, :rubro
+  validates_presence_of :empresa, :sector, :rubro, :solicitante
 end

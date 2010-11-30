@@ -2,6 +2,8 @@
 
 <table>
   <tr>
+  	<th>Nro</th>
+  	<th>Fecha</th>
     <th>Solicitante</th>
     <th>Empresa</th>
     <th>Sector</th>
@@ -13,6 +15,8 @@
 
 <% @requerimientos.each do |requerimiento| %>
   <tr>
+		<td><%=	requerimiento.id %></td>
+		<td><%=	requerimiento.created_at %></td>
     <td><%= requerimiento.solicitante %></td>
     <td><%= requerimiento.empresa %></td>
     <td><%= requerimiento.sector %></td>

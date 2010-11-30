@@ -24,3 +24,5 @@ sectores = Sector.create([{:nombre => 'Tejeduria'}, {:nombre => 'Mantenimiento'}
 rubros = Rubro.create([{:nombre => 'Materias Primas'}, {:nombre => 'Insumos'}, 
 							{:nombre => 'Consumibles'}, {:nombre => 'Varios'}, {:nombre => 'Servicios'},
 							{:nombre => 'Maquinas y herramientas'}])
+
+usuarios = Usuario.create({:nombre => 'Julian', :apellido => 'Rodriguez', :identificador => 'jrodriguez'})

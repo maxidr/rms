@@ -20,6 +20,27 @@
   <%= @requerimiento.rubro %>
 </p>
 
+<h2>Materiales</h2>
+<table>
+  <tr>
+    <th>Material</th>
+    <th>Cantidad</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
 
+<% @requerimiento.materiales.each do |material| %>
+  <tr>
+    <td><%= material.material %></td>
+    <td><%= material.cantidad %></td>
+    <td><%= link_to 'Show', material_path(material) %></td>
+    <td><%= link_to 'Edit', edit_material_path(material) %></td>
+    <td><%= link_to 'Destroy', material, :confirm => 'Are you sure?', :method => :delete, :controller => :materiales %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Agregar material', new_requerimiento_material_path(@requerimiento) %>
 <%= link_to 'Edit', edit_requerimiento_path(@requerimiento) %> |
 <%= link_to 'Back', requerimientos_path %>

@@ -1,7 +1,11 @@
 Rms::Application.routes.draw do
   resources :requerimientos do
-    resources :materiales
+    resources :materiales, :only => [:new, :create]
   end
+  
+  resources :materiales, :only => [:show, :destroy, :update, :edit]
+  
+  resources :material
 
   resources :usuarios
 
