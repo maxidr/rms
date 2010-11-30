@@ -32,7 +32,7 @@
 
 <% @requerimiento.materiales.each do |material| %>
   <tr>
-    <td><%= material.material %></td>
+    <td><%= material.nombre %></td>
     <td><%= material.cantidad %></td>
     <td><%= link_to 'Show', material_path(material) %></td>
     <td><%= link_to 'Edit', edit_material_path(material) %></td>
