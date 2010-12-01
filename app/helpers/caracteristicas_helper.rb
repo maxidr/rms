@@ -1,0 +1,2 @@
+module CaracteristicasHelper
+end

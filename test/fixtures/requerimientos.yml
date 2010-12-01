@@ -1,3 +1,17 @@
+# == Schema Information
+# Schema version: 20101130010846
+#
+# Table name: requerimientos
+#
+#  id             :integer         not null, primary key
+#  solicitante_id :integer
+#  empresa_id     :integer
+#  sector_id      :integer
+#  rubro_id       :integer
+#  created_at     :datetime
+#  updated_at     :datetime
+#
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:

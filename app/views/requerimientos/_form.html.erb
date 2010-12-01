@@ -1,7 +1,7 @@
 <%= form_for(@requerimiento) do |f| %>
   <% if @requerimiento.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@requerimiento.errors.count, "error") %> prohibited this requerimiento from being saved:</h2>
+      <h2><%= pluralize(@requerimiento.errors.count, "error evita", "errores evitan") %> que el requerimiento se grabe:</h2>
 
       <ul>
       <% @requerimiento.errors.full_messages.each do |msg| %>
@@ -15,7 +15,7 @@
     <b>Solicitante:</b>
     <%= @requerimiento.solicitante %>
   </p>
-
+	<%= f.hidden_field :solicitante_id, :value => @requerimiento.solicitante.id %>
 
   <div class="field">
     <%= f.label :empresa %><br />
@@ -30,6 +30,6 @@
     <%= select("requerimiento", "rubro_id", Rubro.all.collect{|r| [r.nombre, r.id]}, { :include_blank => true  } ) %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Continuar"%>
   </div>
 <% end %>

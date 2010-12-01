@@ -1,0 +1,25 @@
+# == Schema Information
+# Schema version: 20101130183643
+#
+# Table name: materiales
+#
+#  id               :integer         not null, primary key
+#  nombre           :string(255)
+#  cantidad         :string(255)
+#  detalle          :text
+#  created_at       :datetime
+#  updated_at       :datetime
+#  requerimiento_id :integer
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  material: MyString
+  cantidad: MyString
+  detalle: MyText
+
+two:
+  material: MyString
+  cantidad: MyString
+  detalle: MyText

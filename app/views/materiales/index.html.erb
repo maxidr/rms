@@ -1,0 +1,27 @@
+<h1>Listing materiales</h1>
+
+<table>
+  <tr>
+    <th>Material</th>
+    <th>Cantidad</th>
+    <th>Detalle</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @materiales.each do |material| %>
+  <tr>
+    <td><%= material.material %></td>
+    <td><%= material.cantidad %></td>
+    <td><%= material.detalle %></td>
+    <td><%= link_to 'Show', material %></td>
+    <td><%= link_to 'Edit', edit_material_path(material) %></td>
+    <td><%= link_to 'Destroy', material, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Material', new_requerimiento_material_path %>

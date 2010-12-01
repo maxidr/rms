@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Material:</b>
+  <%= @material.nombre %>
+</p>
+
+<p>
+  <b>Cantidad:</b>
+  <%= @material.cantidad %>
+</p>
+<% unless @material.detalle.empty? %>
+	<p>
+		<b>Detalle:</b>
+		<%= @material.detalle %>
+	</p>
+<% end %>
+
+<% unless @material.caracteristicas.empty? %>
+	<h2>Características</h2>
+	<table>
+	<% @material.caracteristicas.each do |caracteristica| %>
+		<tr>
+		  <td><%= caracteristica.nombre %></td>
+		  <td><%= caracteristica.valor %></td>
+		  <td><%= link_to 'Editar', edit_caracteristica_path(caracteristica) %></td>
+		  <td><%= link_to 'Eliminar', caracteristica, :confirm => '¿Esta segúro que desea eliminar la característica?', :method => :delete %></td>
+		</tr>
+	<% end %>
+	</table>
+<% end %>
+
+<%= link_to 'Agregar característica', new_material_caracteristica_path(@material) %> |
+<%= link_to 'Edit', edit_material_path(@material) %> |
+<%= link_to 'Back', requerimiento_path(@material.requerimiento) %>
+
