@@ -36,6 +36,7 @@ class MaterialesController < ApplicationController
 
   # GET /materiales/1/edit
   def edit
+  	# FIXME: Estimo que no estoy probando esta parte
     @material = Material.find(params[:id])
   end
 
