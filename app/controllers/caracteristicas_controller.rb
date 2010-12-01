@@ -15,20 +15,21 @@ class CaracteristicasController < ApplicationController
   # GET /caracteristicas/1
   # GET /caracteristicas/1.xml
   def show
-    @caracteristica = Caracteristica.find(params[:id])    
+    @caracteristica = Caracteristica.find(params[:id])
 		@material = @caracteristica.material
-		
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @caracteristica }
     end
   end
 
-  # GET /caracteristicas/new
-  # GET /caracteristicas/new.xml
+  # GET /materiales/:material_id/caracteristicas/new
+  # GET /materiales/:material_id/caracteristicas/new.xml
   def new
-  	@material = Material.find(params[:material_id])
+		@material = Material.find(params[:material_id])
     @caracteristica = Caracteristica.new
+    @caracteristica.material = @material
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,19 +41,16 @@ class CaracteristicasController < ApplicationController
   def edit
   	# TODO: Refactoring de la obtención de característica y material (DRY)
     @caracteristica = Caracteristica.find(params[:id])
-    @material = @caracteristica.material
-    logger.debug(@material)
   end
 
-  # POST /caracteristicas
-  # POST /caracteristicas.xml
+  # POST /materiales/:material_id/caracteristicas
+  # POST /materiales/:material_id/caracteristicas.xml
   def create
-  	@material = Material.find(params[:material_id])  	
+  	@material = Material.find(params[:material_id])
     @caracteristica = @material.caracteristicas.create(params[:caracteristica])
 
     respond_to do |format|
       if @caracteristica.save
-#        format.html { redirect_to(@caracteristica, :notice => 'Caracteristica was successfully created.') }
 				format.html { redirect_to(@material, :notice => 'Se agregó la característica.') }
         format.xml  { render :xml => @caracteristica, :status => :created, :location => @material }
       else
@@ -69,7 +67,7 @@ class CaracteristicasController < ApplicationController
 
     respond_to do |format|
       if @caracteristica.update_attributes(params[:caracteristica])
-        format.html { redirect_to(@caracteristica, :notice => 'Caracteristica was successfully updated.') }
+        format.html { redirect_to(@caracteristica.material, :notice => 'La característica fue actualizada.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -85,8 +83,9 @@ class CaracteristicasController < ApplicationController
     @caracteristica.destroy
 
     respond_to do |format|
-      format.html { redirect_to(material_url(@caracteristica.material)) }
+      format.html { redirect_to material_url(@caracteristica.material) }
       format.xml  { head :ok }
     end
   end
 end
+

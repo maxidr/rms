@@ -12,5 +12,8 @@
 #
 
 class Caracteristica < ActiveRecord::Base
+	validates_presence_of :nombre, :valor
+
   belongs_to :material
 end
+

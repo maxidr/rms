@@ -1,7 +1,7 @@
-<%= form_for(@caracteristica) do |f| %>
+<%= form_for([@material, @caracteristica]) do |f| %>
   <% if @caracteristica.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@material.errors.count,  "error evita", "errores evitan") %> que esta caracter&iacute;stica pueda ser grabado:</h2>
+      <h2><%= pluralize(@caracteristica.errors.count,  "error evita", "errores evitan") %> que esta caracter&iacute;stica pueda ser grabada:</h2>
 
       <ul>
       <% @caracteristica.errors.full_messages.each do |msg| %>
@@ -10,10 +10,10 @@
       </ul>
     </div>
   <% end %>
-  
+
   <p>
     <b>Material:</b>
-    <%= @material.nombre %>
+    <%= @caracteristica.material.nombre %>
   </p>
 
 
@@ -29,3 +29,4 @@
     <%= f.submit %>
   </div>
 <% end %>
+
