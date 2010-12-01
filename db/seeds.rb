@@ -1,3 +1,5 @@
+# coding: utf-8
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -12,13 +14,12 @@
 # 							 Expedicion / Administracion / Compras / Ventas.
 # Los rubros: Materias Primas / Insumos / Consumibles / Varios / Servicios / Maquinas y herramientas
 
-# FIXME Analizar y arreglar la dificultad con el encoding y los caracteres de acentuación
 empresas = Empresa.create([{:nombre => 'Laindell SRL'}, {:nombre => 'Metalurgica La Toma SA'}])
 
-sectores = Sector.create([{:nombre => 'Tejeduria'}, {:nombre => 'Mantenimiento'}, 
+sectores = Sector.create([{:nombre => 'Tejeduría'}, {:nombre => 'Mantenimiento'}, 
 							{:nombre => 'Recubrimiento'}, {:nombre => 'Embalaje'}, 
-							{:nombre => 'Fabrica de piletas'}, {:nombre => 'Canos'},
-						  {:nombre => 'Expedicion'}, {:nombre => 'Administracion'},
+							{:nombre => 'Fabrica de piletas'}, {:nombre => 'Caños'},
+						  {:nombre => 'Expedición'}, {:nombre => 'Administración'},
 						  {:nombre => 'Compras'}, {:nombre => 'Ventas'}])
 						  
 rubros = Rubro.create([{:nombre => 'Materias Primas'}, {:nombre => 'Insumos'}, 
