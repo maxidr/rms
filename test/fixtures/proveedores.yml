@@ -1,0 +1,32 @@
+# == Schema Information
+# Schema version: 20101202122214
+#
+# Table name: proveedores
+#
+#  id           :integer         not null, primary key
+#  razon_social :string(255)
+#  domicilio    :text
+#  telefono     :string(255)
+#  cuit         :string(255)
+#  contacto     :text
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  razon_social: MyString
+  domicilio: MyText
+  telefono: MyString
+  cuit: MyString
+  contacto: MyText
+  condicion_pago: 
+
+two:
+  razon_social: MyString
+  domicilio: MyText
+  telefono: MyString
+  cuit: MyString
+  contacto: MyText
+  condicion_pago: 

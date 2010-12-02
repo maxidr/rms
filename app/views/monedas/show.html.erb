@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Simbolo:</b>
+  <%= @moneda.simbolo %>
+</p>
+
+<p>
+  <b>Nombre:</b>
+  <%= @moneda.nombre %>
+</p>
+
+
+<%= link_to 'Edit', edit_moneda_path(@moneda) %> |
+<%= link_to 'Back', monedas_path %>

@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Requerimiento N° <%= @requerimiento.id %></h1>
+
 <p>
   <b>Solicitante:</b>
   <%= @requerimiento.solicitante %>
@@ -43,6 +45,19 @@
 </table>
 
 <%= link_to 'Agregar material', new_requerimiento_material_path(@requerimiento) %>
+
+<h2>Presupuestos</h2>
+<table>
+  <tr>
+    <th>Proveedor</th>
+    <th>Monto</th>
+    <th>Condición de pago</th>
+    <th></th>
+    <th></th>
+  </tr>
+</table>
+
+
 <%= link_to 'Edit', edit_requerimiento_path(@requerimiento) %> |
 <%= link_to 'Back', requerimientos_path %>
 

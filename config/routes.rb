@@ -1,5 +1,11 @@
 Rms::Application.routes.draw do
 	
+  resources :proveedores
+
+  resources :monedas
+
+  resources :condiciones_pagos
+
   resources :requerimientos do
 		# Rutea materiales con referencia a requerimientos para new y para create (post)
 		# requerimientos/3/materiales/new

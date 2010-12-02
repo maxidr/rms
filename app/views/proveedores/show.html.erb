@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Razon social:</b>
+  <%= @proveedor.razon_social %>
+</p>
+
+<p>
+  <b>Domicilio:</b>
+  <%= @proveedor.domicilio %>
+</p>
+
+<p>
+  <b>Telefono:</b>
+  <%= @proveedor.telefono %>
+</p>
+
+<p>
+  <b>Cuit:</b>
+  <%= @proveedor.cuit %>
+</p>
+
+<p>
+  <b>Contacto:</b>
+  <%= @proveedor.contacto %>
+</p>
+
+
+<%= link_to 'Edit', edit_proveedor_path(@proveedor) %> |
+<%= link_to 'Back', proveedores_path %>
