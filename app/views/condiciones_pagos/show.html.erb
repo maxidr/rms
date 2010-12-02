@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nombre:</b>
+  <%= @condicion_pago.nombre %>
+</p>
+
+<p>
+  <b>Descripcion:</b>
+  <%= @condicion_pago.descripcion %>
+</p>
+
+
+<%= link_to 'Edit', edit_condicion_pago_path(@condicion_pago) %> |
+<%= link_to 'Back', condiciones_pagos_path %>

@@ -1,0 +1,21 @@
+# == Schema Information
+# Schema version: 20101202121547
+#
+# Table name: condiciones_pagos
+#
+#  id          :integer         not null, primary key
+#  nombre      :string(255)
+#  descripcion :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  nombre: MyString
+  descripcion: MyText
+
+two:
+  nombre: MyString
+  descripcion: MyText

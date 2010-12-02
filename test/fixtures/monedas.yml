@@ -1,0 +1,21 @@
+# == Schema Information
+# Schema version: 20101202121547
+#
+# Table name: monedas
+#
+#  id         :integer         not null, primary key
+#  simbolo    :string(255)
+#  nombre     :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  simbolo: MyString
+  nombre: MyString
+
+two:
+  simbolo: MyString
+  nombre: MyString

@@ -1,0 +1,2 @@
+module CondicionesPagosHelper
+end

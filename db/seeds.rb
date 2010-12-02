@@ -14,16 +14,32 @@
 # 							 Expedicion / Administracion / Compras / Ventas.
 # Los rubros: Materias Primas / Insumos / Consumibles / Varios / Servicios / Maquinas y herramientas
 
-empresas = Empresa.create([{:nombre => 'Laindell SRL'}, {:nombre => 'Metalurgica La Toma SA'}])
 
-sectores = Sector.create([{:nombre => 'Tejeduría'}, {:nombre => 'Mantenimiento'}, 
-							{:nombre => 'Recubrimiento'}, {:nombre => 'Embalaje'}, 
-							{:nombre => 'Fabrica de piletas'}, {:nombre => 'Caños'},
-						  {:nombre => 'Expedición'}, {:nombre => 'Administración'},
-						  {:nombre => 'Compras'}, {:nombre => 'Ventas'}])
-						  
-rubros = Rubro.create([{:nombre => 'Materias Primas'}, {:nombre => 'Insumos'}, 
-							{:nombre => 'Consumibles'}, {:nombre => 'Varios'}, {:nombre => 'Servicios'},
-							{:nombre => 'Maquinas y herramientas'}])
+Empresa.find_or_create_by_nombre('Laindell SRL')
+Empresa.find_or_create_by_nombre('Metalúrgica La Toma SA')
 
-usuarios = Usuario.create({:nombre => 'Julian', :apellido => 'Rodriguez', :identificador => 'jrodriguez'})
+Sector.find_or_create_by_nombre('Tejeduría')
+Sector.find_or_create_by_nombre('Mantenimiento')
+Sector.find_or_create_by_nombre('Recubrimiento')
+Sector.find_or_create_by_nombre('Embalaje')
+Sector.find_or_create_by_nombre('Fabrica de piletas')
+Sector.find_or_create_by_nombre('Caños')
+Sector.find_or_create_by_nombre('Expedición')
+Sector.find_or_create_by_nombre('Administración')
+Sector.find_or_create_by_nombre('Compras')
+Sector.find_or_create_by_nombre('Ventas')
+
+Rubro.find_or_create_by_nombre('Materias Primas')
+Rubro.find_or_create_by_nombre('Insumos')
+Rubro.find_or_create_by_nombre('Consumibles')
+Rubro.find_or_create_by_nombre('Varios')
+Rubro.find_or_create_by_nombre('Servicios')
+Rubro.find_or_create_by_nombre('Maquinas y herramientas')						  
+
+Usuario.find_or_create_by_identificador(:nombre => 'Julian', :apellido => 'Rodriguez', :identificador => 'jrodriguez')
+
+Moneda.find_or_create_by_simbolo(:simbolo => "$", :nombre => "Pesos")
+Moneda.find_or_create_by_simbolo(:simbolo => "u$s", :nombre => "Dólares")
+
+
+
