@@ -1,3 +1,4 @@
+# coding: utf-8
 class MaterialesController < ApplicationController
   # GET /materiales
   # GET /materiales.xml

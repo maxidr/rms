@@ -1,0 +1,28 @@
+# == Schema Information
+# Schema version: 20101202133017
+#
+# Table name: presupuestos
+#
+#  id                :integer         not null, primary key
+#  proveedor_id      :integer
+#  moneda_id         :integer
+#  monto             :decimal(8, 2)
+#  condicion_pago_id :integer
+#  created_at        :datetime
+#  updated_at        :datetime
+#  requerimiento_id  :integer
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  proveedor: 
+  moneda: 
+  monto: 9.99
+  condicion_pago: 
+
+two:
+  proveedor: 
+  moneda: 
+  monto: 9.99
+  condicion_pago: 

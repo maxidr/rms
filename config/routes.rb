@@ -1,5 +1,5 @@
 Rms::Application.routes.draw do
-	
+
   resources :proveedores
 
   resources :monedas
@@ -10,7 +10,10 @@ Rms::Application.routes.draw do
 		# Rutea materiales con referencia a requerimientos para new y para create (post)
 		# requerimientos/3/materiales/new
     resources :materiales, :only => [:new, :create]
+    resources :presupuestos, :only => [:new, :create]
   end
+  
+  resources :presupuestos, :only => [:destroy, :update, :edit]
   
   # Rutea el resto (materiales) sin referencia a requerimientos
   resources :materiales, :only => [:show, :destroy, :update, :edit] do
