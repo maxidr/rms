@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20101202133017
+# Schema version: 20101202182809
 #
 # Table name: presupuestos
 #
@@ -11,6 +11,7 @@
 #  created_at        :datetime
 #  updated_at        :datetime
 #  requerimiento_id  :integer
+#  detalle           :string(255)
 #
 
 class Presupuesto < ActiveRecord::Base

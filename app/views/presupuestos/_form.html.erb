@@ -23,6 +23,10 @@
     <%= f.label :condicion_pago %><br />
     <%= f.collection_select :condicion_pago_id, CondicionPago.all, :id, :nombre, :include_blank => "Seleccione..."  %>
   </div>
+  <div class="field">
+    <%= f.label :detalle %><br />
+    <%= f.text_field :detalle  %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
