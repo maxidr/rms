@@ -55,6 +55,7 @@
     <th>Condición de pago</th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
   
 <% @requerimiento.presupuestos.each do |presupuesto| %>
@@ -62,6 +63,7 @@
     <td><%= presupuesto.proveedor.razon_social %></td>
     <td><%= "#{presupuesto.moneda.simbolo} #{presupuesto.monto}" %></td>
     <td><%= presupuesto.condicion_pago.nombre %></td>
+    <td><%= presupuesto.detalle %></td>
     <td><%= link_to 'Edit', edit_presupuesto_path(presupuesto) %></td>
     <td><%= link_to 'Destroy', presupuesto, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
