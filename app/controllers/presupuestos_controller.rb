@@ -42,7 +42,7 @@ class PresupuestosController < ApplicationController
 
     respond_to do |format|
       if @presupuesto.update_attributes(params[:presupuesto])
-        format.html { redirect_to(@presupuesto, :notice => 'Presupuesto was successfully updated.') }
+        format.html { redirect_to(@presupuesto.requerimiento, :notice => 'Presupuesto actualizado.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
