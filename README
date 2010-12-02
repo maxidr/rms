@@ -1,5 +1,8 @@
 Para iniciar el proyecto:
 
+Seguir los siguientes pasos para instalar RVM:
+http://rvm.beginrescueend.com/packages/openssl/
+
 Jquery para rails 3 (jquery-ujs):
 	git submodule init
 	git submodule update
@@ -7,4 +10,5 @@ Jquery para rails 3 (jquery-ujs):
 Crear y poblar BBDD:
 	rake db:migrate
 	rake db:seed
+	
 
