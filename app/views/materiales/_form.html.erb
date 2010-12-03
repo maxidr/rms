@@ -2,7 +2,7 @@
   <% if @material.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@material.errors.count,  "error evita", "errores evitan") %> que este material pueda ser grabado:</h2>
-			
+
       <ul>
       <% @material.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -24,17 +24,18 @@
     <%= f.text_area :detalle %>
   </div>
   <div class="actions">
-    <%= f.submit %>
-    <%#  <%= f.submit "Agregar característica", :id => 'btn_agregar_caracteristica' %> 
+    <%= f.submit "Grabar material" %>
+    <%#  <%= f.submit "Agregar característica", :id => 'btn_agregar_caracteristica' %>
   </div>
-  
+
   <%= hidden_field_tag 'add_caracteristica' %>
-  
+
   <script>
   	$(document).ready(function(){
-			$("#btn_agregar_caracteristica").click(function(){				
-				$("#add_caracteristica").val('true');				
+			$("#btn_agregar_caracteristica").click(function(){
+				$("#add_caracteristica").val('true');
 			});
 		});
   </script>
 <% end %>
+

@@ -1,4 +1,4 @@
-<h1>Listing materiales</h1>
+<h1>Listado de materiales</h1>
 
 <table>
   <tr>
@@ -15,13 +15,14 @@
     <td><%= material.material %></td>
     <td><%= material.cantidad %></td>
     <td><%= material.detalle %></td>
-    <td><%= link_to 'Show', material %></td>
-    <td><%= link_to 'Edit', edit_material_path(material) %></td>
-    <td><%= link_to 'Destroy', material, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Ver', material %></td>
+    <td><%= link_to 'Editar', edit_material_path(material) %></td>
+    <td><%= link_to 'Eliminar', material, :confirm => 'Esta seguro?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Material', new_requerimiento_material_path %>
+<%= link_to 'Nuevo material', new_requerimiento_material_path %>
+

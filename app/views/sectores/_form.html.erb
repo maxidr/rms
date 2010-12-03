@@ -1,7 +1,7 @@
 <%= form_for(@sector) do |f| %>
   <% if @sector.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@sector.errors.count, "error") %> prohibited this sector from being saved:</h2>
+      <h2><%= pluralize(@sectorerrors.count, "error evita", "errores evitan") %> que los datos del sector sean guardados:</h2>
 
       <ul>
       <% @sector.errors.full_messages.each do |msg| %>
@@ -16,6 +16,7 @@
     <%= f.text_field :nombre %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Guardar sector" %>
   </div>
 <% end %>
+

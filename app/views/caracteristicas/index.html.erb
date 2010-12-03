@@ -1,4 +1,4 @@
-<h1>Listing caracteristicas</h1>
+<h1>Listado de características</h1>
 
 <table>
   <tr>
@@ -15,13 +15,14 @@
     <td><%= caracteristica.nombre %></td>
     <td><%= caracteristica.valor %></td>
     <td><%= caracteristica.material %></td>
-    <td><%= link_to 'Show', caracteristica %></td>
-    <td><%= link_to 'Edit', edit_caracteristica_path(caracteristica) %></td>
-    <td><%= link_to 'Destroy', caracteristica, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Ver', caracteristica %></td>
+    <td><%= link_to 'Editar', edit_caracteristica_path(caracteristica) %></td>
+    <td><%= link_to 'Eliminar', caracteristica, :confirm => 'Esta seguro?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Caracteristica', new_caracteristica_path %>
+<%= link_to 'Nueva Característica', new_caracteristica_path %>
+

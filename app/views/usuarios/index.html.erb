@@ -1,4 +1,4 @@
-<h1>Listing usuarios</h1>
+<h1>Listado de usuarios</h1>
 
 <table>
   <tr>
@@ -15,13 +15,14 @@
     <td><%= usuario.nombre %></td>
     <td><%= usuario.apellido %></td>
     <td><%= usuario.identificador %></td>
-    <td><%= link_to 'Show', usuario %></td>
-    <td><%= link_to 'Edit', edit_usuario_path(usuario) %></td>
-    <td><%= link_to 'Destroy', usuario, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Ver', usuario %></td>
+    <td><%= link_to 'Editar', edit_usuario_path(usuario) %></td>
+    <td><%= link_to 'Eliminar', usuario, :confirm => 'Esta seguro?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Usuario', new_usuario_path %>
+<%= link_to 'Nuevo usuario', new_usuario_path %>
+

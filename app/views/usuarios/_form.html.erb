@@ -1,7 +1,7 @@
 <%= form_for(@usuario) do |f| %>
   <% if @usuario.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@usuario.errors.count, "error") %> prohibited this usuario from being saved:</h2>
+      <h2><%= pluralize(@usuario.errors.count, "error evita", "errores evitan") %> que los datos del usuario sean guardados:</h2>
 
       <ul>
       <% @usuario.errors.full_messages.each do |msg| %>
@@ -24,6 +24,7 @@
     <%= f.text_field :identificador %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Guardar usuario" %>
   </div>
 <% end %>
+

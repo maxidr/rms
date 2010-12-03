@@ -1,7 +1,7 @@
 <%= form_for(@rubro) do |f| %>
   <% if @rubro.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@rubro.errors.count, "error") %> prohibited this rubro from being saved:</h2>
+      <h2><%= pluralize(@rubro.errors.count, "error evita", "errores evitan") %> que los datos del rubro sean guardados:</h2>
 
       <ul>
       <% @rubro.errors.full_messages.each do |msg| %>
@@ -16,6 +16,7 @@
     <%= f.text_field :nombre %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Guardar rubro" %>
   </div>
 <% end %>
+
