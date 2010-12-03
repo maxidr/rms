@@ -15,7 +15,7 @@
     <%= f.collection_select :proveedor_id, Proveedor.all, :id, :razon_social, :include_blank => "Seleccione..." %>
   </div>
   <div class="field">
-		<%= f.label :monto %><br/>		
+		<%= f.label :monto %><br/>
     <%= f.collection_select :moneda_id, Moneda.all, :id, :simbolo %>
     <%= f.number_field :monto %>
   </div>
@@ -28,6 +28,7 @@
     <%= f.text_field :detalle  %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Guardar presupuesto" %>
   </div>
 <% end %>
+

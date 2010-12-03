@@ -1,7 +1,7 @@
 <%= form_for(@moneda) do |f| %>
   <% if @moneda.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@moneda.errors.count, "error") %> prohibited this moneda from being saved:</h2>
+      <h2><%= pluralize(@monedaerrors.count,  "error evita", "errores evitan") %> que los datos de la moneda puedan ser guardados:</h2>
 
       <ul>
       <% @moneda.errors.full_messages.each do |msg| %>
@@ -20,6 +20,7 @@
     <%= f.text_field :nombre %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Guardar moneda"%>
   </div>
 <% end %>
+

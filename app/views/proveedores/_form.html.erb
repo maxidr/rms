@@ -1,7 +1,7 @@
 <%= form_for(@proveedor) do |f| %>
   <% if @proveedor.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@proveedor.errors.count, "error") %> prohibited this proveedor from being saved:</h2>
+      <h2><%= pluralize(@proveedor.errors.count,  "error evita", "errores evitan") %> que los datos del proveedor puedan ser guardados:</h2>
 
       <ul>
       <% @proveedor.errors.full_messages.each do |msg| %>
@@ -32,6 +32,7 @@
     <%= f.text_area :contacto %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Guardar proveedor" %>
   </div>
 <% end %>
+

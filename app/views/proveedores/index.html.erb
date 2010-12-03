@@ -1,4 +1,4 @@
-<h1>Listing proveedores</h1>
+<h1>Listado de proveedores</h1>
 
 <table>
   <tr>
@@ -19,13 +19,14 @@
     <td><%= proveedor.telefono %></td>
     <td><%= proveedor.cuit %></td>
     <td><%= proveedor.contacto %></td>
-    <td><%= link_to 'Show', proveedor %></td>
-    <td><%= link_to 'Edit', edit_proveedor_path(proveedor) %></td>
-    <td><%= link_to 'Destroy', proveedor, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Ver', proveedor %></td>
+    <td><%= link_to 'Editar', edit_proveedor_path(proveedor) %></td>
+    <td><%= link_to 'Eliminar', proveedor, :confirm => 'Esta seguro?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Proveedor', new_proveedor_path %>
+<%= link_to 'Nuevo proveedor', new_proveedor_path %>
+

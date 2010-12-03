@@ -1,33 +1,37 @@
-<h1>Listing requerimientos</h1>
+<h1>Listado de requerimientos</h1>
 
-<table>
-  <tr>
-  	<th>Nro</th>
-  	<th>Fecha</th>
-    <th>Solicitante</th>
-    <th>Empresa</th>
-    <th>Sector</th>
-    <th>Rubro</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<% if @requerimientos.empty? %>
+	<p>Aun no hay requerimientos cargados.</p>
+<% else %>
+	<table>
+		<tr>
+			<th>N°</th>
+			<th>Fecha</th>
+		  <th>Solicitante</th>
+		  <th>Empresa</th>
+		  <th>Sector</th>
+		  <th>Rubro</th>
+		  <th></th>
+		  <th></th>
+		  <th></th>
+		</tr>
 
-<% @requerimientos.each do |requerimiento| %>
-  <tr>
-		<td><%=	requerimiento.id %></td>
-		<td><%=	requerimiento.created_at %></td>
-    <td><%= requerimiento.solicitante %></td>
-    <td><%= requerimiento.empresa %></td>
-    <td><%= requerimiento.sector %></td>
-    <td><%= requerimiento.rubro %></td>
-    <td><%= link_to 'Show', requerimiento %></td>
-    <td><%= link_to 'Edit', edit_requerimiento_path(requerimiento) %></td>
-    <td><%= link_to 'Destroy', requerimiento, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+	<% @requerimientos.each do |requerimiento| %>
+		<tr>
+			<td><%=	requerimiento.id %></td>
+			<td><%=	requerimiento.created_at %></td>
+		  <td><%= requerimiento.solicitante %></td>
+		  <td><%= requerimiento.empresa %></td>
+		  <td><%= requerimiento.sector %></td>
+		  <td><%= requerimiento.rubro %></td>
+		  <td><%= link_to 'Ver', requerimiento %></td>
+		  <td><%= link_to 'Editar', edit_requerimiento_path(requerimiento) %></td>
+		  <td><%= link_to 'Eliminar', requerimiento, :confirm => 'Esta seguro?', :method => :delete %></td>
+		</tr>
+	<% end %>
+	</table>
+
 <% end %>
-</table>
 
-<br />
+<%= link_to 'Nuevo requerimiento', new_requerimiento_path %>
 
-<%= link_to 'New Requerimiento', new_requerimiento_path %>

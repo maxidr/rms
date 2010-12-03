@@ -12,16 +12,16 @@ Rms::Application.routes.draw do
     resources :materiales, :only => [:new, :create]
     resources :presupuestos, :only => [:new, :create]
   end
-  
+
   resources :presupuestos, :only => [:destroy, :update, :edit]
-  
+
   # Rutea el resto (materiales) sin referencia a requerimientos
   resources :materiales, :only => [:show, :destroy, :update, :edit] do
   	resources :caracteristicas, :only => [:new, :create]
   end
-  
+
   resources :caracteristicas, :only => [:show, :destroy, :update, :edit]
-  
+
 #  resources :material
 
   resources :usuarios
@@ -81,7 +81,7 @@ Rms::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => "welcome#index"
+  root :to => "requerimientos#index"
 
   # See how all your routes lay out with "rake routes"
 
@@ -89,3 +89,4 @@ Rms::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
 end
+

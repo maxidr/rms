@@ -1,7 +1,7 @@
 <%= form_for(@condicion_pago) do |f| %>
   <% if @condicion_pago.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@condicion_pago.errors.count, "error") %> prohibited this condicion_pago from being saved:</h2>
+      <h2><%= pluralize(@condicion_pago.errors.count,  "error evita", "errores evitan") %> que esta condición de pago pueda ser guardada:</h2>
 
       <ul>
       <% @condicion_pago.errors.full_messages.each do |msg| %>
@@ -20,6 +20,7 @@
     <%= f.text_area :descripcion %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Guardar condición de pago"%>
   </div>
 <% end %>
+

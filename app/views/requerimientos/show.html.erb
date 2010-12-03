@@ -36,9 +36,9 @@
   <tr>
     <td><%= material.nombre %></td>
     <td><%= material.cantidad %></td>
-    <td><%= link_to 'Show', material_path(material) %></td>
-    <td><%= link_to 'Edit', edit_material_path(material) %></td>
-    <td><%= link_to 'Destroy', material, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Ver', material_path(material) %></td>
+    <td><%= link_to 'Editar', edit_material_path(material) %></td>
+    <td><%= link_to 'Eliminar', material, :confirm => 'Esta seguro?', :method => :delete %></td>
    	<td><%= link_to 'Agregar característica', new_material_caracteristica_path(material) %>	</td>
   </tr>
 <% end %>
@@ -57,15 +57,20 @@
     <th></th>
     <th></th>
   </tr>
-  
+
 <% @requerimiento.presupuestos.each do |presupuesto| %>
   <tr>
     <td><%= presupuesto.proveedor.razon_social %></td>
     <td><%= "#{presupuesto.moneda.simbolo} #{presupuesto.monto}" %></td>
     <td><%= presupuesto.condicion_pago.nombre %></td>
+<<<<<<< HEAD
     <td><%= presupuesto.detalle %></td>
     <td><%= link_to 'Edit', edit_presupuesto_path(presupuesto) %></td>
     <td><%= link_to 'Destroy', presupuesto, :confirm => 'Are you sure?', :method => :delete %></td>
+=======
+    <td><%= link_to 'Editar', edit_presupuesto_path(presupuesto) %></td>
+    <td><%= link_to 'Eliminar', presupuesto, :confirm => 'Esta seguro?', :method => :delete %></td>
+>>>>>>> e1aaf0c404d1ae145e9a3aa3600e2e70c90bd090
   </tr>
 <% end %>
 </table>
@@ -74,6 +79,6 @@
 <br/>
 <br/>
 
-<%= link_to 'Edit', edit_requerimiento_path(@requerimiento) %> |
-<%= link_to 'Back', requerimientos_path %>
+<%= link_to 'Editar', edit_requerimiento_path(@requerimiento) %> |
+<%= link_to 'Volver', requerimientos_path %>
 

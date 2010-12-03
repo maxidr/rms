@@ -1,4 +1,4 @@
-<h1>Listing monedas</h1>
+<h1>Listado de monedas</h1>
 
 <table>
   <tr>
@@ -13,13 +13,14 @@
   <tr>
     <td><%= moneda.simbolo %></td>
     <td><%= moneda.nombre %></td>
-    <td><%= link_to 'Show', moneda %></td>
-    <td><%= link_to 'Edit', edit_moneda_path(moneda) %></td>
-    <td><%= link_to 'Destroy', moneda, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Ver', moneda %></td>
+    <td><%= link_to 'Editar', edit_moneda_path(moneda) %></td>
+    <td><%= link_to 'Eliminar', moneda, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Moneda', new_moneda_path %>
+<%= link_to 'Nueva moneda', new_moneda_path %>
+
