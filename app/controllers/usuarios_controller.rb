@@ -1,4 +1,8 @@
+# coding: utf-8
 class UsuariosController < ApplicationController
+
+	before_filter :authenticate_usuario!
+
   # GET /usuarios
   # GET /usuarios.xml
   def index
@@ -81,3 +85,4 @@ class UsuariosController < ApplicationController
     end
   end
 end
+

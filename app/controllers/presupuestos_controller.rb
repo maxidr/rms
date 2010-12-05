@@ -1,11 +1,13 @@
 # coding: utf-8
 class PresupuestosController < ApplicationController
 
+	before_filter :authenticate_usuario!
+
   # GET /presupuestos/new
   # GET /presupuestos/new.xml
   def new
   	@requerimiento = Requerimiento.find(params[:requerimiento_id])
-    @presupuesto = Presupuesto.new    
+    @presupuesto = Presupuesto.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -20,9 +22,9 @@ class PresupuestosController < ApplicationController
 
   # POST /presupuestos
   # POST /presupuestos.xml
-  def create  
+  def create
 		@requerimiento = Requerimiento.find(params[:requerimiento_id])
-		@presupuesto = @requerimiento.presupuestos.create(params[:presupuesto])   
+		@presupuesto = @requerimiento.presupuestos.create(params[:presupuesto])
 
     respond_to do |format|
       if @presupuesto.save
@@ -63,3 +65,4 @@ class PresupuestosController < ApplicationController
     end
   end
 end
+

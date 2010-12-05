@@ -1,4 +1,8 @@
+# coding: utf-8
 class SectoresController < ApplicationController
+
+	before_filter :authenticate_usuario!
+
   # GET /sectores
   # GET /sectores.xml
   def index
@@ -81,3 +85,4 @@ class SectoresController < ApplicationController
     end
   end
 end
+

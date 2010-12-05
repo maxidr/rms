@@ -1,4 +1,8 @@
+# coding: utf-8
 class CondicionesPagosController < ApplicationController
+
+	before_filter :authenticate_usuario!
+
   # GET /condiciones_pagos
   # GET /condiciones_pagos.xml
   def index
@@ -81,3 +85,4 @@ class CondicionesPagosController < ApplicationController
     end
   end
 end
+

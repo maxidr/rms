@@ -1,4 +1,8 @@
+# coding: utf-8
 class MonedasController < ApplicationController
+
+	before_filter :authenticate_usuario!
+
   # GET /monedas
   # GET /monedas.xml
   def index
@@ -81,3 +85,4 @@ class MonedasController < ApplicationController
     end
   end
 end
+

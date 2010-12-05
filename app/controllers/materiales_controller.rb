@@ -1,5 +1,8 @@
 # coding: utf-8
 class MaterialesController < ApplicationController
+
+	before_filter :authenticate_usuario!
+
   # GET /materiales
   # GET /materiales.xml
   def index
@@ -44,7 +47,7 @@ class MaterialesController < ApplicationController
   # POST /materiales
   # POST /materiales.xml
   def create
-  	@requerimiento = Requerimiento.find(params[:requerimiento_id]) 
+  	@requerimiento = Requerimiento.find(params[:requerimiento_id])
   	@material = @requerimiento.materiales.create(params[:material])
 
     logger.debug("Material a crear: #{@material}")
@@ -88,3 +91,4 @@ class MaterialesController < ApplicationController
     end
   end
 end
+

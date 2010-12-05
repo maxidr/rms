@@ -1,4 +1,8 @@
+# coding: utf-8
 class ProveedoresController < ApplicationController
+
+	before_filter :authenticate_usuario!
+
   # GET /proveedores
   # GET /proveedores.xml
   def index
@@ -81,3 +85,4 @@ class ProveedoresController < ApplicationController
     end
   end
 end
+

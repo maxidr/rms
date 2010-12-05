@@ -1,5 +1,7 @@
 Rms::Application.routes.draw do
 
+	devise_for :usuarios
+
   resources :proveedores
 
   resources :monedas
@@ -24,7 +26,7 @@ Rms::Application.routes.draw do
 
 #  resources :material
 
-  resources :usuarios
+#  resources :usuarios
 
   resources :rubros
 

@@ -10,7 +10,7 @@
 
 
 # En principio las empresas serian  Laindell SRL  y  Metalurgica La Toma SA
-# Los sectores : Tejeduria /  Mantenimiento / Recubrimiento / Embalaje / Fabrica de piletas / Caños / 
+# Los sectores : Tejeduria /  Mantenimiento / Recubrimiento / Embalaje / Fabrica de piletas / Caños /
 # 							 Expedicion / Administracion / Compras / Ventas.
 # Los rubros: Materias Primas / Insumos / Consumibles / Varios / Servicios / Maquinas y herramientas
 
@@ -34,12 +34,10 @@ Rubro.find_or_create_by_nombre('Insumos')
 Rubro.find_or_create_by_nombre('Consumibles')
 Rubro.find_or_create_by_nombre('Varios')
 Rubro.find_or_create_by_nombre('Servicios')
-Rubro.find_or_create_by_nombre('Maquinas y herramientas')						  
+Rubro.find_or_create_by_nombre('Maquinas y herramientas')
 
-Usuario.find_or_create_by_identificador(:nombre => 'Julian', :apellido => 'Rodriguez', :identificador => 'jrodriguez')
+#Usuario.find_or_create_by_identificador(:nombre => 'Julian', :apellido => 'Rodriguez', :identificador => 'jrodriguez')
 
 Moneda.find_or_create_by_simbolo(:simbolo => "$", :nombre => "Pesos")
 Moneda.find_or_create_by_simbolo(:simbolo => "u$s", :nombre => "Dólares")
-
-
 

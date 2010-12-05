@@ -1,0 +1,28 @@
+<h2>Crear una cuenta</h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <p><%= f.label :nombre %><br />
+  <%= f.text_field :nombre %></p>
+
+  <p><%= f.label :apellido %><br />
+  <%= f.text_field :apellido %></p>
+
+	<p><%= f.label :identificador %> <i>(Nombre que utilizará para ingresar al sistema)</i><br />
+  <%= f.text_field :identificador %></p>
+
+  <p><%= f.label :email %><br />
+  <%= f.text_field :email %></p>
+
+  <p><%= f.label :password, "Contraseña" %><br />
+  <%= f.password_field :password %></p>
+
+  <p><%= f.label :password_confirmation, "Confirmar contraseña" %><br />
+  <%= f.password_field :password_confirmation %></p>
+
+  <p><%= f.submit "Registrar" %></p>
+<% end %>
+
+<%= render :partial => "devise/shared/links" %>
+

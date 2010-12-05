@@ -1,9 +1,13 @@
+# coding: utf-8
 class EmpresasController < ApplicationController
+
+	before_filter :authenticate_usuario!
+
   # GET /empresas
   # GET /empresas.xml
   def index
     @empresas = Empresa.all
-     
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @empresas }
@@ -81,3 +85,4 @@ class EmpresasController < ApplicationController
     end
   end
 end
+

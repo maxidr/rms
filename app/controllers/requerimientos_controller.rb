@@ -1,4 +1,8 @@
+# coding: utf-8
 class RequerimientosController < ApplicationController
+
+	before_filter :authenticate_usuario!
+
   # GET /requerimientos
   # GET /requerimientos.xml
   def index
@@ -26,7 +30,7 @@ class RequerimientosController < ApplicationController
   # GET /requerimientos/new.xml
   def new
     @requerimiento = Requerimiento.new
-    # FIXME Quitar el usuario hardcodeado 
+    # FIXME Quitar el usuario hardcodeado
     @requerimiento.solicitante = Usuario.find(1)
 
     respond_to do |format|
@@ -84,3 +88,4 @@ class RequerimientosController < ApplicationController
     end
   end
 end
+

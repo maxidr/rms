@@ -7,25 +7,38 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-  <div id="menu">
-    <ul id="nav">
-      <li><%= link_to "Requerimientos", requerimientos_path %></li>
-      <li>
-        <a href="">Configuración</a>
-        <ul>          
-          <li><%= link_to "Usuarios", usuarios_path %></li>
-          <li><%= link_to "Sectores", sectores_path %></li>
-          <li><%= link_to "Rubros", rubros_path %></li>
-          <li><%= link_to "Empresas", empresas_path %></li>
-          <li><%= link_to 'Proveedores', proveedores_path %></li>
-          <li><%= link_to 'Tipos de Moneda', monedas_path %></li>
-          <li><%= link_to 'Condiciones de pago', condiciones_pagos_path %></li>
-        </ul>
-      </li>
 
-    </ul>
-  </div>
+	<div id="user_nav">
+		<% if usuario_signed_in? %>
+			<b><%= "#{current_usuario.nombre} #{current_usuario.apellido}" %></b> |
+			<%= link_to 'Mi cuenta', edit_usuario_registration_path %> |
+			<%= link_to "Salir", destroy_usuario_session_path %>
+		<% else %>
+			<%#= link_to "Sign up", new_usuario_registration_path %> or
+			<%#= link_to "Sign in", new_usuario_session_path %>
+		<% end %>
+	</div>
+
+	<% if usuario_signed_in? %>
+		<div id="menu">
+		  <ul id="nav">
+		    <li><%= link_to "Requerimientos", requerimientos_path %></li>
+		    <li>
+		      <a href="">Configuración</a>
+		      <ul>
+		        <li><%= link_to "Sectores", sectores_path %></li>
+		        <li><%= link_to "Rubros", rubros_path %></li>
+		        <li><%= link_to "Empresas", empresas_path %></li>
+		        <li><%= link_to 'Proveedores', proveedores_path %></li>
+		        <li><%= link_to 'Tipos de Moneda', monedas_path %></li>
+		        <li><%= link_to 'Condiciones de pago', condiciones_pagos_path %></li>
+		      </ul>
+		    </li>
+		  </ul>
+		</div>
+	<% end %>
 <%= yield %>
 
 </body>
 </html>
+

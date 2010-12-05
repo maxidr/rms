@@ -1,4 +1,8 @@
+# coding: utf-8
 class RubrosController < ApplicationController
+
+	before_filter :authenticate_usuario!
+
   # GET /rubros
   # GET /rubros.xml
   def index
@@ -81,3 +85,4 @@ class RubrosController < ApplicationController
     end
   end
 end
+
