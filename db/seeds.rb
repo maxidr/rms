@@ -43,4 +43,20 @@ Usuario.create({:nombre => 'Maximiliano', :apellido => 'Dello Russo',
 	:identificador => 'mdellorusso', 
 	:email => 'mdellorusso@aonken.com.ar', 
 	:password => 'lucas12'}) unless Usuario.find_by_identificador('mdellorusso')
+	
+Proveedor.find_or_create_by_razon_social(
+	:razon_social => 'Compañía Química', 
+	:telefono => '44445555',
+	:cuit => '30641212123',
+	:contacto => 'Clau')
+	
+CondicionPago.find_or_create_by_nombre(	:nombre => 'Contado',	:descripcion => 'Cheques propios al dia')
+CondicionPago.find_or_create_by_nombre(	:nombre => 'Efectivo anticipado en dólares',	:descripcion => 'u$s')	
+CondicionPago.find_or_create_by_nombre(	:nombre => 'Efectivo anticipado en pesos',	:descripcion => '$')		
+CondicionPago.find_or_create_by_nombre(	:nombre => 'Anticipado 15 dias',	:descripcion => 'Cheques 15 dias')	
+CondicionPago.find_or_create_by_nombre(	:nombre => 'Anticipado 30 dias',	:descripcion => 'Cheques 30 dias')	
+CondicionPago.find_or_create_by_nombre(	:nombre => 'Anticipado 45 dias	',	:descripcion => 'Cheque 45 dias')	
+CondicionPago.find_or_create_by_nombre(	:nombre => 'Anticipado 7 dias',	:descripcion => 'Cheques 7 dias')	
+CondicionPago.find_or_create_by_nombre(	:nombre => 'Fecha Factura 30',	:descripcion => 'Vencimiento factura 30 dias')
+CondicionPago.find_or_create_by_nombre(	:nombre => 'Fecha Factura 45',	:descripcion => 'Vencimiento factura 45 dias')
 
