@@ -36,8 +36,11 @@ Rubro.find_or_create_by_nombre('Varios')
 Rubro.find_or_create_by_nombre('Servicios')
 Rubro.find_or_create_by_nombre('Maquinas y herramientas')
 
-#Usuario.find_or_create_by_identificador(:nombre => 'Julian', :apellido => 'Rodriguez', :identificador => 'jrodriguez')
-
 Moneda.find_or_create_by_simbolo(:simbolo => "$", :nombre => "Pesos")
 Moneda.find_or_create_by_simbolo(:simbolo => "u$s", :nombre => "Dólares")
+
+Usuario.create({:nombre => 'Maximiliano', :apellido => 'Dello Russo', 
+	:identificador => 'mdellorusso', 
+	:email => 'mdellorusso@aonken.com.ar', 
+	:password => 'lucas12'}) unless Usuario.find_by_identificador('mdellorusso')
 
