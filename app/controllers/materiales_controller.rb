@@ -86,7 +86,7 @@ class MaterialesController < ApplicationController
     @material.destroy
 
     respond_to do |format|
-      format.html { redirect_to(requerimiento_url(@material.requerimiento), :notice => "Se elimino el material \"#{@material.material}\"") }
+      format.html { redirect_to(requerimiento_url(@material.requerimiento), :notice => "Se elimino el material \"#{@material.nombre}\"") }
       format.xml  { head :ok }
     end
   end
