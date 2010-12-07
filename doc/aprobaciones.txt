@@ -1,0 +1,15 @@
+En la pantalla del detalle del requerimiento figura un botón con la leyenda "Solicitar aprobación".
+El objetivo del mismo es solicitar la aprobación del requerimiento por parte del jefe de planta.
+Al pulsar el mismo el requerimiento cambiará de estado a pendiente de autorización y se enviará un 
+mail al jefe de planta informando que posee un requerimiento pendiente de autorización. Dicho mail 
+poseerá un link a la pantalla del requerimiento.  
+Al ingresar al sistema, el jefe de planta, poseerá una pantalla con el listado de pendientes donde 
+figurará el anteriormente solicitado.
+El jefe de plata podrá aprobarlo o rechazarlo (pudiendo agregar comentarios en dicho caso). En caso 
+de aprobarse se cambiará el estado a "aprobado por jefe de planta" y se enviará un mail al solicitante
+del requerimiento.
+El solicitante podrá ingresar al requerimiento y continuar cargando presupuesto pero no podrá 
+modificar los materiales o servicios del requerimiento (tampoco las características del mismo). La 
+pantalla del detalle del requerimiento poseerá una nuevo botón con la leyenda 
+"Enviar requerimiento a compras" que permitirá remitir el mismo al área de compras para continuar 
+con el ciclo de aprobación.
