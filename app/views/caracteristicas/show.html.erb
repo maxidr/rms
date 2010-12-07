@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<h2>Característica del material: <%= @caracteristica.material.nombre %></h2>
 <p>
   <b>Nombre:</b>
   <%= @caracteristica.nombre %>
@@ -10,12 +11,6 @@
   <%= @caracteristica.valor %>
 </p>
 
-<p>
-  <b>Material:</b>
-  <%= @caracteristica.material %>
-</p>
-
-
 <%= link_to 'Editar', edit_caracteristica_path(@caracteristica) %> |
-<%= link_to 'Volver', caracteristicas_path %>
+<%= link_to 'Volver', material_path(@caracteristica.material) %>
 
