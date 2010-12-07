@@ -39,5 +39,9 @@ class Usuario < ActiveRecord::Base
   def to_s
     "#{nombre} #{apellido}"
   end
+  
+  def nombre_completo
+  	"#{nombre} #{apellido}"
+  end
 end
 

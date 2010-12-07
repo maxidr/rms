@@ -10,7 +10,13 @@
 #
 
 class Sector < ActiveRecord::Base
-  validates :nombre, :presence => true
+  validates_presence_of :nombre, :responsable
+  
+  belongs_to :responsable, :class_name => 'Usuario'
+  
+  def nombre_responsable
+  	responsable ? responsable.nombre_completo : '-'
+  end
 
   def to_s
     nombre

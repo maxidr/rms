@@ -2,6 +2,11 @@
 class RequerimientosController < ApplicationController
 
 	before_filter :authenticate_usuario!
+	
+	def solicitar_aprobacion
+		@requerimiento = Requerimiento.find(params[:id])
+		# TODO: Finalizar la implentación del método
+	end
 
   # GET /requerimientos
   # GET /requerimientos.xml

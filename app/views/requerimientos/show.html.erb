@@ -79,6 +79,9 @@
 <%= link_to 'Agregar presupuesto', new_requerimiento_presupuesto_path(@requerimiento)  %>
 <br/>
 <br/>
+<b><%= link_to 'Solicitar aprobación', :method => :solicitar_aprobacion %></b>
+<br/>
+<br/>
 
 <%= link_to 'Editar', edit_requerimiento_path(@requerimiento) %> |
 <%= link_to 'Volver', requerimientos_path %>
