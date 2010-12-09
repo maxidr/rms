@@ -37,9 +37,9 @@ class Usuario < ActiveRecord::Base
   attr_accessible :password, :password_confirmation, :nombre, :apellido, :identificador, :email, :remember_me
 
   def to_s
-    "#{nombre} #{apellido}"
+  	nombre_completo
   end
-  
+
   def nombre_completo
   	"#{nombre} #{apellido}"
   end

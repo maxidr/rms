@@ -21,12 +21,16 @@ class Requerimiento < ActiveRecord::Base
   has_many :presupuestos
 
   validates_presence_of :empresa, :sector, :rubro, :solicitante
-  
-  
-  
+
+  ESTADOS =
+
+
+
   def solicitar_autorizacion_sector
   	# TODO: Enviar mail al responsable del sector
-  	
+
   	# Cambiar estado a pendiente de aprobación por responsable del sector
+
   end
 end
+
