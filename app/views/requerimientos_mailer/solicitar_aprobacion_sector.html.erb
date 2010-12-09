@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+  	<p>Se solicita la aprobación del requerimiento N° <%= @requerimiento.id %></p>
+  	<p>Puede acceder al siguiente <%= link_to 'link', requerimiento_path_url(@requerimiento) %> para verificar el requerimiento y determinar si aprueba la misma</p>		
+  </body>
+</html>

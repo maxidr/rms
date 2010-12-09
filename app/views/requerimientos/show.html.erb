@@ -1,4 +1,15 @@
 <p id="notice"><%= notice %></p>
+<% if @requerimiento.errors.any? %>
+	<div id="error_explanation">
+    <h2>Ocurrió el siguiente inconveniente:</h2>
+    <ul>
+    <% @requerimiento.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 
 <h1>Requerimiento N° <%= @requerimiento.id %></h1>
 
@@ -20,6 +31,11 @@
 <p>
   <b>Rubro:</b>
   <%= @requerimiento.rubro %>
+</p>
+
+<p>
+  <b>Estado:</b>
+  <%= @requerimiento.estado %>
 </p>
 
 <h2>Materiales</h2>
@@ -79,9 +95,20 @@
 <%= link_to 'Agregar presupuesto', new_requerimiento_presupuesto_path(@requerimiento)  %>
 <br/>
 <br/>
-<b><%= link_to 'Solicitar aprobación', :method => :solicitar_aprobacion %></b>
-<br/>
-<br/>
+
+<% if @requerimiento.permite_solicitar_aprobacion? %>
+	<b><%= link_to 'Solicitar aprobación', solicitar_aprobacion_requerimiento_path(@requerimiento), :method => :put %></b>
+	<br/>
+	<br/>
+<%end %>
+
+<% if @requerimiento.aprobable_by? current_usuario %>
+	<%= link_to 'Aprobar requerimiento', aprobar_requerimiento_path(@requerimiento), :method => :put %>
+	<br/>	
+	<%= link_to 'Rechazar requerimiento', rechazar_requerimiento_path(@requerimiento), :method => :put %>
+	<br/>
+	<br/>	
+<% end %>
 
 <%= link_to 'Editar', edit_requerimiento_path(@requerimiento) %> |
 <%= link_to 'Volver', requerimientos_path %>

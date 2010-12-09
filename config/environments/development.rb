@@ -23,11 +23,11 @@ Rms::Application.configure do
 		:address              => "smtp.gmail.com",
 		:port                 => 587,
 #		:domain               => 'aonken.com.ar',
-		:user_name            => 'rms.perseus@gmail.com',
+		:user_name            => 'rms.perseus@gmail.com'}
 		:password             => 'gmdr1133',
 		:authentication       => 'plain',
 		:enable_starttls_auto => true  }
-
+		
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log

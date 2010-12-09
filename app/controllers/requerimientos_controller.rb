@@ -5,7 +5,28 @@ class RequerimientosController < ApplicationController
 	
 	def solicitar_aprobacion
 		@requerimiento = Requerimiento.find(params[:id])
-		# TODO: Finalizar la implentación del método
+		logger.debug("Se desea solicitar aprobacion del requerimiento #{@requerimiento.id}")
+		respond_to do |format|
+			if @requerimiento.solicitar_aprobacion_sector
+				responsable = @requerimiento.sector.responsable
+				format.html { redirect_to(@requerimiento,
+					:notice => "Se solicitó la aprobación del requerimiento a #{responsable.nombre_completo}.") }
+        format.xml  { head :ok }
+			else			
+				format.html { render :action => "show" }
+        format.xml  { render :xml => @requerimiento.errors, :status => :unprocessable_entity }
+			end			
+		end
+	end
+	
+	def aprobar
+		# TODO: Implementar
+		logger.debug("Se aprueba el requerimiento")
+	end
+	
+	def rechazar
+		# TODO: Implementar		
+		logger.debug("Se rechaza el requerimiento")
 	end
 
   # GET /requerimientos
@@ -72,7 +93,7 @@ class RequerimientosController < ApplicationController
 
     respond_to do |format|
       if @requerimiento.update_attributes(params[:requerimiento])
-        format.html { redirect_to(@requerimiento, :notice => 'Requerimiento was successfully updated.') }
+        format.html { redirect_to(@requerimiento, :notice => 'Requerimiento actualizado.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

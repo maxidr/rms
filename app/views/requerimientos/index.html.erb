@@ -11,6 +11,7 @@
 		  <th>Empresa</th>
 		  <th>Sector</th>
 		  <th>Rubro</th>
+		  <th>Estado</th>
 		  <th></th>
 		  <th></th>
 		  <th></th>
@@ -24,6 +25,7 @@
 		  <td><%= requerimiento.empresa %></td>
 		  <td><%= requerimiento.sector %></td>
 		  <td><%= requerimiento.rubro %></td>
+		  <td><%= requerimiento.estado %></td>
 		  <td><%= link_to 'Ver', requerimiento %></td>
 		  <td><%= link_to 'Editar', edit_requerimiento_path(requerimiento) %></td>
 		  <td><%= link_to 'Eliminar', requerimiento, :confirm => 'Esta seguro?', :method => :delete %></td>

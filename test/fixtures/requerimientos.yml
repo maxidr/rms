@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20101130010846
+# Schema version: 20101209121748
 #
 # Table name: requerimientos
 #
@@ -10,6 +10,7 @@
 #  rubro_id       :integer
 #  created_at     :datetime
 #  updated_at     :datetime
+#  estado_id      :integer         default(0)
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

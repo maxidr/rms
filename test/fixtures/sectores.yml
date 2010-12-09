@@ -1,12 +1,13 @@
 # == Schema Information
-# Schema version: 20101130010846
+# Schema version: 20101209121748
 #
 # Table name: sectores
 #
-#  id         :integer         not null, primary key
-#  nombre     :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id             :integer         not null, primary key
+#  nombre         :string(255)
+#  created_at     :datetime
+#  updated_at     :datetime
+#  responsable_id :integer
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
