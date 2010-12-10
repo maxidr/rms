@@ -2,6 +2,9 @@
 class MaterialesController < ApplicationController
 
 	before_filter :authenticate_usuario!
+	before_filter :load_material, :only => [:show, :edit, :update, :destroy]
+	before_filter :check_rqm_state, :only => [:edit, :update, :destroy]
+	before_filter :check_creation, :only => [:create, :new]
 
   # GET /materiales
   # GET /materiales.xml
@@ -17,8 +20,6 @@ class MaterialesController < ApplicationController
   # GET /materiales/1
   # GET /materiales/1.xml
   def show
-    @material = Material.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @material }
@@ -29,7 +30,6 @@ class MaterialesController < ApplicationController
   # GET /materiales/new.xml
   def new
   	logger.debug("requerimiento #{params[:requerimiento_id]}")
-  	@requerimiento = Requerimiento.find(params[:requerimiento_id])
     @material = Material.new
 
     respond_to do |format|
@@ -40,14 +40,11 @@ class MaterialesController < ApplicationController
 
   # GET /materiales/1/edit
   def edit
-  	# FIXME: Estimo que no estoy probando esta parte
-    @material = Material.find(params[:id])
   end
 
   # POST /materiales
   # POST /materiales.xml
   def create
-  	@requerimiento = Requerimiento.find(params[:requerimiento_id])
   	@material = @requerimiento.materiales.create(params[:material])
 
     logger.debug("Material a crear: #{@material}")
@@ -66,8 +63,6 @@ class MaterialesController < ApplicationController
   # PUT /materiales/1
   # PUT /materiales/1.xml
   def update
-    @material = Material.find(params[:id])
-
     respond_to do |format|
       if @material.update_attributes(params[:material])
         format.html { redirect_to(@material, :notice => 'Material was successfully updated.') }
@@ -82,7 +77,6 @@ class MaterialesController < ApplicationController
   # DELETE /materiales/1
   # DELETE /materiales/1.xml
   def destroy
-    @material = Material.find(params[:id])
     @material.destroy
 
     respond_to do |format|
@@ -90,5 +84,25 @@ class MaterialesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  private
+
+  def check_rqm_state
+		if cannot? :edit, @material.requerimiento
+			redirect_to @material, :alert => 'No puede alterar el contenido de un requerimiento hasta que no cambie su estado'
+		end
+	end
+
+	def check_creation
+		@requerimiento = Requerimiento.find(params[:requerimiento_id])
+  	if cannot? :add_material, @requerimiento
+  		redirect_to @requerimiento, :alert => 'No puede agregar materiales al requerimiento hasta que este no cambie su estado'
+  	end
+	end
+
+	def load_material
+		@material = Material.find(params[:id])
+	end
+
 end
 

@@ -27,8 +27,12 @@
 		  <td><%= requerimiento.rubro %></td>
 		  <td><%= requerimiento.estado %></td>
 		  <td><%= link_to 'Ver', requerimiento %></td>
-		  <td><%= link_to 'Editar', edit_requerimiento_path(requerimiento) %></td>
-		  <td><%= link_to 'Eliminar', requerimiento, :confirm => 'Esta seguro?', :method => :delete %></td>
+		  <td>
+		  <% if can? :edit, requerimiento %>
+			  <%= link_to 'Editar', edit_requerimiento_path(requerimiento) %>
+			<% end %>
+			</td>
+			<td>Cancelar</td>
 		</tr>
 	<% end %>
 	</table>

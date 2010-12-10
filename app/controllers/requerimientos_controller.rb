@@ -2,9 +2,21 @@
 class RequerimientosController < ApplicationController
 
 	before_filter :authenticate_usuario!
+	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion, :check_state, :show, :update]
+	before_filter :check_state, :only => [:edit, :update]
+
+	def obtener_rqm
+		@requerimiento = Requerimiento.find(params[:id])
+	end
+
+	def check_state
+    if cannot? :edit, @requerimiento
+    	@requerimiento.errors[:base] = 'El requerimiento no puede ser modificado hasta que no cambie de estado'
+    	render :action => :show
+    end
+	end
 
 	def solicitar_aprobacion
-		@requerimiento = Requerimiento.find(params[:id])
 		logger.debug("Se desea solicitar aprobacion del requerimiento #{@requerimiento.id}")
 		respond_to do |format|
 			if @requerimiento.solicitar_aprobacion_sector
@@ -32,8 +44,9 @@ class RequerimientosController < ApplicationController
   # GET /requerimientos
   # GET /requerimientos.xml
   def index
-    @requerimientos = Requerimiento.all
-
+#    @requerimientos = Requerimiento.where(:solicitante_id => current_usuario)
+		#	FIXME: El usuario puede ver sus requerimientos y los que debe autorizar
+		@requerimientos = Requerimiento.includes(:solicitante, :empresa, :sector, :rubro).all
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @requerimientos }
@@ -44,8 +57,6 @@ class RequerimientosController < ApplicationController
   # GET /requerimientos/1
   # GET /requerimientos/1.xml
   def show
-    @requerimiento = Requerimiento.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @requerimiento }
@@ -56,8 +67,7 @@ class RequerimientosController < ApplicationController
   # GET /requerimientos/new.xml
   def new
     @requerimiento = Requerimiento.new
-    # FIXME Quitar el usuario hardcodeado
-    @requerimiento.solicitante = Usuario.find(1)
+    @requerimiento.solicitante = current_usuario
 
     respond_to do |format|
       format.html # new.html.erb
@@ -67,11 +77,6 @@ class RequerimientosController < ApplicationController
 
   # GET /requerimientos/1/edit
   def edit
-    @requerimiento = Requerimiento.find(params[:id])
-    unless @requerimiento.can_edit?
-    	@requerimiento.errors[:base] = 'El requerimiento no puede ser modificado hasta que no cambie de estado'
-    	render :action => :show
-    end
   end
 
   # POST /requerimientos
@@ -93,12 +98,6 @@ class RequerimientosController < ApplicationController
   # PUT /requerimientos/1
   # PUT /requerimientos/1.xml
   def update
-    @requerimiento = Requerimiento.find(params[:id])
-    unless @requerimiento.can_edit?
-    	@requerimiento.errors[:base] = 'El requerimiento no puede ser modificado hasta que no cambie de estado'
-    	render :action => :show
-    end
-
     respond_to do |format|
       if @requerimiento.update_attributes(params[:requerimiento])
         format.html { redirect_to(@requerimiento, :notice => 'Requerimiento actualizado.') }
@@ -110,17 +109,19 @@ class RequerimientosController < ApplicationController
     end
   end
 
-  # DELETE /requerimientos/1
-  # DELETE /requerimientos/1.xml
-  def destroy
-    @requerimiento = Requerimiento.find(params[:id])
-    @requerimiento.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(requerimientos_url) }
-      format.xml  { head :ok }
-    end
-  end
+
+#  # DELETE /requerimientos/1
+#  # DELETE /requerimientos/1.xml
+#  def destroy
+#    @requerimiento = Requerimiento.find(params[:id])
+#    @requerimiento.destroy
+
+#    respond_to do |format|
+#      format.html { redirect_to(requerimientos_url) }
+#      format.xml  { head :ok }
+#    end
+#  end
 
 end
 

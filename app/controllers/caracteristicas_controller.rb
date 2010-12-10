@@ -1,7 +1,27 @@
 # coding: utf-8
 class CaracteristicasController < ApplicationController
-  # GET /caracteristicas
-  # GET /caracteristicas.xml
+	before_filter :authenticate_usuario!
+	before_filter :load_caracteristica, :only => [:show, :edit, :update, :destroy]
+	before_filter :check_rqm_state, :only => [:edit, :update, :destroy]
+	before_filter :check_creation, :only => [:create, :new]
+
+	def check_rqm_state
+		if cannot? :edit_caracteristica, @caracteristica
+			redirect_to @caracteristica.material, :alert => 'No puede alterar el contenido de un requerimiento hasta que no cambie su estado'
+		end
+	end
+
+	def check_creation
+		@material = Material.find(params[:material_id])
+  	if cannot? :add_caracteristica, @material
+  		redirect_to @material, :alert => 'No puede agregar característica al material hasta que el requerimiento no cambie su estado'
+  	end
+	end
+
+	def load_caracteristica
+		@caracteristica = Caracteristica.find(params[:id])
+	end
+
   def index
     @caracteristicas = Caracteristica.all
 
@@ -14,7 +34,6 @@ class CaracteristicasController < ApplicationController
   # GET /caracteristicas/1
   # GET /caracteristicas/1.xml
   def show
-    @caracteristica = Caracteristica.find(params[:id])
 		@material = @caracteristica.material
 
     respond_to do |format|
@@ -38,8 +57,6 @@ class CaracteristicasController < ApplicationController
 
   # GET /caracteristicas/1/edit
   def edit
-  	# TODO: Refactoring de la obtención de característica y material (DRY)
-    @caracteristica = Caracteristica.find(params[:id])
   end
 
   # POST /materiales/:material_id/caracteristicas
@@ -62,8 +79,6 @@ class CaracteristicasController < ApplicationController
   # PUT /caracteristicas/1
   # PUT /caracteristicas/1.xml
   def update
-    @caracteristica = Caracteristica.find(params[:id])
-
     respond_to do |format|
       if @caracteristica.update_attributes(params[:caracteristica])
         format.html { redirect_to(@caracteristica.material, :notice => 'La característica fue actualizada.') }
@@ -78,7 +93,6 @@ class CaracteristicasController < ApplicationController
   # DELETE /caracteristicas/1
   # DELETE /caracteristicas/1.xml
   def destroy
-    @caracteristica = Caracteristica.find(params[:id])
     @caracteristica.destroy
 
     respond_to do |format|

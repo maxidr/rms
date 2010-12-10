@@ -1,4 +1,6 @@
 <p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
+
 <% if @requerimiento.errors.any? %>
 	<div id="error_explanation">
     <h2>Ocurrió el siguiente inconveniente:</h2>
@@ -55,18 +57,20 @@
 		<tr>
 		  <td><%= material.nombre %></td>
 		  <td><%= material.cantidad %></td>
-		  <% unless @requerimiento.can_edit? %>
-				<td><%= link_to 'Ver', material_path(material) %></td>
+			<td><%= link_to 'Ver', material_path(material) %></td>
+	  	<% if can? :edit, @requerimiento %>
 				<td><%= link_to 'Editar', edit_material_path(material) %></td>
 				<td><%= link_to 'Eliminar', material, :confirm => 'Esta seguro?', :method => :delete %></td>
 			 	<td><%= link_to 'Agregar característica', new_material_caracteristica_path(material) %>	</td>
-			<% end %>
+		 	<% end %>
 		</tr>
 	<% end %>
 	</table>
 <% end %>
 
-<%= link_to 'Agregar material', new_requerimiento_material_path(@requerimiento) %>
+<% if can? :add_material, @requerimiento %>
+	<%= link_to 'Agregar material', new_requerimiento_material_path(@requerimiento) %>
+<% end %>
 <br/>
 
 <h2>Presupuestos</h2>
@@ -112,6 +116,8 @@
 	<br/>
 <% end %>
 
-<%= link_to 'Editar', edit_requerimiento_path(@requerimiento) %> |
+<% if can? :edit, @requerimiento %>
+	<%= link_to 'Editar', edit_requerimiento_path(@requerimiento) %> |
+<% end %>
 <%= link_to 'Volver', requerimientos_path %>
 

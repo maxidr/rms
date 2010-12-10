@@ -28,8 +28,9 @@ class Requerimiento < ActiveRecord::Base
 	PENDIENTE_APROBACION_SECTOR = 'Pendiente aprobacion del sector'
 	RECHAZO_X_SECTOR = 'Rechazado para sector'
 	APROBADO_X_SECTOR = 'Aprobado por el sector'
+	CANCELADO = 'Cancelado'
 
-	ESTADOS = [INICIO, PENDIENTE_APROBACION_SECTOR, APROBADO_X_SECTOR, RECHAZO_X_SECTOR]
+	ESTADOS = [INICIO, PENDIENTE_APROBACION_SECTOR, APROBADO_X_SECTOR, RECHAZO_X_SECTOR, CANCELADO]
 
 	def solicitar_aprobacion_sector
 		# Verificar que sea un estado válido
@@ -51,16 +52,13 @@ class Requerimiento < ActiveRecord::Base
 		self.save!
   end
 
+
   def aprobable_by?(usuario)
   	estado == PENDIENTE_APROBACION_SECTOR && sector.responsable == usuario
   end
 
 	def permite_solicitar_aprobacion?
 		estado == INICIO && !materiales.empty?
-	end
-
-	def can_edit?
-		estado == INICIO || estado == RECHAZO_X_SECTOR
 	end
 
   def estado

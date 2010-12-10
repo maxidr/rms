@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
 
 <p>
   <b>Material:</b>
@@ -23,14 +24,18 @@
 		<tr>
 		  <td><%= caracteristica.nombre %></td>
 		  <td><%= caracteristica.valor %></td>
-		  <td><%= link_to 'Editar', edit_caracteristica_path(caracteristica) %></td>
-		  <td><%= link_to 'Eliminar', caracteristica, :confirm => '¿Esta segúro que desea eliminar la característica?', :method => :delete %></td>
+		  <% if can? :edit, @material.requerimiento %>
+			  <td><%= link_to 'Editar', edit_caracteristica_path(caracteristica) %></td>
+			  <td><%= link_to 'Eliminar', caracteristica, :confirm => '¿Esta segúro que desea eliminar la característica?', :method => :delete %></td>
+			<% end %>
 		</tr>
 	<% end %>
 	</table>
 <% end %>
 
-<%= link_to 'Agregar característica', new_material_caracteristica_path(@material) %> |
-<%= link_to 'Editar', edit_material_path(@material) %> |
+<% if can? :edit, @material.requerimiento %>
+	<%= link_to 'Agregar característica', new_material_caracteristica_path(@material) %> |
+	<%= link_to 'Editar', edit_material_path(@material) %> |
+<% end %>
 <%= link_to 'Volver', requerimiento_path(@material.requerimiento) %>
 
