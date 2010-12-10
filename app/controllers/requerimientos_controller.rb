@@ -2,7 +2,7 @@
 class RequerimientosController < ApplicationController
 
 	before_filter :authenticate_usuario!
-	
+
 	def solicitar_aprobacion
 		@requerimiento = Requerimiento.find(params[:id])
 		logger.debug("Se desea solicitar aprobacion del requerimiento #{@requerimiento.id}")
@@ -12,20 +12,20 @@ class RequerimientosController < ApplicationController
 				format.html { redirect_to(@requerimiento,
 					:notice => "Se solicitó la aprobación del requerimiento a #{responsable.nombre_completo}.") }
         format.xml  { head :ok }
-			else			
+			else
 				format.html { render :action => "show" }
         format.xml  { render :xml => @requerimiento.errors, :status => :unprocessable_entity }
-			end			
+			end
 		end
 	end
-	
+
 	def aprobar
 		# TODO: Implementar
 		logger.debug("Se aprueba el requerimiento")
 	end
-	
+
 	def rechazar
-		# TODO: Implementar		
+		# TODO: Implementar
 		logger.debug("Se rechaza el requerimiento")
 	end
 
@@ -68,6 +68,10 @@ class RequerimientosController < ApplicationController
   # GET /requerimientos/1/edit
   def edit
     @requerimiento = Requerimiento.find(params[:id])
+    unless @requerimiento.can_edit?
+    	@requerimiento.errors[:base] = 'El requerimiento no puede ser modificado hasta que no cambie de estado'
+    	render :action => :show
+    end
   end
 
   # POST /requerimientos
@@ -90,6 +94,10 @@ class RequerimientosController < ApplicationController
   # PUT /requerimientos/1.xml
   def update
     @requerimiento = Requerimiento.find(params[:id])
+    unless @requerimiento.can_edit?
+    	@requerimiento.errors[:base] = 'El requerimiento no puede ser modificado hasta que no cambie de estado'
+    	render :action => :show
+    end
 
     respond_to do |format|
       if @requerimiento.update_attributes(params[:requerimiento])
@@ -113,5 +121,6 @@ class RequerimientosController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
 end
 

@@ -55,10 +55,12 @@
 		<tr>
 		  <td><%= material.nombre %></td>
 		  <td><%= material.cantidad %></td>
-		  <td><%= link_to 'Ver', material_path(material) %></td>
-		  <td><%= link_to 'Editar', edit_material_path(material) %></td>
-		  <td><%= link_to 'Eliminar', material, :confirm => 'Esta seguro?', :method => :delete %></td>
-		 	<td><%= link_to 'Agregar característica', new_material_caracteristica_path(material) %>	</td>
+		  <% unless @requerimiento.can_edit? %>
+				<td><%= link_to 'Ver', material_path(material) %></td>
+				<td><%= link_to 'Editar', edit_material_path(material) %></td>
+				<td><%= link_to 'Eliminar', material, :confirm => 'Esta seguro?', :method => :delete %></td>
+			 	<td><%= link_to 'Agregar característica', new_material_caracteristica_path(material) %>	</td>
+			<% end %>
 		</tr>
 	<% end %>
 	</table>
@@ -104,10 +106,10 @@
 
 <% if @requerimiento.aprobable_by? current_usuario %>
 	<%= link_to 'Aprobar requerimiento', aprobar_requerimiento_path(@requerimiento), :method => :put %>
-	<br/>	
+	<br/>
 	<%= link_to 'Rechazar requerimiento', rechazar_requerimiento_path(@requerimiento), :method => :put %>
 	<br/>
-	<br/>	
+	<br/>
 <% end %>
 
 <%= link_to 'Editar', edit_requerimiento_path(@requerimiento) %> |

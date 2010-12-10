@@ -30,56 +30,60 @@ class Requerimiento < ActiveRecord::Base
 	APROBADO_X_SECTOR = 'Aprobado por el sector'
 
 	ESTADOS = [INICIO, PENDIENTE_APROBACION_SECTOR, APROBADO_X_SECTOR, RECHAZO_X_SECTOR]
-	
+
 	def solicitar_aprobacion_sector
-		# Verificar que sea un estado válido 
+		# Verificar que sea un estado válido
 		logger.debug("Estado: #{estado}")
-		unless estado == INICIO 
+		unless estado == INICIO
 			errors[:estado_id] = 'El estado del requerimiento es inválido'
 			return false
 		end
-		
+
 		unless sector.responsable
 			errors[:base] = "El sector #{sector.nombre} aun no posee un responsable encargado. Informe al administrador de la situación y luego vuelva a intentarlo"
 			return false
 		end
-		
+
 		# Actualizar estado
 		self.estado = PENDIENTE_APROBACION_SECTOR
-		# Enviar un mail al responsable del sector		
-		RequerimientosMailer.solicitar_aprobacion_sector(self, sector.responsable).deliver	
+		# Enviar un mail al responsable del sector
+		RequerimientosMailer.solicitar_aprobacion_sector(self, sector.responsable).deliver
 		self.save!
   end
-  
+
   def aprobable_by?(usuario)
   	estado == PENDIENTE_APROBACION_SECTOR && sector.responsable == usuario
   end
-  
+
 	def permite_solicitar_aprobacion?
 		estado == INICIO && !materiales.empty?
 	end
-  
+
+	def can_edit?
+		estado == INICIO || estado == RECHAZO_X_SECTOR
+	end
+
   def estado
   	ESTADOS[estado_id]
   end
-  
+
   private
-  
+
   def estado_id
   	self[:estado_id]
   end
-  
+
   def estado_id=(val)
   	write_attribute :estado_id, val
   end
-  
+
   def estado=(val)
   	id = ESTADOS.index(val)
-  	unless id 
+  	unless id
   		raise 'Intenta modificar el estado a uno inválido'
   	end
   	write_attribute :estado_id, id
   end
-  
+
 end
 
