@@ -18,4 +18,12 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.singular /([rlnd])es([A-Z]|_|$)/, '\1\2'
   inflect.singular /([aeiou])s([A-Z]|_)([a-z]+)([rlnd])es($)/, '\1\2\3\4\5'
   inflect.singular /([rlnd])es([A-Z]|_)([a-z]+)([aeiou])s($)/, '\1\2\3\4\5'
+  
+	# Se agregan inflectores para todos los casos de detalle_ y detalles_
+	# Ejs.: 
+	#	detalle_pendiente_aprobacion -> detalles_pediente_aprobacion
+	# detalle_rechazo -> detalles_rechazo
+  inflect.plural /(\bdetalle)(\w+|_|$)/, '\1s\2'
+  inflect.plural /(\bdetalles)(\w+|_|$)/, '\1\2'
+  inflect.singular /(\bdetalle)s(\w+|_|$)/, '\1\2'
 end

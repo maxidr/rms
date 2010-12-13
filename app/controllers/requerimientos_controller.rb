@@ -2,7 +2,7 @@
 class RequerimientosController < ApplicationController
 
 	before_filter :authenticate_usuario!
-	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion, :check_state, :show, :update]
+	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion, :check_state, :show, :update, :aprobar]
 	before_filter :check_state, :only => [:edit, :update]
 
 	def obtener_rqm
@@ -29,11 +29,20 @@ class RequerimientosController < ApplicationController
         format.xml  { render :xml => @requerimiento.errors, :status => :unprocessable_entity }
 			end
 		end
-	end
+	end	
 
 	def aprobar
-		# TODO: Implementar
 		logger.debug("Se aprueba el requerimiento")
+		authorize! :aprobar_por_sector, @requerimiento		
+		respond_to do |format|
+			if @requerimiento.aprobar_por_sector
+				format.html { redirect_to(@requerimiento, :notice => "Se autorizó el requerimiento") }
+				format.xml  { head :ok }
+			else
+				format.html { render :action => "show" }
+        format.xml  { render :xml => @requerimiento.errors, :status => :unprocessable_entity }
+			end
+		end
 	end
 
 	def rechazar

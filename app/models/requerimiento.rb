@@ -31,6 +31,17 @@ class Requerimiento < ActiveRecord::Base
 	CANCELADO = 'Cancelado'
 
 	ESTADOS = [INICIO, PENDIENTE_APROBACION_SECTOR, APROBADO_X_SECTOR, RECHAZO_X_SECTOR, CANCELADO]
+	
+	def aprobar_por_sector		
+		self.estado = APROBADO_X_SECTOR
+		EstadoHistorico.create(
+			:codigo_estado => estado_id,
+			:detalle => DetalleAprobacionSector.create(:autorizante => sector.responsable),
+			:requerimiento => self)
+		
+		#	TODO: Enviar mail al solicitante informando que el sector aprobó el requerimiento
+		self.save!
+	end
 
 	def solicitar_aprobacion_sector
 		# Verificar que sea un estado válido
@@ -39,7 +50,7 @@ class Requerimiento < ActiveRecord::Base
 			errors[:estado_id] = 'El estado del requerimiento es inválido'
 			return false
 		end
-
+		
 		unless sector.responsable
 			errors[:base] = "El sector #{sector.nombre} aun no posee un responsable encargado. Informe al administrador de la situación y luego vuelva a intentarlo"
 			return false
@@ -47,6 +58,13 @@ class Requerimiento < ActiveRecord::Base
 
 		# Actualizar estado
 		self.estado = PENDIENTE_APROBACION_SECTOR
+		
+		# Guardo la nueva transición de estado del requerimiento
+		EstadoHistorico.create(
+			:codigo_estado => PENDIENTE_APROBACION_SECTOR, 
+			:detalle => DetallePendienteAprobacion.create(:autorizante => sector.responsable), 
+			:requerimiento => self)
+			
 		# Enviar un mail al responsable del sector
 		RequerimientosMailer.solicitar_aprobacion_sector(self, sector.responsable).deliver
 		self.save!
@@ -67,21 +85,21 @@ class Requerimiento < ActiveRecord::Base
 
   private
 
-  def estado_id
-  	self[:estado_id]
-  end
+		def estado_id
+			self[:estado_id]
+		end
 
-  def estado_id=(val)
-  	write_attribute :estado_id, val
-  end
+		def estado_id=(val)
+			write_attribute :estado_id, val
+		end
 
-  def estado=(val)
-  	id = ESTADOS.index(val)
-  	unless id
-  		raise 'Intenta modificar el estado a uno inválido'
-  	end
-  	write_attribute :estado_id, id
-  end
+		def estado=(val)
+			id = ESTADOS.index(val)
+			unless id
+				raise 'Intenta modificar el estado a uno inválido'
+			end
+			write_attribute :estado_id, id
+		end
 
 end
 
