@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101213145039) do
+ActiveRecord::Schema.define(:version => 20101214032952) do
 
   create_table "caracteristicas", :force => true do |t|
     t.string   "nombre"
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(:version => 20101213145039) do
     t.integer  "rubro_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "estado_id",      :default => 0
+    t.integer  "estado_id",      :default => 0, :null => false
   end
 
   create_table "rubros", :force => true do |t|
