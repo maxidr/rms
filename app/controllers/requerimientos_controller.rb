@@ -47,7 +47,16 @@ class RequerimientosController < ApplicationController
 
 	def rechazar
 		# TODO: Implementar
-		logger.debug("Se rechaza el requerimiento")
+		logger.debug("Se rechaza el requerimiento")		
+	end
+	
+	def motivo_rechazo
+		@detalle = DetalleRechazoSector.create()
+		respond_to do |format|
+			format.html
+			format.xml { render :xml  => @detalle }
+			format.json{ render :json => @detalle }
+		end
 	end
 
   # GET /requerimientos

@@ -102,13 +102,13 @@
 <br/>
 <br/>
 
-<% if @requerimiento.permite_solicitar_aprobacion? %>
+<% if can? :solicitar_aprobacion, @requerimiento %>
 	<b><%= link_to 'Solicitar aprobación', solicitar_aprobacion_requerimiento_path(@requerimiento), :method => :put %></b>
 	<br/>
 	<br/>
-<%end %>
+<% end %>
 
-<% if @requerimiento.aprobable_by? current_usuario %>
+<% if can? :aprobar_por_sector, @requerimiento %>
 	<%= link_to 'Aprobar requerimiento', aprobar_requerimiento_path(@requerimiento), :method => :put %>
 	<br/>
 	<%= link_to 'Rechazar requerimiento', rechazar_requerimiento_path(@requerimiento), :method => :put %>

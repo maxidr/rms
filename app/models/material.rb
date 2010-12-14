@@ -17,5 +17,5 @@ class Material < ActiveRecord::Base
   validates :cantidad, :presence => true
   
   belongs_to :requerimiento
-  has_many :caracteristicas
+  has_many :caracteristicas, :dependent => :destroy
 end

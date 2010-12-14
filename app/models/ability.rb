@@ -7,8 +7,13 @@ class Ability
 #   alias_action [:index, :show, :search, :recent, :popular], :to => :coolread
 
 		can [:edit, :add_material], Requerimiento do |rqm| iniciado_or_rechazado(rqm) end
-		can [:add_caracteristica, :edit_caracteristica], Caracteristica do |c| 
-			iniciado_or_rechazado(c.material.requerimiento) 
+		can [:add_caracteristica, :edit_caracteristica], Material do |m| 
+			iniciado_or_rechazado(m.requerimiento) 
+		end
+		
+		can :solicitar_aprobacion, Requerimiento do |rqm|
+			#	Se verifica que el estado sea inicial y que se haya cargado al menos un material
+			rqm.estado == Requerimiento::INICIO && rqm.materiales.size > 0
 		end
 		
 		can :aprobar_por_sector, Requerimiento do |rqm| 

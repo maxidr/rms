@@ -9,4 +9,11 @@ class RequerimientosMailer < ActionMailer::Base
   	@url = requerimiento_url(requerimiento)
   	mail(:to => autorizante.email, :subject => 'Solicitud de autorización')
   end
+  
+  def informar_autorizacion_sector(requerimiento, autorizante)
+  	@nombre_autorizante = autorizante.nombre_completo
+  	@nro_rqm = requerimiento.id
+  	@url = requerimiento_url(requerimiento)
+  	mail(:to => requerimiento.solicitante.email, :subject => 'Solicitud autorizada por el responsable del sector')
+  end
 end

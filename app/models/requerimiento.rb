@@ -38,18 +38,14 @@ class Requerimiento < ActiveRecord::Base
 			:codigo_estado => estado_id,
 			:detalle => DetalleAprobacionSector.create(:autorizante => sector.responsable),
 			:requerimiento => self)
-		
-		#	TODO: Enviar mail al solicitante informando que el sector aprobó el requerimiento
+
+		RequerimientosMailer.informar_autorizacion_sector(self, sector.responsable)
 		self.save!
 	end
 
 	def solicitar_aprobacion_sector
 		# Verificar que sea un estado válido
 		logger.debug("Estado: #{estado}")
-		unless estado == INICIO
-			errors[:estado_id] = 'El estado del requerimiento es inválido'
-			return false
-		end
 		
 		unless sector.responsable
 			errors[:base] = "El sector #{sector.nombre} aun no posee un responsable encargado. Informe al administrador de la situación y luego vuelva a intentarlo"
