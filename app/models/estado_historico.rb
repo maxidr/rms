@@ -16,4 +16,8 @@
 class EstadoHistorico < ActiveRecord::Base
 	belongs_to :requerimiento
 	belongs_to :detalle, :polymorphic => true, :dependent => :destroy
+	
+	def to_s
+		"Codigo de estado: #{codigo_estado}, ID req: #{requerimiento.id}"
+	end
 end

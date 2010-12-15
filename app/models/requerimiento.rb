@@ -32,18 +32,30 @@ class Requerimiento < ActiveRecord::Base
 
 	ESTADOS = [INICIO, PENDIENTE_APROBACION_SECTOR, APROBADO_X_SECTOR, RECHAZO_X_SECTOR, CANCELADO]
 	
-	def aprobar_por_sector		
+	def aprobar_por_sector!		
 		self.estado = APROBADO_X_SECTOR
 		EstadoHistorico.create(
 			:codigo_estado => estado_id,
 			:detalle => DetalleAprobacionSector.create(:autorizante => sector.responsable),
 			:requerimiento => self)
 
-		RequerimientosMailer.informar_autorizacion_sector(self, sector.responsable)
+		RequerimientosMailer.informar_autorizacion_sector(self, sector.responsable).deliver
 		self.save!
 	end
+	
+	def rechazar_por_sector!(motivo)
+		self.estado = RECHAZO_X_SECTOR
+		
+		EstadoHistorico.create(
+			:codigo_estado => estado_id,
+			:detalle => DetalleRechazoSector.create(:autorizante => sector.responsable, :motivo => motivo),
+			:requerimiento => self)
+		
+		RequerimientosMailer.rqm_rechazado_por_sector(self, motivo).deliver
+		self.save!		
+	end
 
-	def solicitar_aprobacion_sector
+	def solicitar_aprobacion_sector!
 		# Verificar que sea un estado válido
 		logger.debug("Estado: #{estado}")
 		
@@ -78,12 +90,12 @@ class Requerimiento < ActiveRecord::Base
   def estado
   	ESTADOS[estado_id]
   end
+  
+  def estado_id
+		self[:estado_id]
+	end
 
-  private
-
-		def estado_id
-			self[:estado_id]
-		end
+  private		
 
 		def estado_id=(val)
 			write_attribute :estado_id, val

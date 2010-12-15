@@ -1,17 +1,14 @@
 # coding: utf-8
 class SectoresController < ApplicationController
 
+	respond_to :html, :json, :xml
+
 	before_filter :authenticate_usuario!
 
   # GET /sectores
   # GET /sectores.xml
-  def index
-    @sectores = Sector.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @sectores }
-    end
+  def index   
+    respond_with @sectores = Sector.all
   end
 
   # GET /sectores/1

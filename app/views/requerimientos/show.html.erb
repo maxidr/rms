@@ -111,7 +111,7 @@
 <% if can? :aprobar_por_sector, @requerimiento %>
 	<%= link_to 'Aprobar requerimiento', aprobar_requerimiento_path(@requerimiento), :method => :put %>
 	<br/>
-	<%= link_to 'Rechazar requerimiento', rechazar_requerimiento_path(@requerimiento), :method => :put %>
+	<%= link_to 'Rechazar requerimiento', rechazar_requerimiento_path(@requerimiento) %>
 	<br/>
 	<br/>
 <% end %>

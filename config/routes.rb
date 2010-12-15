@@ -17,6 +17,7 @@ Rms::Application.routes.draw do
     member do
     	put 'solicitar_aprobacion'
     	put 'rechazar'
+    	get 'rechazar', :action => 'motivo_rechazo'
     	put 'aprobar'
     end
   end

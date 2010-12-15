@@ -1,0 +1,29 @@
+<%= form_for :rechazo, :url => rechazar_requerimiento_url, :html => {:method => :put} do |f| %>
+  <% if @requerimiento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@requerimiento.errors.count, "error evita", "errores evitan") %> que el rechazo se efectue:</h2>
+
+      <ul>
+      <% @requerimiento.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<h2>Rechazar requerimiento <%= @requerimiento.id %></h2>
+
+  <p>
+    <b>Solicitante:</b>
+    <%= @requerimiento.solicitante %>
+  </p>
+
+  <div class="field">
+    <%= f.label :motivo %><br />
+    <%= f.text_area :motivo %>
+  </div>
+  </div>
+  <div class="actions">
+    <%= f.submit "Rechazar" %>
+  </div>
+<% end %>
