@@ -3,7 +3,7 @@
 Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
-  config.mailer_sender = "redmine@aonken.com.ar"
+  config.mailer_sender = "rms.perseus@gmail.com.ar"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
