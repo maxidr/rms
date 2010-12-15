@@ -30,9 +30,9 @@ class RequerimientosController < ApplicationController
 		respond_to do |format|
 			if @requerimiento.aprobar_por_sector!
 				head :ok				
-				format_with @requerimiento, :notice => "Se autorizó el requerimiento", :location => @requerimiento
+				respond_with @requerimiento, :notice => "Se autorizó el requerimiento", :location => @requerimiento
 			else
-				format_with @requerimiento.errors, :status => :unprocessable_entity do |format|
+				respond_with @requerimiento.errors, :status => :unprocessable_entity do |format|
 					format.html{ render :show }
 				end
 			end
@@ -42,13 +42,14 @@ class RequerimientosController < ApplicationController
 	# PUT /requerimientos/{id}/rechazar
 	def rechazar
 		logger.debug("Se rechaza el requerimiento")
-		# FIXME: Falta verificar que funcione el parametro y como chequear el campo requerido
-		if @requerimiento.rechazar_por_sector!(params([:rechazo][:motivo]))
-			head :ok
-			respond_with @requerimiento, :notice => "Se rechazó el requerimiento y se envió email al solicitante", :location => @requerimiento
+		logger.debug(params[:rechazo])
+		# FIXME: Falta verificar que funcione el parametro y como chequear el campo requerido		
+		if @requerimiento.rechazar_por_sector!( params[:rechazo][:motivo] )
+			# FIXME: Por algun motivo no muestra el mensaje al redirigir la petición
+			respond_with @requerimiento, :notice => "Se rechazó el requerimiento y se envió un email al solicitante", :location => @requerimiento 
 		else
 			respond_with @requerimiento.errors, :status => :unprocessable_entity do |format|
-				format.html { render :motivo_rechazo }
+				format.html{ render :motivo_rechazo }
 			end
 		end		
 	end

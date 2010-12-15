@@ -44,15 +44,20 @@ class Requerimiento < ActiveRecord::Base
 	end
 	
 	def rechazar_por_sector!(motivo)
+		if motivo.blank?
+			errors[:base] = "Debe especificar un motivo para el rechazo"
+			return false
+		end
+	
 		self.estado = RECHAZO_X_SECTOR
 		
 		EstadoHistorico.create(
 			:codigo_estado => estado_id,
 			:detalle => DetalleRechazoSector.create(:autorizante => sector.responsable, :motivo => motivo),
 			:requerimiento => self)
-		
-		RequerimientosMailer.rqm_rechazado_por_sector(self, motivo).deliver
-		self.save!		
+# FIXME: Descomentar el envío de mail y la grabación de los cambios		
+#		RequerimientosMailer.rqm_rechazado_por_sector(self, motivo).deliver
+#		self.save!		
 	end
 
 	def solicitar_aprobacion_sector!
