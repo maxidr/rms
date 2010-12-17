@@ -14,20 +14,26 @@
 # 							 Expedicion / Administracion / Compras / Ventas.
 # Los rubros: Materias Primas / Insumos / Consumibles / Varios / Servicios / Maquinas y herramientas
 
+Usuario.create({:nombre => 'Maximiliano', :apellido => 'Dello Russo', 
+	:identificador => 'mdellorusso', 
+	:email => 'maxidr@gmail.com', 
+	:password => 'lucas12'}) unless Usuario.find_by_identificador('mdellorusso')
+
+responsable = Usuario.create({:nombre => 'Juan', :apellido => 'Lopez', 
+	:identificador => 'jlopez', 
+	:email => 'mdellorusso@aonken.com.ar', 
+	:password => 'jlopez'}) unless Usuario.find_by_identificador('jlopez')
 
 Empresa.find_or_create_by_nombre('Laindell SRL')
 Empresa.find_or_create_by_nombre('Metalúrgica La Toma SA')
 
-Sector.find_or_create_by_nombre('Tejeduría')
-Sector.find_or_create_by_nombre('Mantenimiento')
-Sector.find_or_create_by_nombre('Recubrimiento')
-Sector.find_or_create_by_nombre('Embalaje')
-Sector.find_or_create_by_nombre('Fabrica de piletas')
-Sector.find_or_create_by_nombre('Caños')
-Sector.find_or_create_by_nombre('Expedición')
-Sector.find_or_create_by_nombre('Administración')
-Sector.find_or_create_by_nombre('Compras')
-Sector.find_or_create_by_nombre('Ventas')
+
+["Tejeduría", "Mantenimiento", "Recubrimiento", 
+	"Embalaje", "Fábrica de piletas", "Caños", "Expedición", 
+	"Administración", "Compras", "Ventas" ].each do |sector|	
+	Sector.create({:nombre => sector, :responsable => responsable}) unless Sector.find_by_nombre(sector)
+end
+
 
 Rubro.find_or_create_by_nombre('Materias Primas')
 Rubro.find_or_create_by_nombre('Insumos')
@@ -38,11 +44,6 @@ Rubro.find_or_create_by_nombre('Maquinas y herramientas')
 
 Moneda.find_or_create_by_simbolo(:simbolo => "$", :nombre => "Pesos")
 Moneda.find_or_create_by_simbolo(:simbolo => "u$s", :nombre => "Dólares")
-
-Usuario.create({:nombre => 'Maximiliano', :apellido => 'Dello Russo', 
-	:identificador => 'mdellorusso', 
-	:email => 'mdellorusso@aonken.com.ar', 
-	:password => 'lucas12'}) unless Usuario.find_by_identificador('mdellorusso')
 	
 Proveedor.find_or_create_by_razon_social(
 	:razon_social => 'Compañía Química', 

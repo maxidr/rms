@@ -13,8 +13,7 @@ class Ability
 
 		can :solicitar_aprobacion, Requerimiento do |rqm|
 			#	Se verifica que el estado sea inicial y que se haya cargado al menos un material
-			rqm.materiales.size > 0 &&
-				(rqm.estado == Requerimiento::INICIO || rqm.estado == Requerimiento::RECHAZO_X_SECTOR)
+			rqm.materiales.size > 0 && rqm.solicitante == usuario	&& iniciado_or_rechazado(rqm)
 		end
 
 		can :aprobar_por_sector, Requerimiento do |rqm|
@@ -23,7 +22,7 @@ class Ability
 	end
 
 	def iniciado_or_rechazado(rqm)
-		rqm.estado == Requerimiento::INICIO || rqm.estado == Requerimiento::RECHAZO_X_SECTOR
+		[Requerimiento::INICIO, Requerimiento::RECHAZO_X_SECTOR].include? rqm.estado
 	end
 
 end

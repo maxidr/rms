@@ -51,6 +51,7 @@ class Requerimiento < ActiveRecord::Base
 
 		self.estado = RECHAZO_X_SECTOR
 		# FIXME: No está grabando el autorizante en el detalle
+		logger.debug("Autorizante: #{sector.responsable} (#{sector.nombre_responsable})")
 		EstadoHistorico.create(
 			:codigo_estado => estado_id,
 			:detalle => DetalleRechazoSector.create(:autorizante => sector.responsable, :motivo => motivo),
@@ -83,14 +84,11 @@ class Requerimiento < ActiveRecord::Base
 		self.save!
   end
 
-
-  def aprobable_by?(usuario)
-  	estado == PENDIENTE_APROBACION_SECTOR && sector.responsable == usuario
-  end
-
-	def permite_solicitar_aprobacion?
-		estado == INICIO && !materiales.empty?
+	def motivo_rechazo		
+		estado_historico = EstadoHistorico.rechazados_por_sector.del_requerimiento(self).last
+		estado_historico.detalle.motivo
 	end
+
 
   def estado
   	ESTADOS[estado_id]

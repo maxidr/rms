@@ -40,6 +40,14 @@
   <%= @requerimiento.estado %>
 </p>
 
+<% if @requerimiento.estado == Requerimiento::RECHAZO_X_SECTOR %>
+<%# IMPROVE: Feo este if, mejorarlo  %>
+	<p>
+		<b>Motivo del rechazo:</b>
+		<%= @requerimiento.motivo_rechazo %>
+	</p>
+<% end %>
+
 <h2>Materiales</h2>
 <% if @requerimiento.materiales.empty? %>
 	Aun no posee materiales cargados
