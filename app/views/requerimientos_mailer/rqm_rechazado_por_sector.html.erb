@@ -5,12 +5,14 @@
   </head>
   <body>
   	<p>
-  		El requerimiento n° <%= @requerimiento.id %> que a solicitado fué rechazado por responsable del 
+  		El requerimiento n° <%= @requerimiento.id %> que a solicitado fué rechazado por el responsable del
   		sector "<%= @requerimiento.sector.nombre %>" (<%= @requerimiento.sector.nombre_responsable %>).
   	</p>
   	<p>El motivo es:</p>
-  	<p><%= @motivo %></p>
-  	
+  	<p>
+  		<i><%= @motivo %></i>
+  	</p>
+		<br/>
   	<p>Puede acceder al requerimiento mediante el siguiente <%= link_to 'link', requerimiento_url(@requerimiento) %>.</p>
   </body>
 </html>

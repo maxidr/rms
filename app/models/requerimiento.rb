@@ -31,8 +31,8 @@ class Requerimiento < ActiveRecord::Base
 	CANCELADO = 'Cancelado'
 
 	ESTADOS = [INICIO, PENDIENTE_APROBACION_SECTOR, APROBADO_X_SECTOR, RECHAZO_X_SECTOR, CANCELADO]
-	
-	def aprobar_por_sector!		
+
+	def aprobar_por_sector!
 		self.estado = APROBADO_X_SECTOR
 		EstadoHistorico.create(
 			:codigo_estado => estado_id,
@@ -42,28 +42,28 @@ class Requerimiento < ActiveRecord::Base
 		RequerimientosMailer.informar_autorizacion_sector(self, sector.responsable).deliver
 		self.save!
 	end
-	
+
 	def rechazar_por_sector!(motivo)
 		if motivo.blank?
 			errors[:base] = "Debe especificar un motivo para el rechazo"
 			return false
 		end
-	
+
 		self.estado = RECHAZO_X_SECTOR
-		
+		# FIXME: No está grabando el autorizante en el detalle
 		EstadoHistorico.create(
 			:codigo_estado => estado_id,
 			:detalle => DetalleRechazoSector.create(:autorizante => sector.responsable, :motivo => motivo),
 			:requerimiento => self)
-# FIXME: Descomentar el envío de mail y la grabación de los cambios		
-#		RequerimientosMailer.rqm_rechazado_por_sector(self, motivo).deliver
-#		self.save!		
+
+		RequerimientosMailer.rqm_rechazado_por_sector(self, motivo).deliver
+		self.save!
 	end
 
 	def solicitar_aprobacion_sector!
 		# Verificar que sea un estado válido
 		logger.debug("Estado: #{estado}")
-		
+
 		unless sector.responsable
 			errors[:base] = "El sector #{sector.nombre} aun no posee un responsable encargado. Informe al administrador de la situación y luego vuelva a intentarlo"
 			return false
@@ -71,13 +71,13 @@ class Requerimiento < ActiveRecord::Base
 
 		# Actualizar estado
 		self.estado = PENDIENTE_APROBACION_SECTOR
-		
+
 		# Guardo la nueva transición de estado del requerimiento
 		EstadoHistorico.create(
-			:codigo_estado => PENDIENTE_APROBACION_SECTOR, 
-			:detalle => DetallePendienteAprobacion.create(:autorizante => sector.responsable), 
+			:codigo_estado => PENDIENTE_APROBACION_SECTOR,
+			:detalle => DetallePendienteAprobacion.create(:autorizante => sector.responsable),
 			:requerimiento => self)
-			
+
 		# Enviar un mail al responsable del sector
 		RequerimientosMailer.solicitar_aprobacion_sector(self, sector.responsable).deliver
 		self.save!
@@ -95,12 +95,12 @@ class Requerimiento < ActiveRecord::Base
   def estado
   	ESTADOS[estado_id]
   end
-  
+
   def estado_id
 		self[:estado_id]
 	end
 
-  private		
+  private
 
 		def estado_id=(val)
 			write_attribute :estado_id, val
