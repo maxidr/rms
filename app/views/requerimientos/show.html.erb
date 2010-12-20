@@ -48,70 +48,14 @@
 	</p>
 <% end %>
 
-<h2>Materiales</h2>
-<% if @requerimiento.materiales.empty? %>
-	Aun no posee materiales cargados
-<% else %>
-	<table>
-		<tr>
-		  <th>Material</th>
-		  <th>Cantidad</th>
-		  <th></th>
-		  <th></th>
-		  <th></th>
-		</tr>
+<%= render "materiales" %>
 
-	<% @requerimiento.materiales.each do |material| %>
-		<tr>
-		  <td><%= material.nombre %></td>
-		  <td><%= material.cantidad %></td>
-			<td><%= link_to 'Ver', material_path(material) %></td>
-	  	<% if can? :edit, @requerimiento %>
-				<td><%= link_to 'Editar', edit_material_path(material) %></td>
-				<td><%= link_to 'Eliminar', material, :confirm => 'Esta seguro?', :method => :delete %></td>
-			 	<td><%= link_to 'Agregar característica', new_material_caracteristica_path(material) %>	</td>
-		 	<% end %>
-		</tr>
-	<% end %>
-	</table>
-<% end %>
+<%= render "presupuestos" %>
 
-<% if can? :add_material, @requerimiento %>
-	<%= link_to 'Agregar material', new_requerimiento_material_path(@requerimiento) %>
-<% end %>
-<br/>
-
-<h2>Presupuestos</h2>
-<% if @requerimiento.presupuestos.empty? %>
-	Aun no posee presupuestos cargados
-<% else %>
-	<table>
-		<tr>
-		  <th>Proveedor</th>
-		  <th>Monto</th>
-		  <th>Condición de pago</th>
-		  <th>Detalle</th>
-		  <th></th>
-		  <th></th>
-		</tr>
-
-	<% @requerimiento.presupuestos.each do |presupuesto| %>
-		<tr>
-		  <td><%= presupuesto.proveedor.razon_social %></td>
-			<td>
-				<%= presupuesto.moneda.simbolo %>
-				<%= number_with_delimiter(presupuesto.monto, :delimiter => ".", :separator => ",") %>
-			</td>
-		  <td><%= presupuesto.condicion_pago.nombre %></td>
-		  <td><%= link_to 'Editar', edit_presupuesto_path(presupuesto) %></td>
-		  <td><%= link_to 'Eliminar', presupuesto, :confirm => 'Esta seguro?', :method => :delete %></td>
-		</tr>
-	<% end %>
-	</table>
-<% end %>
-<%= link_to 'Agregar presupuesto', new_requerimiento_presupuesto_path(@requerimiento)  %>
 <br/>
 <br/>
+
+<h2>Acciones</h2>
 
 <% if can? :solicitar_aprobacion, @requerimiento %>
 	<b><%= link_to 'Solicitar aprobación', solicitar_aprobacion_requerimiento_path(@requerimiento), :method => :put %></b>
@@ -126,6 +70,13 @@
 	<br/>
 	<br/>
 <% end %>
+
+<% if can? :solicitar_aprobacion_compras, @requerimiento %>
+	Solicitar aprobación de compras <br />
+<% end %>  
+
+
+<br/>
 
 <% if can? :edit, @requerimiento %>
 	<%= link_to 'Editar', edit_requerimiento_path(@requerimiento) %> |

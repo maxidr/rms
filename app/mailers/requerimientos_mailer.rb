@@ -22,4 +22,10 @@ class RequerimientosMailer < ActionMailer::Base
   	@motivo = motivo
   	mail(:to => requerimiento.solicitante.email, :subject => "Su requerimiento fue rechazado por el responsable del sector")
   end
+  
+  def solicitar_aprobacion_compras(rqm)
+  	@requerimiento = rqm
+		# TODO: Mail para el sector??
+  	mail(:to => '', :subject => "Solicitud de autorización de requerimiento")
+  end
 end

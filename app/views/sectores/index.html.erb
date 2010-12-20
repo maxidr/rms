@@ -4,6 +4,7 @@
   <tr>
     <th>Nombre</th>
     <th>Responsable</th>
+    <th>E-mail</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,6 +14,7 @@
   <tr>
     <td><%= sector.nombre %></td>
     <td><%= sector.nombre_responsable %></td>
+    <td><%= sector.email %></td>
     <td><%= link_to 'Ver', sector %></td>
     <td><%= link_to 'Editar', edit_sector_path(sector) %></td>
     <td><%= link_to 'Eliminar', sector, :confirm => 'Esta seguro?', :method => :delete %></td>

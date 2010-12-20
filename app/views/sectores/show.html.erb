@@ -1,15 +1,18 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Sector</h1>
 <p>
   <b>Nombre:</b>
   <%= @sector.nombre %>
 </p>
-
+<p>
+  <b>Email:</b>
+  <%= @sector.email %>
+</p>
 <p>
   <b>Responsable:</b>
   <%= @sector.responsable.nombre_completo %>
 </p>
-
 
 <%= link_to 'Editar', edit_sector_path(@sector) %> |
 <%= link_to 'Volver', sectores_path %>

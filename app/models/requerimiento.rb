@@ -29,8 +29,17 @@ class Requerimiento < ActiveRecord::Base
 	RECHAZO_X_SECTOR = 'Rechazado para sector'
 	APROBADO_X_SECTOR = 'Aprobado por el sector'
 	CANCELADO = 'Cancelado'
+	PENDIENTE_APROBACION_COMPRAS = 'Aguardando autorización de compras'
 
-	ESTADOS = [INICIO, PENDIENTE_APROBACION_SECTOR, APROBADO_X_SECTOR, RECHAZO_X_SECTOR, CANCELADO]
+	ESTADOS = [INICIO, PENDIENTE_APROBACION_SECTOR, APROBADO_X_SECTOR, RECHAZO_X_SECTOR, CANCELADO, PENDIENTE_APROBACION_COMPRAS]
+	
+	def solicitar_aprobacion_compras!
+		self.estado = PENDIENTE_APROBACION_COMPRAS
+		EstadoHistorico.create(:codigo_estado => estado_id,	:requerimiento => self)
+		# TODO: Enviar mail al sector de compras
+		
+		self.save!
+	end
 
 	def aprobar_por_sector!
 		self.estado = APROBADO_X_SECTOR
@@ -50,7 +59,6 @@ class Requerimiento < ActiveRecord::Base
 		end
 
 		self.estado = RECHAZO_X_SECTOR
-		# FIXME: No está grabando el autorizante en el detalle
 		logger.debug("Autorizante: #{sector.responsable} (#{sector.nombre_responsable})")
 		logger.debug("Código de estado: #{estado_id}")
 		EstadoHistorico.create(

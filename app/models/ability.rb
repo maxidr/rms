@@ -19,6 +19,10 @@ class Ability
 		can :aprobar_por_sector, Requerimiento do |rqm|
 			rqm.sector.responsable == usuario && rqm.estado == Requerimiento::PENDIENTE_APROBACION_SECTOR
 		end
+		
+		can :solicitar_aprobacion_compras, Requerimiento do |rqm|
+			rqm.solicitante == usuario && rqm.estado == Requerimiento::APROBADO_X_SECTOR
+		end
 	end
 
 	def iniciado_or_rechazado(rqm)
