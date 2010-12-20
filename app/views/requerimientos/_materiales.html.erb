@@ -1,0 +1,32 @@
+<h2>Materiales</h2>
+<% if @requerimiento.materiales.empty? %>
+	Aun no posee materiales cargados
+<% else %>
+	<table>
+		<tr>
+		  <th>Material</th>
+		  <th>Cantidad</th>
+		  <th></th>
+		  <th></th>
+		  <th></th>
+		</tr>
+
+	<% @requerimiento.materiales.each do |material| %>
+		<tr>
+		  <td><%= material.nombre %></td>
+		  <td><%= material.cantidad %></td>
+			<td><%= link_to 'Ver', material_path(material) %></td>
+	  	<% if can? :edit, @requerimiento %>
+				<td><%= link_to 'Editar', edit_material_path(material) %></td>
+				<td><%= link_to 'Eliminar', material, :confirm => 'Esta seguro?', :method => :delete %></td>
+			 	<td><%= link_to 'Agregar característica', new_material_caracteristica_path(material) %>	</td>
+		 	<% end %>
+		</tr>
+	<% end %>
+	</table>
+<% end %>
+
+<% if can? :add_material, @requerimiento %>
+	<%= link_to 'Agregar material', new_requerimiento_material_path(@requerimiento) %>
+<% end %>
+<br/>
