@@ -16,14 +16,15 @@
 class EstadoHistorico < ActiveRecord::Base
 	belongs_to :requerimiento
 	belongs_to :detalle, :polymorphic => true, :dependent => :destroy
-	
-	attr_accessible :requerimiento, :detalle
-	
+
+	attr_accessible :requerimiento, :detalle, :codigo_estado
+
 	# FIXME: Muy fea la alternativa para obtener el codigo de estado
 	scope :rechazados_por_sector, where(:codigo_estado => Requerimiento::ESTADOS.index(Requerimiento::RECHAZO_X_SECTOR))
 	scope :del_requerimiento, lambda { |rqm| 	where(:requerimiento_id => rqm)	}
-	
+
 	def to_s
 		"Codigo de estado: #{codigo_estado}, ID req: #{requerimiento.id}"
 	end
 end
+
