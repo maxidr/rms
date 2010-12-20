@@ -98,7 +98,10 @@
 	<% @requerimiento.presupuestos.each do |presupuesto| %>
 		<tr>
 		  <td><%= presupuesto.proveedor.razon_social %></td>
-		  <td><%= "#{presupuesto.moneda.simbolo} #{presupuesto.monto}" %></td>
+			<td>
+				<%= presupuesto.moneda.simbolo %>
+				<%= number_with_delimiter(presupuesto.monto, :delimiter => ".", :separator => ",") %>
+			</td>
 		  <td><%= presupuesto.condicion_pago.nombre %></td>
 		  <td><%= link_to 'Editar', edit_presupuesto_path(presupuesto) %></td>
 		  <td><%= link_to 'Eliminar', presupuesto, :confirm => 'Esta seguro?', :method => :delete %></td>

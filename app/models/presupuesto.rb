@@ -22,5 +22,5 @@ class Presupuesto < ActiveRecord::Base
   
   validates_presence_of :monto, :moneda, :condicion_pago, :proveedor
   validates_numericality_of :monto, :greater_than => 0
-
+	
 end
