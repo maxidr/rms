@@ -19,6 +19,7 @@ Rms::Application.routes.draw do
     	put 'rechazar'
     	get 'rechazar', :action => 'motivo_rechazo'
     	put 'aprobar'
+    	put 'aprobacion/compras', :action => 'solicitar_aprobacion_compras'
     end
   end
 

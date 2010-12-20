@@ -25,7 +25,9 @@ class RequerimientosMailer < ActionMailer::Base
   
   def solicitar_aprobacion_compras(rqm)
   	@requerimiento = rqm
-		# TODO: Mail para el sector??
-  	mail(:to => '', :subject => "Solicitud de autorización de requerimiento")
+		responsable = rqm.sector.responsable		
+  	mail :to => responsable.email, 
+  		:cc => rqm.sector.email,
+	 		:subject => "Solicitud de autorización de requerimiento"	 		
   end
 end

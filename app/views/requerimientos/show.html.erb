@@ -56,26 +56,23 @@
 <br/>
 
 <h2>Acciones</h2>
+<b>
+	<% if can? :solicitar_aprobacion, @requerimiento %>
+		<%= link_to 'Solicitar aprobación', solicitar_aprobacion_requerimiento_path(@requerimiento), :method => :put %>
+	<% end %>
 
-<% if can? :solicitar_aprobacion, @requerimiento %>
-	<b><%= link_to 'Solicitar aprobación', solicitar_aprobacion_requerimiento_path(@requerimiento), :method => :put %></b>
-	<br/>
-	<br/>
-<% end %>
+	<% if can? :aprobar_por_sector, @requerimiento %>
+		<%= link_to 'Aprobar requerimiento', aprobar_requerimiento_path(@requerimiento), :method => :put %>
+		<br/>
+		<%= link_to 'Rechazar requerimiento', rechazar_requerimiento_path(@requerimiento) %>
+	<% end %>
 
-<% if can? :aprobar_por_sector, @requerimiento %>
-	<%= link_to 'Aprobar requerimiento', aprobar_requerimiento_path(@requerimiento), :method => :put %>
-	<br/>
-	<%= link_to 'Rechazar requerimiento', rechazar_requerimiento_path(@requerimiento) %>
-	<br/>
-	<br/>
-<% end %>
-
-<% if can? :solicitar_aprobacion_compras, @requerimiento %>
-	Solicitar aprobación de compras <br />
-<% end %>  
-
-
+	<% if can? :solicitar_aprobacion_compras, @requerimiento %>
+		<%= link_to 'Solicitar aprobación de compras', aprobacion_compras_requerimiento_path(@requerimiento), :method => :put  %>	
+	<% end %>
+</b>
+<br/>
+<br/>
 <br/>
 
 <% if can? :edit, @requerimiento %>

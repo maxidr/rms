@@ -36,8 +36,7 @@ class Requerimiento < ActiveRecord::Base
 	def solicitar_aprobacion_compras!
 		self.estado = PENDIENTE_APROBACION_COMPRAS
 		EstadoHistorico.create(:codigo_estado => estado_id,	:requerimiento => self)
-		# TODO: Enviar mail al sector de compras
-		
+		RequerimientosMailer.solicitar_aprobacion_compras(self).deliver
 		self.save!
 	end
 

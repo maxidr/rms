@@ -4,10 +4,23 @@ class RequerimientosController < ApplicationController
 	respond_to :html, :xml, :json
 
 	before_filter :authenticate_usuario!
-	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion, :check_state, :show, :update, :aprobar, :motivo_rechazo, :rechazar]
+	# IMPROVE: Cambiar el only por except para que sea mas legible
+	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion, :check_state, :show, :update, :aprobar, :motivo_rechazo, :rechazar, :solicitar_aprobacion_compras]
 	before_filter :check_state, :only => [:edit, :update]
 	before_filter :puede_aprobar_por_sector, :only => [:rechazar, :aprobar, :motivo_rechazo]
 
+
+
+	def solicitar_aprobacion_compras
+		if @requerimiento.solicitar_aprobacion_compras!
+			flash[:notice] = "Se envió la solicitud al sector de compras"
+			respond_with @requerimiento
+		else
+			respond_with @requerimiento.errors, :status => :unprocessable_entity do |format|
+				format.html{ render :show }
+			end
+		end		
+	end
 
 	def solicitar_aprobacion
 		logger.debug("Se desea solicitar aprobacion del requerimiento #{@requerimiento.id}")
@@ -28,7 +41,8 @@ class RequerimientosController < ApplicationController
 	def aprobar
 		logger.debug("Se aprueba el requerimiento")
 		if @requerimiento.aprobar_por_sector!
-			respond_with @requerimiento, :notice => "Se autorizó el requerimiento"
+			flash[:notice] = "Se autorizó el requerimiento"
+			respond_with @requerimiento
 		else
 			respond_with @requerimiento.errors, :status => :unprocessable_entity do |format|
 				format.html{ render :show }
@@ -40,10 +54,9 @@ class RequerimientosController < ApplicationController
 	def rechazar
 		logger.debug("Se rechaza el requerimiento")
 		logger.debug(params[:rechazo])
-		# FIXME: Falta verificar que funcione el parametro y como chequear el campo requerido
-		if @requerimiento.rechazar_por_sector!( params[:rechazo][:motivo] )
-			# FIXME: Por algun motivo no muestra el mensaje al redirigir la petición
-			respond_with @requerimiento, :notice => "Se rechazó el requerimiento y se envió un email al solicitante", :location => @requerimiento
+		if @requerimiento.rechazar_por_sector!( params[:rechazo][:motivo] )		
+			flash[:notice] = "Se rechazó el requerimiento y se envió un email al solicitante"
+			respond_with @requerimiento, :location => @requerimiento
 		else
 			respond_with @requerimiento.errors, :status => :unprocessable_entity do |format|
 				format.html{ render :motivo_rechazo }
