@@ -21,6 +21,11 @@
 </p>
 
 <p>
+  <b>Fecha de carga:</b>
+  <%= l @requerimiento.created_at %>
+</p>
+
+<p>
   <b>Empresa:</b>
   <%= @requerimiento.empresa %>
 </p>
@@ -68,7 +73,7 @@
 	<% end %>
 
 	<% if can? :solicitar_aprobacion_compras, @requerimiento %>
-		<%= link_to 'Solicitar aprobación de compras', aprobacion_compras_requerimiento_path(@requerimiento), :method => :put  %>	
+		<%= link_to 'Solicitar aprobación de compras', aprobacion_compras_requerimiento_path(@requerimiento), :method => :put  %>
 	<% end %>
 </b>
 <br/>

@@ -11,10 +11,13 @@
 #
 
 class Sector < ActiveRecord::Base
-  validates_presence_of :nombre, :responsable
-  
   belongs_to :responsable, :class_name => 'Usuario'
-  
+
+  validates_presence_of :nombre, :responsable
+  validates_uniqueness_of :nombre
+
+  scope :compras, where('sectores.nombre = ?', 'Compras')
+
   def nombre_responsable
   	responsable ? responsable.nombre_completo : '-'
   end
@@ -23,3 +26,4 @@ class Sector < ActiveRecord::Base
     nombre
   end
 end
+

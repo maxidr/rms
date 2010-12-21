@@ -55,7 +55,8 @@
   time:
     formats:
       default: "%A, %e de %B de %Y, %H:%M hs"
-      short: "%e/%m, %H:%M hs"
+#     short: "%e/%m, %H:%M hs"
+      short: "%e/%m/%Y"
       long: "%A, %e de %B de %Y, %H:%M hs"
     am: am
     pm: pm
@@ -101,7 +102,7 @@
       hour:   "Hora"
       minute: "Minuto"
       second: "Segundos"
-        
+
   number:
     percentage:
       format:
@@ -124,7 +125,7 @@
           gb: "GB"
           tb: "TB"
     format:
-      precision: 3
+      precision: 2
       separator: ","
       delimiter: .
     currency:
@@ -166,3 +167,4 @@
       words_connector: ", "
       two_words_connector: " y "
       last_word_connector: " y "
+

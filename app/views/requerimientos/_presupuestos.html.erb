@@ -17,7 +17,7 @@
 		  <td><%= presupuesto.proveedor.razon_social %></td>
 			<td>
 				<%= presupuesto.moneda.simbolo %>
-				<%= number_with_delimiter(presupuesto.monto, :delimiter => ".", :separator => ",") %>
+				<%= number_with_precision presupuesto.monto %>
 			</td>
 		  <td><%= presupuesto.condicion_pago.nombre %></td>
 		  <td><%= link_to 'Editar', edit_presupuesto_path(presupuesto) %></td>

@@ -15,6 +15,11 @@
   <p><%= f.label :email %><br />
   <%= f.text_field :email %></p>
 
+  <p>
+  	<%= f.label :sector %><br/>
+  	<%= select("usuario", "sector_id", Sector.all.collect{|s| [s.nombre, s.id]}, { :include_blank => true  } ) %>
+  </p>
+
   <p><%= f.label :password, "Contraseña" %><br />
   <%= f.password_field :password %></p>
 

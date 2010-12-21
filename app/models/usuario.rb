@@ -23,9 +23,10 @@
 #
 
 class Usuario < ActiveRecord::Base
-  validates :nombre, :presence => true
-  validates :apellido, :presence => true
-  validates :identificador, :presence => true, :uniqueness => true, :length => { :minimum => 4 }
+	validates_presence_of :nombre, :apellido, :identificador, :sector
+  validates :identificador, :uniqueness => true, :length => { :minimum => 4 }
+
+  belongs_to :sector
 
 	# Include default devise modules. Others available are:
   # :token_authenticatable, :lockable, :timeoutable and :activatable
@@ -34,7 +35,7 @@ class Usuario < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :password, :password_confirmation, :nombre, :apellido, :identificador, :email, :remember_me
+  attr_accessible :password, :password_confirmation, :nombre, :apellido, :identificador, :email, :remember_me, :sector
 
   def to_s
   	nombre_completo
