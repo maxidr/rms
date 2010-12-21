@@ -26,8 +26,11 @@ class Ability
 		end
 
 		can :gestionar_presupuesto, Requerimiento do |rqm|
-			rqm.estado == Requerimiento::PENDIENTE_APROBACION_COMPRAS && usuario == @compras.responsable
+			return false if rqm.estado != Requerimiento::PENDIENTE_APROBACION_COMPRAS
+			return false if usuario.sector == nil
+			usuario.sector == @compras
 		end
+
 	end
 
 	def iniciado_or_rechazado(rqm)

@@ -20,8 +20,13 @@
 				<%= number_with_precision presupuesto.monto %>
 			</td>
 		  <td><%= presupuesto.condicion_pago.nombre %></td>
-		  <td><%= link_to 'Editar', edit_presupuesto_path(presupuesto) %></td>
-		  <td><%= link_to 'Eliminar', presupuesto, :confirm => 'Esta seguro?', :method => :delete %></td>
+		  <% if can? :gestionar_presupuesto, @requerimiento %>
+			  <td><%= link_to 'Editar', edit_presupuesto_path(presupuesto) %></td>
+			  <td><%= link_to 'Eliminar', presupuesto, :confirm => 'Esta seguro?', :method => :delete %></td>
+			<% else %>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			<% end %>
 		</tr>
 	<% end %>
 	</table>

@@ -14,40 +14,32 @@
 # 							 Expedicion / Administracion / Compras / Ventas.
 # Los rubros: Materias Primas / Insumos / Consumibles / Varios / Servicios / Maquinas y herramientas
 
-# USUARIOS -------------------------------------------------------------------------------------------
-usr = Usuario.new({:nombre => 'Maximiliano', :apellido => 'Dello Russo',
-	:identificador => 'mdellorusso',
-	:email => 'maxidr@gmail.com',
-	:sector => nil,
-	:password => 'lucas12'}) unless Usuario.find_by_identificador('mdellorusso')
-
-usr.save(:validates => false) unless usr == nil
-
-responsable = Usuario.new({:nombre => 'Juan', :apellido => 'Lopez',
-	:identificador => 'jlopez',
-	:email => 'mdellorusso@aonken.com.ar',
-	:sector => nil,
-	:password => 'jlopez'}) unless Usuario.find_by_identificador('jlopez')
-
-responsable.save(:validates => false) unless responsable == nil
-
 # SECTORES -------------------------------------------------------------------------------------------
 sectores = ["Tejeduría", "Mantenimiento", "Recubrimiento",
 	"Embalaje", "Fábrica de piletas", "Caños", "Expedición",
 	"Administración", "Compras", "Ventas" ]
 
 sectores.each do |sector|
-	Sector.create({:nombre => sector, :responsable => responsable}) unless Sector.find_by_nombre(sector)
+	Sector.create({:nombre => sector}) unless Sector.find_by_nombre(sector)
 end
 
-mantenimiento = Sector.where(:nombre => 'Mantenimiento').first
-compras = Sector.where(:nombre => 'Compras').first
+# USUARIOS -------------------------------------------------------------------------------------------
+usr = Usuario.create({:nombre => 'Maximiliano', :apellido => 'Dello Russo',
+	:identificador => 'mdellorusso',
+	:email => 'maxidr@gmail.com',
+	:sector => Sector.where(:nombre => 'Mantenimiento').first,
+	:password => 'lucas12'}) unless Usuario.find_by_identificador('mdellorusso')
 
-usr.update_attribute(:sector, mantenimiento)
-responsable.update_attribute(:sector, compras)
+responsable = Usuario.create({:nombre => 'Juan', :apellido => 'Lopez',
+	:identificador => 'jlopez',
+	:email => 'mdellorusso@aonken.com.ar',
+	:sector => Sector.where(:nombre => 'Compras').first,
+	:password => 'jlopez'}) unless Usuario.find_by_identificador('jlopez')
 
-sectores.each do |sector|
+sectores.each do |nombre_sector|
+	sector = Sector.where(:nombre => nombre_sector).first
 	sector.responsable = responsable
+	sector.save
 end
 
 # EMPRESAS -------------------------------------------------------------------------------------------

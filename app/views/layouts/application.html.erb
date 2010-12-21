@@ -28,10 +28,37 @@
 		    </li>
 		  </ul>
 		</div>
-		
-		<h2 id="error"><%= flash[:error] %></h2>
 	<% end %>
-	
+<!--
+	warn
+	info
+	notice
+	alert
+	error
+-->
+	<div id="notification_area">
+		<% if flash[:warn] %>
+			<div class="notification warning hideit">
+				<p><strong>Precuación: </strong><%= flash[:warn] %></p>
+			</div>
+		<% end %>
+		<% if flash[:info] %>
+ 			<div class="notification information hideit">
+ 				<p><strong>Información: </strong><%= flash[:info] %></p>
+ 			</div>
+ 		<% end %>
+		<% if flash[:notice] %>
+			<div class="notification success hideit">
+				<p><strong>Correcto: </strong><%= flash[:notice] %></p>
+	    </div>
+    <% end %>
+    <% if flash[:error] %>
+			<div class="notification failure hideit">
+ 				<p><strong>Error: </strong><%= flash[:error] %></p>
+	    </div>
+	  <% end %>
+	</div>
+
 	<%= yield %>
 
   <%= javascript_include_tag :defaults %>

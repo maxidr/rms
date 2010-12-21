@@ -3,10 +3,15 @@ class PresupuestosController < ApplicationController
 
 	before_filter :authenticate_usuario!
 
+	before_filter :obtener_presupuesto_de_request, :only => [:edit, :update, :destroy]
+	before_filter :obtener_requerimiento_de_request, :only => [:new, :create, :verificar_permisos_creacion]
+
+	before_filter :verificar_permisos_modificacion, :only => [:edit, :update, :destroy]
+	before_filter :verificar_permisos_creacion, :only => [:new, :create]
+
   # GET /presupuestos/new
   # GET /presupuestos/new.xml
   def new
-  	@requerimiento = Requerimiento.find(params[:requerimiento_id])
     @presupuesto = Presupuesto.new
 
     respond_to do |format|
@@ -17,13 +22,11 @@ class PresupuestosController < ApplicationController
 
   # GET /presupuestos/1/edit
   def edit
-    @presupuesto = Presupuesto.find(params[:id])
   end
 
   # POST /presupuestos
   # POST /presupuestos.xml
   def create
-		@requerimiento = Requerimiento.find(params[:requerimiento_id])
 		@presupuesto = @requerimiento.presupuestos.create(params[:presupuesto])
 
     respond_to do |format|
@@ -40,8 +43,6 @@ class PresupuestosController < ApplicationController
   # PUT /presupuestos/1
   # PUT /presupuestos/1.xml
   def update
-    @presupuesto = Presupuesto.find(params[:id])
-
     respond_to do |format|
       if @presupuesto.update_attributes(params[:presupuesto])
         format.html { redirect_to(@presupuesto.requerimiento, :notice => 'Presupuesto actualizado.') }
@@ -56,7 +57,6 @@ class PresupuestosController < ApplicationController
   # DELETE /presupuestos/1
   # DELETE /presupuestos/1.xml
   def destroy
-    @presupuesto = Presupuesto.find(params[:id])
     @presupuesto.destroy
 
     respond_to do |format|
@@ -64,5 +64,25 @@ class PresupuestosController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  private
+
+		def obtener_presupuesto_de_request
+			@presupuesto = Presupuesto.find(params[:id])
+		end
+
+		def obtener_requerimiento_de_request
+			@requerimiento = Requerimiento.find(params[:requerimiento_id])
+		end
+
+		def verificar_permisos_creacion
+			authorize! :gestionar_presupuesto, @requerimiento
+		end
+
+		def verificar_permisos_modificacion
+			rqm = @presupuesto.requerimiento
+			authorize! :gestionar_presupuesto, rqm
+		end
+
 end
 

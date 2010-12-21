@@ -1,2 +1,20 @@
+/* body { font-family: Tahoma, Arial, Verdana, sans-serif; font-size: 12px; color: #999999; } */
 #user_nav{ clear: both; display: right; text-align: right; }
 input.number_field { width: 100px; text-align: right; }
+
+/* Area de notificacion */
+#notification_area { width: 80%; margin: 0 auto; }
+.notification { line-height: 30px; cursor: pointer; clear: both; height: 30px;
+		margin: 8px 0px;	padding: 20px 25px 10px 60px; -moz-border-radius: 4px; -webkit-border-radius: 4px;
+		background-position: 15px center; background-repeat: no-repeat;
+	}
+.notification strong { margin-right: 5px; }
+.notification p { font-size: 11px; padding: 0px; margin: 0px; color: #333333; }
+.message p { font-size: 11px; line-height: 18px; }
+.warning { background-image: url(../images/error.png); border: 2px solid #FFC237; background-color: #FFEAA8; color: #826200; }
+.success { background-image: url(../images/accept.png); border: 2px solid #99C600; background-color: #EFFFB9; color: #3C5A01; }
+.failure { background-image: url(../images/exclamation.png); border: 2px solid #EB5339; background-color: #FCCAC2; color: #AC260F; }
+.information { background-image: url(../images/information.png); border: 2px solid #418ACC; background-color: #D0E4F4; color: #235685; }
+.lightbulb { background-image: url(../images/lightbulb.png); border: 2px solid #D3A350; background-color: #FEF0CB; color: #835F21; }
+.messages { background-image: url(../images/email.png); border: 2px solid #42B4FF; background-color: #9DDFFF; color: #835F21; }
+

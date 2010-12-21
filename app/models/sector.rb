@@ -13,7 +13,7 @@
 class Sector < ActiveRecord::Base
   belongs_to :responsable, :class_name => 'Usuario'
 
-  validates_presence_of :nombre, :responsable
+  validates_presence_of :nombre
   validates_uniqueness_of :nombre
 
   scope :compras, where('sectores.nombre = ?', 'Compras')
