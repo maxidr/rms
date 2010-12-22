@@ -48,7 +48,7 @@ class CondicionesPagosController < ApplicationController
 
     respond_to do |format|
       if @condicion_pago.save
-        format.html { redirect_to(@condicion_pago, :notice => 'Condicion pago was successfully created.') }
+        format.html { redirect_to(@condicion_pago, :notice => 'La condición de pago fue creada exitosamente.') }
         format.xml  { render :xml => @condicion_pago, :status => :created, :location => @condicion_pago }
       else
         format.html { render :action => "new" }
@@ -64,7 +64,7 @@ class CondicionesPagosController < ApplicationController
 
     respond_to do |format|
       if @condicion_pago.update_attributes(params[:condicion_pago])
-        format.html { redirect_to(@condicion_pago, :notice => 'Condicion pago was successfully updated.') }
+        format.html { redirect_to(@condicion_pago, :notice => 'La condición de pago fue actualizado correctamente.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -37,9 +37,9 @@
 	error
 -->
 	<div id="notification_area">
-		<% if flash[:warn] %>
+		<% if flash[:alert] %>
 			<div class="notification warning hideit">
-				<p><strong>Precuación: </strong><%= flash[:warn] %></p>
+				<p><strong>Precuación: </strong><%= flash[:alert] %></p>
 			</div>
 		<% end %>
 		<% if flash[:info] %>
@@ -47,9 +47,9 @@
  				<p><strong>Información: </strong><%= flash[:info] %></p>
  			</div>
  		<% end %>
-		<% if flash[:notice] %>
+		<% if notice != nil%>
 			<div class="notification success hideit">
-				<p><strong>Correcto: </strong><%= flash[:notice] %></p>
+				<p><strong>Correcto: </strong><%= notice %></p>
 	    </div>
     <% end %>
     <% if flash[:error] %>

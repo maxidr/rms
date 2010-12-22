@@ -31,5 +31,7 @@
 	<% end %>
 	</table>
 <% end %>
-<%= link_to 'Agregar presupuesto', new_requerimiento_presupuesto_path(@requerimiento)  %>
+<% if can? :gestionar_presupuesto, @requerimiento %>
+	<%= link_to 'Agregar presupuesto', new_requerimiento_presupuesto_path(@requerimiento)  %>
+<% end %>
 
