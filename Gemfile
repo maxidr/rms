@@ -8,6 +8,9 @@ gem 'rails', '3.0.3'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'devise'
 gem 'cancan'
+gem 'formtastic', '~> 1.1.0'
+gem 'slim', :require => 'slim/rails'
+gem "slim-rails"
 
 # Use unicorn as the web server
 # gem 'unicorn'

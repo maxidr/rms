@@ -1,0 +1,23 @@
+#login{	
+	width: 600px;
+	margin: 10px auto;
+	-moz-border-radius: 9px;
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+	box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.4);	
+	border-radius: 9px;	
+	background: none repeat scroll 0 0 #FFFFFF;
+}
+
+
+#login h2 {
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-topright: 9px;
+		border-top-left-radius: 9px;
+		border-top-right-radius: 9px;
+    background: none repeat scroll 0 0 #261F1F;
+    color: #FFFFFF;
+    margin: 0;
+    padding: 10px 15px;
+}
+

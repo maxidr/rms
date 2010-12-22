@@ -3,7 +3,7 @@
 input.number_field { width: 100px; text-align: right; }
 
 /* Area de notificacion */
-#notification_area { width: 80%; margin: 0 auto; }
+#notification_area { width: 50%; margin: 0 auto; }
 .notification { line-height: 30px; cursor: pointer; clear: both; height: 30px;
 		margin: 8px 0px;	padding: 20px 25px 10px 60px; -moz-border-radius: 4px; -webkit-border-radius: 4px;
 		background-position: 15px center; background-repeat: no-repeat;

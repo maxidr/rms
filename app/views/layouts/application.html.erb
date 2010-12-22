@@ -2,7 +2,9 @@
 <html>
 <head>
   <title>Rms</title>
-  <%= stylesheet_link_tag :all %>
+  <%= stylesheet_link_tag "app", "formtastic", "formtastic_changes", "menu", "scaffold" %>
+  <%= formtastic_stylesheet_link_tag %>
+  <%= yield :stylesheets %>
   <%= csrf_meta_tag %>
 </head>
 <body>
