@@ -15,9 +15,11 @@
     <td><%= caracteristica.nombre %></td>
     <td><%= caracteristica.valor %></td>
     <td><%= caracteristica.material %></td>
-    <td><%= link_to 'Ver', caracteristica %></td>
-    <td><%= link_to 'Editar', edit_caracteristica_path(caracteristica) %></td>
-    <td><%= link_to 'Eliminar', caracteristica, :confirm => 'Esta seguro?', :method => :delete %></td>
+    <td>
+    	<%= link_to 'Ver', caracteristica %>
+    	<%= link_to 'Editar', edit_caracteristica_path(caracteristica) %>
+    	<%= link_to 'Eliminar', caracteristica, :confirm => 'Esta seguro?', :method => :delete %>
+    </td>
   </tr>
 <% end %>
 </table>

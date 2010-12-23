@@ -1,23 +1,26 @@
 <h1>Listado de condiciones de pago</h1>
 
 <table>
-  <tr>
-    <th>Nombre</th>
-    <th>Descripción</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @condiciones_pagos.each do |condicion_pago| %>
-  <tr>
-    <td><%= condicion_pago.nombre %></td>
-    <td><%= condicion_pago.descripcion %></td>
-    <td><%= link_to 'Show', condicion_pago %></td>
-    <td><%= link_to 'Edit', edit_condicion_pago_path(condicion_pago) %></td>
-    <td><%= link_to 'Destroy', condicion_pago, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+	<thead>
+		<tr>
+		  <th>Nombre</th>
+		  <th>Descripción</th>
+		  <th></th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @condiciones_pagos.each do |condicion_pago| %>
+		<tr>
+		  <td><%= condicion_pago.nombre %></td>
+		  <td><%= condicion_pago.descripcion %></td>
+		  <td>
+				<%= link_to 'Ver', condicion_pago %>
+				<%= link_to 'Editar', edit_condicion_pago_path(condicion_pago) %>
+				<%= link_to 'Eliminar', condicion_pago, :confirm => 'Está seguro?', :method => :delete %>
+		  </td>
+		</tr>
+	<% end %>
+	</tbody>
 </table>
 
 <br />

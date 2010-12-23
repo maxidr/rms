@@ -1,23 +1,26 @@
 <h1>Listado de monedas</h1>
 
 <table>
-  <tr>
-    <th>Simbolo</th>
-    <th>Nombre</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @monedas.each do |moneda| %>
-  <tr>
-    <td><%= moneda.simbolo %></td>
-    <td><%= moneda.nombre %></td>
-    <td><%= link_to 'Ver', moneda %></td>
-    <td><%= link_to 'Editar', edit_moneda_path(moneda) %></td>
-    <td><%= link_to 'Eliminar', moneda, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+	<thead>
+		<tr>
+		  <th>Simbolo</th>
+		  <th>Nombre</th>
+		  <th></th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @monedas.each do |moneda| %>
+		<tr>
+		  <td><%= moneda.simbolo %></td>
+		  <td><%= moneda.nombre %></td>
+		  <td>
+		  	<%= link_to 'Ver', moneda %>
+				<%= link_to 'Editar', edit_moneda_path(moneda) %>
+				<%= link_to 'Eliminar', moneda, :confirm => 'Are you sure?', :method => :delete %>
+			</td>
+		</tr>
+	<% end %>
+	</tbody>
 </table>
 
 <br />

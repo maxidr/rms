@@ -1,29 +1,32 @@
 <h1>Listado de proveedores</h1>
 
 <table>
-  <tr>
-    <th>Razon social</th>
-    <th>Domicilio</th>
-    <th>Telefono</th>
-    <th>Cuit</th>
-    <th>Contacto</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @proveedores.each do |proveedor| %>
-  <tr>
-    <td><%= proveedor.razon_social %></td>
-    <td><%= proveedor.domicilio %></td>
-    <td><%= proveedor.telefono %></td>
-    <td><%= proveedor.cuit %></td>
-    <td><%= proveedor.contacto %></td>
-    <td><%= link_to 'Ver', proveedor %></td>
-    <td><%= link_to 'Editar', edit_proveedor_path(proveedor) %></td>
-    <td><%= link_to 'Eliminar', proveedor, :confirm => 'Esta seguro?', :method => :delete %></td>
-  </tr>
-<% end %>
+	<thead>
+		<tr>
+		  <th>Razon social</th>
+		  <th>Domicilio</th>
+		  <th>Telefono</th>
+		  <th>Cuit</th>
+		  <th>Contacto</th>
+		  <th></th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @proveedores.each do |proveedor| %>
+		<tr>
+		  <td><%= proveedor.razon_social %></td>
+		  <td><%= proveedor.domicilio %></td>
+		  <td><%= proveedor.telefono %></td>
+		  <td><%= proveedor.cuit %></td>
+		  <td><%= proveedor.contacto %></td>
+		  <td>
+		  	<%= link_to 'Ver', proveedor %>
+		  	<%= link_to 'Editar', edit_proveedor_path(proveedor) %>
+		  	<%= link_to 'Eliminar', proveedor, :confirm => 'Esta seguro?', :method => :delete %>
+		  </td>
+		</tr>
+	<% end %>
+	</tbody>
 </table>
 
 <br />

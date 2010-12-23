@@ -24,7 +24,45 @@ form.formtastic fieldset legend span {font-size: 1.5em; font-weight: bold; font-
 form.formtastic fieldset legend {margin: 0.83em 0;}
 form.formtastic abbr {margin: 0 5px;}
 
-form.formtastic fieldset > ol > li.string input, 
+form.formtastic fieldset > ol > li.string input,
 form.formtastic fieldset > ol > li.password input {padding: 0.2em;}
 
+#user_nav{ margin: 0.3em 0.5em; }
+
+/* Temporal */
+
+#menu{ margin: 0 0.5em; }
+#content{ margin: 1em; }
+#content h1, #content h2{ margin: 0.5em 0; padding: 0.5em 0; }
+#content p{ padding: 0.25em 0; }
+
+
+#content table { width: 100%; }
+#content table tr th, #content table tr td { padding: 0.5em 0.2em; border-spacing: 1px;}
+
+#content table thead th {
+	border-spacing: 1px; border-collapse: 0; border: none;
+	background: none repeat scroll 0 0 #261F1F;
+  font-size: 12px; color: #FFF;	text-align: center;
+}
+
+#content table thead :first-child {
+	-moz-border-radius-topleft: 6px;
+	-webkit-border-top-left-radius: 6px;
+	border-top-left-radius: 6px;
+}
+
+#content table thead :last-child {
+	-moz-border-radius-topright: 6px;
+	-webkit-border-top-right-radius: 6px;
+	-moz-border-radius-topright: 6px;
+	border-top-right-radius: 6px;
+}
+
+#content table tbody tr td { text-align: center; font-size: 12px; padding: 0.2em 0; border: none; }
+#content table tbody tr td a { padding: 2px 40px; }
+#content table tbody tr td a:hover { background: none; text-decoration: none; color: inherit;}
+#content table tbody tr :last-child { border: none; }
+#content table tbody tr:hover { background-color: #D5E2FF; }
+#content table tbody :last-child { border-bottom: 5px solid #999; }
 

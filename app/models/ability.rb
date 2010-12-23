@@ -26,9 +26,15 @@ class Ability
 		end
 
 		can :gestionar_presupuesto, Requerimiento do |rqm|
-			return false if rqm.estado != Requerimiento::PENDIENTE_APROBACION_COMPRAS
-			return false if usuario.sector == nil
-			usuario.sector == @compras
+			puts "Estado: #{rqm.estado}"
+			puts "Sector usuario: #{usuario.sector}"
+			puts "Compras: #{@compras}"
+			if rqm.estado == Requerimiento::PENDIENTE_APROBACION_COMPRAS
+				false if usuario.sector == nil
+				usuario.sector == @compras
+			else
+				true if [Requerimiento::INICIO, Requerimiento::RECHAZO_X_SECTOR, Requerimiento::PENDIENTE_APROBACION_SECTOR].include? rqm.estado
+			end
 		end
 
 	end

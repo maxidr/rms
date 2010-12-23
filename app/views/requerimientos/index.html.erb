@@ -4,37 +4,36 @@
 	<p>Aun no hay requerimientos cargados.</p>
 <% else %>
 	<table>
-		<tr>
-			<th>N°</th>
-			<th>Fecha</th>
-		  <th>Solicitante</th>
-		  <th>Empresa</th>
-		  <th>Sector</th>
-		  <th>Rubro</th>
-		  <th>Estado</th>
-		  <th></th>
-		  <th></th>
-		  <th></th>
-		</tr>
-
-	<% @requerimientos.each do |requerimiento| %>
-		<tr>
-			<td><%=	requerimiento.id %></td>
-			<td><%=	l requerimiento.created_at, :format => :short %></td>
-		  <td><%= requerimiento.solicitante %></td>
-		  <td><%= requerimiento.empresa %></td>
-		  <td><%= requerimiento.sector %></td>
-		  <td><%= requerimiento.rubro %></td>
-		  <td><%= requerimiento.estado %></td>
-		  <td><%= link_to 'Ver', requerimiento %></td>
-		  <td>
-		  <% if can? :edit, requerimiento %>
-			  <%= link_to 'Editar', edit_requerimiento_path(requerimiento) %>
+		<thead>
+			<tr>
+				<th>N°</th>
+				<th>Fecha</th>
+				<th>Solicitante</th>
+				<th>Empresa</th>
+				<th>Sector</th>
+				<th>Rubro</th>
+				<th>Estado</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @requerimientos.each do |requerimiento| %>
+				<tr>
+					<td><%=	requerimiento.id %></td>
+					<td><%=	l requerimiento.created_at, :format => :short %></td>
+					<td><%= requerimiento.solicitante %></td>
+					<td><%= requerimiento.empresa %></td>
+					<td><%= requerimiento.sector %></td>
+					<td><%= requerimiento.rubro %></td>
+					<td><%= requerimiento.estado %></td>
+					<td><%= link_to 'Ver', requerimiento %>
+					<% if can? :edit, requerimiento %>
+						<%= link_to 'Editar', edit_requerimiento_path(requerimiento) %>
+					<% end %>
+					</td>
+				</tr>
 			<% end %>
-			</td>
-			<td>Cancelar</td>
-		</tr>
-	<% end %>
+		</tbody>
 	</table>
 
 <% end %>

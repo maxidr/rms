@@ -3,32 +3,32 @@
 	Aun no posee presupuestos cargados
 <% else %>
 	<table>
-		<tr>
-		  <th>Proveedor</th>
-		  <th>Monto</th>
-		  <th>Condición de pago</th>
-		  <th>Detalle</th>
-		  <th></th>
-		  <th></th>
-		</tr>
-
-	<% @requerimiento.presupuestos.each do |presupuesto| %>
-		<tr>
-		  <td><%= presupuesto.proveedor.razon_social %></td>
-			<td>
-				<%= presupuesto.moneda.simbolo %>
-				<%= number_with_precision presupuesto.monto %>
-			</td>
-		  <td><%= presupuesto.condicion_pago.nombre %></td>
-		  <% if can? :gestionar_presupuesto, @requerimiento %>
-			  <td><%= link_to 'Editar', edit_presupuesto_path(presupuesto) %></td>
-			  <td><%= link_to 'Eliminar', presupuesto, :confirm => 'Esta seguro?', :method => :delete %></td>
-			<% else %>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
+		<thead>
+			<tr>
+				<th>Proveedor</th>
+				<th>Monto</th>
+				<th>Condición de pago</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @requerimiento.presupuestos.each do |presupuesto| %>
+				<tr>
+					<td><%= presupuesto.proveedor.razon_social %></td>
+					<td>
+						<%= presupuesto.moneda.simbolo %>
+						<%= number_with_precision presupuesto.monto %>
+					</td>
+					<td><%= presupuesto.condicion_pago.nombre %></td>
+					<td>
+					<% if can? :gestionar_presupuesto, @requerimiento %>
+						<%= link_to 'Editar', edit_presupuesto_path(presupuesto) %>
+						<%= link_to 'Eliminar', presupuesto, :confirm => 'Esta seguro?', :method => :delete %>
+					<% end %>
+					</td>
+				</tr>
 			<% end %>
-		</tr>
-	<% end %>
+		</tbody>
 	</table>
 <% end %>
 <% if can? :gestionar_presupuesto, @requerimiento %>

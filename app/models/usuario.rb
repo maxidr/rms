@@ -35,7 +35,7 @@ class Usuario < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :password, :password_confirmation, :nombre, :apellido, :identificador, :email, :remember_me, :sector
+  attr_accessible :password, :password_confirmation, :nombre, :apellido, :identificador, :email, :remember_me, :sector_id
 
   def to_s
   	nombre_completo

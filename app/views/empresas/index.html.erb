@@ -1,23 +1,27 @@
 <h1>Listado de empresas</h1>
 
 <table>
-  <tr>
-    <th>Nombre</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @empresas.each do |empresa| %>
-  <tr>
-    <td><%= empresa.nombre %></td>
-    <td><%= link_to 'Detalles', empresa %></td>
-    <td><%= link_to 'Editar', edit_empresa_path(empresa) %></td>
-    <td><%= link_to 'Eliminar', empresa, :confirm => 'Esta seguro?', :method => :delete %></td>
-  </tr>
-<% end %>
+	<thead>
+		<tr>
+		  <th>Nombre</th>
+		  <th></th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @empresas.each do |empresa| %>
+		<tr>
+		  <td><%= empresa.nombre %></td>
+		  <td>
+		  	<%= link_to 'Detalles', empresa %>
+				<%= link_to 'Editar', edit_empresa_path(empresa) %>
+				<%= link_to 'Eliminar', empresa, :confirm => 'Esta seguro?', :method => :delete %>
+			</td>
+		</tr>
+	<% end %>
+	</tbody>
 </table>
 
 <br />
 
 <%= link_to 'Nueva empresa', new_empresa_path %>
+

@@ -1,21 +1,24 @@
 <h1>Listado de rubros</h1>
 
 <table>
-  <tr>
-    <th>Nombre</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @rubros.each do |rubro| %>
-  <tr>
-    <td><%= rubro.nombre %></td>
-    <td><%= link_to 'Ver', rubro %></td>
-    <td><%= link_to 'Editar', edit_rubro_path(rubro) %></td>
-    <td><%= link_to 'Eliminar', rubro, :confirm => 'Esta seguro?', :method => :delete %></td>
-  </tr>
-<% end %>
+	<thead>
+		<tr>
+		  <th>Nombre</th>
+		  <th></th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @rubros.each do |rubro| %>
+		<tr>
+		  <td><%= rubro.nombre %></td>
+		  <td>
+		  	<%= link_to 'Ver', rubro %>
+				<%= link_to 'Editar', edit_rubro_path(rubro) %>
+				<%= link_to 'Eliminar', rubro, :confirm => 'Esta seguro?', :method => :delete %>
+			</td>
+		</tr>
+	<% end %>
+	</tbody>
 </table>
 
 <br />
