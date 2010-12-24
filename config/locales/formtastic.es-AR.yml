@@ -1,0 +1,5 @@
+"es-AR":
+  formtastic:
+    create: "Crear %{model}"
+    update: "Guardar cambios"
+

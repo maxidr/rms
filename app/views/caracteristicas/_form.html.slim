@@ -1,0 +1,9 @@
+= semantic_form_for [@material, @caracteristica] do |form|
+ = form.inputs do
+		p
+			b Material:
+			= @caracteristica.material.nombre
+		= form.input :nombre
+		= form.input :valor
+		= form.buttons
+

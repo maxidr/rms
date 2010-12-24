@@ -1,3 +1,4 @@
+# coding: utf-8
 # == Schema Information
 # Schema version: 20101201144013
 #
@@ -15,5 +16,6 @@ class Caracteristica < ActiveRecord::Base
 	validates_presence_of :nombre, :valor
 
   belongs_to :material
+
 end
 

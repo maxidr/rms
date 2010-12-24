@@ -90,7 +90,7 @@ DEPENDENCIES
   annotate-models
   cancan
   devise
-  formtastic (~> 1.1.0)
+  formtastic
   rails (= 3.0.3)
   slim
   slim-rails
