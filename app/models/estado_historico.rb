@@ -19,8 +19,8 @@ class EstadoHistorico < ActiveRecord::Base
 
 	attr_accessible :requerimiento, :detalle, :codigo_estado
 
-	# IMPROVE: Muy fea la alternativa para obtener el codigo de estado
-	scope :rechazados_por_sector, where(:codigo_estado => Requerimiento::ESTADOS.index(Requerimiento::RECHAZO_X_SECTOR))
+	# IMPROVE: Agregar el estado como composed_of
+	scope :rechazados_por_sector, where(:codigo_estado => Estado::RECHAZO_X_SECTOR.codigo)
 	scope :del_requerimiento, lambda { |rqm| 	where(:requerimiento_id => rqm)	}
 
 	def to_s

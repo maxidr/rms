@@ -6,7 +6,7 @@ class CaracteristicasController < ApplicationController
 	before_filter :check_creation, :only => [:create, :new]
 
 	def check_rqm_state
-		if cannot? :edit_caracteristica, @caracteristica
+		if cannot? :edit_caracteristica, @caracteristica.material
 			redirect_to @caracteristica.material, :alert => 'No puede alterar el contenido de un requerimiento hasta que no cambie su estado'
 		end
 	end

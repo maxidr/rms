@@ -24,17 +24,23 @@ sectores.each do |sector|
 end
 
 # USUARIOS -------------------------------------------------------------------------------------------
-usr = Usuario.create({:nombre => 'Maximiliano', :apellido => 'Dello Russo',
-	:identificador => 'mdellorusso',
-	:email => 'maxidr@gmail.com',
-	:sector => Sector.where(:nombre => 'Mantenimiento').first,
-	:password => 'lucas12'}) unless Usuario.find_by_identificador('mdellorusso')
+unless usr = Usuario.find_by_identificador('mdellorusso')
+	usr = Usuario.create({:nombre => 'Maximiliano', :apellido => 'Dello Russo',
+		:identificador => 'mdellorusso',
+		:email => 'maxidr@gmail.com',
+		:password => 'lucas12'})
+	usr.sector = Sector.where(:nombre => 'Mantenimiento').first
+	puts "El usuario mdellorusso no pudo ser creado" unless usr.save
+end
 
-responsable = Usuario.create({:nombre => 'Juan', :apellido => 'Lopez',
-	:identificador => 'jlopez',
-	:email => 'mdellorusso@aonken.com.ar',
-	:sector => Sector.where(:nombre => 'Compras').first,
-	:password => 'jlopez'}) unless Usuario.find_by_identificador('jlopez')
+unless responsable = Usuario.find_by_identificador('jlopez')
+	responsable = Usuario.create({:nombre => 'Juan', :apellido => 'Lopez',
+		:identificador => 'jlopez',
+		:email => 'mdellorusso@aonken.com.ar',		
+		:password => 'jlopez'}) 
+	responsable.sector = Sector.where(:nombre => 'Compras').first
+	puts "El usuario jlopez no pudo ser creado" unless responsable.save
+end
 
 sectores.each do |nombre_sector|
 	sector = Sector.where(:nombre => nombre_sector).first
@@ -63,8 +69,23 @@ Proveedor.find_or_create_by_razon_social(
 	:razon_social => 'Compañía Química',
 	:telefono => '44445555',
 	:cuit => '30641212123',
-	:contacto => 'Clau')
+	:contacto => 'Claudio')
+	
+Proveedor.find_or_create_by_razon_social(
+	:razon_social => 'Fuene SRL',
+	:telefono => '6562-2391',
+	:cuit => '30123413323')	
 
+Proveedor.find_or_create_by_razon_social(
+	:razon_social => 'Conex SA',
+	:telefono => '6654-5422/5425',
+	:cuit => '30331248993')	
+
+Proveedor.find_or_create_by_razon_social(
+	:razon_social => 'Del Plata SA',
+	:telefono => '3245-2119 3899-1899',
+	:cuit => '30331200018')	
+	
 # CONDICIONES DE PAGO ---------------------------------------------------------------------------------
 CondicionPago.find_or_create_by_nombre(	:nombre => 'Contado',	:descripcion => 'Cheques propios al dia')
 CondicionPago.find_or_create_by_nombre(	:nombre => 'Efectivo anticipado en dólares',	:descripcion => 'u$s')

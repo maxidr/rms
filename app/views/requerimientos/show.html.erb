@@ -39,11 +39,11 @@
 
 <p>
   <b>Estado:</b>
-  <%= @requerimiento.estado %>
+  <%= @requerimiento.estado.to_s %>
 </p>
 
-<% if @requerimiento.estado == Requerimiento::RECHAZO_X_SECTOR %>
 <%# IMPROVE: Feo este if, mejorarlo  %>
+<% if @requerimiento.estado == Estado::RECHAZO_X_SECTOR %>
 	<p>
 		<b>Motivo del rechazo:</b>
 		<%= @requerimiento.motivo_rechazo %>

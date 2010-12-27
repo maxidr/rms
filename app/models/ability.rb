@@ -18,29 +18,29 @@ class Ability
 		end
 
 		can :aprobar_por_sector, Requerimiento do |rqm|
-			rqm.sector.responsable == usuario && rqm.estado == Requerimiento::PENDIENTE_APROBACION_SECTOR
+			rqm.sector.responsable == usuario && rqm.estado == Estado::PENDIENTE_APROBACION_SECTOR
 		end
 
 		can :solicitar_aprobacion_compras, Requerimiento do |rqm|
-			rqm.solicitante == usuario && rqm.estado == Requerimiento::APROBADO_X_SECTOR
+			rqm.solicitante == usuario && rqm.estado == Estado::APROBADO_X_SECTOR			
 		end
 
 		can :gestionar_presupuesto, Requerimiento do |rqm|
-			puts "Estado: #{rqm.estado}"
 			puts "Sector usuario: #{usuario.sector}"
 			puts "Compras: #{@compras}"
-			if rqm.estado == Requerimiento::PENDIENTE_APROBACION_COMPRAS
+
+			if rqm.estado == Estado::PENDIENTE_APROBACION_COMPRAS
 				false if usuario.sector == nil
 				usuario.sector == @compras
 			else
-				true if [Requerimiento::INICIO, Requerimiento::RECHAZO_X_SECTOR, Requerimiento::PENDIENTE_APROBACION_SECTOR].include? rqm.estado
+				rqm.estado.in? Estado::INICIO, Estado::RECHAZO_X_SECTOR, Estado::PENDIENTE_APROBACION_SECTOR, Estado::APROBADO_X_SECTOR				
 			end
 		end
 
 	end
 
 	def iniciado_or_rechazado(rqm)
-		[Requerimiento::INICIO, Requerimiento::RECHAZO_X_SECTOR].include? rqm.estado
+		rqm.estado.in?(Estado::INICIO, Estado::RECHAZO_X_SECTOR)
 	end
 
 end
