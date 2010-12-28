@@ -22,7 +22,7 @@ class Ability
 		end
 
 		can :solicitar_aprobacion_compras, Requerimiento do |rqm|
-			rqm.solicitante == usuario && rqm.estado == Estado::APROBADO_X_SECTOR			
+			rqm.solicitante == usuario && rqm.estado == Estado::APROBADO_X_SECTOR
 		end
 
 		can :gestionar_presupuesto, Requerimiento do |rqm|
@@ -33,8 +33,12 @@ class Ability
 				false if usuario.sector == nil
 				usuario.sector == @compras
 			else
-				rqm.estado.in? Estado::INICIO, Estado::RECHAZO_X_SECTOR, Estado::PENDIENTE_APROBACION_SECTOR, Estado::APROBADO_X_SECTOR				
+				rqm.estado.in? Estado::INICIO, Estado::RECHAZO_X_SECTOR, Estado::PENDIENTE_APROBACION_SECTOR, Estado::APROBADO_X_SECTOR
 			end
+		end
+
+		can :aprobar_presupuestos, Requerimiento do |rqm|
+			rqm.estado == Estado::PENDIENTE_APROBACION_COMPRAS && usuario.sector == @compras
 		end
 
 	end

@@ -1,13 +1,26 @@
 # coding: utf-8
 class PresupuestosController < ApplicationController
+	respond_to :html, :xml, :json
 
 	before_filter :authenticate_usuario!
 
-	before_filter :obtener_presupuesto_de_request, :only => [:edit, :update, :destroy]
+	before_filter :obtener_presupuesto_de_request, :only => [:edit, :update, :destroy, :aprobar]
 	before_filter :obtener_requerimiento_de_request, :only => [:new, :create, :verificar_permisos_creacion]
 
 	before_filter :verificar_permisos_modificacion, :only => [:edit, :update, :destroy]
 	before_filter :verificar_permisos_creacion, :only => [:new, :create]
+
+	def aprobar
+		rqm = @presupuesto.requerimiento
+		if rqm.aprobar_presupuesto_por_compras! @presupuesto, current_usuario
+			flash[:notice] = "Se aprobó el presupuesto del requerimiento n° #{rqm.id}"
+			respond_with rqm, :location => rqm
+		else
+			respond_with rqm.errors, :status => :unprocessable_entity do |format|
+				format.html{ redirect_to rqm }
+			end
+		end
+	end
 
   # GET /presupuestos/new
   # GET /presupuestos/new.xml

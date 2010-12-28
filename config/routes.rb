@@ -13,7 +13,7 @@ Rms::Application.routes.draw do
 		# requerimientos/3/materiales/new
     resources :materiales, :only => [:new, :create]
     resources :presupuestos, :only => [:new, :create]
-    
+
     member do
     	put 'solicitar_aprobacion'
     	put 'rechazar'
@@ -23,7 +23,11 @@ Rms::Application.routes.draw do
     end
   end
 
-  resources :presupuestos, :only => [:destroy, :update, :edit]
+  resources :presupuestos, :only => [:destroy, :update, :edit] do
+  	member do
+  		put 'aprobar'
+  	end
+  end
 
   # Rutea el resto (materiales) sin referencia a requerimientos
   resources :materiales, :only => [:show, :destroy, :update, :edit] do

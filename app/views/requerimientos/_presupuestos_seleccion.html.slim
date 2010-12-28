@@ -1,0 +1,28 @@
+h2 Presupuestos
+- if @requerimiento.presupuestos.empty?
+	Aun no posee presupuestos cargados
+table
+	thead
+		tr
+			th
+			th Proveedor
+			th Monto
+			th Condición de pago
+			th
+	tbody
+		- @requerimiento.presupuestos.each do |presupuesto|
+			tr
+				td = radio_button_tag :presupuesto, presupuesto.id
+				td = presupuesto.proveedor.razon_social
+				td
+					= presupuesto.moneda.simbolo
+					=	number_with_precision presupuesto.monto
+				td = presupuesto.condicion_pago.nombre
+				td
+					- if can? :gestionar_presupuesto, @requerimiento
+						= link_to 'Editar', edit_presupuesto_path(presupuesto)
+						= link_to 'Eliminar', presupuesto, :confirm => 'Esta seguro?', :method => :delete
+
+- if can? :gestionar_presupuesto, @requerimiento
+	= link_to 'Agregar presupuesto', new_requerimiento_presupuesto_path(@requerimiento)
+

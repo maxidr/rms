@@ -10,7 +10,6 @@ class RequerimientosController < ApplicationController
 	before_filter :puede_aprobar_por_sector, :only => [:rechazar, :aprobar, :motivo_rechazo]
 
 
-
 	def solicitar_aprobacion_compras
 		if @requerimiento.solicitar_aprobacion_compras!
 			flash[:notice] = "Se envió la solicitud al sector de compras"
@@ -19,7 +18,7 @@ class RequerimientosController < ApplicationController
 			respond_with @requerimiento.errors, :status => :unprocessable_entity do |format|
 				format.html{ render :show }
 			end
-		end		
+		end
 	end
 
 	def solicitar_aprobacion
@@ -54,7 +53,7 @@ class RequerimientosController < ApplicationController
 	def rechazar
 		logger.debug("Se rechaza el requerimiento")
 		logger.debug(params[:rechazo])
-		if @requerimiento.rechazar_por_sector!( params[:rechazo][:motivo] )		
+		if @requerimiento.rechazar_por_sector!( params[:rechazo][:motivo] )
 			flash[:notice] = "Se rechazó el requerimiento y se envió un email al solicitante"
 			respond_with @requerimiento, :location => @requerimiento
 		else

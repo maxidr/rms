@@ -1,4 +1,5 @@
 # coding: utf-8
+# Contiene el detalle del estado "pendiente de aprobación del sector"
 class DetallePendienteAprobacion < ActiveRecord::Base
   belongs_to :autorizante, :class_name => "Usuario"
   has_one :estados_historicos, :as => :detalle
