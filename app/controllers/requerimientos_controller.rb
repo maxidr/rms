@@ -10,6 +10,16 @@ class RequerimientosController < ApplicationController
 	before_filter :check_state, :only => [:edit, :update]
 	before_filter :puede_aprobar_por_sector, :only => [:rechazar, :aprobar, :motivo_rechazo]
 
+	def comprar
+		logger.debug("Fecha estimada de compra: #{params[:entrega]}")		
+#   Verifica que estan todos los datos de la fecha
+#		unless params[:entrega].select{|k,v| !v.blank?}.length == 3		
+#
+
+#	  Convierte la fecha
+#		fecha = Date.parse( params[:entrega].values.reverse.join("-") )
+	end
+
 	# PUT /requerimientos/{id}/rechazar/presupuestos
 	def rechazar_por_compras
 		authorize! :rechazar_por_compras, @requerimiento

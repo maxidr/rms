@@ -47,6 +47,8 @@ class Ability
 		can :aprobar_presupuestos, Requerimiento do |rqm|
 			rqm.estado == Estado::PENDIENTE_APROBACION_COMPRAS && usuario.sector == @compras
 		end
+		
+		can :comprar, Requerimiento, :solicitante => usuario, :estado => Estado::APROBADO_X_COMPRAS
 
 	end
 

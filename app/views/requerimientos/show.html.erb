@@ -71,6 +71,7 @@
 	Para aprobar el requerimiento debe seleccionar un presupuesto y aprobarlo
 </p>
 <% end %>
+
 <b>
 	<% if can? :solicitar_aprobacion, @requerimiento %>
 		<%= link_to 'Solicitar aprobación', solicitar_aprobacion_requerimiento_path(@requerimiento), :method => :put %>
@@ -89,6 +90,26 @@
 		<%= link_to 'Rechazar presupuestos', rechazar_presupuestos_requerimiento_path(@requerimiento)  %>
 	<% end %>
 </b>
+
+<% if can? :comprar, @requerimiento %>
+	<b><a href="#" id="comprar">Comprar</a></b>	
+	<p>Queda pendiente que confirme la realización de la compra indicando fecha de entrega. 
+	Al realizarlo se informará a expedición para que quede a la espera de la entrega.</p>
+	<% content_for :javascript do %>
+		<%=  javascript_include_tag "rqm_show" %>
+	<% end %>
+	
+	<%= semantic_form_for 'entrega', :url => comprar_requerimiento_url, :html => {:method => :put} do |form| %>
+		<% form.inputs do %>
+			<%= form.input :fecha, :required => true, :label => 'Fecha aproximada de entrega', :as => :date, :hint => "Indicar fecha pautada con el proveedor" %>
+		<% end %>
+		<% form.buttons do %>
+      <%= form.commit_button "Confirmar fecha" %>
+    <% end %>
+	<% end %>
+	
+<% end %>
+
 <br/>
 <br/>
 <br/>
