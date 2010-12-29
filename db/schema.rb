@@ -85,13 +85,13 @@ ActiveRecord::Schema.define(:version => 20101228223142) do
   create_table "presupuestos", :force => true do |t|
     t.integer  "proveedor_id"
     t.integer  "moneda_id"
-    t.decimal  "monto"
+    t.decimal  "monto",             :precision => 8, :scale => 2
     t.integer  "condicion_pago_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "requerimiento_id"
     t.string   "detalle"
-    t.boolean  "aprobado",          :default => false
+    t.boolean  "aprobado",                                        :default => false
   end
 
   create_table "proveedores", :force => true do |t|

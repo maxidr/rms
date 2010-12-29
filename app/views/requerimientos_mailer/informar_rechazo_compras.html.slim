@@ -1,0 +1,14 @@
+! doctype html
+html
+	head
+		meta content="text/html; charset=UTF-8" http-equiv="Content-Type"
+	body
+		p	El requerimiento n° #{@requerimiento.id} fue rechazado por compras
+		br
+		p El motivo es:
+		p
+			i #{@motivo} 
+		br
+		p Puede acceder al requerimiento mediante el siguiente #{link_to 'link', requerimiento_url(@requerimiento)}
+
+
