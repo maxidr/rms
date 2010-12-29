@@ -17,4 +17,6 @@ input.number_field { width: 100px; text-align: right; }
 .information { background-image: url(../images/information.png); border: 2px solid #418ACC; background-color: #D0E4F4; color: #235685; }
 .lightbulb { background-image: url(../images/lightbulb.png); border: 2px solid #D3A350; background-color: #FEF0CB; color: #835F21; }
 .messages { background-image: url(../images/email.png); border: 2px solid #42B4FF; background-color: #9DDFFF; color: #835F21; }
+.estado_rechazado{ color: #900; }
+#content p b {margin-right:.5em;}
 

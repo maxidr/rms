@@ -14,7 +14,9 @@
 		<tbody>
 			<% @requerimiento.presupuestos.each do |presupuesto| %>
 				<tr>
-					<td><%= presupuesto.proveedor.razon_social %></td>
+					<td>
+						<%= presupuesto.proveedor.razon_social %>
+					</td>
 					<td>
 						<%= presupuesto.moneda.simbolo %>
 						<%= number_with_precision presupuesto.monto %>

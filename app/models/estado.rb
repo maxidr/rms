@@ -48,6 +48,10 @@ class Estado
 		false
 	end
 
+	def rechazo?
+		in? RECHAZO_X_COMPRAS, RECHAZO_X_SECTOR
+	end
+
 	def to_s
 		nombre
 	end

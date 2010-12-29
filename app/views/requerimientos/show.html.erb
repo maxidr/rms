@@ -37,14 +37,17 @@
   <%= @requerimiento.rubro %>
 </p>
 
-<p>
-  <b>Estado:</b>
-  <%= @requerimiento.estado.to_s %>
-</p>
-
-<%# IMPROVE: Feo este if, mejorarlo  %>
-<% if @requerimiento.estado == Estado::RECHAZO_X_SECTOR %>
+<% if @requerimiento.estado.rechazo? %>
+	<p class="estado_rechazado">
+<% else %>
 	<p>
+<% end %>
+		<b>Estado:</b>
+		<%= @requerimiento.estado.to_s %>
+	</p>
+
+<% if @requerimiento.estado.rechazo? %>
+	<p class="estado_rechazado">
 		<b>Motivo del rechazo:</b>
 		<%= @requerimiento.motivo_rechazo %>
 	</p>
@@ -52,14 +55,22 @@
 
 <%= render "materiales" %>
 
-
-<%= render "presupuestos" %>
+<% if @requerimiento.estado == Estado::APROBADO_X_COMPRAS %>
+	<%= render "presupuesto_aprobado", :presupuesto => @requerimiento.presupuesto_aprobado %>
+<% else %>
+	<%= render "presupuestos" %>
+<% end %>
 
 
 <br/>
 <br/>
 
-<h2>Acciones</h2>
+<% if can? :aprobar_presupuestos, @requerimiento %>
+<p>
+	<b>Aprobar presupuesto:</b>
+	Para aprobar el requerimiento debe seleccionar un presupuesto y aprobarlo
+</p>
+<% end %>
 <b>
 	<% if can? :solicitar_aprobacion, @requerimiento %>
 		<%= link_to 'Solicitar aprobación', solicitar_aprobacion_requerimiento_path(@requerimiento), :method => :put %>
@@ -73,6 +84,9 @@
 
 	<% if can? :solicitar_aprobacion_compras, @requerimiento %>
 		<%= link_to 'Solicitar aprobación de compras', aprobacion_compras_requerimiento_path(@requerimiento), :method => :put  %>
+	<% end %>
+	<% if can? :aprobar_presupuestos, @requerimiento %>
+		<%= link_to 'Rechazar presupuestos', rechazar_presupuestos_requerimiento_path(@requerimiento)  %>
 	<% end %>
 </b>
 <br/>

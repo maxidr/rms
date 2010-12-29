@@ -3,14 +3,37 @@ class RequerimientosController < ApplicationController
 
 	respond_to :html, :xml, :json
 
+	# IMPROVE: Utilizar el método de cancan load_and_authorize_resource (https://github.com/ryanb/cancan/wiki/authorizing-controller-actions)
 	before_filter :authenticate_usuario!
 	# IMPROVE: Cambiar el only por except para que sea mas legible
-	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion, :check_state, :show, :update, :aprobar, :motivo_rechazo, :rechazar, :solicitar_aprobacion_compras]
+	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion, :check_state, :show, :update, :aprobar, :motivo_rechazo, :rechazar, :solicitar_aprobacion_compras, :motivo_rechazo_compras, :rechazar_por_compras]
 	before_filter :check_state, :only => [:edit, :update]
 	before_filter :puede_aprobar_por_sector, :only => [:rechazar, :aprobar, :motivo_rechazo]
 
+	# PUT /requerimientos/{id}/rechazar/presupuestos
+	def rechazar_por_compras
+		authorize! :rechazar_por_compras, @requerimiento
+		motivo = params[:rechazo][:motivo]
+		respond_with @requerimiento do |format|
+			if motivo.blank?
+				flash[:error] = "Debe especificar un motivo para el rechazo"
+				format.html { render :motivo_rechazo_compras }
+			elsif @requerimiento.rechazar_por_compras!(motivo, current_usuario)
+				flash[:notice] = "Se rechazó el requerimiento"
+				format.html { redirect_to @requerimiento }
+			else
+				format.html { render :motivo_rechazo_compras }
+			end
+		end
+	end
+
+	# GET /requerimientos/{id}/rechazar/presupuestos
+	# Retorna la pantalla que permite cargar el motivo del rechazo del requerimiento por parte del sector de compras
+	def motivo_rechazo_compras
+	end
 
 	def solicitar_aprobacion_compras
+		authorize! :solicitar_aprobacion_compras, @requerimiento
 		if @requerimiento.solicitar_aprobacion_compras!
 			flash[:notice] = "Se envió la solicitud al sector de compras"
 			respond_with @requerimiento
@@ -21,19 +44,31 @@ class RequerimientosController < ApplicationController
 		end
 	end
 
+	# Solicitar aprobación del sector
 	def solicitar_aprobacion
 		logger.debug("Se desea solicitar aprobacion del requerimiento #{@requerimiento.id}")
-		respond_to do |format|
-			if @requerimiento.solicitar_aprobacion_sector!
-				responsable = @requerimiento.sector.responsable
-				format.html { redirect_to(@requerimiento,
-					:notice => "Se solicitó la aprobación del requerimiento a #{responsable.nombre_completo}.") }
-        format.xml  { head :ok }
-			else
-				format.html { render :action => "show" }
-        format.xml  { render :xml => @requerimiento.errors, :status => :unprocessable_entity }
+		authorize! :solicitar_aprobacion, @requerimiento
+#		if cannot? :solicitar_aprobacion, @requerimiento
+#			logger.debug("No puede solicitar la aprobación del sector para este requerimiento")
+#			flash[:error] = "No puede solicitar la aprobación del sector para este requerimiento"
+#			respond_with "No puede", :status => :unprocessable_entity
+#			respond_with(@requerimiento, :status => :unprocessable_entity) do |format|
+#				format.html { render :action => "show" }
+#				format.xml  { render :xml => flash[:error], :status => :unprocessable_entity }
+#			end
+
+			respond_to do |format|
+				if @requerimiento.solicitar_aprobacion_sector!
+					responsable = @requerimiento.sector.responsable
+					format.html { redirect_to(@requerimiento,
+						:notice => "Se solicitó la aprobación del requerimiento al responsable del sector (#{responsable.nombre_completo}).") }
+		      format.xml  { head :ok }
+				else
+					format.html { render :action => "show" }
+		      format.xml  { render :xml => @requerimiento.errors, :status => :unprocessable_entity }
+				end
 			end
-		end
+
 	end
 
 	# PUT /requerimientos/{id}/aprobar
@@ -64,6 +99,7 @@ class RequerimientosController < ApplicationController
 	end
 
 	# GET /requerimientos/{id}/rechazar
+	# IMPROVE: Modificar método a motivo_rechazo_sector (cambiar vista y ruteo)
 	def motivo_rechazo
 	end
 

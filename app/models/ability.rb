@@ -21,8 +21,11 @@ class Ability
 			rqm.sector.responsable == usuario && rqm.estado == Estado::PENDIENTE_APROBACION_SECTOR
 		end
 
-		can :solicitar_aprobacion_compras, Requerimiento do |rqm|
-			rqm.solicitante == usuario && rqm.estado == Estado::APROBADO_X_SECTOR
+		can :solicitar_aprobacion_compras, Requerimiento, :solicitante => usuario,
+			:estado => Estado::APROBADO_X_SECTOR, :estado => Estado::RECHAZO_X_COMPRAS
+
+		can :rechazar_por_compras, Requerimiento do |rqm|
+			usuario.sector == @compras && rqm.estado == Estado::PENDIENTE_APROBACION_COMPRAS
 		end
 
 		can :gestionar_presupuesto, Requerimiento do |rqm|

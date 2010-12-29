@@ -12,6 +12,7 @@
 #  updated_at        :datetime
 #  requerimiento_id  :integer
 #  detalle           :string(255)
+#  aprobado          :boolean         default(false)
 #
 
 class Presupuesto < ActiveRecord::Base
@@ -19,8 +20,9 @@ class Presupuesto < ActiveRecord::Base
   belongs_to :proveedor
   belongs_to :moneda
   belongs_to :condicion_pago
-  
+
   validates_presence_of :monto, :moneda, :condicion_pago, :proveedor
   validates_numericality_of :monto, :greater_than => 0
-	
+
 end
+

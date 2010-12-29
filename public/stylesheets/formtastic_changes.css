@@ -16,12 +16,14 @@ form.formtastic fieldset ol li fieldset legend { margin-left: -6px;}
 body{ font-family: helvetica,arial,sans-serif; }
 
 form.formtastic fieldset{ margin: 1em; }
+form.formtastic fieldset > ol { margin-top:1em; }
+form.formtastic fieldset > ol > p > b { margin-right:.5em; }
 form.formtastic fieldset > ol > li label { display:block; width:25%; float:none; padding-top:.2em; clear: both; }
 form.formtastic fieldset > ol > li p.inline-hints { margin: 0; font-style: italic; }
 form.formtastic fieldset > ol > li.boolean label { margin: 0; padding: 0; }
 form.formtastic fieldset.buttons {margin:1em; padding:0;}
 form.formtastic fieldset legend span {font-size: 1.5em; font-weight: bold; font-family: verdana,arial,helvetica,sans-serif; color:#333;}
-form.formtastic fieldset legend {margin: 0.83em 0;}
+/*form.formtastic fieldset legend {margin: 0.83em 0;}*/
 form.formtastic abbr {margin: 0 5px;}
 form.formtastic fieldset > ol > li p.inline-errors{display: inline; margin: 0;}
 

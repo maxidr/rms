@@ -26,9 +26,24 @@ class Requerimiento < ActiveRecord::Base
 
   validates_presence_of :empresa, :sector, :rubro, :solicitante
 
+  def rechazar_por_compras!(motivo, rechazado_por)
+  	if motivo.blank?
+  		errors[:base] = "Debe especificar un motivo para el rechazo" and return false
+  	end
+  	if rechazado_por.nil?
+  		errors[:base] = "Debe especificar un usuario como reposable del rechazo" and return false
+  	end
+
+		con_detalle = DetalleRechazoCompras.create(:rechazado_por => rechazado_por, :motivo => motivo)
+		cambiar_estado_a Estado::RECHAZO_X_COMPRAS, con_detalle
+#		TODO: Generar mail para enviar al solicitante informando el motivo del rechazo por compras
+#		RequerimientoMailer.informar_rechazo_compras
+		self.save!
+  end
+
   def aprobar_presupuesto_por_compras!(presupuesto, autorizante)
-  	detalle = DetalleAprobacionCompras.create(:autorizante => autorizante, :presupuesto => presupuesto)
-  	cambiar_estado_a Estado::APROBADO_X_COMPRAS, detalle
+  	con_detalle = DetalleAprobacionCompras.create(:autorizante => autorizante, :presupuesto => presupuesto)
+  	cambiar_estado_a Estado::APROBADO_X_COMPRAS, con_detalle
 
 #		TODO: Generar mail para enviar al solicitante y que este pueda efectuar la compra
 #		RequerimientosMailer.informar_autorizacion_compras
@@ -78,8 +93,12 @@ class Requerimiento < ActiveRecord::Base
   end
 
 	def motivo_rechazo
-		estado_historico = EstadoHistorico.rechazados_por_sector.del_requerimiento(self).last
-		estado_historico.detalle.motivo
+		estado_historico = EstadoHistorico.rechazados_del_requerimiento(self).last
+		estado_historico.detalle.motivo unless estado_historico.nil? && estado_historico.detalle.nil?
+	end
+
+	def presupuesto_aprobado
+		presupuestos.detect{ |p| p.aprobado } if estado == Estado::APROBADO_X_COMPRAS
 	end
 
 	private
