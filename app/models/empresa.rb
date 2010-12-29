@@ -10,9 +10,11 @@
 #
 
 class Empresa < ActiveRecord::Base
+	# FIXME: No se debe permitir que la eliminación física de los proveedores (habilitado: true, default_scope)
   validates :nombre, :presence => true
-	
+
   def to_s
     nombre
   end
 end
+

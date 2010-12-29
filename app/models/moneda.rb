@@ -11,6 +11,8 @@
 #
 
 class Moneda < ActiveRecord::Base
+	# FIXME: No se debe permitir que la eliminación física de los proveedores (habilitado: true, default_scope)
 	validates_presence_of :simbolo, :nombre
 	validates_uniqueness_of :simbolo
 end
+
