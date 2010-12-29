@@ -36,8 +36,8 @@ end
 unless responsable = Usuario.find_by_identificador('jlopez')
 	responsable = Usuario.create({:nombre => 'Juan', :apellido => 'Lopez',
 		:identificador => 'jlopez',
-		:email => 'mdellorusso@aonken.com.ar',		
-		:password => 'jlopez'}) 
+		:email => 'mdellorusso@aonken.com.ar',
+		:password => 'jlopez'})
 	responsable.sector = Sector.where(:nombre => 'Compras').first
 	puts "El usuario jlopez no pudo ser creado" unless responsable.save
 end
@@ -51,49 +51,57 @@ end
 # EMPRESAS -------------------------------------------------------------------------------------------
 Empresa.find_or_create_by_nombre('Laindell SRL')
 Empresa.find_or_create_by_nombre('Metalúrgica La Toma SA')
+Empresa.find_or_create_by_nombre('Empresa de Prueba')
 
 # RUBROS ---------------------------------------------------------------------------------------------
+
 Rubro.find_or_create_by_nombre('Materias Primas')
 Rubro.find_or_create_by_nombre('Insumos')
 Rubro.find_or_create_by_nombre('Consumibles')
 Rubro.find_or_create_by_nombre('Varios')
 Rubro.find_or_create_by_nombre('Servicios')
 Rubro.find_or_create_by_nombre('Maquinas y herramientas')
+Rubro.find_or_create_by_nombre('Repuestos y accesorios')
+
 
 # MONEDAS --------------------------------------------------------------------------------------------
 Moneda.find_or_create_by_simbolo(:simbolo => "$", :nombre => "Pesos")
 Moneda.find_or_create_by_simbolo(:simbolo => "u$s", :nombre => "Dólares")
+Moneda.find_or_create_by_simbolo(:simbolo => "€", :nombre => 'Euros')
 
 # PROVEEDOR ------------------------------------------------------------------------------------------
 Proveedor.find_or_create_by_razon_social(
-	:razon_social => 'Compañía Química',
-	:telefono => '44445555',
-	:cuit => '30641212123',
-	:contacto => 'Claudio')
-	
-Proveedor.find_or_create_by_razon_social(
-	:razon_social => 'Fuene SRL',
-	:telefono => '6562-2391',
-	:cuit => '30123413323')	
+	:razon_social => 'Varteco Quimica Puntana SA',
+	:domicilio => 'Rep. del Libano 4317  Villa Lynch  San Martin',
+	:telefono => '4754-3030 Fax 4754-2410',
+	:cuit => '30-62123820-1',
+	:contacto => 'Marcelo Stola / Jorge Dal Pozo')
 
 Proveedor.find_or_create_by_razon_social(
-	:razon_social => 'Conex SA',
-	:telefono => '6654-5422/5425',
-	:cuit => '30331248993')	
+	:razon_social => "Sami Trading Inc.",
+	:domicilio => "121-784 Tower B -1611 Mapu Trapalace, 559 Dohwa-Dong, Mapo-Gu, Seoul, South Korea",
+	:telefono => "82-2-3272-9912/14/17  Fax 82-2-3272-9970/71",
+	:cuit => "xxxxxxxxxx",
+	:contacto => "Alicia Jung  / Naomi")
 
 Proveedor.find_or_create_by_razon_social(
-	:razon_social => 'Del Plata SA',
-	:telefono => '3245-2119 3899-1899',
-	:cuit => '30331200018')	
-	
+	:razon_social => "Formosa Plastic",
+	:domicilio => "EEUU",
+	:telefono => "",
+	:cuit => "xxxxxx",
+	:contacto => "Kenny Liaw")
+
 # CONDICIONES DE PAGO ---------------------------------------------------------------------------------
-CondicionPago.find_or_create_by_nombre(	:nombre => 'Contado',	:descripcion => 'Cheques propios al dia')
-CondicionPago.find_or_create_by_nombre(	:nombre => 'Efectivo anticipado en dólares',	:descripcion => 'u$s')
-CondicionPago.find_or_create_by_nombre(	:nombre => 'Efectivo anticipado en pesos',	:descripcion => '$')
-CondicionPago.find_or_create_by_nombre(	:nombre => 'Anticipado 15 dias',	:descripcion => 'Cheques 15 dias')
-CondicionPago.find_or_create_by_nombre(	:nombre => 'Anticipado 30 dias',	:descripcion => 'Cheques 30 dias')
-CondicionPago.find_or_create_by_nombre(	:nombre => 'Anticipado 45 dias	',	:descripcion => 'Cheque 45 dias')
-CondicionPago.find_or_create_by_nombre(	:nombre => 'Anticipado 7 dias',	:descripcion => 'Cheques 7 dias')
-CondicionPago.find_or_create_by_nombre(	:nombre => 'Fecha Factura 30',	:descripcion => 'Vencimiento factura 30 dias')
-CondicionPago.find_or_create_by_nombre(	:nombre => 'Fecha Factura 45',	:descripcion => 'Vencimiento factura 45 dias')
+CondicionPago.find_or_create_by_nombre(:nombre => 'Contado', :descripcion => 'Cheques propios al dia')
+CondicionPago.find_or_create_by_nombre(:nombre => 'Efectivo anticipado', :descripcion => 'u$s')
+CondicionPago.find_or_create_by_nombre(:nombre => ' Efectivo anticipado', :descripcion => '$')
+CondicionPago.find_or_create_by_nombre(:nombre => 'Anticipado 15 dias', :descripcion => 'Cheques 15 dias')
+CondicionPago.find_or_create_by_nombre(:nombre => 'Anticipado 30 dias', :descripcion => 'Cheques  30 dias')
+CondicionPago.find_or_create_by_nombre(:nombre => 'Anticipado 45 dias', :descripcion => 'Cheques 45 dias')
+CondicionPago.find_or_create_by_nombre(:nombre => 'Anticipado 7 dias', :descripcion => 'Cheques 7 dias')
+CondicionPago.find_or_create_by_nombre(:nombre => 'Fecha Factura 30', :descripcion => 'Vencimiento factura 30 dias')
+CondicionPago.find_or_create_by_nombre(:nombre => 'Fecha Factura 45', :descripcion => 'Vencimiento factura 45 dias')
+CondicionPago.find_or_create_by_nombre(:nombre => 'Efectivo anticipado en dólares', :descripcion => 'u$s')
+CondicionPago.find_or_create_by_nombre(:nombre => 'Efectivo anticipado en pesos', :descripcion => '$')
+CondicionPago.find_or_create_by_nombre(:nombre => 'Anticipado 45 dias	', :descripcion => 'Cheque 45 dias')
 
