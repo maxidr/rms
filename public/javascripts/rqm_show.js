@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$(".entrega").hide();
+	$("#new_compra").hide();
 	
 	var dt = new Date();
 	$("#entrega_fecha_1i").val(dt.getFullYear());
@@ -7,7 +7,7 @@ $(document).ready(function() {
 	$("#entrega_fecha_3i").val(dt.getDay());
 	
 	$("#comprar").click(function(event){
-		$(".entrega").fadeIn('slow', function(){
+		$("#new_compra").fadeIn('slow', function(){
 			$("#entrega_fecha_3i").focus();
 		});
 		event.preventDefault();

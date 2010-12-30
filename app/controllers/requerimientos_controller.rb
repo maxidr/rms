@@ -11,10 +11,10 @@ class RequerimientosController < ApplicationController
 	before_filter :puede_aprobar_por_sector, :only => [:rechazar, :aprobar, :motivo_rechazo]
 
 	def comprar
-		logger.debug("Fecha estimada de compra: #{params[:entrega]}")		
+		logger.debug("Fecha estimada de compra: #{params[:entrega]}")
+			
 #   Verifica que estan todos los datos de la fecha
-#		unless params[:entrega].select{|k,v| !v.blank?}.length == 3		
-#
+#		unless params[:entrega].select{|k,v| !v.blank?}.length == 3
 
 #	  Convierte la fecha
 #		fecha = Date.parse( params[:entrega].values.reverse.join("-") )

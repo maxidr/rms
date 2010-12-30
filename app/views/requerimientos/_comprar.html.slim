@@ -1,0 +1,29 @@
+b 
+	a#comprar href="#" Comprar
+p
+	Queda pendiente que confirme la realización de la compra indicando fecha de entrega. 
+	Al realizarlo se informará a expedición para que quede a la espera de la entrega.
+- content_for :javascript do 
+	= javascript_include_tag "rqm_show"
+
+= semantic_form_for compra = Compra.new(:requerimiento => @requerimiento, :presupuesto => @requerimiento.presupuesto_aprobado, :fecha_probable_entrega => Date.today), :url => comprar_requerimiento_url, :html => {:method => :put} ,:id => 'entrega' do |form| 
+	= form.inputs do 
+		= form.input :fecha_probable_entrega, :required => true, :label => 'Fecha aproximada de entrega', :as => :date, :hint => "Indicar fecha pautada con el proveedor" 
+		
+	= form.buttons do 
+		= form.commit_button "Confirmar fecha" 
+
+
+
+/	<% content_for :javascript do %>
+/		<%=  javascript_include_tag "rqm_show" %>
+/	<% end %>
+/	
+/	<%= semantic_form_for 'entrega', :url => comprar_requerimiento_url, :html => {:method => :put} do |form| %>
+/		<% form.inputs do %>
+/			<%= form.input :fecha, :required => true, :label => 'Fecha aproximada de entrega', :as => :date, :hint => "Indicar fecha pautada con el proveedor" %>
+/		<% end %>
+/		<% form.buttons do %>
+/      <%= form.commit_button "Confirmar fecha" %>
+/    <% end %>
+/	<% end %>

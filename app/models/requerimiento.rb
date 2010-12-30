@@ -21,6 +21,7 @@ class Requerimiento < ActiveRecord::Base
   belongs_to :rubro
   has_many :materiales
   has_many :presupuestos
+  has_one :compra
 
   composed_of :estado, :mapping => %w(estado codigo)
 
