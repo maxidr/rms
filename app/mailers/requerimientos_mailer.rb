@@ -30,4 +30,21 @@ class RequerimientosMailer < ActionMailer::Base
   		:cc => rqm.sector.email,
 	 		:subject => "Solicitud de autorización de requerimiento"	 		
   end
+  
+  def informar_rechazo_compras(rqm, rechazado_por, motivo)
+  	@requerimiento = rqm
+  	@motivo = motivo
+  	mail :to => rqm.solicitante.email, 
+  		:cc => rechazado_por.email,
+  		:subject => "El requerimiento n° #{rqm.id} fue rechazado por compras"
+  end
+  
+  def informar_autorizacion_compras(rqm, autorizante, presupuesto)
+  	@requerimiento = rqm
+  	@autorizante = autorizante.nombre_completo
+  	@presupuesto = presupuesto
+    mail :to => rqm.solicitante.email,
+    	:cc => autorizante.email,
+    	:subject => "El requerimiento n° #{rqm.id} fue aprobado por compras"
+  end
 end

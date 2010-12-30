@@ -21,6 +21,7 @@ class Requerimiento < ActiveRecord::Base
   belongs_to :rubro
   has_many :materiales
   has_many :presupuestos
+  has_one :compra
 
   composed_of :estado, :mapping => %w(estado codigo)
 
@@ -36,17 +37,18 @@ class Requerimiento < ActiveRecord::Base
 
 		con_detalle = DetalleRechazoCompras.create(:rechazado_por => rechazado_por, :motivo => motivo)
 		cambiar_estado_a Estado::RECHAZO_X_COMPRAS, con_detalle
-#		TODO: Generar mail para enviar al solicitante informando el motivo del rechazo por compras
-#		RequerimientoMailer.informar_rechazo_compras
+		
+		RequerimientosMailer.informar_rechazo_compras(self, rechazado_por, motivo).deliver
 		self.save!
   end
 
   def aprobar_presupuesto_por_compras!(presupuesto, autorizante)
   	con_detalle = DetalleAprobacionCompras.create(:autorizante => autorizante, :presupuesto => presupuesto)
   	cambiar_estado_a Estado::APROBADO_X_COMPRAS, con_detalle
+  	presupuesto.aprobado = true
+  	presupuesto.save
 
-#		TODO: Generar mail para enviar al solicitante y que este pueda efectuar la compra
-#		RequerimientosMailer.informar_autorizacion_compras
+		RequerimientosMailer.informar_autorizacion_compras(self, autorizante, presupuesto).deliver
 		self.save!
   end
 

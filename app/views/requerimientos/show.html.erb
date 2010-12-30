@@ -71,6 +71,7 @@
 	Para aprobar el requerimiento debe seleccionar un presupuesto y aprobarlo
 </p>
 <% end %>
+
 <b>
 	<% if can? :solicitar_aprobacion, @requerimiento %>
 		<%= link_to 'Solicitar aprobación', solicitar_aprobacion_requerimiento_path(@requerimiento), :method => :put %>
@@ -89,6 +90,11 @@
 		<%= link_to 'Rechazar presupuestos', rechazar_presupuestos_requerimiento_path(@requerimiento)  %>
 	<% end %>
 </b>
+
+<% if can? :comprar, @requerimiento %>
+	<%= render "comprar" %>	
+<% end %>
+
 <br/>
 <br/>
 <br/>
