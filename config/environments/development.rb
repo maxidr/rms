@@ -33,5 +33,10 @@ Rms::Application.configure do
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
+
+  # Output pretty (indented) format
+	# For Rails, you'd probably want this line in
+	# config/environments/development.rb
+	Slim::Engine.set_default_options :pretty => true
 end
 

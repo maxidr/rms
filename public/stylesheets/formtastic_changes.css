@@ -30,6 +30,12 @@ form.formtastic fieldset > ol > li p.inline-errors{display: inline; margin: 0;}
 form.formtastic fieldset > ol > li.string input,
 form.formtastic fieldset > ol > li.password input {padding: 0.2em;}
 
+/* TODO: En las fechas mover el error y el label */
+form.formtastic li.date > fieldset { margin-left: 0; }
+form.formtastic li.date > fieldset > ol { float: left; display: block; position: relative; padding: 0;}
+form.formtastic li.date > fieldset > legend { position: relative; }
+form.formtastic li.date > fieldset > legend.label label { position: relative; }
+
 
 #user_nav{ margin: 0.3em 0.5em; }
 

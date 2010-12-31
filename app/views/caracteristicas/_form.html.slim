@@ -3,7 +3,7 @@
 		p
 			b Material:
 			= @caracteristica.material.nombre
-		= form.input :nombre
-		= form.input :valor
+		= form.input :nombre, :hint => 'Ej.: Dimensión'
+		= form.input :valor, :hint => 'Ej: 20x20 cms.'
 		= form.buttons
 

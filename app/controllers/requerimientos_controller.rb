@@ -11,13 +11,19 @@ class RequerimientosController < ApplicationController
 	before_filter :puede_aprobar_por_sector, :only => [:rechazar, :aprobar, :motivo_rechazo]
 
 	def comprar
-		logger.debug("Fecha estimada de compra: #{params[:entrega]}")
-			
-#   Verifica que estan todos los datos de la fecha
-#		unless params[:entrega].select{|k,v| !v.blank?}.length == 3
-
-#	  Convierte la fecha
-#		fecha = Date.parse( params[:entrega].values.reverse.join("-") )
+		@compra = Compra.new(params[:compra])
+		logger.debug("Se confirma la compra del requerimiento n° #{@compra.requerimiento.id}")
+		logger.debug("Fecha probable de compra: #{@compra.fecha_probable_entrega}")
+		@requerimiento = @compra.requerimiento
+		@compra.presupuesto = @requerimiento.presupuesto_aprobado
+		respond_with @compra, :location => @requerimiento  do |format|
+			if @compra.save
+				@requerimiento.realizar_compra!(@compra)
+				flash[:notice] = "Se confirmó la compra con fecha probable de entrega al #{localize @compra.fecha_probable_entrega}"
+			else
+				format.html{ render :show }
+			end
+		end
 	end
 
 	# PUT /requerimientos/{id}/rechazar/presupuestos
@@ -120,7 +126,7 @@ class RequerimientosController < ApplicationController
   end
 
   def show
-  	respond_with(@requerimiento)
+   	respond_with(@requerimiento)
   end
 
   # GET /requerimientos/new

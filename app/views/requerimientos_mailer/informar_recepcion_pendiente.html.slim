@@ -1,0 +1,13 @@
+! doctype html
+html
+	head
+		meta content="text/html; charset=UTF-8" http-equiv="Content-Type"
+	body
+		p
+			= @requerimiento.materiales.count == 1 ? "Fue comprado el material" : "Fueron comprados los materiales"
+			= " para el requerimiento n° #{@requerimiento.id}."
+		p La fecha esperada de entrega es el #{l @fecha_probable_entrega}
+		br
+		br
+		p Puede acceder al requerimiento mediante el siguiente #{link_to 'link', requerimiento_url(@requerimiento)}
+

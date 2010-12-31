@@ -15,6 +15,8 @@
 # Los rubros: Materias Primas / Insumos / Consumibles / Varios / Servicios / Maquinas y herramientas
 
 # SECTORES -------------------------------------------------------------------------------------------
+# ES MUY IMPORTANTE QUE "Expedición", "Administración" y "Compras" reciban como ID el 7, 8 y 9 respectivamente.
+# Ver modelo sector
 sectores = ["Tejeduría", "Mantenimiento", "Recubrimiento",
 	"Embalaje", "Fábrica de piletas", "Caños", "Expedición",
 	"Administración", "Compras", "Ventas" ]

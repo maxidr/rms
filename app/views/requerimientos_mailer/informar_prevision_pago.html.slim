@@ -1,0 +1,26 @@
+! doctype html
+html
+	head
+		meta content="text/html; charset=UTF-8" http-equiv="Content-Type"
+	body
+		p Se realizó una compra con fecha probable de entrega #{l @fecha_probable_entrega}
+		br
+		p Se requiere realizar una previsión de pago de para el presupuesto. Los detalles son:
+		br
+		p
+			b Proveedor:
+			= @presupuesto.proveedor.razon_social
+		p
+			b Monto:
+			= "#{@presupuesto.moneda.simbolo} #{number_with_precision @presupuesto.monto}"
+		p
+			b Condición de pago:
+			= @presupuesto.condicion_pago.nombre
+		p
+			b Detalle:
+			= @presupuesto.detalle
+
+		br
+		br
+		p Puede acceder al requerimiento mediante el siguiente #{link_to 'link', requerimiento_url(@requerimiento)}.
+

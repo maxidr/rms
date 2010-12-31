@@ -44,6 +44,11 @@
 <% end %>
 		<b>Estado:</b>
 		<%= @requerimiento.estado.to_s %>
+		<% if @requerimiento.estado == Estado::PENDIENTE_RECEPCION %>
+			<i>
+			<%= " (Fecha probable de entrega: #{l @requerimiento.compra.fecha_probable_entrega})" %>
+			</i>
+		<% end %>
 	</p>
 
 <% if @requerimiento.estado.rechazo? %>
@@ -55,7 +60,7 @@
 
 <%= render "materiales" %>
 
-<% if @requerimiento.estado == Estado::APROBADO_X_COMPRAS %>
+<% if @requerimiento.estado >= Estado::APROBADO_X_COMPRAS %>
 	<%= render "presupuesto_aprobado", :presupuesto => @requerimiento.presupuesto_aprobado %>
 <% else %>
 	<%= render "presupuestos" %>
@@ -92,15 +97,13 @@
 </b>
 
 <% if can? :comprar, @requerimiento %>
-	<%= render "comprar" %>	
+	<%= render "comprar" %>
 <% end %>
 
-<br/>
-<br/>
-<br/>
 
 <% if can? :edit, @requerimiento %>
 	<%= link_to 'Editar', edit_requerimiento_path(@requerimiento) %> |
 <% end %>
 <%= link_to 'Volver', requerimientos_path %>
+<br/>
 
