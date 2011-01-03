@@ -16,7 +16,7 @@ class Estado
 										8 => 'Recepción pendiente de verificación',
 										9 => 'Entrega verificada',
 										10 => 'Finalizado',
-										99 => 'Cancelado'}
+										-1 => 'Cancelado'}
 
 		@codigo = codigo
 		raise "El valor #{codigo} es un código de estado inválido" unless @@estados.key? codigo
@@ -34,11 +34,12 @@ class Estado
 	PENDIENTE_VERIFICACION				= Estado.new 8
 	ENTREGADO											= Estado.new 9
 	FINALIZADO										= Estado.new 10
-	CANCELADO 										= Estado.new 99
+	CANCELADO 										= Estado.new -1
 
 
-	def ==(other_estado)
-		self.codigo == other_estado.codigo
+
+	def <=>(other_estado)
+		codigo <=> other_estado.codigo
 	end
 
 	def in?(*estados)

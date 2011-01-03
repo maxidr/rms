@@ -1,0 +1,9 @@
+
+h1. 30/12/2010: Resumen del mail de Emilio
+
+*  Agregar fecha y hora de aprobacion del requerimiento por el jefe del sector.
+*  Agregar fecha y hora de aprobacion del requerimiento por oficina de compras.
+*  Resaltar en el listado los requerimientos que ya estan en proceso de compras (con aprobacion final)
+*  Solo la oficina compras con la clave de Cecilia y Emilio, puede ingresar al menu de configuraciones. (Esto solo se configura por compras), los usuarios solo pueden operar el menu de requerimientos.
+Los jefes de sector los designa la oficina de compras y a su vez los usuarios que solicitan requerimientos deben ser designados por los jefes de sector.
+

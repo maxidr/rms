@@ -21,10 +21,18 @@ class Requerimiento < ActiveRecord::Base
   belongs_to :rubro
   has_many :materiales
   has_many :presupuestos
+  has_one :compra
 
   composed_of :estado, :mapping => %w(estado codigo)
 
   validates_presence_of :empresa, :sector, :rubro, :solicitante
+
+  def realizar_compra!(compra)
+		cambiar_estado_a Estado::PENDIENTE_RECEPCION
+		self.save!
+		RequerimientosMailer.informar_recepcion_pendiente(self, compra).deliver
+		RequerimientosMailer.informar_prevision_pago(self, compra).deliver
+  end
 
   def rechazar_por_compras!(motivo, rechazado_por)
   	if motivo.blank?
@@ -36,7 +44,7 @@ class Requerimiento < ActiveRecord::Base
 
 		con_detalle = DetalleRechazoCompras.create(:rechazado_por => rechazado_por, :motivo => motivo)
 		cambiar_estado_a Estado::RECHAZO_X_COMPRAS, con_detalle
-		
+
 		RequerimientosMailer.informar_rechazo_compras(self, rechazado_por, motivo).deliver
 		self.save!
   end
@@ -99,7 +107,11 @@ class Requerimiento < ActiveRecord::Base
 	end
 
 	def presupuesto_aprobado
-		presupuestos.detect{ |p| p.aprobado } if estado == Estado::APROBADO_X_COMPRAS
+		presupuestos.detect{ |p| p.aprobado } if estado >= Estado::APROBADO_X_COMPRAS
+	end
+
+	def compra_realizada?
+		!compra.nil?
 	end
 
 	private

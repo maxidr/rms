@@ -5,7 +5,7 @@ class Ability
 #		can :read, :all
 #		cannot :write, :all
 #   alias_action [:index, :show, :search, :recent, :popular], :to => :coolread
-		@compras ||= Sector.compras.first
+		@compras ||= Sector.compras
 
 		can [:edit, :add_material], Requerimiento do |rqm| iniciado_or_rechazado(rqm) end
 		can [:add_caracteristica, :edit_caracteristica], Material do |m|
@@ -16,10 +16,10 @@ class Ability
 			#	Se verifica que el estado sea inicial y que se haya cargado al menos un material
 			rqm.materiales.size > 0 && rqm.solicitante == usuario	&& iniciado_or_rechazado(rqm)
 		end
-		
+
 		can :aprobar_por_sector, Requerimiento do |rqm|
 			rqm.sector.responsable == usuario && rqm.estado == Estado::PENDIENTE_APROBACION_SECTOR
-		end		
+		end
 
 #		can :solicitar_aprobacion_compras, Requerimiento, :solicitante => usuario,
 #			:estado => Estado::APROBADO_X_SECTOR, :estado => Estado::RECHAZO_X_COMPRAS
@@ -47,6 +47,8 @@ class Ability
 		can :aprobar_presupuestos, Requerimiento do |rqm|
 			rqm.estado == Estado::PENDIENTE_APROBACION_COMPRAS && usuario.sector == @compras
 		end
+
+		can :comprar, Requerimiento, :solicitante => usuario, :estado => Estado::APROBADO_X_COMPRAS
 
 	end
 
