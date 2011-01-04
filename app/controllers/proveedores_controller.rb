@@ -1,51 +1,37 @@
 # coding: utf-8
 class ProveedoresController < ApplicationController
 
+	respond_to :html, :xml
+
 	before_filter :authenticate_usuario!
+  load_and_authorize_resource
 
   # GET /proveedores
   # GET /proveedores.xml
   def index
-    @proveedores = Proveedor.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @proveedores }
-    end
+		respond_with @proveedores
   end
 
   # GET /proveedores/1
   # GET /proveedores/1.xml
   def show
-    @proveedor = Proveedor.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @proveedor }
-    end
+		respond_with @proveedor
   end
 
   # GET /proveedores/new
   # GET /proveedores/new.xml
   def new
-    @proveedor = Proveedor.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @proveedor }
-    end
+    respond_with @proveedor
   end
 
   # GET /proveedores/1/edit
   def edit
-    @proveedor = Proveedor.find(params[:id])
+  	respond_with @proveedor
   end
 
   # POST /proveedores
   # POST /proveedores.xml
   def create
-    @proveedor = Proveedor.new(params[:proveedor])
-
     respond_to do |format|
       if @proveedor.save
         format.html { redirect_to(@proveedor, :notice => 'Los datos del proveedor fueron creados correctamente.') }
@@ -60,8 +46,6 @@ class ProveedoresController < ApplicationController
   # PUT /proveedores/1
   # PUT /proveedores/1.xml
   def update
-    @proveedor = Proveedor.find(params[:id])
-
     respond_to do |format|
       if @proveedor.update_attributes(params[:proveedor])
         format.html { redirect_to(@proveedor, :notice => 'Los datos del proveedor fueron actualizados correctamente.') }
@@ -76,7 +60,6 @@ class ProveedoresController < ApplicationController
   # DELETE /proveedores/1
   # DELETE /proveedores/1.xml
   def destroy
-    @proveedor = Proveedor.find(params[:id])
     @proveedor.destroy
 
     respond_to do |format|

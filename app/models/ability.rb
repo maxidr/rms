@@ -7,6 +7,10 @@ class Ability
 #   alias_action [:index, :show, :search, :recent, :popular], :to => :coolread
 		@compras ||= Sector.compras
 
+		if usuario.admin?
+			can :manage, [Sector, Rubro, Empresa, Proveedor, Moneda, CondicionPago]
+		end
+
 		can [:edit, :add_material], Requerimiento do |rqm| iniciado_or_rechazado(rqm) end
 		can [:add_caracteristica, :edit_caracteristica], Material do |m|
 			iniciado_or_rechazado(m.requerimiento)
