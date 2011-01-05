@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101230131758) do
+ActiveRecord::Schema.define(:version => 20110104183156) do
 
   create_table "caracteristicas", :force => true do |t|
     t.string   "nombre"
@@ -154,6 +154,8 @@ ActiveRecord::Schema.define(:version => 20101230131758) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.integer  "sector_id"
+    t.integer  "roles_mask"
+    t.integer  "rol_id",                              :default => 0,  :null => false
   end
 
 end

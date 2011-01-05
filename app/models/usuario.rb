@@ -20,7 +20,7 @@
 #  last_sign_in_at      :datetime
 #  current_sign_in_ip   :string(255)
 #  last_sign_in_ip      :string(255)
-#
+#  rol_id								:integer
 
 class Usuario < ActiveRecord::Base
 	# FIXME: No se debe permitir que la eliminación física de los proveedores (habilitado: true, default_scope)
@@ -28,6 +28,8 @@ class Usuario < ActiveRecord::Base
   validates :identificador, :uniqueness => true, :length => { :minimum => 4 }
 
   belongs_to :sector
+
+  ROLES = %w[operador administrador]
 
 	# Include default devise modules. Others available are:
   # :token_authenticatable, :lockable, :timeoutable and :activatable
@@ -44,6 +46,19 @@ class Usuario < ActiveRecord::Base
 
   def nombre_completo
   	"#{nombre} #{apellido}"
+  end
+
+  def rol
+  	ROLES[rol_id].humanize
+  end
+
+  def rol=(rol)
+  	idx = ROLES.index(rol.to_s.downcase)
+		self.rol_id = idx unless idx.nil?
+  end
+
+  def admin?
+  	ROLES[rol_id] == "administrador"
   end
 end
 

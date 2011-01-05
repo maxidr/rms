@@ -15,11 +15,23 @@
   <p><%= f.label :email %><br />
   <%= f.text_field :email %></p>
 
+	<%- if resource.admin? %>
   <p>
   	<%= f.label :sector %><br/>
   	<%= select("usuario", "sector_id", Sector.all.collect{|s| [s.nombre, s.id]}, { :include_blank => true  } ) %>
   </p>
-
+  <p>
+  	<%= f.label :rol %><br/>
+  	<%= f.collection_select :rol, Usuario::ROLES, :to_s, :humanize  %>
+  </p>
+  <% else %>
+		<p>
+			<b>Sector:</b> <%= resource.sector %>
+		</p>
+		<p>
+			<b>Rol:</b> <%= resource.rol %>
+		</p>
+	<% end -%>
 
   <p><%= f.label :password, 'Contraseña' %> <i>(dejar en blanco si no desea cambiarla)</i><br />
   <%= f.password_field :password %></p>

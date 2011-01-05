@@ -4,45 +4,32 @@ class SectoresController < ApplicationController
 	respond_to :html, :json, :xml
 
 	before_filter :authenticate_usuario!
+  load_and_authorize_resource
 
   # GET /sectores
-  # GET /sectores.xml
-  def index   
-    respond_with @sectores = Sector.all
+  def index
+		respond_with @sectores
   end
 
   # GET /sectores/1
-  # GET /sectores/1.xml
   def show
-    @sector = Sector.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @sector }
-    end
+  	respond_with @sector
   end
 
   # GET /sectores/new
   # GET /sectores/new.xml
   def new
-    @sector = Sector.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @sector }
-    end
+  	respond_with @sector
   end
 
   # GET /sectores/1/edit
   def edit
-    @sector = Sector.find(params[:id])
+		respond_with @sector
   end
 
   # POST /sectores
   # POST /sectores.xml
   def create
-    @sector = Sector.new(params[:sector])
-
     respond_to do |format|
       if @sector.save
         format.html { redirect_to(@sector, :notice => 'El sector fue creado con éxito.') }
@@ -57,8 +44,6 @@ class SectoresController < ApplicationController
   # PUT /sectores/1
   # PUT /sectores/1.xml
   def update
-    @sector = Sector.find(params[:id])
-
     respond_to do |format|
       if @sector.update_attributes(params[:sector])
         format.html { redirect_to(@sector, :notice => 'El sector fue actualizado con éxito.') }
@@ -73,7 +58,6 @@ class SectoresController < ApplicationController
   # DELETE /sectores/1
   # DELETE /sectores/1.xml
   def destroy
-    @sector = Sector.find(params[:id])
     @sector.destroy
 
     respond_to do |format|
