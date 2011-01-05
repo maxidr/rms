@@ -28,7 +28,9 @@ class Usuario < ActiveRecord::Base
   validates :identificador, :uniqueness => true, :length => { :minimum => 4 }
 
   belongs_to :sector
-
+  
+  # TODO: Generar una migracion para quitar la columna roles_mask de usuarios
+  
   ROLES = %w[operador administrador]
 
 	# Include default devise modules. Others available are:

@@ -13,6 +13,7 @@
 class Sector < ActiveRecord::Base
 	# FIXME: No se debe permitir que la eliminación física de los sectores (habilitado: true, default_scope)
   belongs_to :responsable, :class_name => 'Usuario'
+  has_and_belongs_to_many :responsables, :class_name => 'Usuario'
 
   validates_presence_of :nombre
   validates_uniqueness_of :nombre
