@@ -13,7 +13,7 @@ form.formtastic fieldset ol li fieldset legend { margin-left: -6px;}
 
 --------------------------------------------------------------------------------------------------*/
 * { margin: 0; padding: 0; }
-body{ font-family: helvetica,arial,sans-serif; }
+body{ font-family: helvetica,arial,sans-serif;}
 
 form.formtastic fieldset{ margin: 1em; }
 form.formtastic fieldset > ol { margin-top:1em; }
@@ -36,13 +36,9 @@ form.formtastic li.date > fieldset > ol { float: left; display: block; position:
 form.formtastic li.date > fieldset > legend { position: relative; }
 form.formtastic li.date > fieldset > legend.label label { position: relative; }
 
-
-#user_nav{ margin: 0.3em 0.5em; }
-
 /* Temporal */
 
-#menu{ margin: 0 0.5em; }
-#content{ margin: 1em; }
+#content{  margin: 0 auto; padding: 0 15px; background-color: white;}
 #content h1, #content h2{ margin: 0.5em 0; padding: 0.5em 0; }
 #content p{ padding: 0.25em 0; }
 

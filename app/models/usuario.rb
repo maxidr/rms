@@ -49,7 +49,7 @@ class Usuario < ActiveRecord::Base
   end
 
   def rol
-  	ROLES[rol_id]
+  	ROLES[rol_id].humanize
   end
 
   def rol=(rol)

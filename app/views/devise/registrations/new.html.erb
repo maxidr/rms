@@ -20,6 +20,18 @@
   	<%= select("usuario", "sector_id", Sector.all.collect{|s| [s.nombre, s.id]}, { :include_blank => true  } ) %>
   </p>
 
+
+  <%- if resource.admin? %>
+  <p>
+  	<%= f.label :rol %><br/>
+  	<%= f.collection_select :rol, Usuario::ROLES, :to_s, :humanize  %>
+  </p>
+  <% else %>
+		<p>
+			<b>Rol:</b> <%= resource.rol %>
+		</p>
+	<% end -%>
+
   <p><%= f.label :password, "Contraseña" %><br />
   <%= f.password_field :password %></p>
 
