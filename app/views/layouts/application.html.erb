@@ -4,6 +4,7 @@
   <title>Rms</title>
   <%= stylesheet_link_tag "app", "formtastic", "formtastic_changes", "menu", "scaffold" %>
   <%= formtastic_stylesheet_link_tag %>
+  <%= javascript_include_tag :defaults %>
   <%= yield :stylesheets %>
   <%= csrf_meta_tag %>
 </head>
@@ -46,7 +47,6 @@
 		<%= yield %>
 	</div>
 
-  <%= javascript_include_tag :defaults %>
   <%= yield :javascript %>
 </body>
 </html>

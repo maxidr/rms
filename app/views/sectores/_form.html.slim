@@ -1,0 +1,16 @@
+= semantic_form_for @sector do |f|
+	= f.inputs do
+		= f.input :nombre
+		= f.input :email
+		= f.input :responsables, :as => :comboselect
+		/ TODO: ver: http://diminishing.org/extending-formtastic-with-a-sprinkle-of-jquery
+
+	= f.buttons do
+		= f.commit_button
+
+- content_for :javascript do
+	= javascript_include_tag "jquery.comboselect", "jquery.selso"
+
+- content_for :stylesheets do
+	= stylesheet_link_tag "jquery.comboselect"
+

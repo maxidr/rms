@@ -4,7 +4,7 @@
 	<thead>
 		<tr>
 		  <th>Nombre</th>
-		  <th>Responsable</th>
+		  <th>Responsables</th>
 		  <th>E-mail</th>
 		  <th></th>
 		</tr>
@@ -13,7 +13,13 @@
 	<% @sectores.each do |sector| %>
 		<tr>
 		  <td><%= sector.nombre %></td>
-		  <td><%= sector.nombre_responsable %></td>
+		  <%- if sector.responsables.size == 1 %>
+		  	<td><%= sector.responsables.first.nombre_completo %></td>
+		  <% elsif sector.responsables.empty? %>
+		  	<td>-</td>
+		  <% else %>
+			  <td><%= sector.responsables.size %></td>
+		  <% end -%>
 		  <td><%= sector.email %></td>
 		  <td>
 		  	<%= link_to 'Ver', sector %>

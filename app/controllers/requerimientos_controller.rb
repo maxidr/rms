@@ -75,9 +75,7 @@ class RequerimientosController < ApplicationController
 
 			respond_to do |format|
 				if @requerimiento.solicitar_aprobacion_sector!
-					responsable = @requerimiento.sector.responsable
-					format.html { redirect_to(@requerimiento,
-						:notice => "Se solicitó la aprobación del requerimiento al responsable del sector (#{responsable.nombre_completo}).") }
+					format.html { redirect_to(@requerimiento, :notice => "Se solicitó la aprobación del requerimiento al responsable del sector.") }
 		      format.xml  { head :ok }
 				else
 					format.html { render :action => "show" }
@@ -90,7 +88,7 @@ class RequerimientosController < ApplicationController
 	# PUT /requerimientos/{id}/aprobar
 	def aprobar
 		logger.debug("Se aprueba el requerimiento")
-		if @requerimiento.aprobar_por_sector!
+		if @requerimiento.aprobar_por_sector! current_usuario
 			flash[:notice] = "Se autorizó el requerimiento"
 			respond_with @requerimiento
 		else
@@ -104,7 +102,7 @@ class RequerimientosController < ApplicationController
 	def rechazar
 		logger.debug("Se rechaza el requerimiento")
 		logger.debug(params[:rechazo])
-		if @requerimiento.rechazar_por_sector!( params[:rechazo][:motivo] )
+		if @requerimiento.rechazar_por_sector!( params[:rechazo][:motivo], current_usuario )
 			flash[:notice] = "Se rechazó el requerimiento y se envió un email al solicitante"
 			respond_with @requerimiento, :location => @requerimiento
 		else
