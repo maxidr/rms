@@ -7,8 +7,10 @@ gem 'rails', '3.0.3'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'devise'
+
 gem 'cancan'
 gem 'formtastic'
+gem 'show_for'
 gem 'slim', :require => 'slim/rails'
 gem "slim-rails"
 

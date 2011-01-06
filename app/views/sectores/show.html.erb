@@ -1,18 +1,20 @@
 <h1>Sector</h1>
-<p>
-  <b>Nombre:</b>
-  <%= @sector.nombre %>
-</p>
-<p>
-  <b>Email:</b>
-  <%= @sector.email %>
-</p>
-<p>
-  <b>Responsable:</b>
-  <% unless @sector.responsable.nil? %>
-  	<%= @sector.responsable.nombre_completo %>
-  <% end %>
-</p>
+<dl>
+	<dt>Nombre:</dt>
+	<dd><%= @sector.nombre %></dd>
+
+	<dt>Email:</dt>
+	<dd><%= @sector.email %></dd>
+
+	<dt>Responsables:</dt>
+	<dd>
+		<ul>
+		<% @sector.responsables.each do |responsable| %>
+			<li><%= responsable.nombre_completo %></li>
+		<% end %>
+		</ul>
+	</dd>
+</dl>
 
 <%= link_to 'Editar', edit_sector_path(@sector) %> |
 <%= link_to 'Volver', sectores_path %>

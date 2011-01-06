@@ -15,7 +15,7 @@ class Sector < ActiveRecord::Base
   belongs_to :responsable, :class_name => 'Usuario'
   has_and_belongs_to_many :responsables, :class_name => 'Usuario'
 
-  validates_presence_of :nombre
+  validates_presence_of :nombre, :responsables
   validates_uniqueness_of :nombre
 
 	# IMPROVE: Mejorar el modo de fijar estos datos (tal vez se mejor generar una pantalla donde un usuario pueda indicar donde mandar los mails en cada estado del requerimiento)
@@ -40,12 +40,16 @@ class Sector < ActiveRecord::Base
 	# Determina los emails del sector. Estos son: el mail del sector (si ubiera) y el del responsable (si ubiera).
 	# @return [String] Los mails separados por comas
 	def emails
-		[email, responsable ? responsable.email : nil].compact.uniq.join(", ")
+		if email
+			emails_responsables << ", #{email}"
+		else
+			emails_responsables
+		end
 	end
 
-  def nombre_responsable
-  	responsable ? responsable.nombre_completo : '-'
-  end
+	def emails_responsables
+		responsables.map(&:email).compact.join(", ")
+	end
 
   def to_s
     nombre

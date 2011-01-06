@@ -12,7 +12,7 @@
 #  rubro_id       :integer
 #  created_at     :datetime
 #  updated_at     :datetime
-#  estado        :integer         default(0)
+#  estado         :integer         default(0)
 #
 class Requerimiento < ActiveRecord::Base
   belongs_to :solicitante, :class_name => "Usuario"
@@ -65,21 +65,21 @@ class Requerimiento < ActiveRecord::Base
 		self.save!
 	end
 
-	def aprobar_por_sector!
-		con_detalle = DetalleAprobacionSector.create(:autorizante => sector.responsable)
+	def aprobar_por_sector!(autorizante)
+		con_detalle = DetalleAprobacionSector.create(:autorizante => autorizante)
 		cambiar_estado_a Estado::APROBADO_X_SECTOR, con_detalle
 
-		RequerimientosMailer.informar_autorizacion_sector(self, sector.responsable).deliver
+		RequerimientosMailer.informar_autorizacion_sector(self, autorizante).deliver
 		self.save!
 	end
 
-	def rechazar_por_sector!(motivo)
+	def rechazar_por_sector!(motivo, autorizante)
 		if motivo.blank?
 			errors[:base] = "Debe especificar un motivo para el rechazo"
 			return false
 		end
 
-		con_detalle = DetalleRechazoSector.create(:autorizante => sector.responsable, :motivo => motivo)
+		con_detalle = DetalleRechazoSector.create(:autorizante => autorizante, :motivo => motivo)
 		cambiar_estado_a Estado::RECHAZO_X_SECTOR, con_detalle
 
 		RequerimientosMailer.rqm_rechazado_por_sector(self, motivo).deliver
@@ -87,17 +87,16 @@ class Requerimiento < ActiveRecord::Base
 	end
 
 	def solicitar_aprobacion_sector!
-		unless sector.responsable
+		if sector.responsables.empty?
 			errors[:base] = "El sector #{sector.nombre} aun no posee un responsable encargado. Informe al administrador de la situación y luego vuelva a intentarlo"
 			return false
 		end
 
 		# Actualizar estado
-		con_detalle = DetallePendienteAprobacion.create(:autorizante => sector.responsable)
-		cambiar_estado_a Estado::PENDIENTE_APROBACION_SECTOR, con_detalle
+		cambiar_estado_a Estado::PENDIENTE_APROBACION_SECTOR
 
 		# Enviar un mail al responsable del sector
-		RequerimientosMailer.solicitar_aprobacion_sector(self, sector.responsable).deliver
+		RequerimientosMailer.solicitar_aprobacion_sector(self).deliver
 		self.save!
   end
 

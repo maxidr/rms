@@ -1,0 +1,9 @@
+h2 Presupuesto aprobado
+
+= show_for presupuesto do |p|
+	= p.attribute :razon_social, :in => :proveedor
+	= p.attribute :monto do
+		= "#{presupuesto.moneda.simbolo} #{number_with_precision presupuesto.monto}"
+	= p.attribute :nombre, :in => :condicion_pago
+	= p.attribute :detalle
+

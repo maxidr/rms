@@ -22,7 +22,7 @@ class Ability
 		end
 
 		can :aprobar_por_sector, Requerimiento do |rqm|
-			rqm.sector.responsable == usuario && rqm.estado == Estado::PENDIENTE_APROBACION_SECTOR
+			(rqm.sector.responsables.exists? usuario) && rqm.estado == Estado::PENDIENTE_APROBACION_SECTOR
 		end
 
 #		can :solicitar_aprobacion_compras, Requerimiento, :solicitante => usuario,

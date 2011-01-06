@@ -61,7 +61,7 @@
 <%= render "materiales" %>
 
 <% if @requerimiento.estado >= Estado::APROBADO_X_COMPRAS %>
-	<%= render "presupuesto_aprobado", :presupuesto => @requerimiento.presupuesto_aprobado %>
+	<%= render "presupuestos/aprobado", :presupuesto => @requerimiento.presupuesto_aprobado %>
 <% else %>
 	<%= render "presupuestos" %>
 <% end %>
@@ -100,6 +100,7 @@
 	<%= render "comprar" %>
 <% end %>
 
+<br/>
 
 <% if can? :edit, @requerimiento %>
 	<%= link_to 'Editar', edit_requerimiento_path(@requerimiento) %> |

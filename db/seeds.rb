@@ -46,7 +46,7 @@ end
 
 sectores.each do |nombre_sector|
 	sector = Sector.where(:nombre => nombre_sector).first
-	sector.responsable = responsable
+	sector.responsables << responsable
 	sector.save
 end
 

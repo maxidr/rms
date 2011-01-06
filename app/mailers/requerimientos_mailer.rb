@@ -1,13 +1,10 @@
 # coding: utf-8
 class RequerimientosMailer < ActionMailer::Base
-  default :from => "mdellorusso@anses.gov.ar"
+  default :from => "rms.perseus@gmail.com"
 
-  def solicitar_aprobacion_sector(requerimiento, autorizante)
-  	logger.debug("Enviando mail al responsable del sector #{requerimiento.sector.nombre}: #{autorizante}")
-  	@usuario = autorizante
-  	@requerimiento = requerimiento
-  	@url = requerimiento_url(requerimiento)
-  	mail(:to => autorizante.email, :subject => 'Solicitud de autorización')
+  def solicitar_aprobacion_sector(requerimiento)
+   	@requerimiento = requerimiento
+  	mail(:to => requerimiento.sector.emails_responsables, :subject => 'Solicitud de autorización')
   end
 
   def informar_autorizacion_sector(requerimiento, autorizante)
@@ -25,9 +22,9 @@ class RequerimientosMailer < ActionMailer::Base
 
   def solicitar_aprobacion_compras(rqm)
   	@requerimiento = rqm
-		responsable = rqm.sector.responsable
-  	mail :to => responsable.email,
-  		:cc => rqm.sector.email,
+  	sector = rqm.sector
+  	mail :to => sector.emails_responsables,
+  		:cc => sector.email,
 	 		:subject => "Solicitud de autorización de requerimiento"
   end
 
