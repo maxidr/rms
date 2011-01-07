@@ -1,0 +1,14 @@
+h2 Detalles del usuario
+
+= show_for @usuario do |u|
+	= u.attribute :nombre
+	= u.attribute :apellido
+	= u.attribute :identificador
+	= u.attribute :nombre,  :in => :sector
+	= u.attribute :rol
+	
+br 
+
+= link_to 'Editar', edit_usuario_path(@usuario)
+= " | "
+= link_to 'Volver', usuarios_path

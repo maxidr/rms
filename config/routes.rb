@@ -1,6 +1,7 @@
 Rms::Application.routes.draw do
 
 	devise_for :usuarios
+	resources :usuarios
 
   resources :proveedores
 
