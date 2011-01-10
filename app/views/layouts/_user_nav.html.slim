@@ -1,6 +1,6 @@
 #user_nav
 	b = "#{current_usuario.nombre} #{current_usuario.apellido} | "
-	= link_to 'Mi cuenta', edit_usuario_registration_path
+	= link_to 'Mi cuenta', edit_usuario_path(current_usuario)
 	= " | "
 	= link_to "Salir", destroy_usuario_session_path
 

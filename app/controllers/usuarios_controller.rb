@@ -1,7 +1,7 @@
 # coding: utf-8
 class UsuariosController < ApplicationController
 
-	before_filter :authenticate_usuario!
+  load_and_authorize_resource
 
   # GET /usuarios
   # GET /usuarios.xml
@@ -17,8 +17,6 @@ class UsuariosController < ApplicationController
   # GET /usuarios/1
   # GET /usuarios/1.xml
   def show
-    @usuario = Usuario.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @usuario }
@@ -28,8 +26,6 @@ class UsuariosController < ApplicationController
   # GET /usuarios/new
   # GET /usuarios/new.xml
   def new
-    @usuario = Usuario.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @usuario }
@@ -38,14 +34,11 @@ class UsuariosController < ApplicationController
 
   # GET /usuarios/1/edit
   def edit
-    @usuario = Usuario.find(params[:id])
   end
 
   # POST /usuarios
   # POST /usuarios.xml
   def create
-    @usuario = Usuario.new(params[:usuario])
-
     respond_to do |format|
       if @usuario.save
         format.html { redirect_to(@usuario, :notice => 'Usuario was successfully created.') }
@@ -59,12 +52,14 @@ class UsuariosController < ApplicationController
 
   # PUT /usuarios/1
   # PUT /usuarios/1.xml
-  def update
-    @usuario = Usuario.find(params[:id])
-
+  def update  
+		if params[:usuario][:password].blank?
+      [:password,:password_confirmation,:current_password].collect{|p| params[:usuario].delete(p) }
+  	end
+  	
     respond_to do |format|
-      if @usuario.update_attributes(params[:usuario])
-        format.html { redirect_to(@usuario, :notice => 'Usuario was successfully updated.') }
+      if @usuario.errors[:base].empty? and @usuario.update_attributes(params[:usuario])
+        format.html { redirect_to(@usuario, :notice => 'Los datos del usuario fueron correctamente actualizados.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -76,7 +71,6 @@ class UsuariosController < ApplicationController
   # DELETE /usuarios/1
   # DELETE /usuarios/1.xml
   def destroy
-    @usuario = Usuario.find(params[:id])
     @usuario.destroy
 
     respond_to do |format|

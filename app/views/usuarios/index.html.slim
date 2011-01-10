@@ -4,13 +4,17 @@ table
 	thead
 		tr
 			th Identificador
-			th Nombre
+			th Nombre			
+			th Sector
+			th Rol
 			th
 	tbody
 		- @usuarios.each do |usuario|
 			tr
-				td = usuario.identificador
+				td = link_to usuario.identificador, edit_usuario_path(usuario)
 				td = usuario.nombre_completo
+				td = usuario.sector
+				td = usuario.rol
 				td
 					= link_to 'Ver', usuario
 					= link_to 'Editar', edit_usuario_path(usuario)
