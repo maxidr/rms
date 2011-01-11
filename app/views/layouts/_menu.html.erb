@@ -3,7 +3,7 @@
     <li><%= link_to "Requerimientos", requerimientos_path %></li>
     <%- if current_usuario.admin? %>
 		  <li>
-		    <a href="">Configuración</a>
+		    <a href="#">Configuración</a>
 		    <ul>
 		      <li><%= link_to "Sectores", sectores_path %></li>
 		      <li><%= link_to "Rubros", rubros_path %></li>
@@ -11,6 +11,7 @@
 		      <li><%= link_to 'Proveedores', proveedores_path %></li>
 		      <li><%= link_to 'Tipos de Moneda', monedas_path %></li>
 		      <li><%= link_to 'Condiciones de pago', condiciones_pagos_path %></li>
+		      <li><%= link_to 'Usuarios', usuarios_path %></li>
 		    </ul>
 		  </li>
     <% end -%>

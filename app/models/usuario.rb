@@ -24,23 +24,22 @@
 
 class Usuario < ActiveRecord::Base
 	# FIXME: No se debe permitir que la eliminación física de los proveedores (habilitado: true, default_scope)
-	validates_presence_of :nombre, :apellido, :identificador, :sector
+	validates_presence_of :nombre, :apellido, :identificador, :sector, :rol
   validates :identificador, :uniqueness => true, :length => { :minimum => 4 }
 
   belongs_to :sector
-  
+
   # TODO: Generar una migracion para quitar la columna roles_mask de usuarios
-  
+
   ROLES = %w[operador administrador]
 
 	# Include default devise modules. Others available are:
   # :token_authenticatable, :lockable, :timeoutable and :activatable
-  # :confirmable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  # :confirmable, :registerable
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :password, :password_confirmation, :nombre, :apellido, :identificador, :email, :remember_me, :sector_id
+  attr_accessible :password, :password_confirmation, :nombre, :apellido, :identificador, :email, :remember_me
 
   def to_s
   	nombre_completo
@@ -51,7 +50,7 @@ class Usuario < ActiveRecord::Base
   end
 
   def rol
-  	ROLES[rol_id].humanize
+  	ROLES[rol_id]
   end
 
   def rol=(rol)
