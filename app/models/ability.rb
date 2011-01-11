@@ -56,6 +56,10 @@ class Ability
 		
 		#	El usuario que no es administrador puede modificar solos sus datos
 		can [:edit, :update], Usuario, :identificador => usuario.identificador
+		
+		can :recepcionar, Requerimiento do |rqm|
+			usuario.sector.expedicion? and rqm.estado == Estado::PENDIENTE_RECEPCION
+		end
 
 	end
 

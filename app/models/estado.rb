@@ -13,7 +13,7 @@ class Estado
 										5 => 'Aprobado por compras',
 										6 => 'Rechazado por compras',
 										7 => 'Comprado, pendiente de recepción',
-										8 => 'Recepción pendiente de verificación',
+										8 => 'Entregado, pendiente de verificación',
 										9 => 'Entrega verificada',
 										10 => 'Finalizado',
 										-1 => 'Cancelado'}

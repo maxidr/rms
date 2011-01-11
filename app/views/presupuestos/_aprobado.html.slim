@@ -5,5 +5,5 @@ h2 Presupuesto aprobado
 	= p.attribute :monto do
 		= "#{presupuesto.moneda.simbolo} #{number_with_precision presupuesto.monto}"
 	= p.attribute :nombre, :in => :condicion_pago
-	= p.attribute :detalle
+	= p.attribute :detalle, :if_blank => '-'
 
