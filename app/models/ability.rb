@@ -55,7 +55,10 @@ class Ability
 		can :comprar, Requerimiento, :solicitante => usuario, :estado => Estado::APROBADO_X_COMPRAS
 		
 		#	El usuario que no es administrador puede modificar solos sus datos
-		can [:edit, :update], Usuario, :identificador => usuario.identificador
+		can [:edit, :update, :show], Usuario, :identificador => usuario.identificador
+		
+		# Solo los administradores puede modificar su rol o sector, o el de otros usuarios
+		can :change_rol_and_sector, Usuario, :admin? => true
 
 	end
 

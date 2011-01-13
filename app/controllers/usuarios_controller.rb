@@ -37,9 +37,10 @@ class UsuariosController < ApplicationController
   # POST /usuarios
   # POST /usuarios.xml
   def create
+  	load_sector_and_rol
     respond_to do |format|
       if @usuario.save
-        format.html { redirect_to(@usuario, :notice => 'Usuario was successfully created.') }
+        format.html { redirect_to(@usuario, :notice => 'El usuario fue creado correctamente.') }
         format.xml  { render :xml => @usuario, :status => :created, :location => @usuario }
       else
         format.html { render :action => "new" }
@@ -55,10 +56,7 @@ class UsuariosController < ApplicationController
       [:password,:password_confirmation,:current_password].collect{|p| params[:usuario].delete(p) }
   	end
 
-  	if current_usuario.admin?
-  		@usuario.sector_id = params[:usuario][:sector_id]
-  		@usuario.rol = params[:usuario][:rol]
-  	end
+		load_sector_and_rol
 
     respond_to do |format|
       if @usuario.errors[:base].empty? and @usuario.update_attributes(params[:usuario])
@@ -80,6 +78,16 @@ class UsuariosController < ApplicationController
       format.html { redirect_to(usuarios_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  private
+
+	
+  def load_sector_and_rol
+  	if can? :change_rol_and_sector, current_usuario
+			@usuario.sector_id = params[:usuario][:sector_id]
+			@usuario.rol = params[:usuario][:rol]
+		end  	
   end
 end
 
