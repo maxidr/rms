@@ -63,7 +63,7 @@
 <% if @requerimiento.estado >= Estado::APROBADO_X_COMPRAS %>
 	<%= render "presupuestos/aprobado", :presupuesto => @requerimiento.presupuesto_aprobado %>
 <% else %>
-	<%= render "presupuestos" %>
+	<%= render "presupuestos/list", :presupuestos => @requerimiento.presupuestos %>
 <% end %>
 
 
@@ -91,8 +91,13 @@
 	<% if can? :solicitar_aprobacion_compras, @requerimiento %>
 		<%= link_to 'Solicitar aprobación de compras', aprobacion_compras_requerimiento_path(@requerimiento), :method => :put  %>
 	<% end %>
+	
 	<% if can? :aprobar_presupuestos, @requerimiento %>
 		<%= link_to 'Rechazar presupuestos', rechazar_presupuestos_requerimiento_path(@requerimiento)  %>
+	<% end %>
+	
+	<% if can? :recepcionar, @requerimiento %>
+		<%= link_to 'Recepcionar materiales', recepcionar_requerimiento_path(@requerimiento), :method => :put %>
 	<% end %>
 </b>
 

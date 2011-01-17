@@ -27,9 +27,13 @@ class Requerimiento < ActiveRecord::Base
 
   validates_presence_of :empresa, :sector, :rubro, :solicitante
 
+	def recepcionar!(usuario)
+		con_detalle = DetalleRecepcion.new(:recepcionista => usuario)
+		cambiar_estado_a Estado::PENDIENTE_VERIFICACION, con_detalle
+	end
+  
   def realizar_compra!(compra)
 		cambiar_estado_a Estado::PENDIENTE_RECEPCION
-		self.save!
 		RequerimientosMailer.informar_recepcion_pendiente(self, compra).deliver
 		RequerimientosMailer.informar_prevision_pago(self, compra).deliver
   end
@@ -42,35 +46,31 @@ class Requerimiento < ActiveRecord::Base
   		errors[:base] = "Debe especificar un usuario como reposable del rechazo" and return false
   	end
 
-		con_detalle = DetalleRechazoCompras.create(:rechazado_por => rechazado_por, :motivo => motivo)
+		con_detalle = DetalleRechazoCompras.new(:rechazado_por => rechazado_por, :motivo => motivo)
 		cambiar_estado_a Estado::RECHAZO_X_COMPRAS, con_detalle
-
 		RequerimientosMailer.informar_rechazo_compras(self, rechazado_por, motivo).deliver
-		self.save!
   end
 
   def aprobar_presupuesto_por_compras!(presupuesto, autorizante)
-  	con_detalle = DetalleAprobacionCompras.create(:autorizante => autorizante, :presupuesto => presupuesto)
+  	con_detalle = DetalleAprobacionCompras.new(:autorizante => autorizante, :presupuesto => presupuesto)
   	cambiar_estado_a Estado::APROBADO_X_COMPRAS, con_detalle
+    # FIXME: El cambiar estado debería soportar que pase un bloque (closure) para operar sobre la transacción
   	presupuesto.aprobado = true
   	presupuesto.save
 
 		RequerimientosMailer.informar_autorizacion_compras(self, autorizante, presupuesto).deliver
-		self.save!
   end
 
 	def solicitar_aprobacion_compras!
 		cambiar_estado_a Estado::PENDIENTE_APROBACION_COMPRAS
 		RequerimientosMailer.solicitar_aprobacion_compras(self).deliver
-		self.save!
 	end
 
 	def aprobar_por_sector!(autorizante)
-		con_detalle = DetalleAprobacionSector.create(:autorizante => autorizante)
+		con_detalle = DetalleAprobacionSector.new(:autorizante => autorizante)
 		cambiar_estado_a Estado::APROBADO_X_SECTOR, con_detalle
 
 		RequerimientosMailer.informar_autorizacion_sector(self, autorizante).deliver
-		self.save!
 	end
 
 	def rechazar_por_sector!(motivo, autorizante)
@@ -79,11 +79,11 @@ class Requerimiento < ActiveRecord::Base
 			return false
 		end
 
-		con_detalle = DetalleRechazoSector.create(:autorizante => autorizante, :motivo => motivo)
+		con_detalle = DetalleRechazoSector.new(:autorizante => autorizante, :motivo => motivo)
 		cambiar_estado_a Estado::RECHAZO_X_SECTOR, con_detalle
 
 		RequerimientosMailer.rqm_rechazado_por_sector(self, motivo).deliver
-		self.save!
+
 	end
 
 	def solicitar_aprobacion_sector!
@@ -97,7 +97,6 @@ class Requerimiento < ActiveRecord::Base
 
 		# Enviar un mail al responsable del sector
 		RequerimientosMailer.solicitar_aprobacion_sector(self).deliver
-		self.save!
   end
 
 	def motivo_rechazo
@@ -114,12 +113,16 @@ class Requerimiento < ActiveRecord::Base
 	end
 
 	private
-		# TODO: Utilizar este método para evitar repeticiones
-		# Cambia el estado del requerimiento y genera el historico con la información del cambio.
-		# Registra los detalles del cambio
+
 		def cambiar_estado_a(estado, detalle = nil)
 			self.estado = estado
-			EstadoHistorico.create(:codigo_estado => estado.codigo, :requerimiento => self, :detalle => detalle)
+			self.transaction do
+				detalle.save! unless detalle.nil?
+				EstadoHistorico.create(:codigo_estado => estado.codigo, :requerimiento => self, :detalle => detalle)
+				self.save!
+			end
+#			self.estado = estado
+#			EstadoHistorico.create(:codigo_estado => estado.codigo, :requerimiento => self, :detalle => detalle)
 		end
 
 end

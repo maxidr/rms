@@ -22,7 +22,7 @@ class Ability
 		end
 
 		can :aprobar_por_sector, Requerimiento do |rqm|
-			(rqm.sector.responsables.exists? usuario) && rqm.estado == Estado::PENDIENTE_APROBACION_SECTOR
+			rqm.solicitante != usuario and (rqm.sector.responsables.exists? usuario) and rqm.estado == Estado::PENDIENTE_APROBACION_SECTOR
 		end
 
 #		can :solicitar_aprobacion_compras, Requerimiento, :solicitante => usuario,
@@ -56,6 +56,10 @@ class Ability
 		
 		#	El usuario que no es administrador puede modificar solos sus datos
 		can [:edit, :update], Usuario, :identificador => usuario.identificador
+		
+		can :recepcionar, Requerimiento do |rqm|
+			usuario.sector.expedicion? and rqm.estado == Estado::PENDIENTE_RECEPCION
+		end
 
 	end
 

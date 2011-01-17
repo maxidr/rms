@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110105165950) do
+ActiveRecord::Schema.define(:version => 20110111210222) do
 
   create_table "caracteristicas", :force => true do |t|
     t.string   "nombre"
@@ -48,6 +48,10 @@ ActiveRecord::Schema.define(:version => 20110105165950) do
 
   create_table "detalles_pendiente_aprobacion", :force => true do |t|
     t.integer "autorizante_id"
+  end
+
+  create_table "detalles_recepcion", :force => true do |t|
+    t.integer "recepcionista_id"
   end
 
   create_table "detalles_rechazo_compras", :force => true do |t|

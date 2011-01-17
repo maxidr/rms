@@ -6,9 +6,21 @@ class RequerimientosController < ApplicationController
 	# IMPROVE: Utilizar el método de cancan load_and_authorize_resource (https://github.com/ryanb/cancan/wiki/authorizing-controller-actions)
 	before_filter :authenticate_usuario!
 	# IMPROVE: Cambiar el only por except para que sea mas legible
-	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion, :check_state, :show, :update, :aprobar, :motivo_rechazo, :rechazar, :solicitar_aprobacion_compras, :motivo_rechazo_compras, :rechazar_por_compras]
+	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion, :check_state, :show, :update, :aprobar, :motivo_rechazo, :rechazar, :solicitar_aprobacion_compras, :motivo_rechazo_compras, :rechazar_por_compras, :recepcionar]
 	before_filter :check_state, :only => [:edit, :update]
 	before_filter :puede_aprobar_por_sector, :only => [:rechazar, :aprobar, :motivo_rechazo]
+	
+	
+	def recepcionar
+		logger.debug "Recepcionar requerimiento"
+		authorize! :recepcionar, @requerimiento
+		respond_with @requerimiento do |format|
+			if @requerimiento.recepcionar!(current_usuario)
+				flash[:notice] = "Se recepcionaron los materiales del requerimiento"
+			end
+			format.html{ render :show	}
+		end
+	end
 
 	def comprar
 		@compra = Compra.new(params[:compra])
@@ -17,6 +29,7 @@ class RequerimientosController < ApplicationController
 		@requerimiento = @compra.requerimiento
 		@compra.presupuesto = @requerimiento.presupuesto_aprobado
 		respond_with @compra, :location => @requerimiento  do |format|
+			#	FIXME: Esta parte debería ser una transacción
 			if @compra.save
 				@requerimiento.realizar_compra!(@compra)
 				flash[:notice] = "Se confirmó la compra con fecha probable de entrega al #{localize @compra.fecha_probable_entrega}"

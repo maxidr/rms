@@ -36,6 +36,10 @@ class Sector < ActiveRecord::Base
 	def self.expedicion
 		find EXPEDICION_ID
 	end
+	
+	def expedicion?
+		id == EXPEDICION_ID
+	end
 
 	# Determina los emails del sector. Estos son: el mail del sector (si ubiera) y el del responsable (si ubiera).
 	# @return [String] Los mails separados por comas
