@@ -9,7 +9,7 @@ class Ability
 
 		if usuario.admin?
 			can :manage, [Sector, Rubro, Empresa, Proveedor, Moneda, CondicionPago, Usuario]
-		end		
+		end
 
 		can [:edit, :add_material], Requerimiento do |rqm| iniciado_or_rechazado(rqm) end
 		can [:add_caracteristica, :edit_caracteristica], Material do |m|
@@ -53,12 +53,16 @@ class Ability
 		end
 
 		can :comprar, Requerimiento, :solicitante => usuario, :estado => Estado::APROBADO_X_COMPRAS
-		
+
 		#	El usuario que no es administrador puede modificar solos sus datos
 		can [:edit, :update], Usuario, :identificador => usuario.identificador
-		
+
 		can :recepcionar, Requerimiento do |rqm|
 			usuario.sector.expedicion? and rqm.estado == Estado::PENDIENTE_RECEPCION
+		end
+
+		can :verificar_entrega, Requerimiento do |rqm|
+			rqm.estado == Estado::PENDIENTE_VERIFICACION and usuario == rqm.solicitante
 		end
 
 	end

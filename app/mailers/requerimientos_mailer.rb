@@ -55,15 +55,18 @@ class RequerimientosMailer < ActionMailer::Base
   end
 
 	def informar_prevision_pago(rqm, compra)
-		puts rqm
-		puts compra.fecha_probable_entrega
 		@requerimiento = rqm
 		@fecha_probable_entrega = compra.fecha_probable_entrega
 		@presupuesto = rqm.presupuesto_aprobado
-		puts @fecha_probable_entrega
 		mail :to => Sector.administracion.emails,
 			:cc => rqm.solicitante.email,
 			:subject => "Se solicita realizar una previsión de pago para el requerimiento n° #{rqm.id}"
+	end
+
+	def informar_recepcion(rqm)
+		@requerimiento = rqm
+		mail :to => rqm.solicitante.email,
+			:subject => "Fueron entregados los materiales del requerimiento n° #{rqm.id} por el proveedor"
 	end
 
 end

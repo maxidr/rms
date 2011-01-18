@@ -27,9 +27,14 @@ class Requerimiento < ActiveRecord::Base
 
   validates_presence_of :empresa, :sector, :rubro, :solicitante
 
+  def verificar_entrega!
+		cambiar_estado_a Estado::ENTREGADO
+  end
+
 	def recepcionar!(usuario)
 		con_detalle = DetalleRecepcion.new(:recepcionista => usuario)
 		cambiar_estado_a Estado::PENDIENTE_VERIFICACION, con_detalle
+		RequerimientosMailer.informar_recepcion(self).deliver
 	end
 
   def realizar_compra!(compra)

@@ -91,13 +91,17 @@
 	<% if can? :solicitar_aprobacion_compras, @requerimiento %>
 		<%= link_to 'Solicitar aprobación de compras', aprobacion_compras_requerimiento_path(@requerimiento), :method => :put  %>
 	<% end %>
-	
+
 	<% if can? :aprobar_presupuestos, @requerimiento %>
 		<%= link_to 'Rechazar presupuestos', rechazar_presupuestos_requerimiento_path(@requerimiento)  %>
 	<% end %>
-	
+
 	<% if can? :recepcionar, @requerimiento %>
 		<%= link_to 'Recepcionar materiales', recepcionar_requerimiento_path(@requerimiento), :method => :put %>
+	<% end %>
+
+	<% if can? :verificar_entrega, @requerimiento %>
+		<%= link_to 'Entrega correcta', verificar_entrega_requerimiento_path(@requerimiento), :method => :put %>
 	<% end %>
 </b>
 

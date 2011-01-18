@@ -1,0 +1,15 @@
+! doctype html
+html
+	head
+		meta content="text/html; charset=UTF-8" http-equiv="Content-Type"
+	body
+		p
+			- if @requerimiento.materiales.count == 1
+				El sector de expedición informa que el material solicitado en el requerimiento n° #{@requerimiento.id} fue entregado
+			- else
+				El sector de expedición informa que los materiales solicitados en el requerimiento n° #{@requerimiento.id} fueron entregados
+		p Queda pendiente su verificación para asegurar la correcta entrega.
+		br
+		br
+		p Puede acceder al requerimiento mediante el siguiente #{link_to 'link', requerimiento_url(@requerimiento)}
+

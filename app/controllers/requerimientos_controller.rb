@@ -3,14 +3,22 @@ class RequerimientosController < ApplicationController
 
 	respond_to :html, :xml, :json
 
-	# IMPROVE: Utilizar el método de cancan load_and_authorize_resource (https://github.com/ryanb/cancan/wiki/authorizing-controller-actions)
 	before_filter :authenticate_usuario!
-	# IMPROVE: Cambiar el only por except para que sea mas legible
-	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion, :check_state, :show, :update, :aprobar, :motivo_rechazo, :rechazar, :solicitar_aprobacion_compras, :motivo_rechazo_compras, :rechazar_por_compras, :recepcionar]
+	# IMPROVE: Utilizar el método de cancan load_and_authorize_resource (https://github.com/ryanb/cancan/wiki/authorizing-controller-actions)
+	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion, :check_state, :show, :update, :aprobar, :motivo_rechazo, :rechazar, :solicitar_aprobacion_compras, :motivo_rechazo_compras, :rechazar_por_compras, :recepcionar, :verificar_entrega]
 	before_filter :check_state, :only => [:edit, :update]
 	before_filter :puede_aprobar_por_sector, :only => [:rechazar, :aprobar, :motivo_rechazo]
-	
-	
+
+	def verificar_entrega
+		authorize! :verificar_entrega, @requerimiento
+		respond_with @requerimiento do |format|
+			if @requerimiento.verificar_entrega!
+				flash[:notice] = "La entrega de los materiales del requerimiento fue verificada y es correcta."
+			end
+			format.html{ render :show }
+		end
+	end
+
 	def recepcionar
 		logger.debug "Recepcionar requerimiento"
 		authorize! :recepcionar, @requerimiento

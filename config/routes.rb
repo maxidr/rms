@@ -25,6 +25,7 @@ Rms::Application.routes.draw do
     	put 'rechazar/presupuestos', :action => 'rechazar_por_compras'
     	put 'comprar'
     	put 'recepcionar'
+    	put 'verificar_entrega', :action => 'verificar_entrega'
     end
   end
 
