@@ -31,7 +31,7 @@ class Requerimiento < ActiveRecord::Base
 		con_detalle = DetalleRecepcion.new(:recepcionista => usuario)
 		cambiar_estado_a Estado::PENDIENTE_VERIFICACION, con_detalle
 	end
-  
+
   def realizar_compra!(compra)
 		cambiar_estado_a Estado::PENDIENTE_RECEPCION
 		RequerimientosMailer.informar_recepcion_pendiente(self, compra).deliver
@@ -53,10 +53,11 @@ class Requerimiento < ActiveRecord::Base
 
   def aprobar_presupuesto_por_compras!(presupuesto, autorizante)
   	con_detalle = DetalleAprobacionCompras.new(:autorizante => autorizante, :presupuesto => presupuesto)
-  	cambiar_estado_a Estado::APROBADO_X_COMPRAS, con_detalle
-    # FIXME: El cambiar estado debería soportar que pase un bloque (closure) para operar sobre la transacción
-  	presupuesto.aprobado = true
-  	presupuesto.save
+
+  	cambiar_estado_a(Estado::APROBADO_X_COMPRAS, con_detalle) do
+    	presupuesto.aprobado = true
+	  	presupuesto.save!
+  	end
 
 		RequerimientosMailer.informar_autorizacion_compras(self, autorizante, presupuesto).deliver
   end
@@ -119,6 +120,7 @@ class Requerimiento < ActiveRecord::Base
 			self.transaction do
 				detalle.save! unless detalle.nil?
 				EstadoHistorico.create(:codigo_estado => estado.codigo, :requerimiento => self, :detalle => detalle)
+				yield if block_given?
 				self.save!
 			end
 #			self.estado = estado
