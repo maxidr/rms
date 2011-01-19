@@ -4,13 +4,16 @@
 		= f.input :apellido
 		= f.input :identificador, :hint => "Nombre que utilizará para ingresar al sistema"
 		= f.input :email
-		- if current_usuario.admin?
+		- if can? :change_rol_and_sector, current_usuario
 			= f.input :sector
 			= f.input :rol, :as => :select, :collection => Usuario::ROLES
 		- else
 			= f.input :sector, :input_html => { :disabled => true }
 			= f.input :rol, :as => :select, :collection => Usuario::ROLES, :input_html => { :disabled => true }
-		= f.input :password, :label => "Contraseña", :hint => "dejar en blanco si no desea cambiarla"
+		- if @usuario.persisted?
+			= f.input :password, :label => "Contraseña", :hint => "dejar en blanco si no desea cambiarla", :required => false
+		- else 
+			= f.input :password, :label => "Contraseña"
 		= f.input :password_confirmation, :label => "Confirmar contraseña", :hint => "ingrese la contraseña nuevamente para confirmar"
 	= f.buttons
 
