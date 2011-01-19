@@ -72,7 +72,7 @@ class RequerimientosMailer < ActionMailer::Base
 	# Se informa que la entrega fue verificada por el solicitante y es correcta
 	def informar_verificacion_entrega(rqm)
 		@requerimiento = rqm
-		mail :to => Sector.compras.emails_responsables
+		mail :to => Sector.compras.emails_responsables,
 			:subject => "La recepción a sido verificada correctamente por el solictante (requerimiento n° #{rqm.id})"
 	end
 
