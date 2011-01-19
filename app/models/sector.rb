@@ -36,7 +36,7 @@ class Sector < ActiveRecord::Base
 	def self.expedicion
 		find EXPEDICION_ID
 	end
-	
+
 	def expedicion?
 		id == EXPEDICION_ID
 	end
@@ -53,6 +53,11 @@ class Sector < ActiveRecord::Base
 
 	def emails_responsables
 		responsables.map(&:email).compact.join(", ")
+	end
+
+	def responsable?(usuario)
+		return false if usuario.nil?
+		responsables.exists? usuario unless responsables.empty?
 	end
 
   def to_s

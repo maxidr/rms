@@ -103,6 +103,10 @@
 	<% if can? :verificar_entrega, @requerimiento %>
 		<%= link_to 'Entrega correcta', verificar_entrega_requerimiento_path(@requerimiento), :method => :put %>
 	<% end %>
+
+	<% if can? :finalizar, @requerimiento %>
+		<%= link_to 'Finalizar requerimiento', finalizar_requerimiento_path(@requerimiento), :method => :put  %>
+	<% end %>
 </b>
 
 <% if can? :comprar, @requerimiento %>

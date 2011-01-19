@@ -26,6 +26,7 @@ Rms::Application.routes.draw do
     	put 'comprar'
     	put 'recepcionar'
     	put 'verificar_entrega', :action => 'verificar_entrega'
+    	put 'finalizar'
     end
   end
 

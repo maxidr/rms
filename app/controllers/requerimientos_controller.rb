@@ -5,9 +5,19 @@ class RequerimientosController < ApplicationController
 
 	before_filter :authenticate_usuario!
 	# IMPROVE: Utilizar el método de cancan load_and_authorize_resource (https://github.com/ryanb/cancan/wiki/authorizing-controller-actions)
-	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion, :check_state, :show, :update, :aprobar, :motivo_rechazo, :rechazar, :solicitar_aprobacion_compras, :motivo_rechazo_compras, :rechazar_por_compras, :recepcionar, :verificar_entrega]
+	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion, :check_state, :show, :update, :aprobar, :motivo_rechazo, :rechazar, :solicitar_aprobacion_compras, :motivo_rechazo_compras, :rechazar_por_compras, :recepcionar, :verificar_entrega, :finalizar]
 	before_filter :check_state, :only => [:edit, :update]
 	before_filter :puede_aprobar_por_sector, :only => [:rechazar, :aprobar, :motivo_rechazo]
+
+	def finalizar
+		authorize! :finalizar, @requerimiento
+		respond_with @requerimiento do |format|
+			if @requerimiento.finalizar! current_usuario
+				flash[:notice] = "El requerimiento fue finalizado con éxito."
+			end
+			format.html{ render :show }
+		end
+	end
 
 	def verificar_entrega
 		authorize! :verificar_entrega, @requerimiento

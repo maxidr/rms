@@ -1,0 +1,13 @@
+! doctype html
+html
+	head
+		meta content="text/html; charset=UTF-8" http-equiv="Content-Type"
+	body
+		p
+			El solicitante (#{@requerimiento.solicitante.nombre_completo}) a verificado que la recepción de los materiales solicitados en el
+			requerimiento n° #{@requerimiento.id} fue correcta.
+		p Queda pendiente el cierre del requerimiento por parte del sector de compras.
+		br
+		br
+		p Puede acceder al requerimiento mediante el siguiente #{link_to 'link', requerimiento_url(@requerimiento)}
+

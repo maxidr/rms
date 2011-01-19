@@ -69,6 +69,10 @@ class Ability
 			rqm.estado == Estado::PENDIENTE_VERIFICACION and usuario == rqm.solicitante
 		end
 
+		can :finalizar, Requerimiento do |rqm|
+			rqm.estado == Estado::ENTREGADO and (Sector.compras.responsable? usuario)
+		end
+
 	end
 
 	def iniciado_or_rechazado(rqm)

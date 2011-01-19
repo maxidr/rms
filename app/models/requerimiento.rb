@@ -27,8 +27,16 @@ class Requerimiento < ActiveRecord::Base
 
   validates_presence_of :empresa, :sector, :rubro, :solicitante
 
+	# Finalizar el requerimiento
+	# @param [Usuario] responsable del sector que genera la finalización del requerimiento
+  def finalizar!(responsable)
+  	con_detalle = DetalleFinalizacion.new(:responsable => responsable)
+  	cambiar_estado_a Estado::FINALIZADO, con_detalle
+  end
+
   def verificar_entrega!
 		cambiar_estado_a Estado::ENTREGADO
+		RequerimientosMailer.informar_verificacion_entrega(self).deliver
   end
 
 	def recepcionar!(usuario)
