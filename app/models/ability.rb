@@ -61,7 +61,9 @@ class Ability
 		can :change_rol_and_sector, Usuario, :admin? => true
 
 		can :recepcionar, Requerimiento do |rqm|
-			usuario.sector.expedicion? and rqm.estado == Estado::PENDIENTE_RECEPCION
+			unless usuario.sector.nil?			
+				usuario.sector.expedicion? and rqm.estado == Estado::PENDIENTE_RECEPCION			
+			end
 		end
 	end
 
