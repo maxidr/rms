@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110119145250) do
+ActiveRecord::Schema.define(:version => 20110121175724) do
 
   create_table "caracteristicas", :force => true do |t|
     t.string   "nombre"
@@ -59,6 +59,11 @@ ActiveRecord::Schema.define(:version => 20110119145250) do
   end
 
   create_table "detalles_rechazo_compras", :force => true do |t|
+    t.integer "rechazado_por_id"
+    t.text    "motivo"
+  end
+
+  create_table "detalles_rechazo_entrega", :force => true do |t|
     t.integer "rechazado_por_id"
     t.text    "motivo"
   end

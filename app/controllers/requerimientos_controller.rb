@@ -5,7 +5,7 @@ class RequerimientosController < ApplicationController
 
 	before_filter :authenticate_usuario!
 	# IMPROVE: Utilizar el método de cancan load_and_authorize_resource (https://github.com/ryanb/cancan/wiki/authorizing-controller-actions)
-	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion, :check_state, :show, :update, :aprobar, :motivo_rechazo, :rechazar, :solicitar_aprobacion_compras, :motivo_rechazo_compras, :rechazar_por_compras, :recepcionar, :verificar_entrega, :finalizar]
+	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion, :check_state, :show, :update, :aprobar, :motivo_rechazo, :rechazar, :solicitar_aprobacion_compras, :motivo_rechazo_compras, :rechazar_por_compras, :recepcionar, :verificar_entrega, :finalizar, :motivo_rechazo_entrega, :rechazar_entrega]
 	before_filter :check_state, :only => [:edit, :update]
 	before_filter :puede_aprobar_por_sector, :only => [:rechazar, :aprobar, :motivo_rechazo]
 
@@ -17,6 +17,28 @@ class RequerimientosController < ApplicationController
 			end
 			format.html{ render :show }
 		end
+	end
+	
+	# PUT /requerimientos/{id}/
+	def rechazar_entrega
+		authorize! :rechazar_entrega, @requerimiento
+		logger.debug "Se rechaza la entrega del requerimiento: #{@requerimiento}"
+		@rechazo = DetalleRechazoEntrega.new(params[:detalle_rechazo_entrega])
+		@rechazo.rechazado_por = current_usuario
+		respond_with @requerimiento  do |format|
+			if @requerimiento.rechazar_entrega! @rechazo
+				format.html { redirect_to @requerimiento }
+			else
+				# Error en rechazar_entrega!
+				format.html { render :motivo_rechazo_entrega }
+			end
+		end
+	end
+	
+	# GET /requerimientos/{id}/rechazar_entrega
+	# Retorna la pantalla que permite cargar el motivo del rechazo de la entrega de materiales
+	def motivo_rechazo_entrega
+		@rechazo = DetalleRechazoEntrega.new
 	end
 
 	def verificar_entrega

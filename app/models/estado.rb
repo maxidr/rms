@@ -42,15 +42,23 @@ class Estado
 		codigo <=> other_estado.codigo
 	end
 
+	# Determina si el estado pertenece a algunos de los estados pasados como parámetro
+	# @param [Array] estados a verificar
 	def in?(*estados)
-		estados.each do |estado|
+		estados.flatten.each do |estado|
 			return true if self == estado
 		end
 		false
 	end
 
 	def rechazo?
-		in? RECHAZO_X_COMPRAS, RECHAZO_X_SECTOR
+		in? RECHAZO_X_COMPRAS, RECHAZO_X_SECTOR, CANCELADO
+	end
+		
+	# Indica el listado de posibles estados rechazados
+	# @return [Array] estados rechazados
+	def self.estados_rechazados
+		[RECHAZO_X_COMPRAS, RECHAZO_X_SECTOR, CANCELADO]
 	end
 
 	def to_s

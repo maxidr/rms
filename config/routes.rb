@@ -24,8 +24,10 @@ Rms::Application.routes.draw do
     	get 'rechazar/presupuestos', :action => 'motivo_rechazo_compras'
     	put 'rechazar/presupuestos', :action => 'rechazar_por_compras'
     	put 'comprar'
-    	put 'recepcionar'
+    	put 'recepcionar'    	
     	put 'verificar_entrega', :action => 'verificar_entrega'
+    	get 'rechazar_entrega', :action => 'motivo_rechazo_entrega'
+    	put 'rechazar_entrega'
     	put 'finalizar'
     end
   end

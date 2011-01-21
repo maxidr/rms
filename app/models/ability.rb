@@ -70,6 +70,10 @@ class Ability
 		can :verificar_entrega, Requerimiento do |rqm|
 			rqm.estado == Estado::PENDIENTE_VERIFICACION and usuario == rqm.solicitante
 		end
+		
+		can :rechazar_entrega, Requerimiento do |rqm|
+			rqm.estado == Estado::PENDIENTE_VERIFICACION and usuario == rqm.solicitante
+		end
 
 		can :finalizar, Requerimiento do |rqm|
 			rqm.estado == Estado::ENTREGADO and (Sector.compras.responsable? usuario)

@@ -33,6 +33,12 @@ class Requerimiento < ActiveRecord::Base
   	con_detalle = DetalleFinalizacion.new(:responsable => responsable)
   	cambiar_estado_a Estado::FINALIZADO, con_detalle
   end
+  
+  
+  def rechazar_entrega!(con_detalle)
+  	return false unless con_detalle.valid?
+  	cambiar_estado_a Estado::CANCELADO, con_detalle
+  end  
 
   def verificar_entrega!
 		cambiar_estado_a Estado::ENTREGADO

@@ -1,0 +1,8 @@
+= semantic_form_for @rechazo, :url => rechazar_entrega_requerimiento_url, :html => {:method => :put} do |form|
+	= form.inputs :name => "Rechazar entrega" do
+		p Se rechaza la entrega de los materiales pertenecientes al requerimiento n° #{@requerimiento.id}
+		br
+		= form.input :motivo, :label => 'Motivo del rechazo', :as => :text
+	= form.buttons do
+		= form.commit_button 'Rechazar'
+
