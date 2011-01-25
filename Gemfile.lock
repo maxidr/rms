@@ -28,7 +28,7 @@ GEM
       activemodel (= 3.0.3)
       activesupport (= 3.0.3)
     activesupport (3.0.3)
-    annotate-models (1.0.4)
+    annotate (2.4.0)
     arel (2.0.4)
     bcrypt-ruby (2.1.2)
     builder (2.1.2)
@@ -88,7 +88,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  annotate-models
+  annotate
   cancan
   devise
   formtastic

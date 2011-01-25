@@ -37,6 +37,6 @@ gem "slim-rails"
 #   gem 'webrat'
 # end
 group :development do
-  gem 'annotate-models'
+  gem 'annotate'
 end
 
