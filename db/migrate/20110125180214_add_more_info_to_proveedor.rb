@@ -8,10 +8,6 @@ class AddMoreInfoToProveedor < ActiveRecord::Migration
   end
 
   def self.down
-  	drop_column :proveedores, :localidad
-  	drop_column :proveedores, :cod_postal
-  	drop_column :proveedores, :representante
-  	drop_column :proveedores, :jefe_ventas
-  	drop_column :proveedores, :memo
+  	remove_columns :proveedores, :localidad, :cod_postal, :representante, :jefe_ventas, :memo
   end
 end

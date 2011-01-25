@@ -19,7 +19,7 @@ class Proveedor < ActiveRecord::Base
 	validates_uniqueness_of :razon_social 	
 	
 	attr_accessible :razon_social, :domicilio, :telefono, :cuit, 
-										:contacto, :localidad, :cod_postal, 
+										:localidad, :cod_postal, 
 										:representante, :jefe_ventas, :memo
 	
 	
