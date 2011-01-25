@@ -14,9 +14,9 @@
 #
 
 class Proveedor < ActiveRecord::Base
-#	FIXME: La razon social no debería ser obligatoria ya que podrían tener proveedores del exterior (que no poseen esta caracteristica)
-# FIXME: No se debe permitir que la eliminación física de los proveedores (habilitado: true, default_scope)
+	# FIXME: No se debe permitir que la eliminación física de los proveedores (habilitado: true, default_scope)
 	validates_presence_of :razon_social, :cuit
-	validates_uniqueness_of :razon_social
+	validates_uniqueness_of :razon_social 	
+	
 end
 
