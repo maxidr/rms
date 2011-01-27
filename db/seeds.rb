@@ -72,64 +72,9 @@ Moneda.find_or_create_by_simbolo(:simbolo => "u$s", :nombre => "Dólares")
 Moneda.find_or_create_by_simbolo(:simbolo => "€", :nombre => 'Euros')
 
 # PROVEEDOR ------------------------------------------------------------------------------------------
-#Proveedor.find_or_create_by_razon_social(
-#	:razon_social => 'Varteco Quimica Puntana SA',
-#	:domicilio => 'Rep. del Libano 4317  Villa Lynch  San Martin',
-#	:telefono => '4754-3030 Fax 4754-2410',
-#	:cuit => '30-62123820-1',
-#	:contacto => 'Marcelo Stola / Jorge Dal Pozo')
-
-#Proveedor.find_or_create_by_razon_social(
-#	:razon_social => "Sami Trading Inc.",
-#	:domicilio => "121-784 Tower B -1611 Mapu Trapalace, 559 Dohwa-Dong, Mapo-Gu, Seoul, South Korea",
-#	:telefono => "82-2-3272-9912/14/17  Fax 82-2-3272-9970/71",
-#	:cuit => "xxxxxxxxxx",
-#	:contacto => "Alicia Jung  / Naomi")
-
-#Proveedor.find_or_create_by_razon_social(
-#	:razon_social => "Formosa Plastic",
-#	:domicilio => "EEUU",
-#	:telefono => "",
-#	:cuit => "xxxxxx",
-#	:contacto => "Kenny Liaw")
-
-#def normalize(text)
-#	unless text.nil?
-#		text.tr("\"", "\'").strip
-#	else
-#		text
-#	end
-#end
-
-#require 'csv'
-
-#file = 'proveedores.csv'
-#hash = ""
-#first = true
-#CSV.foreach(file) do |row|
-#	next if row[1].nil?
-#	
-#	if first
-#		first = false
-#		next
-#	end
-#	
-#	Proveedor.find_or_create_by_razon_social(
-#			:razon_social 	=> normalize(row[1]), 
-#			:domicilio 			=> normalize(row[2]),
-#			:telefono 			=> normalize(row[6]),
-#			:cuit 					=> normalize(row[9]),			
-#			:localidad 			=> normalize(row[3]),
-#			:cod_postal 		=> normalize(row[5]),
-#			:representante 	=> normalize(row[7]),
-#			:jefe_ventas 		=> normalize(row[8]),
-#			:memo 					=> normalize(row[14]),
-#	);  
-#end
+# Utiliza la clase que se encuentra en lib/csvimport.rb
 require 'csvimport'
-puts __FILE__
-import = CSVImport.new(RAILS_ROOT + '/db/proveedores.csv')
-import.load do |row|
+CSVImport.new(RAILS_ROOT + '/db/proveedores.csv').load do |row|
 	Proveedor.find_or_create_by_razon_social(
 		:razon_social 	=> row[1],
 		:domicilio 			=> row[2],
@@ -139,7 +84,7 @@ import.load do |row|
 		:cod_postal 		=> row[5],
 		:representante 	=> row[7],
 		:jefe_ventas 		=> row[8],
-		:memo 					=> row[14]);
+		:memo 					=> row[14])
 end
 
 # CONDICIONES DE PAGO ---------------------------------------------------------------------------------
