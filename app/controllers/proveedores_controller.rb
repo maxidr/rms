@@ -4,12 +4,12 @@ class ProveedoresController < ApplicationController
 	respond_to :html, :xml
 
 	before_filter :authenticate_usuario!
-  load_and_authorize_resource
+	load_and_authorize_resource
 
   # GET /proveedores
   # GET /proveedores.xml
   def index
-		respond_with @proveedores
+		respond_with @proveedores = @proveedores.paginate(:page => params[:page])
   end
 
   # GET /proveedores/1
@@ -67,5 +67,19 @@ class ProveedoresController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+#  def proveedores  	
+#  	return @proveedores if defined? @proveedores
+#  	@proveedores = Proveedor.paginate :page => params[:page] || 1
+#  	authorize! :index, @proveedores
+#  	@proveedores
+#  end
+#  
+#  def proveedor
+#  	return @proveedor if defined? @proveedor
+#  	@proveedor = Proveedor.find(params[:id])
+#  	authorize! params[:action].to_sym, @proveedor
+#  	@proveedor
+#  end
 end
 

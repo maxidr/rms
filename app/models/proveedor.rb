@@ -22,6 +22,8 @@ class Proveedor < ActiveRecord::Base
 										:localidad, :cod_postal, 
 										:representante, :jefe_ventas, :memo
 	
+	cattr_reader :per_page
+  @@per_page = 10	
 	
 end
 

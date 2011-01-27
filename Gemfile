@@ -13,6 +13,7 @@ gem 'formtastic'
 gem 'show_for'
 gem 'slim', :require => 'slim/rails'
 gem "slim-rails"
+gem "will_paginate", "~> 3.0.pre2"
 
 # Use unicorn as the web server
 # gem 'unicorn'
