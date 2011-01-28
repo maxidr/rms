@@ -40,26 +40,24 @@ end
 # SECTORES -------------------------------------------------------------------------------------------
 # ES MUY IMPORTANTE QUE "Expedición", "Administración" y "Compras" reciban como ID el 7, 8 y 9 respectivamente.
 # Ver modelo sector
-#sectores = ["Tejeduría", "Mantenimiento", "Recubrimiento",
-#	"Embalaje", "Fábrica de piletas", "Caños", "Expedición",
-#	"Administración", "Compras", "Ventas" ]
+if responsable.nil?
+	responsable = Usuario.first
+end
 
-#sectores.each do |sector|
-#	unless Sector.find_by_nombre(sector)
-#		sector = Sector.new({:nombre => sector})
-#		sector.responsables << responsable
-#		unless sector.valid?
-#			puts "Inválido: #{sector.errors}"
-#		end
-#		sector.save
-#	end
-#end
+sectores = ["Tejeduría", "Mantenimiento", "Recubrimiento",
+	"Embalaje", "Fábrica de piletas", "Caños", "Expedición",
+	"Administración", "Compras", "Ventas" ]
 
-#sectores.each do |nombre_sector|
-#	sector = Sector.where(:nombre => nombre_sector).first
-#	sector.responsables << responsable
-#	sector.save
-#end
+sectores.each do |sector|
+	unless Sector.find_by_nombre(sector)
+		sector = Sector.new({:nombre => sector})
+		sector.responsables << responsable
+		unless sector.valid?
+			puts "Inválido: #{sector.errors}"
+		end
+		sector.save
+	end
+end
 
 # EMPRESAS -------------------------------------------------------------------------------------------
 Empresa.find_or_create_by_nombre('Laindell SRL')
