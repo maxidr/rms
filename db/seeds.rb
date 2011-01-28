@@ -52,16 +52,7 @@ sectores.each do |sector|
 	unless Sector.find_by_nombre(sector)
 		sector = Sector.new({:nombre => sector})
 		sector.responsables << responsable
-		unless sector.valid?
-			puts "Sector inválido: #{sector.errors}"
-		else
-			begin
-				sector.save
-			rescue ActiveRecord::RecordInvalid => invalid
-				puts sector
-				puts invalid.record.errors
-			end
-		end
+		sector.save
 	end
 end
 
