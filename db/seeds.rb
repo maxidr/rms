@@ -55,7 +55,12 @@ sectores.each do |sector|
 		unless sector.valid?
 			puts "Sector inválido: #{sector.errors}"
 		else
-			sector.save
+			begin
+				sector.save
+			rescue ActiveRecord::RecordInvalid => invalid
+				puts sector
+				puts invalid.record.errors
+			end
 		end
 	end
 end
