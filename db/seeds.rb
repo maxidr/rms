@@ -40,7 +40,7 @@ end
 # SECTORES -------------------------------------------------------------------------------------------
 # ES MUY IMPORTANTE QUE "Expedición", "Administración" y "Compras" reciban como ID el 7, 8 y 9 respectivamente.
 # Ver modelo sector
-if responsable.nil?
+unless responsable.valid?
 	responsable = Usuario.first
 end
 
