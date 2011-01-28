@@ -53,9 +53,10 @@ sectores.each do |sector|
 		sector = Sector.new({:nombre => sector})
 		sector.responsables << responsable
 		unless sector.valid?
-			puts "Inválido: #{sector.errors}"
+			puts "Sector inválido: #{sector.errors}"
+		else
+			sector.save
 		end
-		sector.save
 	end
 end
 
