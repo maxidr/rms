@@ -24,7 +24,7 @@
 
 class Usuario < ActiveRecord::Base
 	# FIXME: No se debe permitir que la eliminación física de los proveedores (habilitado: true, default_scope)
-	validates_presence_of :nombre, :apellido, :identificador, :sector, :rol
+	validates_presence_of :nombre, :apellido, :identificador, :rol
   validates :identificador, :uniqueness => true, :length => { :minimum => 4 }
 
   belongs_to :sector

@@ -14,6 +14,28 @@
 # 							 Expedicion / Administracion / Compras / Ventas.
 # Los rubros: Materias Primas / Insumos / Consumibles / Varios / Servicios / Maquinas y herramientas
 
+
+# USUARIOS -------------------------------------------------------------------------------------------
+unless usr = Usuario.find_by_identificador('mdellorusso')
+	usr = Usuario.create({:nombre => 'Maximiliano', :apellido => 'Dello Russo',
+		:identificador => 'mdellorusso',
+		:email => 'maxidr@gmail.com',
+		:password => 'lucas12'})
+#	usr.sector = Sector.where(:nombre => 'Mantenimiento').first
+#	puts "El usuario mdellorusso no pudo ser creado" unless usr.save
+	usr.save
+end
+
+unless responsable = Usuario.find_by_identificador('jlopez')
+	responsable = Usuario.create({:nombre => 'Juan', :apellido => 'Lopez',
+		:identificador => 'jlopez',
+		:email => 'mdellorusso@aonken.com.ar',
+		:password => 'jlopez'})
+#	responsable.sector = Sector.where(:nombre => 'Compras').first
+#	puts "El usuario jlopez no pudo ser creado" unless responsable.save
+	responsable.save
+end
+
 # SECTORES -------------------------------------------------------------------------------------------
 # ES MUY IMPORTANTE QUE "Expedición", "Administración" y "Compras" reciban como ID el 7, 8 y 9 respectivamente.
 # Ver modelo sector
@@ -22,33 +44,18 @@ sectores = ["Tejeduría", "Mantenimiento", "Recubrimiento",
 	"Administración", "Compras", "Ventas" ]
 
 sectores.each do |sector|
-	Sector.create({:nombre => sector}) unless Sector.find_by_nombre(sector)
+	unless Sector.find_by_nombre(sector)
+		sector = Sector.new({:nombre => sector})
+		sector.responsables << responsable
+		sector.save
+	end
 end
 
-# USUARIOS -------------------------------------------------------------------------------------------
-unless usr = Usuario.find_by_identificador('mdellorusso')
-	usr = Usuario.create({:nombre => 'Maximiliano', :apellido => 'Dello Russo',
-		:identificador => 'mdellorusso',
-		:email => 'maxidr@gmail.com',
-		:password => 'lucas12'})
-	usr.sector = Sector.where(:nombre => 'Mantenimiento').first
-	puts "El usuario mdellorusso no pudo ser creado" unless usr.save
-end
-
-unless responsable = Usuario.find_by_identificador('jlopez')
-	responsable = Usuario.create({:nombre => 'Juan', :apellido => 'Lopez',
-		:identificador => 'jlopez',
-		:email => 'mdellorusso@aonken.com.ar',
-		:password => 'jlopez'})
-	responsable.sector = Sector.where(:nombre => 'Compras').first
-	puts "El usuario jlopez no pudo ser creado" unless responsable.save
-end
-
-sectores.each do |nombre_sector|
-	sector = Sector.where(:nombre => nombre_sector).first
-	sector.responsables << responsable
-	sector.save
-end
+#sectores.each do |nombre_sector|
+#	sector = Sector.where(:nombre => nombre_sector).first
+#	sector.responsables << responsable
+#	sector.save
+#end
 
 # EMPRESAS -------------------------------------------------------------------------------------------
 Empresa.find_or_create_by_nombre('Laindell SRL')
