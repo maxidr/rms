@@ -26,7 +26,8 @@ unless usr = Usuario.find_by_identificador('mdellorusso')
 	usr.save
 end
 
-unless responsable = Usuario.find_by_identificador('jlopez')
+responsable = Usuario.find_by_identificador('jlopez')
+unless responsable.nil?
 	responsable = Usuario.create({:nombre => 'Juan', :apellido => 'Lopez',
 		:identificador => 'jlopez',
 		:email => 'mdellorusso@aonken.com.ar',
