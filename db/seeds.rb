@@ -31,7 +31,7 @@ if responsable.nil?
 	responsable = Usuario.create({:nombre => 'Juan', :apellido => 'Lopez',
 		:identificador => 'jlopez',
 		:email => 'mdellorusso@aonken.com.ar',
-		:password => 'jlopez'})
+		:password => 'jlopez', :rol => 'operador'})
 #	responsable.sector = Sector.where(:nombre => 'Compras').first
 #	puts "El usuario jlopez no pudo ser creado" unless responsable.save
 	responsable.save
