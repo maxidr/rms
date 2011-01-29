@@ -11,5 +11,5 @@ Crear y poblar BBDD:
 	rake db:migrate
 	rake db:seed
 
-.
+....
 
