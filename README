@@ -10,5 +10,6 @@ Jquery para rails 3 (jquery-ujs):
 Crear y poblar BBDD:
 	rake db:migrate
 	rake db:seed
-	
+
+--------	
 
