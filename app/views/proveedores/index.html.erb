@@ -1,12 +1,23 @@
 <h1>Listado de proveedores</h1>
 
+<%= semantic_form_for @search do |f| %>
+	<%= f.inputs 'Filtrar' do %>
+		<%= f.input :razon_social_contains, :label => 'Razón social'%>
+		<%= f.input :cuit_contains %>
+	<% end %>
+	<%= f.buttons do %>
+	  <%= f.commit_button :search %>
+	<% end %>
+<% end %>
+
+<%= will_paginate @proveedores %>
 <table>
 	<thead>
 		<tr>
-		  <th>Razon social</th>
-		  <th>Domicilio</th>
-		  <th>Telefono</th>
-		  <th>Cuit</th>
+		  <th><%= sort_link @search, :razon_social %></th>
+		  <th>CUIT</th>
+		  <th>Teléfono</th>
+		  <th>Representante</th>
 		  <th></th>
 		</tr>
 	</thead>
@@ -14,9 +25,9 @@
 	<% @proveedores.each do |proveedor| %>
 		<tr>
 		  <td><%= proveedor.razon_social %></td>
-		  <td><%= proveedor.domicilio %></td>
+ 		  <td><%= proveedor.cuit %></td>
 		  <td><%= proveedor.telefono %></td>
-		  <td><%= proveedor.cuit %></td>
+      <td><%= proveedor.representante %></td>
 		  <td>
 		  	<%= link_to 'Ver', proveedor %>
 		  	<%= link_to 'Editar', edit_proveedor_path(proveedor) %>
@@ -24,10 +35,9 @@
 		  </td>
 		</tr>
 	<% end %>
-	
-  <%= will_paginate @proveedores %>
 	</tbody>
 </table>
+<%= will_paginate @proveedores %>
 
 <br />
 

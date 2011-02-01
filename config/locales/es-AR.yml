@@ -169,4 +169,7 @@
       words_connector: ", "
       two_words_connector: " y "
       last_word_connector: " y "
+  meta_search:
+    predicates:
+      contains: "%{attribute} contiene"
 

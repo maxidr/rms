@@ -9,11 +9,12 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'devise'
 
 gem 'cancan'
-gem 'formtastic'
+gem 'formtastic', '~> 1.2.3'
 gem 'show_for'
 gem 'slim', :require => 'slim/rails'
 gem "slim-rails"
 gem "will_paginate", "~> 3.0.pre2"
+gem "meta_search"
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -39,5 +40,6 @@ gem "will_paginate", "~> 3.0.pre2"
 # end
 group :development do
   gem 'annotate'
+  gem 'ruby-debug19'
 end
 
