@@ -7,8 +7,9 @@
       proveedor:
         razon_social: "Razón social"
         cod_postal: "Código postal"
+        cuit: "CUIT"
     actions:
       search: "Buscar"
       proveedor:
-        create: "CREAR PROVEEDOR"
+        create: "Crear proveedor"
 

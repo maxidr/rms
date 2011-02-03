@@ -11,7 +11,7 @@ class ProveedoresController < ApplicationController
   def index
   	@search = Proveedor.search(params[:search])
     # FIXME: No está funcionando la cantidad de páginas (per_page) en el modelo.
-		respond_with @proveedores = @search.paginate(:page => params[:page])
+		respond_with @proveedores = @search.paginate(:page => params[:page], :per_page => 15)
   end
 
   # GET /proveedores/1

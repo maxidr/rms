@@ -138,6 +138,10 @@
   activerecord:
     models:
       caracteristica: "característica"
+    attributes:
+      proveedor:
+        razon_social: "Razón social"
+        cuit: "CUIT"
     errors:
       template:
         header:
@@ -171,5 +175,5 @@
       last_word_connector: " y "
   meta_search:
     predicates:
-      contains: "%{attribute} contiene"
+      contains: "%{attribute}"
 

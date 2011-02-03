@@ -25,4 +25,11 @@ input.number_field { width: 100px; text-align: right; }
 #content dl dd ul {list-style:none;font-family:helvetica,arial,sans-serif;}
 .pagination{margin: 0 auto; text-align:center;padding:0.5em;}
 .pagination a, .pagination em { padding: 0 .3em; }
+.accordion h3{ font-size: 10px; }
+div.accordion { margin-bottom: 0.3em;}
+div.filters ol li { float: left; }
+form.formtastic.search > fieldset.buttons { margin: 0; }
+form.formtastic.search > fieldset.buttons > ol { margin: 0; }
+form.formtastic.search > fieldset.buttons > ol > li { margin: 0 0 0.5em 0; }
+form.formtastic.search > fieldset.inputs { margin: 0; }
 
