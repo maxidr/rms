@@ -33,7 +33,7 @@
 		  <td><%= proveedor.telefono %></td>
       <td><%= proveedor.representante %></td>
 		  <td>
-		  	<%= link_to 'Ver', proveedor %>
+		  	<%= link_to 'Ver', proveedor, :class => 'show' %>
 		  	<%= link_to 'Editar', edit_proveedor_path(proveedor) %>
 		  	<%= link_to 'Eliminar', proveedor, :confirm => 'Esta seguro?', :method => :delete %>
 		  </td>

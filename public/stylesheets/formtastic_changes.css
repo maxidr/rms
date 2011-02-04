@@ -71,6 +71,6 @@ form.formtastic li.date > fieldset > legend.label label { position: relative; }
 #content table tbody tr td a:hover { background: none; text-decoration: none; color:#FFF;}
 #content table tbody tr :last-child { border: none; }
 #content table tbody tr:hover { /* background-color: #D5E2FF; */ background-color: #254A86; color:#FFF;}
-#content table tbody tr:hover a { /* background-color: #D5E2FF; */ background-color: #254A86; color:#FFF;}
+#content table tbody tr:hover a { /* background-color: #D5E2FF;  background-color: #254A86; color:#FFF;}*/
 #content table tbody :last-child { border-bottom: 5px solid #261F1F; }
 
