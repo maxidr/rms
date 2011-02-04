@@ -40,6 +40,6 @@ gem "meta_search"
 # end
 group :development do
   gem 'annotate'
-  gem 'ruby-debug19'
+#  gem 'ruby-debug19'
 end
 
