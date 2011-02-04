@@ -9,7 +9,9 @@ class ProveedoresController < ApplicationController
   # GET /proveedores
   # GET /proveedores.xml
   def index
-		respond_with @proveedores = @proveedores.paginate(:page => params[:page])
+  	@search = Proveedor.search(params[:search])
+    # FIXME: No está funcionando la cantidad de páginas (per_page) en el modelo.
+		respond_with @proveedores = @search.paginate(:page => params[:page], :per_page => 15)
   end
 
   # GET /proveedores/1
@@ -67,14 +69,14 @@ class ProveedoresController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
-#  def proveedores  	
+
+#  def proveedores
 #  	return @proveedores if defined? @proveedores
 #  	@proveedores = Proveedor.paginate :page => params[:page] || 1
 #  	authorize! :index, @proveedores
 #  	@proveedores
 #  end
-#  
+#
 #  def proveedor
 #  	return @proveedor if defined? @proveedor
 #  	@proveedor = Proveedor.find(params[:id])

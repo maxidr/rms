@@ -1,12 +1,27 @@
 <h1>Listado de proveedores</h1>
 
+<div class="accordion filters">
+  <h3><a href="#">Fitrar resultados</a></h3>
+  <div>
+  <%= semantic_form_for @search do |f| %>
+	  <%= f.inputs do %>
+		  <%= f.input :razon_social_contains %>
+		  <%= f.input :cuit_contains %>
+	  <% end %>
+	  <%= f.buttons do %>
+	    <%= f.commit_button :search %>
+	  <% end %>
+  <% end %>
+  </div>
+</div>
+
 <table>
 	<thead>
 		<tr>
-		  <th>Razon social</th>
-		  <th>Domicilio</th>
-		  <th>Telefono</th>
-		  <th>Cuit</th>
+		  <th><%= sort_link @search, :razon_social %></th>
+		  <th><%= sort_link @search, :cuit %></th>
+		  <th>Teléfono</th>
+		  <th>Representante</th>
 		  <th></th>
 		</tr>
 	</thead>
@@ -14,20 +29,19 @@
 	<% @proveedores.each do |proveedor| %>
 		<tr>
 		  <td><%= proveedor.razon_social %></td>
-		  <td><%= proveedor.domicilio %></td>
+ 		  <td><%= proveedor.cuit %></td>
 		  <td><%= proveedor.telefono %></td>
-		  <td><%= proveedor.cuit %></td>
+      <td><%= proveedor.representante %></td>
 		  <td>
-		  	<%= link_to 'Ver', proveedor %>
+		  	<%= link_to 'Ver', proveedor, :class => 'show' %>
 		  	<%= link_to 'Editar', edit_proveedor_path(proveedor) %>
 		  	<%= link_to 'Eliminar', proveedor, :confirm => 'Esta seguro?', :method => :delete %>
 		  </td>
 		</tr>
 	<% end %>
-	
-  <%= will_paginate @proveedores %>
 	</tbody>
 </table>
+<%= will_paginate @proveedores %>
 
 <br />
 

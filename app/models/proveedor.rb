@@ -16,14 +16,11 @@
 class Proveedor < ActiveRecord::Base
 	# FIXME: No se debe permitir que la eliminación física de los proveedores (habilitado: true, default_scope)
 	validates_presence_of :razon_social, :cuit
-	validates_uniqueness_of :razon_social 	
-	
-	attr_accessible :razon_social, :domicilio, :telefono, :cuit, 
-										:localidad, :cod_postal, 
+	validates_uniqueness_of :razon_social
+
+	attr_accessible :razon_social, :domicilio, :telefono, :cuit,
+										:localidad, :cod_postal,
 										:representante, :jefe_ventas, :memo
-	
-	cattr_reader :per_page
-  @@per_page = 10	
-	
+
 end
 

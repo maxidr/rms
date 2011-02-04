@@ -5,5 +5,11 @@ $(document).ready(function() {
  	   //fades the notification out
  	   $(this).fadeOut(700);
     });
+
+    $('.accordion').accordion({
+      collapsible: true,
+      active: false,
+      autoHeight: true
+    });
 });
 

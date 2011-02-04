@@ -1,5 +1,15 @@
 "es-AR":
   formtastic:
+    search: "Buscar"
     create: "Crear %{model}"
     update: "Guardar cambios"
+    labels:
+      proveedor:
+        razon_social: "Razón social"
+        cod_postal: "Código postal"
+        cuit: "CUIT"
+    actions:
+      search: "Buscar"
+      proveedor:
+        create: "Crear proveedor"
 

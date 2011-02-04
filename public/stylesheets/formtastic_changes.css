@@ -15,7 +15,7 @@ form.formtastic fieldset ol li fieldset legend { margin-left: -6px;}
 * { margin: 0; padding: 0; }
 body{ font-family: helvetica,arial,sans-serif;}
 
-form.formtastic fieldset{ margin: 1em; }
+form.formtastic fieldset{ margin: 0 1em; }
 form.formtastic fieldset > ol { margin-top:1em; }
 form.formtastic fieldset > ol > p > b { margin-right:.5em; }
 form.formtastic fieldset > ol > li label { display:block; width:25%; float:none; padding-top:.2em; clear: both; }
@@ -30,6 +30,8 @@ form.formtastic fieldset > ol > li p.inline-errors{display: inline; margin: 0;}
 form.formtastic fieldset > ol > li.string input,
 form.formtastic fieldset > ol > li.password input {padding: 0.2em;}
 
+form.formtastic fieldset > ol > li > label { width: 100%; }
+
 /* TODO: En las fechas mover el error y el label */
 form.formtastic li.date > fieldset { margin-left: 0; }
 form.formtastic li.date > fieldset > ol { float: left; display: block; position: relative; padding: 0;}
@@ -39,7 +41,7 @@ form.formtastic li.date > fieldset > legend.label label { position: relative; }
 /* Temporal */
 
 #content{  margin: 0 auto; padding: 0 15px; background-color: white;}
-#content h1, #content h2{ margin: 0.5em 0; padding: 0.5em 0; }
+#content h1, #content h2{ margin: 0.3em 0; padding: 0.3em 0; }
 #content p{ padding: 0.25em 0; }
 
 
@@ -69,6 +71,6 @@ form.formtastic li.date > fieldset > legend.label label { position: relative; }
 #content table tbody tr td a:hover { background: none; text-decoration: none; color:#FFF;}
 #content table tbody tr :last-child { border: none; }
 #content table tbody tr:hover { /* background-color: #D5E2FF; */ background-color: #254A86; color:#FFF;}
-#content table tbody tr:hover a { /* background-color: #D5E2FF; */ background-color: #254A86; color:#FFF;}
+#content table tbody tr:hover a { /* background-color: #D5E2FF;  background-color: #254A86; color:#FFF;}*/
 #content table tbody :last-child { border-bottom: 5px solid #261F1F; }
 
