@@ -16,6 +16,8 @@
 	</dd>
 </dl>
 
+<%- if can? :edit, @sector %>
 <%= link_to 'Editar', edit_sector_path(@sector) %> |
 <%= link_to 'Volver', sectores_path %>
+<% end -%>
 

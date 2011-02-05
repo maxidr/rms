@@ -9,6 +9,8 @@ class Ability
 
 		if usuario.admin?
 			can :manage, [Sector, Rubro, Empresa, Proveedor, Moneda, CondicionPago, Usuario]
+		else
+		  can :show, Sector
 		end
 
 		can [:edit, :add_material], Requerimiento do |rqm| iniciado_or_rechazado(rqm) end
@@ -22,7 +24,8 @@ class Ability
 		end
 
 		can :aprobar_por_sector, Requerimiento do |rqm|
-			rqm.solicitante != usuario and (rqm.sector.responsables.exists? usuario) and rqm.estado == Estado::PENDIENTE_APROBACION_SECTOR
+      aprobar_por_sector rqm, usuario
+			#rqm.solicitante != usuario and (rqm.sector.responsables.exists? usuario) and rqm.estado == Estado::PENDIENTE_APROBACION_SECTOR
 		end
 
 #		can :solicitar_aprobacion_compras, Requerimiento, :solicitante => usuario,
@@ -62,15 +65,15 @@ class Ability
 		can :change_rol_and_sector, Usuario, :admin? => true
 
 		can :recepcionar, Requerimiento do |rqm|
-			unless usuario.sector.nil?			
-				usuario.sector.expedicion? and rqm.estado == Estado::PENDIENTE_RECEPCION			
+			unless usuario.sector.nil?
+				usuario.sector.expedicion? and rqm.estado == Estado::PENDIENTE_RECEPCION
 			end
 		end
 
 		can :verificar_entrega, Requerimiento do |rqm|
 			rqm.estado == Estado::PENDIENTE_VERIFICACION and usuario == rqm.solicitante
 		end
-		
+
 		can :rechazar_entrega, Requerimiento do |rqm|
 			rqm.estado == Estado::PENDIENTE_VERIFICACION and usuario == rqm.solicitante
 		end
@@ -81,9 +84,26 @@ class Ability
 
 	end
 
+	private
+
 	def iniciado_or_rechazado(rqm)
 		rqm.estado.in?(Estado::INICIO, Estado::RECHAZO_X_SECTOR)
 	end
+
+  def aprobar_por_sector(rqm, usuario)
+    # Si hay mas responsables del sector, lo debe autorizar otro responsable.
+    # Si no hay otro responsable, entonces se autoriza el mismo.
+    return false if rqm.estado != Estado::PENDIENTE_APROBACION_SECTOR
+    if rqm.sector.responsables.exists? usuario
+      # Si el usuario es responsable y el mismo no realizó el requerimiento, entonces esta autorizado a aprobar por sector
+      return true if rqm.solicitante != usuario
+      # Si es responsable y el mismo realizó el requerimiento:
+      #   1. Si no hay mas responsables del sector, entonces puede aprobarlo el mismo.
+      return true if rqm.sector.responsables.length == 1
+      #   2. Si hay mas responsables en el sector, entonces lo debe aprobar otro responsable
+    end
+    false
+  end
 
 end
 
