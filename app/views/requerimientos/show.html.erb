@@ -29,7 +29,7 @@
 
 <p>
   <b>Sector:</b>
-  <%= link_to @requerimiento.sector, @requerimiento.sector, :target => '_blank' %>
+  <%= @requerimiento.sector %>
 </p>
 
 <p>
@@ -102,7 +102,7 @@
 
 	<% if can? :verificar_entrega, @requerimiento %>
 		<%= link_to 'Entrega correcta', verificar_entrega_requerimiento_path(@requerimiento), :method => :put %>
-		|
+		| 
 		<%= link_to 'Rechazar entrega', rechazar_entrega_requerimiento_path(@requerimiento)  %>
 	<% end %>
 

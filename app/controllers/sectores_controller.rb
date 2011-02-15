@@ -46,7 +46,6 @@ class SectoresController < ApplicationController
   def update
     respond_to do |format|
       if @sector.update_attributes(params[:sector])
-        logger.debug("Valid?: #{@sector.valid?}")
         format.html { redirect_to(@sector, :notice => 'El sector fue actualizado con éxito.') }
         format.xml  { head :ok }
       else
