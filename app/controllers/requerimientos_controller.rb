@@ -18,7 +18,7 @@ class RequerimientosController < ApplicationController
 			format.html{ render :show }
 		end
 	end
-	
+
 	# PUT /requerimientos/{id}/
 	def rechazar_entrega
 		authorize! :rechazar_entrega, @requerimiento
@@ -34,7 +34,7 @@ class RequerimientosController < ApplicationController
 			end
 		end
 	end
-	
+
 	# GET /requerimientos/{id}/rechazar_entrega
 	# Retorna la pantalla que permite cargar el motivo del rechazo de la entrega de materiales
 	def motivo_rechazo_entrega
@@ -173,7 +173,11 @@ class RequerimientosController < ApplicationController
   def index
 #    @requerimientos = Requerimiento.where(:solicitante_id => current_usuario)
 		#	FIXME: El usuario puede ver sus requerimientos y los que debe autorizar
-		respond_with( @requerimientos = Requerimiento.includes(:solicitante, :empresa, :sector, :rubro).all )
+
+		@search = Requerimiento.search(params[:search])
+		respond_with @requerimientos = @search.paginate(:page => params[:page], :per_page => 15)
+
+#		respond_with( @requerimientos = Requerimiento.includes(:solicitante, :empresa, :sector, :rubro).all )
   end
 
   def show

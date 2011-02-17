@@ -1,0 +1,443 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 14, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+}
+
+/* line 17, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+body {
+  line-height: 1;
+  color: black;
+  background: white;
+}
+
+/* line 19, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 21, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  vertical-align: middle;
+}
+
+/* line 23, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 25, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: "" "";
+}
+/* line 96, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+}
+
+/* line 27, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 13, ../../../app/stylesheets/screen.sass */
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+  color: #484848;
+  font-family: Verdana, sans-serif;
+  font-size: 81%;
+  margin: 0;
+  min-width: 900px;
+  padding: 0;
+}
+
+/* line 22, ../../../app/stylesheets/screen.sass */
+a {
+  color: #8c8c8c;
+  text-decoration: none;
+  font-weight: bold;
+}
+/* line 26, ../../../app/stylesheets/screen.sass */
+a:hover {
+  color: #b3b3b3;
+  text-decoration: underline;
+}
+
+/* line 30, ../../../app/stylesheets/screen.sass */
+h1, h2, h3, h4, h5 {
+  font-family: "Myriad Pro", "Lucida Grande", "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+  border-bottom: medium none;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 36, ../../../app/stylesheets/screen.sass */
+h1, h2 {
+  color: #444444;
+  margin: 0 0 10px;
+  font-size: 20px;
+  padding: 2px 10px 1px 0;
+  font-weight: bold;
+}
+
+/* line 43, ../../../app/stylesheets/screen.sass */
+#wrapper {
+  background-color: #333333;
+}
+
+/* line 73, ../../../app/stylesheets/screen.sass */
+.icon-sort {
+  background: url('/images/sort-alphabet.png?1241992434') no-repeat;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+}
+
+/* line 76, ../../../app/stylesheets/screen.sass */
+.contextual {
+  float: right;
+  font-size: 0.9em;
+  margin-top: 5px;
+  white-space: nowrap;
+  background: url('/images/plus-circle.png?1242162194') no-repeat;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  padding-bottom: 3px;
+  padding-top: 2px;
+}
+/* line 50, ../../../app/stylesheets/screen.sass */
+.contextual a {
+  padding-left: 20px;
+}
+
+/* line 1, ../../../app/stylesheets/partials/_top-menu.sass */
+#top-menu {
+  color: #999999;
+  background-color: black;
+  font-family: Verdana, sans-serif;
+  padding: 1em 1em 0;
+  font-size: 0.8em;
+  height: 1.8em;
+  background: url("/images/bottom_shine.png") repeat-x scroll left bottom black;
+}
+
+/* line 11, ../../../app/stylesheets/partials/_top-menu.sass */
+#account {
+  float: right;
+}
+/* line 13, ../../../app/stylesheets/partials/_top-menu.sass */
+#account ul {
+  margin: 0;
+  padding: 0;
+}
+/* line 16, ../../../app/stylesheets/partials/_top-menu.sass */
+#account li {
+  float: left;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  margin-right: 8px;
+}
+
+/* line 23, ../../../app/stylesheets/partials/_top-menu.sass */
+#loggedas {
+  float: right;
+  margin-right: 10px;
+}
+/* line 26, ../../../app/stylesheets/partials/_top-menu.sass */
+#loggedas a {
+  margin-left: 5px;
+}
+
+/* line 1, ../../../app/stylesheets/partials/_header.sass */
+#header {
+  background: url("/images/bottom_shine.png") repeat-x scroll left bottom black;
+  padding: 1em 1em 2.3em;
+  color: #f8f8f8;
+  height: 3.5em;
+  margin: 0;
+  position: relative;
+}
+/* line 8, ../../../app/stylesheets/partials/_header.sass */
+#header h1 {
+  font-family: Verdana, sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  color: white;
+}
+
+/* Los tabs */
+/* line 15, ../../../app/stylesheets/partials/_header.sass */
+#main-menu {
+  margin-right: 0;
+  right: 6px;
+  bottom: 0;
+  left: 6px;
+  position: absolute;
+  font-size: 1em;
+}
+/* line 22, ../../../app/stylesheets/partials/_header.sass */
+#main-menu ul {
+  margin: 0;
+  padding: 0;
+}
+/* line 25, ../../../app/stylesheets/partials/_header.sass */
+#main-menu ul li.selected {
+  background: #333333 none;
+}
+/* line 27, ../../../app/stylesheets/partials/_header.sass */
+#main-menu ul li.selected a, #main-menu ul li.selected a:hover {
+  border-color: #444444;
+  color: #d5d5d5;
+  font-weight: bold;
+}
+/* line 31, ../../../app/stylesheets/partials/_header.sass */
+#main-menu li {
+  background: url("/images/bottom_shine.png") repeat-x scroll left bottom black;
+  background-color: #111111;
+  border: solid 1px #333333;
+  border-width: 1px 1px 0px 0px;
+  font-size: 1em;
+  font-family: "Myriad Pro", "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+  margin: 0;
+  float: left;
+  list-style-type: none;
+  padding: 0.5em;
+}
+/* line 42, ../../../app/stylesheets/partials/_header.sass */
+#main-menu li a, #main-menu li a:hover {
+  text-decoration: none;
+  line-height: 20px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+  background: none;
+  color: #aaaaaa;
+  padding: 5px 10px;
+  font-weight: normal;
+}
+/* line 50, ../../../app/stylesheets/partials/_header.sass */
+#main-menu li:hover {
+  background: url("/images/bottom_shine.png") repeat-x scroll left bottom black;
+  background-color: #333333;
+  border-color: #555555;
+}
+/* line 54, ../../../app/stylesheets/partials/_header.sass */
+#main-menu li:hover a {
+  color: white;
+}
+/* line 56, ../../../app/stylesheets/partials/_header.sass */
+#main-menu li:first-child {
+  -khtml-border-radius-topleft: 5px;
+  -moz-border-radius-topleft: 5px;
+  -webkit-border-top-left-radius: 5px;
+}
+/* line 60, ../../../app/stylesheets/partials/_header.sass */
+#main-menu li:last-child {
+  -khtml-border-radius-topright: 5px;
+  -moz-border-radius-topright: 5px;
+  -webkit-border-top-right-radius: 5px;
+}
+
+/* line 1, ../../../app/stylesheets/partials/_main.sass */
+#main {
+  margin: 0;
+  background-color: #eeeeee;
+  background: none repeat scroll 0 0 transparent;
+}
+
+/* line 6, ../../../app/stylesheets/partials/_main.sass */
+#content {
+  min-height: 600px;
+  background: url("/images/shadow_top.png") repeat-x scroll left top white;
+  border-right: 1px solid white;
+  border-top: 1px solid white;
+  margin: 1em 1.4em 1em 1em;
+  padding: 6px 10px 10px;
+  z-index: 10;
+  overflow: auto;
+}
+
+/* line 1, ../../../app/stylesheets/partials/_tables.sass */
+.pagination {
+  margin-top: 8px;
+  font-size: 90%;
+  text-align: center;
+}
+
+/* line 6, ../../../app/stylesheets/partials/_tables.sass */
+.filters {
+  padding-bottom: 4px;
+}
+/* line 8, ../../../app/stylesheets/partials/_tables.sass */
+.filters h3 {
+  font-size: 0.9em;
+  font-weight: normal;
+  /*span
+   * +sprite-background("funnel-small.png", 100%, 50%)
+   * padding-bottom: 3px
+   * padding-left: 20px
+   * padding-top: 2px */
+}
+/* line 11, ../../../app/stylesheets/partials/_tables.sass */
+.filters h3 a {
+  padding-left: 2.2em;
+}
+/* line 18, ../../../app/stylesheets/partials/_tables.sass */
+.filters a:hover {
+  text-decoration: none;
+}
+/* line 20, ../../../app/stylesheets/partials/_tables.sass */
+.filters .filters-content {
+  border-top: 1px solid #e4e4e4;
+  padding: 10px;
+}
+/* line 23, ../../../app/stylesheets/partials/_tables.sass */
+.filters fieldset.buttons {
+  padding-top: 5px;
+}
+/* line 26, ../../../app/stylesheets/partials/_tables.sass */
+.filters ol li {
+  clear: none;
+  display: inline;
+  float: left;
+  padding-right: 5px;
+}
+/* line 31, ../../../app/stylesheets/partials/_tables.sass */
+.filters ol li label {
+  display: block;
+  clear: both;
+  float: none;
+  padding-bottom: 5px;
+  /* width:25% */
+  /* padding-top:.2em */
+}
+
+/* line 40, ../../../app/stylesheets/partials/_tables.sass */
+div.accordion {
+  font-size: 0.9em;
+  line-height: 1;
+  margin-bottom: 3px;
+}
+
+/* line 45, ../../../app/stylesheets/partials/_tables.sass */
+a.sort_link {
+  background: url('/images/sort-small.png?1241992434') no-repeat;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  padding-bottom: 3px;
+  background-position: 100% 50%;
+  padding-right: 16px;
+}
+
+/* line 53, ../../../app/stylesheets/partials/_tables.sass */
+table {
+  border: 1px solid #e4e4e4;
+  border-collapse: collapse;
+  margin-bottom: 4px;
+  width: 100%;
+  border-collapse: collapse;
+}
+/* line 60, ../../../app/stylesheets/partials/_tables.sass */
+table thead th {
+  background: url("/images/shadow_top.png") repeat-x scroll left center #cccccc;
+  border-color: #d5d5d5 #d5d5d5 #aaaaaa;
+  border-style: solid;
+  border-width: 1px;
+  font-size: 0.94em;
+  padding: 4px;
+  white-space: nowrap;
+  text-align: center;
+  color: #444444;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  font-weight: bold;
+}
+/* line 73, ../../../app/stylesheets/partials/_tables.sass */
+table thead th a {
+  border: medium none;
+  color: #444444;
+}
+/* line 77, ../../../app/stylesheets/partials/_tables.sass */
+table thead th a:hover {
+  color: #dddddd;
+  text-decoration: underline;
+}
+/* line 81, ../../../app/stylesheets/partials/_tables.sass */
+table tbody .odd {
+  background-color: white;
+}
+/* line 83, ../../../app/stylesheets/partials/_tables.sass */
+table tbody tr {
+  text-align: center;
+  white-space: nowrap;
+  background-color: #dddddd;
+}
+/* line 88, ../../../app/stylesheets/partials/_tables.sass */
+table tbody tr:hover {
+  background-color: #f8e6a4;
+}
+/* line 91, ../../../app/stylesheets/partials/_tables.sass */
+table tbody tr td {
+  text-align: center;
+  font-size: 0.9em;
+  vertical-align: middle;
+  padding: 4px;
+}
+/* line 97, ../../../app/stylesheets/partials/_tables.sass */
+table tbody tr td.actions a {
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  background: #222222 url(/images/alert-overlay.png) repeat-x;
+  display: inline-block;
+  padding: 5px 10px 6px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  line-height: 1;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  position: relative;
+  cursor: pointer;
+  visibility: hidden;
+  font-size: 0.8em;
+  font-weight: normal;
+}
+/* line 69, ../../../app/stylesheets/screen.sass */
+table tbody tr td.actions a:hover {
+  background-color: black;
+  color: white;
+}
+/* line 105, ../../../app/stylesheets/partials/_tables.sass */
+table tbody tr a {
+  color: #666666;
+}
+/* line 107, ../../../app/stylesheets/partials/_tables.sass */
+table tbody tr a:hover {
+  border-bottom: 1px dotted #999999;
+  color: #999999;
+  text-decoration: none;
+}

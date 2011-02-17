@@ -1,6 +1,13 @@
-#user_nav
-	b = "#{current_usuario.nombre} #{current_usuario.apellido} | "
-	= link_to 'Mi cuenta', edit_usuario_path(current_usuario)
-	= " | "
-	= link_to "Salir", destroy_usuario_session_path
+#account
+  ul
+    li = link_to 'Mi cuenta', edit_usuario_path(current_usuario)
+    li = link_to "Salir", destroy_usuario_session_path
+
+#loggedas
+  = "Conectado como"
+  = link_to "#{current_usuario.nombre} #{current_usuario.apellido}", edit_usuario_path(current_usuario)
+
+/ul
+/  li
+/    a href="#" Configuración
 

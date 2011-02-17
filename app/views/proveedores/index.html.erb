@@ -1,8 +1,12 @@
-<h1>Listado de proveedores</h1>
+<div class="contextual">
+  <%= link_to 'Nuevo proveedor', new_proveedor_path %>
+</div>
+
+<h1>Proveedores</h1>
 
 <div class="accordion filters">
-  <h3><a href="#">Fitrar resultados</a></h3>
-  <div>
+  <h3><a href="#">Fitros</a></h3>
+  <div class="filters-content">
   <%= semantic_form_for @search do |f| %>
 	  <%= f.inputs do %>
 		  <%= f.input :razon_social_contains %>
@@ -18,8 +22,8 @@
 <table>
 	<thead>
 		<tr>
-		  <th><%= sort_link @search, :razon_social %></th>
-		  <th><%= sort_link @search, :cuit %></th>
+		  <th title="ordenar por razón social"><%= sort_link @search, :razon_social %></th>
+		  <th title="ordenar por CUIT"><%= sort_link @search, :cuit %></th>
 		  <th>Teléfono</th>
 		  <th>Representante</th>
 		  <th></th>
@@ -32,18 +36,14 @@
  		  <td><%= proveedor.cuit %></td>
 		  <td><%= proveedor.telefono %></td>
       <td><%= proveedor.representante %></td>
-		  <td>
-		  	<%= link_to 'Ver', proveedor, :class => 'show' %>
-		  	<%= link_to 'Editar', edit_proveedor_path(proveedor) %>
-		  	<%= link_to 'Eliminar', proveedor, :confirm => 'Esta seguro?', :method => :delete %>
+		  <td class="actions">
+	    	<%= link_to 'Ver', proveedor, :class => 'show' %>
+	    	<%= link_to 'Editar', edit_proveedor_path(proveedor) %>
+	    	<%= link_to 'Eliminar', proveedor, :confirm => 'Esta seguro?', :method => :delete %>
 		  </td>
 		</tr>
 	<% end %>
 	</tbody>
 </table>
 <%= will_paginate @proveedores %>
-
-<br />
-
-<%= link_to 'Nuevo proveedor', new_proveedor_path %>
 

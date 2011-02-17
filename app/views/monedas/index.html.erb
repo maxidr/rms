@@ -1,9 +1,12 @@
-<h1>Listado de monedas</h1>
+<div class="contextual">
+  <%= link_to 'Nueva moneda', new_moneda_path %>
+</div>
+<h1>Tipos de moneda</h1>
 
 <table>
 	<thead>
 		<tr>
-		  <th>Simbolo</th>
+		  <th>Símbolo</th>
 		  <th>Nombre</th>
 		  <th></th>
 		</tr>
@@ -22,8 +25,4 @@
 	<% end %>
 	</tbody>
 </table>
-
-<br />
-
-<%= link_to 'Nueva moneda', new_moneda_path %>
 

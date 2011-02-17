@@ -1,4 +1,8 @@
-<h1>Listado de requerimientos</h1>
+<div class="contextual">
+  <%= link_to 'Nuevo requerimiento', new_requerimiento_path %>
+</div>
+
+<h1>Requerimientos</h1>
 
 <% if @requerimientos.empty? %>
 	<p>Aun no hay requerimientos cargados.</p>
@@ -26,7 +30,7 @@
 					<td><%= requerimiento.sector %></td>
 					<td><%= requerimiento.rubro %></td>
 					<td><%= requerimiento.estado %></td>
-					<td><%= link_to 'Ver', requerimiento %>
+					<td class="actions"><%= link_to 'Ver', requerimiento %>
 					<% if can? :edit, requerimiento %>
 						<%= link_to 'Editar', edit_requerimiento_path(requerimiento) %>
 					<% end %>
@@ -35,8 +39,6 @@
 			<% end %>
 		</tbody>
 	</table>
-
+  <%= will_paginate @requerimientos %>
 <% end %>
-
-<%= link_to 'Nuevo requerimiento', new_requerimiento_path %>
 

@@ -11,5 +11,18 @@ $(document).ready(function() {
       active: false,
       autoHeight: true
     });
+    // Zebra tables
+    $("tr:nth-child(odd)").addClass("odd");
+
+    $("tr").hover(
+      function(){
+        $(this).children("td.actions").children().css("visibility", "visible");
+      }, function(){
+        $(this).children("td.actions").children().css("visibility", "hidden");
+    });
+
+//    $("td.actions a:first").button({
+//      icons: {primary: "ui-icon-locked"}, label: "ver"
+//    });
 });
 

@@ -1,0 +1,111 @@
+.pagination
+  margin-top: 8px
+  font-size: 90%
+  text-align: center
+
+.filters
+  padding-bottom: 4px
+  h3
+    font-size: 0.9em
+    font-weight: normal
+    a
+      padding-left: 2.2em
+    /*span
+      +sprite-background("funnel-small.png", 100%, 50%)
+      padding-bottom: 3px
+      padding-left: 20px
+      padding-top: 2px*/
+  a:hover
+    text-decoration: none
+  .filters-content
+    border-top: 1px solid #E4E4E4
+    padding: 10px
+  fieldset.buttons
+    padding-top: 5px
+  ol
+    li
+      clear: none
+      display: inline
+      float: left
+      padding-right: 5px
+      label
+        display: block
+        clear: both
+        float: none
+        padding-bottom: 5px
+        /* width:25% */
+        /* padding-top:.2em */
+
+
+div.accordion
+  font-size: 0.9em
+  line-height: 1
+  margin-bottom: 3px
+
+a.sort_link
+  +sprite-background("sort-small.png")
+  padding-bottom: 3px
+  background-position: 100% 50%
+  padding-right: 16px
+
+
+
+table
+  border: 1px solid #E4E4E4
+  border-collapse: collapse
+  margin-bottom: 4px
+  width: 100%
+  border-collapse: collapse
+  thead
+    th
+      background: url("/images/shadow_top.png") repeat-x scroll left center #CCC
+      border-color: #D5D5D5 #D5D5D5 #AAA
+      border-style: solid
+      border-width: 1px
+      font-size: 0.94em
+      padding: 4px
+      white-space: nowrap
+      text-align: center
+      //color: #484848
+      color: #444
+      text-shadow: 1px 1px 1px rgba(0,0,0,0.3)
+      font-weight: bold
+      a
+        border: medium none
+        color: #444
+        //font-weight: normal
+        &:hover
+          color: #DDD
+          text-decoration: underline
+  tbody
+    .odd
+      background-color: white
+    tr
+      text-align: center
+      white-space: nowrap
+      background-color: lighten(#D5D5D5, 3%)
+      //background-color: lighten(#666699, 20%)
+      &:hover
+        //background-color: #FFFFDD
+        background-color: lighten(#EEC015, 30%)
+      td
+        text-align: center
+        font-size: 0.90em
+        vertical-align: middle
+        padding: 4px
+        &.actions
+          a
+            @include boton
+            visibility: hidden
+            font-size: 0.8em
+            font-weight: normal
+            //color: #FFFFFF
+            //text-decoration: none
+            //border: none
+      a
+        color: #666
+        &:hover
+          border-bottom: 1px dotted #999
+          color: #999
+          text-decoration: none
+

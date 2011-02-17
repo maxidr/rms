@@ -1,4 +1,8 @@
-<h1>Listado de empresas</h1>
+<div class="contextual">
+  <%= link_to 'Nueva empresa', new_empresa_path %>
+</div>
+
+<h1>Empresas</h1>
 
 <table>
 	<thead>
@@ -20,8 +24,4 @@
 	<% end %>
 	</tbody>
 </table>
-
-<br />
-
-<%= link_to 'Nueva empresa', new_empresa_path %>
 

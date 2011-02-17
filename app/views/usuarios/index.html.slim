@@ -1,10 +1,13 @@
+.contextual
+  = link_to 'Nuevo usuario', new_usuario_path
+
 h1 Usuarios
 
 table
 	thead
 		tr
 			th Identificador
-			th Nombre			
+			th Nombre
 			th Sector
 			th Rol
 			th
@@ -21,6 +24,4 @@ table
 					= link_to 'Eliminar', usuario, :confirm => 'Esta seguro?', :method => :delete
 
 br
-
-= link_to 'Nuevo usuario', new_usuario_path
 
