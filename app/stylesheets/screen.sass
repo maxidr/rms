@@ -7,6 +7,8 @@
 @import compass/reset
 @import "compass/utilities/sprites"
 @import "compass/utilities/sprites/sprite-img"
+@import "compass/css3/border-radius"
+
 
 $fondo: url("/images/bottom_shine.png") repeat-x scroll left bottom #000
 
@@ -42,6 +44,7 @@ h1, h2
 
 #wrapper
   background-color: #333
+  min-width: 900px
 
 @mixin icon-add
   +sprite-background("plus-circle.png", auto)
@@ -50,25 +53,34 @@ h1, h2
   a
     padding-left: 20px
 
-@mixin boton
+@mixin boton($color: #222)
   -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5)
   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5)
   text-shadow: 0 -1px 1px rgba(0,0,0,0.25)
   border-bottom: 1px solid rgba(0,0,0,0.25)
-  background: #222 url(/images/alert-overlay.png) repeat-x
+  +sprite-background("button_bg.png", auto, auto)
+  background-repeat: repeat-x
+  background-color: $color
+  //background: $color url(/images/button_bg.png) repeat-x
   display: inline-block
   padding: 5px 10px 6px
   color: #fff
   text-decoration: none
   font-weight: bold
   line-height: 1
-  -moz-border-radius: 5px
-  -webkit-border-radius: 5px
+  +border-radius(15px)
   position: relative
   cursor: pointer
   &:hover
-    background-color: #000
+    background-color: lighten($color, 10%)
     color: #FFF
+    text-decoration: none
+
+.boton
+  +boton(green)
+  margin: 10px 0
+  font-size: 0.9em
+  font-weight: normal
 
 .icon-sort
   +sprite-background("sort-alphabet.png")
@@ -85,4 +97,6 @@ h1, h2
 @import "partials/main"
 // Estilos para las tablas, filtros y paginación
 @import "partials/tables"
+@import "partials/form"
+@import "partials/show"
 

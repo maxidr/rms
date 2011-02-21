@@ -3,22 +3,22 @@ class UsuariosController < ApplicationController
 
   load_and_authorize_resource
 
+  respond_to :html, :xml, :js
+
   # GET /usuarios
   # GET /usuarios.xml
   def index
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @usuarios }
-    end
+    respond_with @usuarios = @usuarios.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /usuarios/1
   # GET /usuarios/1.xml
   def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @usuario }
-    end
+    respond_with @usuario
+#    respond_to do |format|
+#      format.html # show.html.erb
+#      format.xml  { render :xml => @usuario }
+#    end
   end
 
   # GET /usuarios/new
@@ -79,15 +79,15 @@ class UsuariosController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   private
 
-	
+
   def load_sector_and_rol
   	if can? :change_rol_and_sector, current_usuario
 			@usuario.sector_id = params[:usuario][:sector_id]
 			@usuario.rol = params[:usuario][:rol]
-		end  	
+		end
   end
 end
 

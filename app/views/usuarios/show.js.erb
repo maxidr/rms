@@ -1,0 +1,6 @@
+$("#user_data")
+  .hide()
+  .empty()
+  .append("<%= escape_javascript( render 'show' )%>")
+  .dialog({modal: true});
+

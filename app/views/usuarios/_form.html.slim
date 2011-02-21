@@ -12,8 +12,8 @@
 			= f.input :rol, :as => :select, :collection => Usuario::ROLES, :input_html => { :disabled => true }
 		- if @usuario.persisted?
 			= f.input :password, :label => "Contraseña", :hint => "dejar en blanco si no desea cambiarla", :required => false
-		- else 
+		- else
 			= f.input :password, :label => "Contraseña"
-		= f.input :password_confirmation, :label => "Confirmar contraseña", :hint => "ingrese la contraseña nuevamente para confirmar"
+		= f.input :password_confirmation, :label => "Confirmar contraseña", :hint => "Ingrese la contraseña nuevamente para confirmar"
 	= f.buttons
 

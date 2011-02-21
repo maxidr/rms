@@ -9,7 +9,7 @@ class EmpresasController < ApplicationController
   # GET /empresas
   # GET /empresas.xml
   def index
-    respond_with @empresas
+    respond_with @empresas = @empresas.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /empresas/1

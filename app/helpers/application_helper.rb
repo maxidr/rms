@@ -3,7 +3,6 @@ module ApplicationHelper
     model_name = model_name.to_s
     display_name ||= model_name.capitalize
     link = link_to display_name, url_for(:controller => model_name, :only_path => false)
-    logger.debug("Nombre del controlador: #{controller_name}")
     if model_name == controller_name
       item = "<li class='selected'>"
     else

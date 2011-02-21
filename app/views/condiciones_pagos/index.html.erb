@@ -17,7 +17,7 @@
 		<tr>
 		  <td><%= condicion_pago.nombre %></td>
 		  <td><%= condicion_pago.descripcion %></td>
-		  <td>
+		  <td class="actions">
 				<%= link_to 'Ver', condicion_pago %>
 				<%= link_to 'Editar', edit_condicion_pago_path(condicion_pago) %>
 				<%= link_to 'Eliminar', condicion_pago, :confirm => 'Está seguro?', :method => :delete %>
@@ -26,6 +26,5 @@
 	<% end %>
 	</tbody>
 </table>
-
-<br />
+<%= will_paginate @condiciones_pagos %>
 

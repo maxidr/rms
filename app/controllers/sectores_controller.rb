@@ -8,7 +8,9 @@ class SectoresController < ApplicationController
 
   # GET /sectores
   def index
-		respond_with @sectores
+		respond_with @sectores = @sectores.paginate(:page => params[:page], :per_page => 10)
+		#@search = Proveedor.search(params[:search])
+		#respond_with @proveedores = @search.paginate(:page => params[:page], :per_page => 15)
   end
 
   # GET /sectores/1

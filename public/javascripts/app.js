@@ -21,8 +21,18 @@ $(document).ready(function() {
         $(this).children("td.actions").children().css("visibility", "hidden");
     });
 
-//    $("td.actions a:first").button({
-//      icons: {primary: "ui-icon-locked"}, label: "ver"
-//    });
+    // autogrow text area
+    $('textarea').ata();
+
+    // El "fieldset.inputs li.text div" se debe a que el plugin de jquery envuelve el textarea con un div
+    // y evita que el evento focus funcione
+    $("fieldset.inputs :input, fieldset.inputs li.text div").live('focusin', function(){
+        $(this).parent("li").addClass("highlight");
+    });
+
+    $("fieldset.inputs :input, fieldset.inputs li.text div").live('focusout', function(){
+        $(this).parent("li").removeClass("highlight")
+    });
+
 });
 

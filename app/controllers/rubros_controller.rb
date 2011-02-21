@@ -9,7 +9,7 @@ class RubrosController < ApplicationController
   # GET /rubros
   # GET /rubros.xml
   def index
-    respond_with @rubros
+    respond_with @rubros = @rubros.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /rubros/1

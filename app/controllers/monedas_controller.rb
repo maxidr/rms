@@ -9,7 +9,7 @@ class MonedasController < ApplicationController
   # GET /monedas
   # GET /monedas.xml
   def index
-  	respond_with @monedas
+  	respond_with @monedas = @monedas.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /monedas/1

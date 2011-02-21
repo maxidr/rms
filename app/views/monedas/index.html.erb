@@ -16,7 +16,7 @@
 		<tr>
 		  <td><%= moneda.simbolo %></td>
 		  <td><%= moneda.nombre %></td>
-		  <td>
+		  <td class="actions">
 		  	<%= link_to 'Ver', moneda %>
 				<%= link_to 'Editar', edit_moneda_path(moneda) %>
 				<%= link_to 'Eliminar', moneda, :confirm => 'Are you sure?', :method => :delete %>
@@ -25,4 +25,5 @@
 	<% end %>
 	</tbody>
 </table>
+<%= will_paginate @monedas %>
 

@@ -9,7 +9,7 @@ class CondicionesPagosController < ApplicationController
   # GET /condiciones_pagos
   # GET /condiciones_pagos.xml
   def index
-		respond_with @condiciones_pagos
+		respond_with @condiciones_pagos = @condiciones_pagos.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /condiciones_pagos/1

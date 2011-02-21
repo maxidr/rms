@@ -18,10 +18,10 @@ table
 				td = usuario.nombre_completo
 				td = usuario.sector
 				td = usuario.rol
-				td
-					= link_to 'Ver', usuario
+				td.actions
+					= link_to 'Ver', usuario, :remote => true
 					= link_to 'Editar', edit_usuario_path(usuario)
 					= link_to 'Eliminar', usuario, :confirm => 'Esta seguro?', :method => :delete
 
-br
+#user_data
 

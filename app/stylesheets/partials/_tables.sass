@@ -3,7 +3,7 @@
   font-size: 90%
   text-align: center
 
-.filters
+#filters
   padding-bottom: 4px
   h3
     font-size: 0.9em
@@ -21,6 +21,9 @@
     border-top: 1px solid #E4E4E4
     padding: 10px
   fieldset.buttons
+    margin: 0
+    padding: 0
+    padding-left: 5px
     padding-top: 5px
   ol
     li
@@ -28,11 +31,16 @@
       display: inline
       float: left
       padding-right: 5px
+      input
+        width: 100%
       label
+        padding: 0
+        margin: 0
         display: block
         clear: both
         float: none
         padding-bottom: 5px
+        width: auto
         /* width:25% */
         /* padding-top:.2em */
 
@@ -92,16 +100,16 @@ table
         text-align: center
         font-size: 0.90em
         vertical-align: middle
-        padding: 4px
+        padding: 2px
         &.actions
           a
             @include boton
             visibility: hidden
             font-size: 0.8em
             font-weight: normal
-            //color: #FFFFFF
-            //text-decoration: none
-            //border: none
+            //margin-left: 5px
+            text-decoration: none
+            border: none
       a
         color: #666
         &:hover

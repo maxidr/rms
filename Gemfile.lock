@@ -42,6 +42,8 @@ GEM
       warden (~> 1.0.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    fancy-buttons (1.0.6)
+      compass (= 0.10.6)
     formtastic (1.2.3)
       actionpack (>= 2.3.7)
       activesupport (>= 2.3.7)
@@ -115,6 +117,7 @@ DEPENDENCIES
   cancan
   compass (>= 0.10.6)
   devise
+  fancy-buttons
   formtastic (~> 1.2.3)
   meta_search
   rails (= 3.0.3)

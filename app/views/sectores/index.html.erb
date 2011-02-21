@@ -25,7 +25,7 @@
 			  <td><%= sector.responsables.size %></td>
 		  <% end -%>
 		  <td><%= sector.email %></td>
-		  <td>
+		  <td class="actions">
 		  	<%= link_to 'Ver', sector %>
 		  	<%= link_to 'Editar', edit_sector_path(sector) %>
 		  	<%= link_to 'Eliminar', sector, :confirm => 'Esta seguro?', :method => :delete %>
@@ -34,4 +34,5 @@
 	<% end %>
 	</tbody>
 </table>
+<%= will_paginate @sectores %>
 

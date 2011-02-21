@@ -15,7 +15,7 @@
 	<% @empresas.each do |empresa| %>
 		<tr>
 		  <td><%= empresa.nombre %></td>
-		  <td>
+		  <td class="actions">
 		  	<%= link_to 'Detalles', empresa %>
 				<%= link_to 'Editar', edit_empresa_path(empresa) %>
 				<%= link_to 'Eliminar', empresa, :confirm => 'Esta seguro?', :method => :delete %>
@@ -24,4 +24,5 @@
 	<% end %>
 	</tbody>
 </table>
+<%= will_paginate @empresas %>
 
