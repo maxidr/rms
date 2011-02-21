@@ -46,13 +46,15 @@
             <% unless current_usuario.admin? %>
               <li><%= link_to 'Nuevo requerimiento', new_requerimiento_path %></li>
             <% end %>
-            <%= tab :sectores %>
-            <%= tab :rubros %>
-            <%= tab :empresas %>
-            <%= tab :proveedores %>
-            <%= tab :monedas %>
-            <%= tab :condiciones_pagos, 'Condiciones de pago' %>
-            <%= tab :usuarios %>
+            <%- if current_usuario.admin? %>
+              <%= tab :sectores %>
+              <%= tab :rubros %>
+              <%= tab :empresas %>
+              <%= tab :proveedores %>
+              <%= tab :monedas %>
+              <%= tab :condiciones_pagos, 'Condiciones de pago' %>
+              <%= tab :usuarios %>
+            <% end -%>
           </ul>
          <% end %>
       </div>
