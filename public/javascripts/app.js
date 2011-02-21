@@ -26,7 +26,7 @@ $(document).ready(function() {
 
     // El "fieldset.inputs li.text div" se debe a que el plugin de jquery envuelve el textarea con un div
     // y evita que el evento focus funcione
-    $("fieldset.inputs :input, fieldset.inputs li.text div").live('focusin', function(){
+    $("fieldset.inputs :input, fieldset.inputs li.text div, .csleft").live('focusin', function(){
         $(this).parent("li").addClass("highlight");
     });
 

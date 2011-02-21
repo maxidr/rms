@@ -14,10 +14,9 @@
 	<tbody>
 	<% @monedas.each do |moneda| %>
 		<tr>
-		  <td><%= moneda.simbolo %></td>
-		  <td><%= moneda.nombre %></td>
+		  <td><%= link_to moneda.simbolo, edit_moneda_path(moneda), :title => "Editar #{moneda.nombre}" %></td>
+		  <td><%= link_to moneda.nombre, edit_moneda_path(moneda), :title => "Editar #{moneda.nombre}" %></td>
 		  <td class="actions">
-		  	<%= link_to 'Ver', moneda %>
 				<%= link_to 'Editar', edit_moneda_path(moneda) %>
 				<%= link_to 'Eliminar', moneda, :confirm => 'Are you sure?', :method => :delete %>
 			</td>

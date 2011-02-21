@@ -1,12 +1,19 @@
+$li-width: 115px
 dl
   line-height: 1.6em
-  //padding-top: 5px
   padding-left: 10px
   dt
     color: #999
     float: left
+    display: block
     margin: 0
-    width: 115px
+    width: $li-width
+    //font-style: italic
   dd
     margin: 0
+    display: block
+    clear: right
+    ul
+      padding-left: $li-width
+      list-style: disc inside none
 

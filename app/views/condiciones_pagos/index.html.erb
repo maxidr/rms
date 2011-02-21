@@ -15,10 +15,12 @@
 	<tbody>
 	<% @condiciones_pagos.each do |condicion_pago| %>
 		<tr>
-		  <td><%= condicion_pago.nombre %></td>
-		  <td><%= condicion_pago.descripcion %></td>
+		  <td>
+		    <%= link_to condicion_pago.nombre, edit_condicion_pago_path(condicion_pago), :title => "Editar #{condicion_pago.nombre}" %>
+		  <td>
+		    <%= condicion_pago.descripcion %>
+		  </td>
 		  <td class="actions">
-				<%= link_to 'Ver', condicion_pago %>
 				<%= link_to 'Editar', edit_condicion_pago_path(condicion_pago) %>
 				<%= link_to 'Eliminar', condicion_pago, :confirm => 'Está seguro?', :method => :delete %>
 		  </td>

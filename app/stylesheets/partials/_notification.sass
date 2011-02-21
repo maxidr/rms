@@ -1,0 +1,25 @@
+@import "compass/css3/box-shadow"
+
+@mixin notification_area($icon, $bg_color, $border_color)
+  padding: 10px
+  margin-bottom: 5px
+  +border-radius(5px)
+  border: 3px solid $border_color
+  +sprite-background($icon, auto)
+  background-color: $bg_color
+  background-position: 15px center
+  +box-shadow()
+  &:hover
+    cursor: pointer
+  p
+    padding-left: 30px
+    strong
+      font-weight: bold
+      padding-right: 5px
+.warning
+  +notification_area("exclamation-diamond.png", lighten(yellow, 40%), lighten(yellow, 30%))
+.information
+  +notification_area("tick.png", lighten(green, 65%), lighten(green, 50%))
+.failure
+  +notification_area("exclamation-red.png", lighten(red, 40%), lighten(red, 30%))
+

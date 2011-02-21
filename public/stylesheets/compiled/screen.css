@@ -108,13 +108,13 @@ h1, h2 {
   min-width: 900px;
 }
 
-/* line 79, ../../../app/stylesheets/screen.sass */
+/* line 81, ../../../app/stylesheets/screen.sass */
 .boton {
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: url('/images/button_bg.png?1298009547') no-repeat;
+  background: url('/images/button_bg.png?1298251188') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -123,8 +123,6 @@ h1, h2 {
   display: inline-block;
   padding: 5px 10px 6px;
   color: white;
-  text-decoration: none;
-  font-weight: bold;
   line-height: 1;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
@@ -134,32 +132,36 @@ h1, h2 {
   border-radius: 15px;
   position: relative;
   cursor: pointer;
-  margin: 10px 0;
+  font-size: 0.9em;
+  font-weight: normal;
+  text-decoration: none;
+  border: none;
+  margin-top: 10px;
   font-size: 0.9em;
   font-weight: normal;
 }
-/* line 74, ../../../app/stylesheets/screen.sass */
+/* line 76, ../../../app/stylesheets/screen.sass */
 .boton:hover {
   background-color: #00b300;
   color: white;
   text-decoration: none;
 }
 
-/* line 85, ../../../app/stylesheets/screen.sass */
+/* line 87, ../../../app/stylesheets/screen.sass */
 .icon-sort {
-  background: url('/images/sort-alphabet.png?1241992434') no-repeat;
+  background: url('/images/sort-alphabet.png?1298251188') no-repeat;
   width: 32px;
   height: 32px;
   overflow: hidden;
 }
 
-/* line 88, ../../../app/stylesheets/screen.sass */
+/* line 90, ../../../app/stylesheets/screen.sass */
 .contextual {
   float: right;
   font-size: 0.9em;
   margin-top: 5px;
   white-space: nowrap;
-  background: url('/images/plus-circle.png?1242162194') no-repeat;
+  background: url('/images/plus-circle.png?1298251188') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -391,7 +393,7 @@ div.accordion {
 
 /* line 53, ../../../app/stylesheets/partials/_tables.sass */
 a.sort_link {
-  background: url('/images/sort-small.png?1241992434') no-repeat;
+  background: url('/images/sort-small.png?1298251188') no-repeat;
   width: 32px;
   height: 32px;
   overflow: hidden;
@@ -459,7 +461,7 @@ table tbody tr td.actions a {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: url('/images/button_bg.png?1298009547') no-repeat;
+  background: url('/images/button_bg.png?1298251188') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -468,8 +470,6 @@ table tbody tr td.actions a {
   display: inline-block;
   padding: 5px 10px 6px;
   color: white;
-  text-decoration: none;
-  font-weight: bold;
   line-height: 1;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
@@ -479,13 +479,17 @@ table tbody tr td.actions a {
   border-radius: 15px;
   position: relative;
   cursor: pointer;
+  font-size: 0.9em;
+  font-weight: normal;
+  text-decoration: none;
+  border: none;
   visibility: hidden;
   font-size: 0.8em;
   font-weight: normal;
   text-decoration: none;
   border: none;
 }
-/* line 74, ../../../app/stylesheets/screen.sass */
+/* line 76, ../../../app/stylesheets/screen.sass */
 table tbody tr td.actions a:hover {
   background-color: #3c3c3c;
   color: white;
@@ -550,73 +554,28 @@ form.formtastic fieldset.buttons ol li {
   width: auto;
   float: left;
 }
-/* line 8, ../../../app/stylesheets/partials/_form.sass */
-form.formtastic fieldset.inputs ol li {
-  padding: 5px;
+/* line 9, ../../../app/stylesheets/partials/_form.sass */
+form.formtastic fieldset.comboselect {
+  display: inline;
+  width: auto;
 }
-/* line 10, ../../../app/stylesheets/partials/_form.sass */
-form.formtastic fieldset.inputs ol li input, form.formtastic fieldset.inputs ol li textarea {
-  border-color: #7c7c7c #c3c3c3 #dddddd;
-  border-style: solid;
-  border-width: 1px;
-  color: #333333;
-  font-size: 1em;
-  margin: 0;
-  padding: 2px 0;
-  background: url('/images/shadow.gif?1298037306') no-repeat;
-  width: none;
-  height: none;
-  overflow: hidden;
-  background-repeat: repeat-x;
-  background-attachment: center;
-  background-position: top;
-  background-color: white;
+/* line 12, ../../../app/stylesheets/partials/_form.sass */
+form.formtastic fieldset.comboselect .csleft {
+  width: 200px;
 }
-/* line 24, ../../../app/stylesheets/partials/_form.sass */
-form.formtastic fieldset.inputs ol li input:focus, form.formtastic fieldset.inputs ol li textarea:focus {
-  outline: none;
+/* line 14, ../../../app/stylesheets/partials/_form.sass */
+form.formtastic fieldset.comboselect fieldset {
+  width: auto;
+  padding: 0 5px;
 }
-/* line 28, ../../../app/stylesheets/partials/_form.sass */
-form.formtastic fieldset.inputs ol li abbr {
-  color: red;
-  padding-left: 10px;
-}
-/* line 32, ../../../app/stylesheets/partials/_form.sass */
-form.formtastic fieldset.inputs ol li.error input, form.formtastic fieldset.inputs ol li.error textarea {
-  background-color: #ffe3e3;
-}
-/* line 34, ../../../app/stylesheets/partials/_form.sass */
-form.formtastic fieldset.inputs ol li p.inline-errors {
-  color: #ff3333;
-  font-size: 0.9em;
-  padding-top: 4px;
-}
-/* line 38, ../../../app/stylesheets/partials/_form.sass */
-form.formtastic fieldset.inputs ol li.highlight {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
-}
-/* line 40, ../../../app/stylesheets/partials/_form.sass */
-form.formtastic fieldset.inputs ol li .inline-hints {
-  font-style: italic;
-  font-size: 0.8em;
-  padding-top: 4px;
-}
-/* line 44, ../../../app/stylesheets/partials/_form.sass */
-form.formtastic fieldset.buttons {
-  padding-top: 5px;
-}
-/* line 47, ../../../app/stylesheets/partials/_form.sass */
-form.formtastic fieldset.buttons ol li input {
+/* line 17, ../../../app/stylesheets/partials/_form.sass */
+form.formtastic fieldset.comboselect fieldset input.csadd {
+  margin-bottom: 5px;
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: url('/images/button_bg.png?1298009547') no-repeat;
+  background: url('/images/button_bg.png?1298251188') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -625,8 +584,146 @@ form.formtastic fieldset.buttons ol li input {
   display: inline-block;
   padding: 5px 10px 6px;
   color: white;
+  line-height: 1;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -o-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -khtml-border-radius: 15px;
+  border-radius: 15px;
+  position: relative;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: normal;
   text-decoration: none;
-  font-weight: bold;
+  border: none;
+  padding: 3px 6px 4px;
+}
+/* line 76, ../../../app/stylesheets/screen.sass */
+form.formtastic fieldset.comboselect fieldset input.csadd:hover {
+  background-color: #00b300;
+  color: white;
+  text-decoration: none;
+}
+/* line 21, ../../../app/stylesheets/partials/_form.sass */
+form.formtastic fieldset.comboselect fieldset input.csremove {
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  background: url('/images/button_bg.png?1298251188') no-repeat;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  background-repeat: repeat-x;
+  background-color: green;
+  display: inline-block;
+  padding: 5px 10px 6px;
+  color: white;
+  line-height: 1;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -o-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -khtml-border-radius: 15px;
+  border-radius: 15px;
+  position: relative;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: normal;
+  text-decoration: none;
+  border: none;
+  padding: 3px 11px 4px;
+}
+/* line 76, ../../../app/stylesheets/screen.sass */
+form.formtastic fieldset.comboselect fieldset input.csremove:hover {
+  background-color: #00b300;
+  color: white;
+  text-decoration: none;
+}
+/* line 24, ../../../app/stylesheets/partials/_form.sass */
+form.formtastic fieldset.comboselect .csright {
+  width: 200px;
+}
+/* line 26, ../../../app/stylesheets/partials/_form.sass */
+form.formtastic fieldset.inputs ol li {
+  padding: 5px;
+}
+/* line 28, ../../../app/stylesheets/partials/_form.sass */
+form.formtastic fieldset.inputs ol li input, form.formtastic fieldset.inputs ol li textarea {
+  border-color: #7c7c7c #c3c3c3 #dddddd;
+  border-style: solid;
+  border-width: 1px;
+  color: #333333;
+  font-size: 1em;
+  margin: 0;
+  padding: 2px 0;
+  background: url('/images/shadow.gif?1298251188') no-repeat;
+  width: none;
+  height: none;
+  overflow: hidden;
+  background-repeat: repeat-x;
+  background-attachment: center;
+  background-position: top;
+  background-color: white;
+}
+/* line 42, ../../../app/stylesheets/partials/_form.sass */
+form.formtastic fieldset.inputs ol li input:focus, form.formtastic fieldset.inputs ol li textarea:focus {
+  outline: none;
+}
+/* line 46, ../../../app/stylesheets/partials/_form.sass */
+form.formtastic fieldset.inputs ol li.boolean label input {
+  margin-right: 5px;
+}
+/* line 48, ../../../app/stylesheets/partials/_form.sass */
+form.formtastic fieldset.inputs ol li abbr {
+  color: red;
+  padding-left: 10px;
+}
+/* line 52, ../../../app/stylesheets/partials/_form.sass */
+form.formtastic fieldset.inputs ol li.error input, form.formtastic fieldset.inputs ol li.error textarea {
+  background-color: #ffe3e3;
+}
+/* line 54, ../../../app/stylesheets/partials/_form.sass */
+form.formtastic fieldset.inputs ol li p.inline-errors {
+  color: #ff3333;
+  font-size: 0.9em;
+  padding-top: 4px;
+}
+/* line 58, ../../../app/stylesheets/partials/_form.sass */
+form.formtastic fieldset.inputs ol li.highlight {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+}
+/* line 60, ../../../app/stylesheets/partials/_form.sass */
+form.formtastic fieldset.inputs ol li .inline-hints {
+  font-style: italic;
+  font-size: 0.8em;
+  padding-top: 4px;
+}
+/* line 64, ../../../app/stylesheets/partials/_form.sass */
+form.formtastic fieldset.buttons {
+  padding-top: 5px;
+}
+/* line 67, ../../../app/stylesheets/partials/_form.sass */
+form.formtastic fieldset.buttons ol li input {
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  background: url('/images/button_bg.png?1298251188') no-repeat;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  background-repeat: repeat-x;
+  background-color: green;
+  display: inline-block;
+  padding: 5px 10px 6px;
+  color: white;
   line-height: 1;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
@@ -641,23 +738,19 @@ form.formtastic fieldset.buttons ol li input {
   text-decoration: none;
   border: none;
 }
-/* line 74, ../../../app/stylesheets/screen.sass */
+/* line 76, ../../../app/stylesheets/screen.sass */
 form.formtastic fieldset.buttons ol li input:hover {
   background-color: #00b300;
   color: white;
   text-decoration: none;
 }
-/* line 53, ../../../app/stylesheets/partials/_form.sass */
-form.formtastic fieldset.buttons ol li input:hover {
-  color: white;
-}
-/* line 55, ../../../app/stylesheets/partials/_form.sass */
+/* line 69, ../../../app/stylesheets/partials/_form.sass */
 form.formtastic fieldset.buttons ol li a {
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: url('/images/button_bg.png?1298009547') no-repeat;
+  background: url('/images/button_bg.png?1298251188') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -666,8 +759,6 @@ form.formtastic fieldset.buttons ol li a {
   display: inline-block;
   padding: 5px 10px 6px;
   color: white;
-  text-decoration: none;
-  font-weight: bold;
   line-height: 1;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
@@ -677,29 +768,33 @@ form.formtastic fieldset.buttons ol li a {
   border-radius: 15px;
   position: relative;
   cursor: pointer;
+  font-size: 0.9em;
+  font-weight: normal;
+  text-decoration: none;
+  border: none;
 }
-/* line 74, ../../../app/stylesheets/screen.sass */
+/* line 76, ../../../app/stylesheets/screen.sass */
 form.formtastic fieldset.buttons ol li a:hover {
   background-color: #9a9a9a;
   color: white;
   text-decoration: none;
 }
-/* line 58, ../../../app/stylesheets/partials/_form.sass */
+/* line 72, ../../../app/stylesheets/partials/_form.sass */
 form.formtastic label {
   font-size: 0.9em;
   padding: 5px 0px;
 }
 
-/* line 62, ../../../app/stylesheets/partials/_form.sass */
+/* line 76, ../../../app/stylesheets/partials/_form.sass */
 .back_button {
   color: gray;
-  margin-top: 20px;
+  margin-top: 10px;
   padding-top: 10px;
   display: block;
   border-top: 1px solid #dddddd;
   font-weight: normal;
   font-size: 0.9em;
-  background: url('/images/arrow-curve-180.png?1246374358') no-repeat;
+  background: url('/images/arrow-curve-180.png?1298251188') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -714,7 +809,39 @@ form.formtastic label {
   background-color: #f8e6a4;
 }
 
-/* line 1, ../../../app/stylesheets/partials/_show.sass */
+/* line 96, ../../../app/stylesheets/partials/_form.sass */
+#login fieldset {
+  margin: 0 auto;
+}
+/* line 98, ../../../app/stylesheets/partials/_form.sass */
+#login fieldset.inputs {
+  margin-top: 20px;
+}
+/* line 101, ../../../app/stylesheets/partials/_form.sass */
+#login fieldset.inputs ol li {
+  float: none;
+  margin: 0 10px;
+}
+/* line 104, ../../../app/stylesheets/partials/_form.sass */
+#login fieldset.buttons {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 70px;
+}
+/* line 109, ../../../app/stylesheets/partials/_form.sass */
+#login fieldset.buttons ol li {
+  float: none;
+}
+/* line 111, ../../../app/stylesheets/partials/_form.sass */
+#login fieldset.buttons ol a {
+  font-size: 0.9em;
+  font-weight: normal;
+  margin-left: 10px;
+  padding-top: 5px;
+  float: right;
+}
+
+/* line 2, ../../../app/stylesheets/partials/_show.sass */
 dl {
   line-height: 1.6em;
   padding-left: 10px;
@@ -723,10 +850,126 @@ dl {
 dl dt {
   color: #999999;
   float: left;
+  display: block;
   margin: 0;
   width: 115px;
 }
-/* line 10, ../../../app/stylesheets/partials/_show.sass */
+/* line 12, ../../../app/stylesheets/partials/_show.sass */
 dl dd {
   margin: 0;
+  display: block;
+  clear: right;
+}
+/* line 16, ../../../app/stylesheets/partials/_show.sass */
+dl dd ul {
+  padding-left: 115px;
+  list-style: disc inside none;
+}
+
+/* line 19, ../../../app/stylesheets/partials/_notification.sass */
+.warning {
+  padding: 10px;
+  margin-bottom: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  border: 3px solid #ffff99;
+  background: url('/images/exclamation-diamond.png?1241992340') no-repeat;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  background-color: #ffffcc;
+  background-position: 15px center;
+  -moz-box-shadow: #333333 1px 1px 5px 0;
+  -webkit-box-shadow: #333333 1px 1px 5px 0;
+  -o-box-shadow: #333333 1px 1px 5px 0;
+  box-shadow: #333333 1px 1px 5px 0;
+}
+/* line 12, ../../../app/stylesheets/partials/_notification.sass */
+.warning:hover {
+  cursor: pointer;
+}
+/* line 14, ../../../app/stylesheets/partials/_notification.sass */
+.warning p {
+  padding-left: 30px;
+}
+/* line 16, ../../../app/stylesheets/partials/_notification.sass */
+.warning p strong {
+  font-weight: bold;
+  padding-right: 5px;
+}
+
+/* line 21, ../../../app/stylesheets/partials/_notification.sass */
+.information {
+  padding: 10px;
+  margin-bottom: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  border: 3px solid #80ff80;
+  background: url('/images/tick.png?1241992444') no-repeat;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  background-color: #ccffcc;
+  background-position: 15px center;
+  -moz-box-shadow: #333333 1px 1px 5px 0;
+  -webkit-box-shadow: #333333 1px 1px 5px 0;
+  -o-box-shadow: #333333 1px 1px 5px 0;
+  box-shadow: #333333 1px 1px 5px 0;
+}
+/* line 12, ../../../app/stylesheets/partials/_notification.sass */
+.information:hover {
+  cursor: pointer;
+}
+/* line 14, ../../../app/stylesheets/partials/_notification.sass */
+.information p {
+  padding-left: 30px;
+}
+/* line 16, ../../../app/stylesheets/partials/_notification.sass */
+.information p strong {
+  font-weight: bold;
+  padding-right: 5px;
+}
+
+/* line 23, ../../../app/stylesheets/partials/_notification.sass */
+.failure {
+  padding: 10px;
+  margin-bottom: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  border: 3px solid #ff9999;
+  background: url('/images/exclamation-red.png?1248698360') no-repeat;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  background-color: #ffcccc;
+  background-position: 15px center;
+  -moz-box-shadow: #333333 1px 1px 5px 0;
+  -webkit-box-shadow: #333333 1px 1px 5px 0;
+  -o-box-shadow: #333333 1px 1px 5px 0;
+  box-shadow: #333333 1px 1px 5px 0;
+}
+/* line 12, ../../../app/stylesheets/partials/_notification.sass */
+.failure:hover {
+  cursor: pointer;
+}
+/* line 14, ../../../app/stylesheets/partials/_notification.sass */
+.failure p {
+  padding-left: 30px;
+}
+/* line 16, ../../../app/stylesheets/partials/_notification.sass */
+.failure p strong {
+  font-weight: bold;
+  padding-right: 5px;
 }

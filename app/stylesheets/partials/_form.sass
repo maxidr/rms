@@ -5,6 +5,24 @@ form.formtastic
   //+formtastic(100%,70%,20%,2%,"left")
   +formtastic(100%, 20%, 70%, 4%, "left")
   //+float-form(100%)
+  // Combo select de sectores
+  fieldset.comboselect
+    display: inline
+    width: auto
+    .csleft
+      width: 200px
+    fieldset
+      width: auto
+      padding: 0 5px
+      input.csadd
+        margin-bottom: 5px
+        +boton(green)
+        padding: 3px 6px 4px
+      input.csremove
+        +boton(green)
+        padding: 3px 11px 4px
+    .csright
+      width: 200px
   fieldset.inputs ol li
     padding: 5px
     input, textarea
@@ -25,6 +43,8 @@ form.formtastic
         outline: none
       //+sprite-background("shadow.gif")
       //background-repeat: repeat-x
+    &.boolean label input
+      margin-right: 5px
     abbr
       color: red
       padding-left: 10px
@@ -46,12 +66,6 @@ form.formtastic
     ol li
       input
         @include boton(green)
-        font-size: 0.9em
-        font-weight: normal
-        text-decoration: none
-        border: none
-        &:hover
-          color: #FFF
       a
         @include boton(gray)
 
@@ -61,7 +75,7 @@ form.formtastic
 
 .back_button
   color: gray
-  margin-top: 20px
+  margin-top: 10px
   padding-top: 10px
   display: block
   border-top: 1px solid #DDD
@@ -72,21 +86,32 @@ form.formtastic
   padding-bottom: 3px
   padding-top: 10px
   padding-left: 23px
-  //float: right
-  //font-size: 0.9em
-  //margin-top: 5px
-  //&:before
-    //content: '< '
-
-
-
-//textarea
-  //height: 5em
-  //overflow: hidden
-  //height: auto
-  //width: 326px
-
 
 .highlight
   background-color: lighten(#EEC015, 30%)
+
+
+
+#login
+  fieldset
+    margin: 0 auto
+    &.inputs
+      margin-top: 20px
+      ol
+        li
+          float: none
+          margin: 0 10px
+    &.buttons
+      padding-top: 10px
+      padding-bottom: 20px
+      padding-left: 70px
+      ol
+        li
+          float: none
+        a
+          font-size: 0.9em
+          font-weight: normal
+          margin-left: 10px
+          padding-top: 5px
+          float: right
 

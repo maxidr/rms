@@ -1,0 +1,24 @@
+- if flash[:alert]
+  .warning.hideit
+    p
+      strong Precaución:
+      = flash[:alert]
+
+- if flash[:info]
+  .information.hideit
+    p
+      strong Información:
+      = flash[:info]
+
+- unless notice.nil?
+  .information.hideit
+    p
+      strong Correcto:
+      = notice
+
+- if flash[:error]
+  .failure.hideit
+    p
+      strong Error:
+      = flash[:error]
+

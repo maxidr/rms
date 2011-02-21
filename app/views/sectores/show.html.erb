@@ -1,12 +1,18 @@
 <h1>Sector</h1>
 <dl>
-	<dt>Nombre:</dt>
+	<dt>Nombre</dt>
 	<dd><%= @sector.nombre %></dd>
 
-	<dt>Email:</dt>
-	<dd><%= @sector.email %></dd>
+	<dt>Email</dt>
+	<dd>
+	  <% unless @sector.email.empty? %>
+  	  <%= @sector.email %>
+  	<% else %>
+  	  -
+  	<% end %>
+	</dd>
 
-	<dt>Responsables:</dt>
+	<dt>Responsables</dt>
 	<dd>
 		<ul>
 		<% @sector.responsables.each do |responsable| %>
@@ -16,6 +22,6 @@
 	</dd>
 </dl>
 
-<%= link_to 'Editar', edit_sector_path(@sector) %> |
-<%= link_to 'Volver', sectores_path %>
+<%= link_to 'Editar', edit_sector_path(@sector), :class => 'boton' %>
+<%= link_to 'Volver', sectores_path, :class => 'back_button' %>
 
