@@ -71,21 +71,22 @@ body {
   margin: 0;
   min-width: 900px;
   padding: 0;
+  background-color: #333333;
 }
 
-/* line 24, ../../../app/stylesheets/screen.sass */
+/* line 25, ../../../app/stylesheets/screen.sass */
 a {
   color: #8c8c8c;
   text-decoration: none;
   font-weight: bold;
 }
-/* line 28, ../../../app/stylesheets/screen.sass */
+/* line 29, ../../../app/stylesheets/screen.sass */
 a:hover {
   color: #b3b3b3;
   text-decoration: underline;
 }
 
-/* line 32, ../../../app/stylesheets/screen.sass */
+/* line 33, ../../../app/stylesheets/screen.sass */
 h1, h2, h3, h4, h5 {
   font-family: "Myriad Pro", "Lucida Grande", "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
   border-bottom: medium none;
@@ -93,7 +94,7 @@ h1, h2, h3, h4, h5 {
   padding: 0;
 }
 
-/* line 38, ../../../app/stylesheets/screen.sass */
+/* line 39, ../../../app/stylesheets/screen.sass */
 h1, h2 {
   color: #444444;
   margin: 0 0 10px;
@@ -102,19 +103,19 @@ h1, h2 {
   font-weight: bold;
 }
 
-/* line 45, ../../../app/stylesheets/screen.sass */
+/* line 46, ../../../app/stylesheets/screen.sass */
 #wrapper {
   background-color: #333333;
   min-width: 900px;
 }
 
-/* line 81, ../../../app/stylesheets/screen.sass */
+/* line 82, ../../../app/stylesheets/screen.sass */
 .boton {
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: url('/images/button_bg.png?1298251188') no-repeat;
+  background: url('/images/button_bg.png?1298293757') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -140,35 +141,35 @@ h1, h2 {
   font-size: 0.9em;
   font-weight: normal;
 }
-/* line 76, ../../../app/stylesheets/screen.sass */
+/* line 77, ../../../app/stylesheets/screen.sass */
 .boton:hover {
   background-color: #00b300;
   color: white;
   text-decoration: none;
 }
 
-/* line 87, ../../../app/stylesheets/screen.sass */
+/* line 88, ../../../app/stylesheets/screen.sass */
 .icon-sort {
-  background: url('/images/sort-alphabet.png?1298251188') no-repeat;
+  background: url('/images/sort-alphabet.png?1298293757') no-repeat;
   width: 32px;
   height: 32px;
   overflow: hidden;
 }
 
-/* line 90, ../../../app/stylesheets/screen.sass */
+/* line 91, ../../../app/stylesheets/screen.sass */
 .contextual {
   float: right;
   font-size: 0.9em;
   margin-top: 5px;
   white-space: nowrap;
-  background: url('/images/plus-circle.png?1298251188') no-repeat;
+  background: url('/images/plus-circle.png?1298293757') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
   padding-bottom: 3px;
   padding-top: 2px;
 }
-/* line 53, ../../../app/stylesheets/screen.sass */
+/* line 54, ../../../app/stylesheets/screen.sass */
 .contextual a {
   padding-left: 20px;
 }
@@ -393,7 +394,7 @@ div.accordion {
 
 /* line 53, ../../../app/stylesheets/partials/_tables.sass */
 a.sort_link {
-  background: url('/images/sort-small.png?1298251188') no-repeat;
+  background: url('/images/sort-small.png?1298293757') no-repeat;
   width: 32px;
   height: 32px;
   overflow: hidden;
@@ -461,7 +462,7 @@ table tbody tr td.actions a {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: url('/images/button_bg.png?1298251188') no-repeat;
+  background: url('/images/button_bg.png?1298293757') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -489,7 +490,7 @@ table tbody tr td.actions a {
   text-decoration: none;
   border: none;
 }
-/* line 76, ../../../app/stylesheets/screen.sass */
+/* line 77, ../../../app/stylesheets/screen.sass */
 table tbody tr td.actions a:hover {
   background-color: #3c3c3c;
   color: white;
@@ -575,7 +576,7 @@ form.formtastic fieldset.comboselect fieldset input.csadd {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: url('/images/button_bg.png?1298251188') no-repeat;
+  background: url('/images/button_bg.png?1298293757') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -599,7 +600,7 @@ form.formtastic fieldset.comboselect fieldset input.csadd {
   border: none;
   padding: 3px 6px 4px;
 }
-/* line 76, ../../../app/stylesheets/screen.sass */
+/* line 77, ../../../app/stylesheets/screen.sass */
 form.formtastic fieldset.comboselect fieldset input.csadd:hover {
   background-color: #00b300;
   color: white;
@@ -611,7 +612,7 @@ form.formtastic fieldset.comboselect fieldset input.csremove {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: url('/images/button_bg.png?1298251188') no-repeat;
+  background: url('/images/button_bg.png?1298293757') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -635,7 +636,7 @@ form.formtastic fieldset.comboselect fieldset input.csremove {
   border: none;
   padding: 3px 11px 4px;
 }
-/* line 76, ../../../app/stylesheets/screen.sass */
+/* line 77, ../../../app/stylesheets/screen.sass */
 form.formtastic fieldset.comboselect fieldset input.csremove:hover {
   background-color: #00b300;
   color: white;
@@ -658,7 +659,7 @@ form.formtastic fieldset.inputs ol li input, form.formtastic fieldset.inputs ol 
   font-size: 1em;
   margin: 0;
   padding: 2px 0;
-  background: url('/images/shadow.gif?1298251188') no-repeat;
+  background: url('/images/shadow.gif?1298293757') no-repeat;
   width: none;
   height: none;
   overflow: hidden;
@@ -678,7 +679,7 @@ form.formtastic fieldset.inputs ol li.boolean label input {
 /* line 48, ../../../app/stylesheets/partials/_form.sass */
 form.formtastic fieldset.inputs ol li abbr {
   color: red;
-  padding-left: 10px;
+  padding: 0 5px;
 }
 /* line 52, ../../../app/stylesheets/partials/_form.sass */
 form.formtastic fieldset.inputs ol li.error input, form.formtastic fieldset.inputs ol li.error textarea {
@@ -715,7 +716,7 @@ form.formtastic fieldset.buttons ol li input {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: url('/images/button_bg.png?1298251188') no-repeat;
+  background: url('/images/button_bg.png?1298293757') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -738,44 +739,9 @@ form.formtastic fieldset.buttons ol li input {
   text-decoration: none;
   border: none;
 }
-/* line 76, ../../../app/stylesheets/screen.sass */
+/* line 77, ../../../app/stylesheets/screen.sass */
 form.formtastic fieldset.buttons ol li input:hover {
   background-color: #00b300;
-  color: white;
-  text-decoration: none;
-}
-/* line 69, ../../../app/stylesheets/partials/_form.sass */
-form.formtastic fieldset.buttons ol li a {
-  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: url('/images/button_bg.png?1298251188') no-repeat;
-  width: auto;
-  height: auto;
-  overflow: hidden;
-  background-repeat: repeat-x;
-  background-color: gray;
-  display: inline-block;
-  padding: 5px 10px 6px;
-  color: white;
-  line-height: 1;
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;
-  -o-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -khtml-border-radius: 15px;
-  border-radius: 15px;
-  position: relative;
-  cursor: pointer;
-  font-size: 0.9em;
-  font-weight: normal;
-  text-decoration: none;
-  border: none;
-}
-/* line 76, ../../../app/stylesheets/screen.sass */
-form.formtastic fieldset.buttons ol li a:hover {
-  background-color: #9a9a9a;
   color: white;
   text-decoration: none;
 }
@@ -794,7 +760,7 @@ form.formtastic label {
   border-top: 1px solid #dddddd;
   font-weight: normal;
   font-size: 0.9em;
-  background: url('/images/arrow-curve-180.png?1298251188') no-repeat;
+  background: url('/images/arrow-curve-180.png?1298293757') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -845,24 +811,26 @@ form.formtastic label {
 dl {
   line-height: 1.6em;
   padding-left: 10px;
+  clear: both;
+  display: block;
 }
-/* line 5, ../../../app/stylesheets/partials/_show.sass */
+/* line 7, ../../../app/stylesheets/partials/_show.sass */
 dl dt {
   color: #999999;
   float: left;
   display: block;
   margin: 0;
-  width: 115px;
+  width: 130px;
 }
-/* line 12, ../../../app/stylesheets/partials/_show.sass */
+/* line 14, ../../../app/stylesheets/partials/_show.sass */
 dl dd {
   margin: 0;
   display: block;
   clear: right;
 }
-/* line 16, ../../../app/stylesheets/partials/_show.sass */
+/* line 18, ../../../app/stylesheets/partials/_show.sass */
 dl dd ul {
-  padding-left: 115px;
+  padding-left: 130px;
   list-style: disc inside none;
 }
 
@@ -877,7 +845,7 @@ dl dd ul {
   -khtml-border-radius: 5px;
   border-radius: 5px;
   border: 3px solid #ffff99;
-  background: url('/images/exclamation-diamond.png?1241992340') no-repeat;
+  background: url('/images/exclamation-diamond.png?1298293757') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -913,7 +881,7 @@ dl dd ul {
   -khtml-border-radius: 5px;
   border-radius: 5px;
   border: 3px solid #80ff80;
-  background: url('/images/tick.png?1241992444') no-repeat;
+  background: url('/images/tick.png?1298293757') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -949,7 +917,7 @@ dl dd ul {
   -khtml-border-radius: 5px;
   border-radius: 5px;
   border: 3px solid #ff9999;
-  background: url('/images/exclamation-red.png?1248698360') no-repeat;
+  background: url('/images/exclamation-red.png?1298293757') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -972,4 +940,21 @@ dl dd ul {
 .failure p strong {
   font-weight: bold;
   padding-right: 5px;
+}
+
+/* line 2, ../../../app/stylesheets/partials/_rqm.sass */
+#rqm .rqm-info {
+  padding: 10px 0;
+}
+/* line 5, ../../../app/stylesheets/partials/_rqm.sass */
+#rqm h2 {
+  font-size: 18px;
+  font-style: italic;
+  padding-left: 10px;
+}
+/* line 9, ../../../app/stylesheets/partials/_rqm.sass */
+#rqm table {
+  margin-left: 20px;
+  margin-bottom: 15px;
+  width: 90%;
 }

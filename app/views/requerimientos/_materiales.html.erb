@@ -1,4 +1,11 @@
+<% if can? :add_material, @requerimiento %>
+  <div class="contextual">
+  	<%= link_to 'Agregar material', new_requerimiento_material_path(@requerimiento) %>
+  </div>
+<% end %>
+
 <h2>Materiales</h2>
+
 <% if @requerimiento.materiales.empty? %>
 	Aun no posee materiales cargados
 <% else %>
@@ -15,7 +22,7 @@
 				<tr>
 					<td><%= material.nombre %></td>
 					<td><%= material.cantidad %></td>
-					<td><%= link_to 'Ver', material_path(material) %>
+					<td class="actions"><%= link_to 'Ver', material_path(material) %>
 					<% if can? :edit, @requerimiento %>
 						<%= link_to 'Editar', edit_material_path(material) %>
 						<%= link_to 'Eliminar', material, :confirm => 'Esta seguro?', :method => :delete %>
@@ -28,8 +35,5 @@
 	</table>
 <% end %>
 
-<% if can? :add_material, @requerimiento %>
-	<%= link_to 'Agregar material', new_requerimiento_material_path(@requerimiento) %>
-<% end %>
-<br/>
+
 

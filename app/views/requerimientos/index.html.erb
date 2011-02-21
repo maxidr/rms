@@ -23,7 +23,7 @@
 		<tbody>
 			<% @requerimientos.each do |requerimiento| %>
 				<tr>
-					<td><%= link_to "#{requerimiento.id}", requerimiento  %></td>
+					<td><%= link_to "#{requerimiento.id}", requerimiento, :title => "Editar requerimiento n° #{requerimiento.id}"  %></td>
 					<td><%=	l requerimiento.created_at, :format => :short %></td>
 					<td><%= requerimiento.solicitante %></td>
 					<td><%= requerimiento.empresa %></td>

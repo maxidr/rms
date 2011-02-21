@@ -7,3 +7,26 @@
 textarea {
   overflow: auto;
 }
+
+/* line 11, ../../../app/stylesheets/ie.sass */
+#content {
+  height: 600px;
+}
+
+/* line 14, ../../../app/stylesheets/ie.sass */
+#login {
+  border: 1px solid gray;
+}
+/* line 17, ../../../app/stylesheets/ie.sass */
+#login form.formtastic fieldset.inputs {
+  margin-left: -112px;
+  padding-top: 10px;
+}
+/* line 22, ../../../app/stylesheets/ie.sass */
+#login form.formtastic fieldset.buttons ol li input {
+  float: left;
+}
+/* line 26, ../../../app/stylesheets/ie.sass */
+#login form.formtastic fieldset.buttons ol a {
+  float: right;
+}
