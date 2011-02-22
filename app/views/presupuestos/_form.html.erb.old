@@ -1,0 +1,34 @@
+<%= form_for([@requerimiento, @presupuesto]) do |f| %>
+  <% if @presupuesto.errors.any? %>
+    <div id="error_explanation">
+			<h2><%= pluralize(@presupuesto.errors.count,  "error evita", "errores evitan") %> que este presupuesto pueda ser grabado:</h2>
+      <ul>
+      <% @presupuesto.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :proveedor %><br />
+    <%= f.collection_select :proveedor_id, Proveedor.all, :id, :razon_social, :include_blank => "Seleccione..." %>
+  </div>
+  <div class="field">
+		<%= f.label :monto %><br/>
+    <%= f.collection_select :moneda_id, Moneda.all, :id, :simbolo %>
+    <%= f.number_field :monto %>
+  </div>
+  <div class="field">
+    <%= f.label :condicion_pago %><br />
+    <%= f.collection_select :condicion_pago_id, CondicionPago.all, :id, :nombre, :include_blank => "Seleccione..."  %>
+  </div>
+  <div class="field">
+    <%= f.label :detalle %><br />
+    <%= f.text_field :detalle  %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Guardar presupuesto" %>
+  </div>
+<% end %>
+

@@ -1,12 +1,45 @@
 #rqm
-  .rqm-info
-    padding: 10px 0
-    
+  .rqm-info  
+    padding-top: 10px
+    padding-bottom: 15px
+    width: 100%
+    height: 100%
+    overflow: auto
+    .left
+      width: 50%
+      float: left
+      height: 100%
+    .right
+      float: right
+      width: 50%
+      height: 100%
+      clear: right
   h2
-    font-size: 18px
-    font-style: italic
+    font-size: 18px    
     padding-left: 10px
+    clear: left
   table
-    margin-left: 20px 
+    margin: 0 auto
     margin-bottom: 15px
     width: 90%
+  p
+    padding: 0 10px  
+  .estado_rechazado  
+    font-weight: bold
+    color: lighten(red, 10%)
+    //border-bottom: 1px dotted lighten(red, 30%)
+  
+  .boton-add
+    +icon-add
+    padding: 0
+    margin: 0
+    padding-left: 20px
+    margin-left: 20px
+    padding-top: 5px
+    background-position: 0 -2px
+    font-size: 0.7em
+    font-style: italic
+  .edit
+    +boton(green)
+    margin-left: 10px
+    margin-top: 20px

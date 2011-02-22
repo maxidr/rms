@@ -177,24 +177,29 @@ h1, h2 {
 /* line 1, ../../../app/stylesheets/partials/_top-menu.sass */
 #top-menu {
   color: #999999;
-  background-color: black;
   font-family: Verdana, sans-serif;
   padding: 1em 1em 0;
   font-size: 0.8em;
   height: 1.8em;
   background: url("/images/bottom_shine.png") repeat-x scroll left bottom black;
+  background-color: #111111;
+  border-bottom: 1px solid #333333;
+}
+/* line 11, ../../../app/stylesheets/partials/_top-menu.sass */
+#top-menu a {
+  color: #bfbfbf;
 }
 
-/* line 11, ../../../app/stylesheets/partials/_top-menu.sass */
+/* line 15, ../../../app/stylesheets/partials/_top-menu.sass */
 #account {
   float: right;
 }
-/* line 13, ../../../app/stylesheets/partials/_top-menu.sass */
+/* line 17, ../../../app/stylesheets/partials/_top-menu.sass */
 #account ul {
   margin: 0;
   padding: 0;
 }
-/* line 16, ../../../app/stylesheets/partials/_top-menu.sass */
+/* line 20, ../../../app/stylesheets/partials/_top-menu.sass */
 #account li {
   float: left;
   margin: 0;
@@ -203,12 +208,12 @@ h1, h2 {
   margin-right: 8px;
 }
 
-/* line 23, ../../../app/stylesheets/partials/_top-menu.sass */
+/* line 27, ../../../app/stylesheets/partials/_top-menu.sass */
 #loggedas {
   float: right;
   margin-right: 10px;
 }
-/* line 26, ../../../app/stylesheets/partials/_top-menu.sass */
+/* line 30, ../../../app/stylesheets/partials/_top-menu.sass */
 #loggedas a {
   margin-left: 5px;
 }
@@ -944,17 +949,101 @@ dl dd ul {
 
 /* line 2, ../../../app/stylesheets/partials/_rqm.sass */
 #rqm .rqm-info {
-  padding: 10px 0;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
 }
-/* line 5, ../../../app/stylesheets/partials/_rqm.sass */
+/* line 8, ../../../app/stylesheets/partials/_rqm.sass */
+#rqm .rqm-info .left {
+  width: 50%;
+  float: left;
+  height: 100%;
+}
+/* line 12, ../../../app/stylesheets/partials/_rqm.sass */
+#rqm .rqm-info .right {
+  float: right;
+  width: 50%;
+  height: 100%;
+  clear: right;
+}
+/* line 17, ../../../app/stylesheets/partials/_rqm.sass */
 #rqm h2 {
   font-size: 18px;
-  font-style: italic;
   padding-left: 10px;
+  clear: left;
 }
-/* line 9, ../../../app/stylesheets/partials/_rqm.sass */
+/* line 21, ../../../app/stylesheets/partials/_rqm.sass */
 #rqm table {
-  margin-left: 20px;
+  margin: 0 auto;
   margin-bottom: 15px;
   width: 90%;
+}
+/* line 25, ../../../app/stylesheets/partials/_rqm.sass */
+#rqm p {
+  padding: 0 10px;
+}
+/* line 27, ../../../app/stylesheets/partials/_rqm.sass */
+#rqm .estado_rechazado {
+  font-weight: bold;
+  color: #ff3333;
+}
+/* line 32, ../../../app/stylesheets/partials/_rqm.sass */
+#rqm .boton-add {
+  background: url('/images/plus-circle.png?1298293757') no-repeat;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  padding-bottom: 3px;
+  padding-top: 2px;
+  padding: 0;
+  margin: 0;
+  padding-left: 20px;
+  margin-left: 20px;
+  padding-top: 5px;
+  background-position: 0 -2px;
+  font-size: 0.7em;
+  font-style: italic;
+}
+/* line 54, ../../../app/stylesheets/screen.sass */
+#rqm .boton-add a {
+  padding-left: 20px;
+}
+/* line 42, ../../../app/stylesheets/partials/_rqm.sass */
+#rqm .edit {
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  background: url('/images/button_bg.png?1298293757') no-repeat;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  background-repeat: repeat-x;
+  background-color: green;
+  display: inline-block;
+  padding: 5px 10px 6px;
+  color: white;
+  line-height: 1;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -o-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -khtml-border-radius: 15px;
+  border-radius: 15px;
+  position: relative;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: normal;
+  text-decoration: none;
+  border: none;
+  margin-left: 10px;
+  margin-top: 20px;
+}
+/* line 77, ../../../app/stylesheets/screen.sass */
+#rqm .edit:hover {
+  background-color: #00b300;
+  color: white;
+  text-decoration: none;
 }

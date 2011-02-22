@@ -14,45 +14,48 @@
   <h1>Requerimiento N° <%= @requerimiento.id %></h1>
 
   <div class="rqm-info">
-    <dl>
-      <dt>Solicitante</dt>
-      <dd><%= @requerimiento.solicitante %></dd>
-    </dl>
-    <dl>
-      <dt>Fecha de carga</dt>
-      <dd><%= l @requerimiento.created_at %></dd>
-    </dl>
-    <dl>
-      <dt>Empresa</dt>
-      <dd><%= @requerimiento.empresa %></dd>
-    </dl>
-    <dl>
-      <dt>Sector</dt>
-      <dd><%= @requerimiento.sector %></dd>
-    </dl>
-    <dl>
-      <dt>Rubro</dt>
-      <dd><%= @requerimiento.rubro %></dd>
-    </dl>
-    <dl>
-      <dt>Estado</dt>
-      <dd class=" <%= @requerimiento.estado.rechazo? ? 'estado_rechazado' : '' %> ">
-        <%= @requerimiento.estado.to_s %>
-		    <%- if @requerimiento.estado == Estado::PENDIENTE_RECEPCION %>
-		      <i>
-		      <%= " (Fecha probable de entrega: #{l @requerimiento.compra.fecha_probable_entrega})" %>
-		      </i>
-		    <% end -%>
-      </dd>  
-    </dl>
-    <% if @requerimiento.estado.rechazo? %>
-      <dl class="estado_rechazado">
-        <dt>Motivo del rechazo</dt>
-        <dd><%= @requerimiento.motivo_rechazo %></dd>
+    <div class="left">
+      <dl>
+        <dt>Solicitante</dt>
+        <dd><%= @requerimiento.solicitante %></dd>
       </dl>
-    <% end %>
+      <dl>
+        <dt>Fecha de carga</dt>
+        <dd><%= l @requerimiento.created_at %></dd>
+      </dl>    
+      <dl>
+        <dt>Estado</dt>
+        <dd class=" <%= @requerimiento.estado.rechazo? ? 'estado_rechazado' : '' %> ">
+          <%= @requerimiento.estado.to_s %>
+		      <%- if @requerimiento.estado == Estado::PENDIENTE_RECEPCION %>
+		        <i>
+		        <%= " (Fecha probable de entrega: #{l @requerimiento.compra.fecha_probable_entrega})" %>
+		        </i>
+		      <% end -%>
+        </dd>  
+      </dl>
+      <% if @requerimiento.estado.rechazo? %>
+        <dl>
+          <dt>Motivo del rechazo</dt>
+          <dd class="estado_rechazado"><%= @requerimiento.motivo_rechazo %></dd>
+        </dl>
+      <% end %>
+    </div>
+    <div class="right">
+      <dl>
+        <dt>Empresa</dt>
+        <dd><%= @requerimiento.empresa %></dd>
+      </dl>
+      <dl>
+        <dt>Sector</dt>
+        <dd><%= @requerimiento.sector %></dd>
+      </dl>
+      <dl>
+        <dt>Rubro</dt>
+        <dd><%= @requerimiento.rubro %></dd>
+      </dl>
+    </div>
   </div>
-
   <%= render "materiales" %>
 
   <% if @requerimiento.estado >= Estado::APROBADO_X_COMPRAS %>
@@ -110,9 +113,9 @@
   <br/>
 
   <% if can? :edit, @requerimiento %>
-	  <%= link_to 'Editar', edit_requerimiento_path(@requerimiento) %> |
+	  <%= link_to 'Editar', edit_requerimiento_path(@requerimiento), :class => 'edit' %>
   <% end %>
-  <%= link_to 'Volver', requerimientos_path %>
+  <%= link_to 'Volver', requerimientos_path, :class => 'back_button' %>
   <br/>
 </div>
 
