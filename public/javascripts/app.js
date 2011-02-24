@@ -33,6 +33,14 @@ $(document).ready(function() {
     $("fieldset.inputs :input, fieldset.inputs li.text div").live('focusout', function(){
         $(this).parent("li").removeClass("highlight")
     });
+    
+    $("fieldset.inputs ol fieldset.complex-inputs :input").live('focusin', function(){
+      $(this).parents("fieldset.complex-inputs").addClass("highlight");
+    });
+    
+    $("fieldset.inputs ol fieldset.complex-inputs :input").live('focusout', function(){
+      $(this).parents("fieldset.complex-inputs").removeClass("highlight");
+    });
 
 });
 

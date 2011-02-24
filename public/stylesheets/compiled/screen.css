@@ -560,21 +560,21 @@ form.formtastic fieldset.buttons ol li {
   width: auto;
   float: left;
 }
-/* line 9, ../../../app/stylesheets/partials/_form.sass */
+/* line 7, ../../../app/stylesheets/partials/_form.sass */
 form.formtastic fieldset.comboselect {
   display: inline;
   width: auto;
 }
-/* line 12, ../../../app/stylesheets/partials/_form.sass */
+/* line 10, ../../../app/stylesheets/partials/_form.sass */
 form.formtastic fieldset.comboselect .csleft {
   width: 200px;
 }
-/* line 14, ../../../app/stylesheets/partials/_form.sass */
+/* line 12, ../../../app/stylesheets/partials/_form.sass */
 form.formtastic fieldset.comboselect fieldset {
   width: auto;
   padding: 0 5px;
 }
-/* line 17, ../../../app/stylesheets/partials/_form.sass */
+/* line 15, ../../../app/stylesheets/partials/_form.sass */
 form.formtastic fieldset.comboselect fieldset input.csadd {
   margin-bottom: 5px;
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
@@ -611,7 +611,7 @@ form.formtastic fieldset.comboselect fieldset input.csadd:hover {
   color: white;
   text-decoration: none;
 }
-/* line 21, ../../../app/stylesheets/partials/_form.sass */
+/* line 19, ../../../app/stylesheets/partials/_form.sass */
 form.formtastic fieldset.comboselect fieldset input.csremove {
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
@@ -647,15 +647,45 @@ form.formtastic fieldset.comboselect fieldset input.csremove:hover {
   color: white;
   text-decoration: none;
 }
-/* line 24, ../../../app/stylesheets/partials/_form.sass */
+/* line 22, ../../../app/stylesheets/partials/_form.sass */
 form.formtastic fieldset.comboselect .csright {
   width: 200px;
 }
-/* line 26, ../../../app/stylesheets/partials/_form.sass */
+/* line 24, ../../../app/stylesheets/partials/_form.sass */
+form.formtastic fieldset.inputs fieldset.complex-inputs {
+  padding: 5px;
+  width: auto;
+}
+/* line 27, ../../../app/stylesheets/partials/_form.sass */
+form.formtastic fieldset.inputs fieldset.complex-inputs legend {
+  float: left;
+  text-align: left;
+  width: 16%;
+  font-size: 0.9em;
+  padding: 5px 0;
+  padding-left: 4%;
+}
+/* line 34, ../../../app/stylesheets/partials/_form.sass */
+form.formtastic fieldset.inputs fieldset.complex-inputs ol li {
+  float: left;
+  width: auto;
+  padding: 0;
+  margin: 0;
+  padding-right: 5px;
+}
+/* line 40, ../../../app/stylesheets/partials/_form.sass */
+form.formtastic fieldset.inputs fieldset.complex-inputs ol li select {
+  width: auto;
+}
+/* line 42, ../../../app/stylesheets/partials/_form.sass */
+form.formtastic fieldset.inputs fieldset.complex-inputs ol li p.inline-hints {
+  margin: 0;
+}
+/* line 45, ../../../app/stylesheets/partials/_form.sass */
 form.formtastic fieldset.inputs ol li {
   padding: 5px;
 }
-/* line 28, ../../../app/stylesheets/partials/_form.sass */
+/* line 47, ../../../app/stylesheets/partials/_form.sass */
 form.formtastic fieldset.inputs ol li input, form.formtastic fieldset.inputs ol li textarea {
   border-color: #7c7c7c #c3c3c3 #dddddd;
   border-style: solid;
@@ -673,30 +703,30 @@ form.formtastic fieldset.inputs ol li input, form.formtastic fieldset.inputs ol 
   background-position: top;
   background-color: white;
 }
-/* line 42, ../../../app/stylesheets/partials/_form.sass */
+/* line 61, ../../../app/stylesheets/partials/_form.sass */
 form.formtastic fieldset.inputs ol li input:focus, form.formtastic fieldset.inputs ol li textarea:focus {
   outline: none;
 }
-/* line 46, ../../../app/stylesheets/partials/_form.sass */
+/* line 65, ../../../app/stylesheets/partials/_form.sass */
 form.formtastic fieldset.inputs ol li.boolean label input {
   margin-right: 5px;
 }
-/* line 48, ../../../app/stylesheets/partials/_form.sass */
+/* line 67, ../../../app/stylesheets/partials/_form.sass */
 form.formtastic fieldset.inputs ol li abbr {
   color: red;
   padding: 0 5px;
 }
-/* line 52, ../../../app/stylesheets/partials/_form.sass */
+/* line 71, ../../../app/stylesheets/partials/_form.sass */
 form.formtastic fieldset.inputs ol li.error input, form.formtastic fieldset.inputs ol li.error textarea {
   background-color: #ffe3e3;
 }
-/* line 54, ../../../app/stylesheets/partials/_form.sass */
+/* line 73, ../../../app/stylesheets/partials/_form.sass */
 form.formtastic fieldset.inputs ol li p.inline-errors {
   color: #ff3333;
   font-size: 0.9em;
   padding-top: 4px;
 }
-/* line 58, ../../../app/stylesheets/partials/_form.sass */
+/* line 77, ../../../app/stylesheets/partials/_form.sass */
 form.formtastic fieldset.inputs ol li.highlight {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -705,17 +735,17 @@ form.formtastic fieldset.inputs ol li.highlight {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 60, ../../../app/stylesheets/partials/_form.sass */
+/* line 79, ../../../app/stylesheets/partials/_form.sass */
 form.formtastic fieldset.inputs ol li .inline-hints {
   font-style: italic;
   font-size: 0.8em;
   padding-top: 4px;
 }
-/* line 64, ../../../app/stylesheets/partials/_form.sass */
+/* line 83, ../../../app/stylesheets/partials/_form.sass */
 form.formtastic fieldset.buttons {
   padding-top: 5px;
 }
-/* line 67, ../../../app/stylesheets/partials/_form.sass */
+/* line 86, ../../../app/stylesheets/partials/_form.sass */
 form.formtastic fieldset.buttons ol li input {
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
@@ -750,13 +780,13 @@ form.formtastic fieldset.buttons ol li input:hover {
   color: white;
   text-decoration: none;
 }
-/* line 72, ../../../app/stylesheets/partials/_form.sass */
+/* line 91, ../../../app/stylesheets/partials/_form.sass */
 form.formtastic label {
   font-size: 0.9em;
   padding: 5px 0px;
 }
 
-/* line 76, ../../../app/stylesheets/partials/_form.sass */
+/* line 95, ../../../app/stylesheets/partials/_form.sass */
 .back_button {
   color: gray;
   margin-top: 10px;
@@ -775,35 +805,35 @@ form.formtastic label {
   padding-left: 23px;
 }
 
-/* line 90, ../../../app/stylesheets/partials/_form.sass */
+/* line 109, ../../../app/stylesheets/partials/_form.sass */
 .highlight {
   background-color: #f8e6a4;
 }
 
-/* line 96, ../../../app/stylesheets/partials/_form.sass */
+/* line 115, ../../../app/stylesheets/partials/_form.sass */
 #login fieldset {
   margin: 0 auto;
 }
-/* line 98, ../../../app/stylesheets/partials/_form.sass */
+/* line 117, ../../../app/stylesheets/partials/_form.sass */
 #login fieldset.inputs {
   margin-top: 20px;
 }
-/* line 101, ../../../app/stylesheets/partials/_form.sass */
+/* line 120, ../../../app/stylesheets/partials/_form.sass */
 #login fieldset.inputs ol li {
   float: none;
   margin: 0 10px;
 }
-/* line 104, ../../../app/stylesheets/partials/_form.sass */
+/* line 123, ../../../app/stylesheets/partials/_form.sass */
 #login fieldset.buttons {
   padding-top: 10px;
   padding-bottom: 20px;
   padding-left: 70px;
 }
-/* line 109, ../../../app/stylesheets/partials/_form.sass */
+/* line 128, ../../../app/stylesheets/partials/_form.sass */
 #login fieldset.buttons ol li {
   float: none;
 }
-/* line 111, ../../../app/stylesheets/partials/_form.sass */
+/* line 130, ../../../app/stylesheets/partials/_form.sass */
 #login fieldset.buttons ol a {
   font-size: 0.9em;
   font-weight: normal;
