@@ -58,7 +58,7 @@
   </div>
   <%= render "materiales" %>
 
-  <% if @requerimiento.estado >= Estado::APROBADO_X_COMPRAS %>
+  <% if @requerimiento.estado >= Estado::APROBADO_X_COMPRAS && @requerimiento.estado != Estado::RECHAZO_X_COMPRAS %>
 	  <%= render "presupuestos/aprobado", :presupuesto => @requerimiento.presupuesto_aprobado %>
   <% else %>
 	  <%= render "presupuestos/list", :presupuestos => @requerimiento.presupuestos %>
@@ -72,15 +72,14 @@
   </p>
   <% end %>
 
-  <b>
+  <div id="rqm_actions">
 	  <% if can? :solicitar_aprobacion, @requerimiento %>
 		  <%= link_to 'Solicitar aprobación', solicitar_aprobacion_requerimiento_path(@requerimiento), :method => :put %>
 	  <% end %>
 
 	  <% if can? :aprobar_por_sector, @requerimiento %>
-		  <%= link_to 'Aprobar requerimiento', aprobar_requerimiento_path(@requerimiento), :method => :put %>
-		  <br/>
-		  <%= link_to 'Rechazar requerimiento', rechazar_requerimiento_path(@requerimiento) %>
+		  <%= link_to 'Aprobar', aprobar_requerimiento_path(@requerimiento), :method => :put %>
+		  <%= link_to 'Rechazar', rechazar_requerimiento_path(@requerimiento), :class => 'negative_action', :remote => true %>
 	  <% end %>
 
 	  <% if can? :solicitar_aprobacion_compras, @requerimiento %>
@@ -88,7 +87,7 @@
 	  <% end %>
 
 	  <% if can? :aprobar_presupuestos, @requerimiento %>
-		  <%= link_to 'Rechazar presupuestos', rechazar_presupuestos_requerimiento_path(@requerimiento)  %>
+		  <%= link_to 'Rechazar presupuestos', rechazar_presupuestos_requerimiento_path(@requerimiento) , :class => 'negative_action', :remote => true %>
 	  <% end %>
 
 	  <% if can? :recepcionar, @requerimiento %>
@@ -97,24 +96,24 @@
 
 	  <% if can? :verificar_entrega, @requerimiento %>
 		  <%= link_to 'Entrega correcta', verificar_entrega_requerimiento_path(@requerimiento), :method => :put %>
-		  | 
 		  <%= link_to 'Rechazar entrega', rechazar_entrega_requerimiento_path(@requerimiento)  %>
 	  <% end %>
 
 	  <% if can? :finalizar, @requerimiento %>
 		  <%= link_to 'Finalizar requerimiento', finalizar_requerimiento_path(@requerimiento), :method => :put  %>
 	  <% end %>
-  </b>
 
-  <% if can? :comprar, @requerimiento %>
-	  <%= render "comprar" %>
-  <% end %>
+    <% if can? :comprar, @requerimiento %>
+	    <%= render "comprar" %>
+    <% end %>
 
-  <br/>
 
-  <% if can? :edit, @requerimiento %>
-	  <%= link_to 'Editar', edit_requerimiento_path(@requerimiento), :class => 'edit' %>
-  <% end %>
+
+    <% if can? :edit, @requerimiento %>
+  	  <%= link_to 'Editar', edit_requerimiento_path(@requerimiento), :class => 'edit' %>
+    <% end %>
+  </div>
+  
   <%= link_to 'Volver', requerimientos_path, :class => 'back_button' %>
   <br/>
 </div>

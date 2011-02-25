@@ -23,7 +23,7 @@
     margin-bottom: 15px
     width: 90%
   p
-    padding: 0 10px  
+    padding: 0 10px 10px
   .estado_rechazado  
     font-weight: bold
     color: lighten(red, 10%)
@@ -39,7 +39,11 @@
     background-position: 0 -2px
     font-size: 0.7em
     font-style: italic
-  .edit
-    +boton(green)
-    margin-left: 10px
-    margin-top: 20px
+        
+  #rqm_actions
+    padding-left: 10px      
+    a
+      +boton(green)
+    a.negative_action
+      +boton(red)
+      

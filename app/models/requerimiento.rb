@@ -26,6 +26,13 @@ class Requerimiento < ActiveRecord::Base
   composed_of :estado, :mapping => %w(estado codigo)
 
   validates_presence_of :empresa, :sector, :rubro, :solicitante
+  
+  scope :for_index, lambda{ |usuario|
+    unless usuario.admin? or [Sector.compras, Sector.administracion].include? usuario.sector
+      sectores = Sector.with_responsable usuario
+      where("sector_id IN (?) OR solicitante_id = ?", sectores, usuario)
+    end
+  }
 
 	# Finalizar el requerimiento
 	# @param [Usuario] responsable del sector que genera la finalización del requerimiento

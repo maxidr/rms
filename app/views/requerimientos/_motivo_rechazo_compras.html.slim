@@ -1,8 +1,6 @@
+h2 Rechazar presupuestos
 = semantic_form_for 'rechazo', :url => rechazar_presupuestos_requerimiento_url, :html => {:method => :put} do |form|
-	= form.inputs :name => "Rechazar requerimiento n° #{@requerimiento.id}" do
-		p
-			b Solicitante:
-			= @requerimiento.solicitante
+	= form.inputs do
 		= form.input :motivo, :required => true, :label => 'Motivo del rechazo', :as => :text
 	= form.buttons do
 		= form.commit_button 'Rechazar'

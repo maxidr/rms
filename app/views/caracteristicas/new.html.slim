@@ -1,6 +1,6 @@
-h1 Nueva característica
+h1 Nueva característica para el material #{@material.nombre}
 
 = render 'form'
 
-= link_to 'Volver', material_path(@material)
+= link_to 'Volver', material_path(@material), :class => 'back_button'
 

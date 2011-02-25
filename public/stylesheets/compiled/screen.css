@@ -115,7 +115,7 @@ h1, h2 {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: url('/images/button_bg.png?1298293757') no-repeat;
+  background: url('/images/button_bg.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -150,7 +150,7 @@ h1, h2 {
 
 /* line 88, ../../../app/stylesheets/screen.sass */
 .icon-sort {
-  background: url('/images/sort-alphabet.png?1298293757') no-repeat;
+  background: url('/images/sort-alphabet.png?1298647110') no-repeat;
   width: 32px;
   height: 32px;
   overflow: hidden;
@@ -162,7 +162,7 @@ h1, h2 {
   font-size: 0.9em;
   margin-top: 5px;
   white-space: nowrap;
-  background: url('/images/plus-circle.png?1298293757') no-repeat;
+  background: url('/images/plus-circle.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -399,7 +399,7 @@ div.accordion {
 
 /* line 53, ../../../app/stylesheets/partials/_tables.sass */
 a.sort_link {
-  background: url('/images/sort-small.png?1298293757') no-repeat;
+  background: url('/images/sort-small.png?1298647110') no-repeat;
   width: 32px;
   height: 32px;
   overflow: hidden;
@@ -467,7 +467,7 @@ table tbody tr td.actions a {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: url('/images/button_bg.png?1298293757') no-repeat;
+  background: url('/images/button_bg.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -581,7 +581,7 @@ form.formtastic fieldset.comboselect fieldset input.csadd {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: url('/images/button_bg.png?1298293757') no-repeat;
+  background: url('/images/button_bg.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -617,7 +617,7 @@ form.formtastic fieldset.comboselect fieldset input.csremove {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: url('/images/button_bg.png?1298293757') no-repeat;
+  background: url('/images/button_bg.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -694,7 +694,7 @@ form.formtastic fieldset.inputs ol li input, form.formtastic fieldset.inputs ol 
   font-size: 1em;
   margin: 0;
   padding: 2px 0;
-  background: url('/images/shadow.gif?1298293757') no-repeat;
+  background: url('/images/shadow.gif?1298647110') no-repeat;
   width: none;
   height: none;
   overflow: hidden;
@@ -751,7 +751,7 @@ form.formtastic fieldset.buttons ol li input {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: url('/images/button_bg.png?1298293757') no-repeat;
+  background: url('/images/button_bg.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -795,7 +795,7 @@ form.formtastic label {
   border-top: 1px solid #dddddd;
   font-weight: normal;
   font-size: 0.9em;
-  background: url('/images/arrow-curve-180.png?1298293757') no-repeat;
+  background: url('/images/arrow-curve-180.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -843,13 +843,18 @@ form.formtastic label {
 }
 
 /* line 2, ../../../app/stylesheets/partials/_show.sass */
+.show {
+  padding-bottom: 10px;
+}
+
+/* line 4, ../../../app/stylesheets/partials/_show.sass */
 dl {
   line-height: 1.6em;
   padding-left: 10px;
   clear: both;
   display: block;
 }
-/* line 7, ../../../app/stylesheets/partials/_show.sass */
+/* line 9, ../../../app/stylesheets/partials/_show.sass */
 dl dt {
   color: #999999;
   float: left;
@@ -857,13 +862,13 @@ dl dt {
   margin: 0;
   width: 130px;
 }
-/* line 14, ../../../app/stylesheets/partials/_show.sass */
+/* line 16, ../../../app/stylesheets/partials/_show.sass */
 dl dd {
   margin: 0;
   display: block;
   clear: right;
 }
-/* line 18, ../../../app/stylesheets/partials/_show.sass */
+/* line 20, ../../../app/stylesheets/partials/_show.sass */
 dl dd ul {
   padding-left: 130px;
   list-style: disc inside none;
@@ -880,7 +885,7 @@ dl dd ul {
   -khtml-border-radius: 5px;
   border-radius: 5px;
   border: 3px solid #ffff99;
-  background: url('/images/exclamation-diamond.png?1298293757') no-repeat;
+  background: url('/images/exclamation-diamond.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -916,7 +921,7 @@ dl dd ul {
   -khtml-border-radius: 5px;
   border-radius: 5px;
   border: 3px solid #80ff80;
-  background: url('/images/tick.png?1298293757') no-repeat;
+  background: url('/images/tick.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -952,7 +957,7 @@ dl dd ul {
   -khtml-border-radius: 5px;
   border-radius: 5px;
   border: 3px solid #ff9999;
-  background: url('/images/exclamation-red.png?1298293757') no-repeat;
+  background: url('/images/exclamation-red.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -1012,7 +1017,7 @@ dl dd ul {
 }
 /* line 25, ../../../app/stylesheets/partials/_rqm.sass */
 #rqm p {
-  padding: 0 10px;
+  padding: 0 10px 10px;
 }
 /* line 27, ../../../app/stylesheets/partials/_rqm.sass */
 #rqm .estado_rechazado {
@@ -1021,7 +1026,7 @@ dl dd ul {
 }
 /* line 32, ../../../app/stylesheets/partials/_rqm.sass */
 #rqm .boton-add {
-  background: url('/images/plus-circle.png?1298293757') no-repeat;
+  background: url('/images/plus-circle.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -1040,13 +1045,17 @@ dl dd ul {
 #rqm .boton-add a {
   padding-left: 20px;
 }
-/* line 42, ../../../app/stylesheets/partials/_rqm.sass */
-#rqm .edit {
+/* line 43, ../../../app/stylesheets/partials/_rqm.sass */
+#rqm #rqm_actions {
+  padding-left: 10px;
+}
+/* line 45, ../../../app/stylesheets/partials/_rqm.sass */
+#rqm #rqm_actions a {
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: url('/images/button_bg.png?1298293757') no-repeat;
+  background: url('/images/button_bg.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -1068,12 +1077,45 @@ dl dd ul {
   font-weight: normal;
   text-decoration: none;
   border: none;
-  margin-left: 10px;
-  margin-top: 20px;
 }
 /* line 77, ../../../app/stylesheets/screen.sass */
-#rqm .edit:hover {
+#rqm #rqm_actions a:hover {
   background-color: #00b300;
+  color: white;
+  text-decoration: none;
+}
+/* line 47, ../../../app/stylesheets/partials/_rqm.sass */
+#rqm #rqm_actions a.negative_action {
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  background: url('/images/button_bg.png?1298647110') no-repeat;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  background-repeat: repeat-x;
+  background-color: red;
+  display: inline-block;
+  padding: 5px 10px 6px;
+  color: white;
+  line-height: 1;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -o-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -khtml-border-radius: 15px;
+  border-radius: 15px;
+  position: relative;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: normal;
+  text-decoration: none;
+  border: none;
+}
+/* line 77, ../../../app/stylesheets/screen.sass */
+#rqm #rqm_actions a.negative_action:hover {
+  background-color: #ff3333;
   color: white;
   text-decoration: none;
 }

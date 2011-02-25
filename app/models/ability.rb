@@ -11,7 +11,9 @@ class Ability
 			can :manage, [Sector, Rubro, Empresa, Proveedor, Moneda, CondicionPago, Usuario]
 		end
 
-		can [:edit, :add_material], Requerimiento do |rqm| iniciado_or_rechazado(rqm) end
+		can [:edit, :add_material], Requerimiento do |rqm| 
+		  iniciado_or_rechazado(rqm) and rqm.solicitante == usuario
+		end
 		can [:add_caracteristica, :edit_caracteristica], Material do |m|
 			iniciado_or_rechazado(m.requerimiento)
 		end
@@ -44,7 +46,7 @@ class Ability
 				false if usuario.sector == nil
 				usuario.sector == @compras
 			else
-				rqm.estado.in? Estado::INICIO, Estado::RECHAZO_X_SECTOR, Estado::PENDIENTE_APROBACION_SECTOR, Estado::APROBADO_X_SECTOR
+				rqm.estado.in? Estado::INICIO, Estado::RECHAZO_X_SECTOR, Estado::PENDIENTE_APROBACION_SECTOR, Estado::APROBADO_X_SECTOR, Estado::RECHAZO_X_COMPRAS
 			end
 		end
 
@@ -60,6 +62,12 @@ class Ability
 
 		# Solo los administradores puede modificar su rol o sector, o el de otros usuarios
 		can :change_rol_and_sector, Usuario, :admin? => true
+		
+#		can :show, Requerimiento do |rqm|
+#		  sectores = Sector.with_responsable usuario
+#		  
+#      Requerimiento.where("sector_id IN (?) OR solicitante_id = ?", s, u)
+#		end
 
 		can :recepcionar, Requerimiento do |rqm|
 			unless usuario.sector.nil?			

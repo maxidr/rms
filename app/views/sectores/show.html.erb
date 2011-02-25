@@ -5,7 +5,7 @@
 
 	<dt>Email</dt>
 	<dd>
-	  <% unless @sector.email.empty? %>
+	  <% unless @sector.email.nil? or @sector.email.empty? %>
   	  <%= @sector.email %>
   	<% else %>
   	  -

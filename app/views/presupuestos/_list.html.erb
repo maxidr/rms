@@ -34,7 +34,7 @@
 						<%= link_to 'Eliminar', presupuesto, :confirm => 'Esta seguro?', :method => :delete %>
 					<% end %>
 					<% if can? :aprobar_presupuestos, @requerimiento %>
-						<%= link_to 'Aprobar presupuesto', aprobar_presupuesto_path(presupuesto), :method => :put  %>
+						<%= link_to 'Aprobar presupuesto', aprobar_presupuesto_path(presupuesto), :method => :put %>
 					<% end %>
 					</td>
 				</tr>

@@ -1,9 +1,7 @@
 = semantic_form_for [@material, @caracteristica] do |form|
- = form.inputs do
-		p
-			b Material:
-			= @caracteristica.material.nombre
-		= form.input :nombre, :hint => 'Ej.: Dimensión'
-		= form.input :valor, :hint => 'Ej: 20x20 cms.'
-		= form.buttons
+  = form.inputs do
+    = form.input :nombre, :hint => 'Ej.: Dimensión'
+    = form.input :valor, :hint => 'Ej: 20x20 cms.'
+  = form.buttons
+  
 

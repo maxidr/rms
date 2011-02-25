@@ -1,41 +1,10 @@
-<%= form_for([@requerimiento, @material]) do |f| %>
-  <% if @material.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@material.errors.count,  "error evita", "errores evitan") %> que este material pueda ser grabado:</h2>
-
-      <ul>
-      <% @material.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+<%= semantic_form_for([@requerimiento, @material]) do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :nombre %>
+    <%= f.input :cantidad, :label => 'Cantidad/Unidad'%>
+    <%= f.input :detalle %>
   <% end %>
-
-  <div class="field">
-    <%= f.label :nombre %><br />
-    <%= f.text_field :nombre %>
-  </div>
-  <div class="field">
-    <%= f.label :cantidad, 'Cantidad/Unidad' %><br />
-    <%= f.text_field :cantidad %>
-  </div>
-  <div class="field">
-    <%= f.label :detalle %><br />
-    <%= f.text_area :detalle %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Grabar material" %>
-    <%#  <%= f.submit "Agregar característica", :id => 'btn_agregar_caracteristica' %>
-  </div>
-
-  <%= hidden_field_tag 'add_caracteristica' %>
-
-  <script>
-  	$(document).ready(function(){
-			$("#btn_agregar_caracteristica").click(function(){
-				$("#add_caracteristica").val('true');
-			});
-		});
-  </script>
+  <%= f.buttons %>
 <% end %>
+
 

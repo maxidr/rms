@@ -2,6 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Ver', @material %> |
-<%= link_to 'Volver', requerimiento_path(@material.requerimiento) %>
+<%= link_to 'Cancelar y volver', requerimiento_path(@material.requerimiento), :class => 'back_button' %>
 

@@ -1,18 +1,24 @@
-<p>
-  <b>Material:</b>
-  <%= @material.nombre %>
-</p>
+<h1>Detalles del material</h1>
 
-<p>
-  <b>Cantidad:</b>
-  <%= @material.cantidad %>
-</p>
-<% unless @material.detalle.empty? %>
-	<p>
-		<b>Detalle:</b>
-		<%= @material.detalle %>
-	</p>
-<% end %>
+<div class="show">
+  <dl>
+    <dt>Material</dt>
+    <dd><%= @material.nombre %></dd>
+  </dl>
+  <dl>
+    <dt>Cantidad</dt>
+    <dd><%= @material.cantidad %></dd>
+  </dl>    
+
+  <%- unless @material.detalle.empty? %>
+	  <dl>
+      <dt>Detalle</dt>
+      <dd>
+        <%= @material.detalle %>
+      </dd>
+    </dl>    
+  <% end -%>
+</div>
 
 <% unless @material.caracteristicas.empty? %>
 	<h2>Características</h2>	
@@ -29,7 +35,7 @@
 			<tr>
 				<td><%= caracteristica.nombre %></td>
 				<td><%= caracteristica.valor %></td>
-				<td>
+				<td class="actions">
 				<% if can? :edit, @material.requerimiento %>
 					<%= link_to 'Editar', edit_caracteristica_path(caracteristica) %>
 					<%= link_to 'Eliminar', caracteristica, :confirm => '¿Esta segúro que desea eliminar la característica?', :method => :delete %>
@@ -42,8 +48,8 @@
 <% end %>
 
 <% if can? :edit, @material.requerimiento %>
-	<%= link_to 'Agregar característica', new_material_caracteristica_path(@material) %> |
-	<%= link_to 'Editar', edit_material_path(@material) %> |
+	<%= link_to 'Agregar característica', new_material_caracteristica_path(@material), :class => 'boton' %>
+	<%= link_to 'Editar', edit_material_path(@material), :class => 'boton' %>
 <% end %>
-<%= link_to 'Volver', requerimiento_path(@material.requerimiento) %>
+<%= link_to 'Volver', requerimiento_path(@material.requerimiento), :class => 'back_button' %>
 

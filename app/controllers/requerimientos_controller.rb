@@ -2,6 +2,7 @@
 class RequerimientosController < ApplicationController
 
 	respond_to :html, :xml, :json
+	respond_to :js, :only => [:motivo_rechazo, :motivo_rechazo_compras]
 
 	before_filter :authenticate_usuario!
 	# IMPROVE: Utilizar el método de cancan load_and_authorize_resource (https://github.com/ryanb/cancan/wiki/authorizing-controller-actions)
@@ -167,14 +168,14 @@ class RequerimientosController < ApplicationController
 
 	# GET /requerimientos/{id}/rechazar
 	# IMPROVE: Modificar método a motivo_rechazo_sector (cambiar vista y ruteo)
+	# TODO: Realizar esta tarea con una ventana modal (ajax)
 	def motivo_rechazo
 	end
 
   def index
 #    @requerimientos = Requerimiento.where(:solicitante_id => current_usuario)
-		#	FIXME: El usuario puede ver sus requerimientos y los que debe autorizar
-
-		@search = Requerimiento.search(params[:search])
+		#	FIXME: El usuario puede ver sus requerimientos y los que debe autorizar    
+		@search = Requerimiento.for_index(current_usuario).search(params[:search])
 		respond_with @requerimientos = @search.paginate(:page => params[:page], :per_page => 15)
 
 #		respond_with( @requerimientos = Requerimiento.includes(:solicitante, :empresa, :sector, :rubro).all )
@@ -200,6 +201,7 @@ class RequerimientosController < ApplicationController
   # POST /requerimientos.xml
   def create
     @requerimiento = Requerimiento.new(params[:requerimiento])
+    @requerimiento.solicitante = current_usuario
     if @requerimiento.save
     	respond_with @requerimiento, :status => :created, :location => new_requerimiento_material_url(@requerimiento)
     else

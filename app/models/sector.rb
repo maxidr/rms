@@ -17,6 +17,8 @@ class Sector < ActiveRecord::Base
 
   validates_presence_of :nombre, :responsables
   validates_uniqueness_of :nombre
+  
+  scope :with_responsable, lambda { |usuario| joins(:responsables).where('usuarios.id' => usuario.id ) }
 
 	# IMPROVE: Mejorar el modo de fijar estos datos (tal vez se mejor generar una pantalla donde un usuario pueda indicar donde mandar los mails en cada estado del requerimiento)
 	#	Se fijan estos valores ya que es importante identificar unequivocamente estos sectores
