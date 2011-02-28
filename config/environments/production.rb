@@ -29,7 +29,7 @@ Rms::Application.configure do
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
-  config.serve_static_assets = false
+  config.serve_static_assets = true
   config.action_mailer.default_url_options = { :host => 'perseus.heroku.com' }
 
   config.action_mailer.delivery_method = :smtp
