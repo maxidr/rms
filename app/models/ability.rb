@@ -5,6 +5,8 @@ class Ability
 #		can :read, :all
 #		cannot :write, :all
 #   alias_action [:index, :show, :search, :recent, :popular], :to => :coolread
+    return false if usuario.nil?
+    
 		@compras ||= Sector.compras
 
 		if usuario.admin?
