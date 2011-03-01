@@ -1,9 +1,18 @@
 h2 Presupuesto aprobado
 
-= show_for presupuesto do |p|
-	= p.attribute :razon_social, :in => :proveedor
-	= p.attribute :monto do
-		= "#{presupuesto.moneda.simbolo} #{number_with_precision presupuesto.monto}"
-	= p.attribute :nombre, :in => :condicion_pago
-	= p.attribute :detalle, :if_blank => '-'
+.rqm-info
+  dl
+    dt Razón social
+    dd = presupuesto.proveedor.razon_social
+  dl
+    dt Monto
+    dd = "#{presupuesto.moneda.simbolo} #{number_with_precision presupuesto.monto}"
+  dl
+    dt Condición de pago
+    dd = presupuesto.condicion_pago.nombre
+  - unless presupuesto.detalle.blank?
+    dl
+      dt Detalle
+      dd = presupuesto.detalle
+  
 

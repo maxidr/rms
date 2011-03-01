@@ -28,11 +28,36 @@ class Requerimiento < ActiveRecord::Base
   validates_presence_of :empresa, :sector, :rubro, :solicitante
   
   scope :for_index, lambda{ |usuario|
-    unless usuario.admin? or [Sector.compras, Sector.administracion].include? usuario.sector
+    unless usuario.admin? or [Sector.compras, Sector.administracion].include? usuario.sector            
+      t = self.arel_table
+      predicate = t[:solicitante_id].eq(usuario)
+
+#      condition = "solicitante_id = ? " 
+#      values = {:usuario => usuario}
+      
       sectores = Sector.with_responsable usuario
-      where("sector_id IN (?) OR solicitante_id = ?", sectores, usuario)
+      unless sectores.empty?
+        predicate = predicate.or(t[:sector_id].in(sectores))
+#         del_sector = where("sector_id IN (?)", sectores)
+#        condition << "OR sector_id IN (?)"
+#        values[:sectores] = sectores 
+      end
+      
+      if usuario.sector.expedicion?
+        predicate = predicate.or(t[:estado].eq(Estado::PENDIENTE_RECEPCION.codigo))
+#        en_expedicion = where("estado = ?", Estado::PENDIENTE_RECEPCION.codigo)
+#        condition << " OR estado = ? "
+#        values[:estado] = Estado::PENDIENTE_RECEPCION.codigo 
+      end      
+#      if sectores.empty?
+#        where("solicitante_id = ?", usuario)
+#      else
+#        where("solicitante_id = ? OR sector_id IN (?)", usuario, sectores)
+#      end      
+      where(predicate)
     end
   }
+  
 
 	# Finalizar el requerimiento
 	# @param [Usuario] responsable del sector que genera la finalización del requerimiento

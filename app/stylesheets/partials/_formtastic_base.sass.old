@@ -571,11 +571,11 @@ $button_float: left
       @else
         float: left
         width: $label_width - $label_pad
-        @else if $label_float == "left"
-          padding-left: $label_pad
-          text-align: left
-        @else
-          text-align: right
+      @if $label_float == "left"
+        padding-left: $label_pad
+        text-align: left
+      @else
+        text-align: right
     fieldset
       legend
         @if $label_float == "clear"
@@ -588,11 +588,11 @@ $button_float: left
             float: none
         @else
           width: $label_width - $label_pad
-          @else if $label_float == "left"
-            padding-left: $label_pad
-          @else
-            padding-right: $label_pad
-            text-align: right
+        @if $label_float == "left"
+          padding-left: $label_pad
+        @else
+          padding-right: $label_pad
+          text-align: right
           span.label
             position: absolute
             width: $label_width - $label_pad
@@ -607,9 +607,9 @@ $button_float: left
     @else
       p.inline-hints, p.inline-errors, ul.errors
         margin: 0 0 0 $label_width
-      @else if $full_width_inputs
-        &.string input, &.password input, &.numeric input, &.text textarea, select
-          width: $input_width
+    @if $full_width_inputs
+      &.string input, &.password input, &.numeric input, &.text textarea, select
+        width: $input_width
       &.boolean label
         padding-left: $label_width
   fieldset
