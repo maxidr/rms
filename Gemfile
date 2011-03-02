@@ -46,5 +46,6 @@ gem "fancy-buttons"
 group :development do
   gem 'annotate'
   #gem 'ruby-debug19'
+  gem 'hirb'
 end
 
