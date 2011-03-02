@@ -26,38 +26,44 @@ class Requerimiento < ActiveRecord::Base
   composed_of :estado, :mapping => %w(estado codigo)
 
   validates_presence_of :empresa, :sector, :rubro, :solicitante
-  
-  scope :for_index, lambda{ |usuario|
-    unless usuario.admin? or [Sector.compras, Sector.administracion].include? usuario.sector            
-      t = self.arel_table
-      predicate = t[:solicitante_id].eq(usuario)
 
-#      condition = "solicitante_id = ? " 
-#      values = {:usuario => usuario}
-      
+  scope :para_usuario, lambda { |usuario|
+    unless usuario.admin? or [Sector.compras, Sector.administracion].include? usuario.sector
+      t = self.arel_table
+      predicate = t[:solicitante_id].eq(usuario.id)
+
       sectores = Sector.with_responsable usuario
       unless sectores.empty?
-        predicate = predicate.or(t[:sector_id].in(sectores))
-#         del_sector = where("sector_id IN (?)", sectores)
-#        condition << "OR sector_id IN (?)"
-#        values[:sectores] = sectores 
+        predicate = predicate.or(t[:sector_id].in(sectores.map{ |s| s.id }))
+##         del_sector = where("sector_id IN (?)", sectores)
       end
-      
+
       if usuario.sector.expedicion?
         predicate = predicate.or(t[:estado].eq(Estado::PENDIENTE_RECEPCION.codigo))
-#        en_expedicion = where("estado = ?", Estado::PENDIENTE_RECEPCION.codigo)
-#        condition << " OR estado = ? "
-#        values[:estado] = Estado::PENDIENTE_RECEPCION.codigo 
-      end      
-#      if sectores.empty?
-#        where("solicitante_id = ?", usuario)
-#      else
-#        where("solicitante_id = ? OR sector_id IN (?)", usuario, sectores)
-#      end      
+      end
       where(predicate)
     end
   }
-  
+
+  def self.propios(usr)
+    arel_table[:solicitante_id].eq(usr.id)
+#    where("solicitante_id = ?", usr)
+  end
+
+  def self.de_los_sectores(usr)
+    sectores = Sector.with_responsable usuario
+      unless sectores.empty?
+        query = query.or(de_los_sectores(sectores))
+      end
+
+#      where("sector_id in (?)", sectores)
+      arel_table[:sector_id].in(sectores.map{ |s| s.id })
+  end
+
+  def self.para_expedicion
+#    where("estado = ?", Estado::PENDIENTE_RECEPCION.codigo)
+    arel_table[:estado].eq(Estado::PENDIENTE_RECEPCION.codigo)
+  end
 
 	# Finalizar el requerimiento
 	# @param [Usuario] responsable del sector que genera la finalización del requerimiento
@@ -65,12 +71,12 @@ class Requerimiento < ActiveRecord::Base
   	con_detalle = DetalleFinalizacion.new(:responsable => responsable)
   	cambiar_estado_a Estado::FINALIZADO, con_detalle
   end
-  
-  
+
+
   def rechazar_entrega!(con_detalle)
   	return false unless con_detalle.valid?
   	cambiar_estado_a Estado::CANCELADO, con_detalle
-  end  
+  end
 
   def verificar_entrega!
 		cambiar_estado_a Estado::ENTREGADO
