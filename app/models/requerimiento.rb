@@ -45,25 +45,6 @@ class Requerimiento < ActiveRecord::Base
     end
   }
 
-  def self.propios(usr)
-    arel_table[:solicitante_id].eq(usr.id)
-#    where("solicitante_id = ?", usr)
-  end
-
-  def self.de_los_sectores(usr)
-    sectores = Sector.with_responsable usuario
-      unless sectores.empty?
-        query = query.or(de_los_sectores(sectores))
-      end
-
-#      where("sector_id in (?)", sectores)
-      arel_table[:sector_id].in(sectores.map{ |s| s.id })
-  end
-
-  def self.para_expedicion
-#    where("estado = ?", Estado::PENDIENTE_RECEPCION.codigo)
-    arel_table[:estado].eq(Estado::PENDIENTE_RECEPCION.codigo)
-  end
 
 	# Finalizar el requerimiento
 	# @param [Usuario] responsable del sector que genera la finalización del requerimiento

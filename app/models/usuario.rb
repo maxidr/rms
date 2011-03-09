@@ -27,7 +27,7 @@ class Usuario < ActiveRecord::Base
 	validates_presence_of :nombre, :apellido, :identificador, :rol
   validates :identificador, :uniqueness => true, :length => { :minimum => 4 }
 
-  has_and_belongs_to_many :responsable_de, :class => "Sector"
+#  has_and_belongs_to_many :responsable_de, :class => "Sector"
 
   belongs_to :sector
 
