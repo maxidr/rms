@@ -41,6 +41,18 @@ $(document).ready(function() {
     $("fieldset.inputs ol fieldset.complex-inputs :input").live('focusout', function(){
       $(this).parents("fieldset.complex-inputs").removeClass("highlight");
     });
+    
+    $("#filters .clean-filters").bind('click', function(event){
+      event.preventDefault();
+      $("fieldset.inputs :input").val("");
+    });
+    
+    $("#filters fieldset.inputs :input").each(function(){
+      if( $(this).val() != '' ){
+        $('.accordion').accordion("activate");
+      }
+    });
+    
 
 });
 

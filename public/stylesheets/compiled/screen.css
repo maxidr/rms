@@ -337,47 +337,71 @@ h1, h2 {
   padding-bottom: 4px;
 }
 /* line 8, ../../../app/stylesheets/partials/_tables.sass */
+#filters a.clean-filters {
+  font-weight: normal;
+  font-size: 0.9em;
+  font-style: italic;
+  background: url('/images/eraser.png?1241992340') no-repeat;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  padding-left: 25px;
+  margin-left: 5px;
+}
+/* line 17, ../../../app/stylesheets/partials/_tables.sass */
 #filters h3 {
   font-size: 0.9em;
   font-weight: normal;
-  /*span
-   * +sprite-background("funnel-small.png", 100%, 50%)
-   * padding-bottom: 3px
-   * padding-left: 20px
-   * padding-top: 2px */
 }
-/* line 11, ../../../app/stylesheets/partials/_tables.sass */
+/* line 20, ../../../app/stylesheets/partials/_tables.sass */
 #filters h3 a {
   padding-left: 2.2em;
 }
-/* line 18, ../../../app/stylesheets/partials/_tables.sass */
+/* line 22, ../../../app/stylesheets/partials/_tables.sass */
 #filters a:hover {
   text-decoration: none;
 }
-/* line 20, ../../../app/stylesheets/partials/_tables.sass */
+/* line 24, ../../../app/stylesheets/partials/_tables.sass */
 #filters .filters-content {
   border-top: 1px solid #e4e4e4;
   padding: 10px;
 }
-/* line 23, ../../../app/stylesheets/partials/_tables.sass */
+/* line 27, ../../../app/stylesheets/partials/_tables.sass */
+#filters .filters-content li.reset {
+  margin-top: 5px;
+  margin-left: 10px;
+}
+/* line 30, ../../../app/stylesheets/partials/_tables.sass */
+#filters .filters-content li.reset a {
+  font-weight: normal;
+  font-size: 0.9em;
+  font-style: italic;
+}
+/* line 34, ../../../app/stylesheets/partials/_tables.sass */
+#filters fieldset.inputs ol li select {
+  width: 100%;
+}
+/* line 37, ../../../app/stylesheets/partials/_tables.sass */
 #filters fieldset.buttons {
   margin: 0;
   padding: 0;
   padding-left: 5px;
   padding-top: 5px;
 }
-/* line 29, ../../../app/stylesheets/partials/_tables.sass */
+/* line 43, ../../../app/stylesheets/partials/_tables.sass */
 #filters ol li {
   clear: none;
   display: inline;
   float: left;
   padding-right: 5px;
 }
-/* line 34, ../../../app/stylesheets/partials/_tables.sass */
+/* line 48, ../../../app/stylesheets/partials/_tables.sass */
 #filters ol li input {
   width: 100%;
 }
-/* line 36, ../../../app/stylesheets/partials/_tables.sass */
+/* line 50, ../../../app/stylesheets/partials/_tables.sass */
 #filters ol li label {
   padding: 0;
   margin: 0;
@@ -390,14 +414,14 @@ h1, h2 {
   /* padding-top:.2em */
 }
 
-/* line 48, ../../../app/stylesheets/partials/_tables.sass */
+/* line 62, ../../../app/stylesheets/partials/_tables.sass */
 div.accordion {
   font-size: 0.9em;
   line-height: 1;
   margin-bottom: 3px;
 }
 
-/* line 53, ../../../app/stylesheets/partials/_tables.sass */
+/* line 67, ../../../app/stylesheets/partials/_tables.sass */
 a.sort_link {
   background: url('/images/sort-small.png?1298647110') no-repeat;
   width: 32px;
@@ -408,7 +432,7 @@ a.sort_link {
   padding-right: 16px;
 }
 
-/* line 61, ../../../app/stylesheets/partials/_tables.sass */
+/* line 75, ../../../app/stylesheets/partials/_tables.sass */
 table {
   border: 1px solid #e4e4e4;
   border-collapse: collapse;
@@ -416,7 +440,7 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
-/* line 68, ../../../app/stylesheets/partials/_tables.sass */
+/* line 82, ../../../app/stylesheets/partials/_tables.sass */
 table thead th {
   background: url("/images/shadow_top.png") repeat-x scroll left center #cccccc;
   border-color: #d5d5d5 #d5d5d5 #aaaaaa;
@@ -430,38 +454,38 @@ table thead th {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   font-weight: bold;
 }
-/* line 81, ../../../app/stylesheets/partials/_tables.sass */
+/* line 95, ../../../app/stylesheets/partials/_tables.sass */
 table thead th a {
   border: medium none;
   color: #444444;
 }
-/* line 85, ../../../app/stylesheets/partials/_tables.sass */
+/* line 99, ../../../app/stylesheets/partials/_tables.sass */
 table thead th a:hover {
   color: #dddddd;
   text-decoration: underline;
 }
-/* line 89, ../../../app/stylesheets/partials/_tables.sass */
+/* line 103, ../../../app/stylesheets/partials/_tables.sass */
 table tbody .odd {
   background-color: white;
 }
-/* line 91, ../../../app/stylesheets/partials/_tables.sass */
+/* line 105, ../../../app/stylesheets/partials/_tables.sass */
 table tbody tr {
   text-align: center;
   white-space: nowrap;
   background-color: #dddddd;
 }
-/* line 96, ../../../app/stylesheets/partials/_tables.sass */
+/* line 110, ../../../app/stylesheets/partials/_tables.sass */
 table tbody tr:hover {
   background-color: #f8e6a4;
 }
-/* line 99, ../../../app/stylesheets/partials/_tables.sass */
+/* line 113, ../../../app/stylesheets/partials/_tables.sass */
 table tbody tr td {
   text-align: center;
   font-size: 0.9em;
   vertical-align: middle;
   padding: 2px;
 }
-/* line 105, ../../../app/stylesheets/partials/_tables.sass */
+/* line 119, ../../../app/stylesheets/partials/_tables.sass */
 table tbody tr td.actions a {
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
@@ -501,11 +525,11 @@ table tbody tr td.actions a:hover {
   color: white;
   text-decoration: none;
 }
-/* line 113, ../../../app/stylesheets/partials/_tables.sass */
+/* line 127, ../../../app/stylesheets/partials/_tables.sass */
 table tbody tr a {
   color: #666666;
 }
-/* line 115, ../../../app/stylesheets/partials/_tables.sass */
+/* line 129, ../../../app/stylesheets/partials/_tables.sass */
 table tbody tr a:hover {
   border-bottom: 1px dotted #999999;
   color: #999999;

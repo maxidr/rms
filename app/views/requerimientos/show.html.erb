@@ -96,7 +96,7 @@
 
 	  <% if can? :verificar_entrega, @requerimiento %>
 		  <%= link_to 'Entrega correcta', verificar_entrega_requerimiento_path(@requerimiento), :method => :put %>
-		  <%= link_to 'Rechazar entrega', rechazar_entrega_requerimiento_path(@requerimiento)  %>
+		  <%= link_to 'Rechazar entrega', rechazar_entrega_requerimiento_path(@requerimiento), :class => 'negative_action' %>
 	  <% end %>
 
 	  <% if can? :finalizar, @requerimiento %>

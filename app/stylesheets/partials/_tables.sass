@@ -5,21 +5,35 @@
 
 #filters
   padding-bottom: 4px
+  a.clean-filters
+    font-weight: normal
+    font-size: 0.9em
+    font-style: italic
+    +sprite-background("eraser.png",auto)
+    padding-bottom: 5px
+    padding-top: 5px
+    padding-left: 25px
+    margin-left: 5px
   h3
     font-size: 0.9em
     font-weight: normal
     a
       padding-left: 2.2em
-    /*span
-      +sprite-background("funnel-small.png", 100%, 50%)
-      padding-bottom: 3px
-      padding-left: 20px
-      padding-top: 2px*/
   a:hover
     text-decoration: none
   .filters-content
     border-top: 1px solid #E4E4E4
     padding: 10px
+    li.reset
+      margin-top: 5px
+      margin-left: 10px
+      a
+        font-weight: normal
+        font-size: 0.9em
+        font-style: italic
+  fieldset.inputs ol li select
+    width: 100%
+  
   fieldset.buttons
     margin: 0
     padding: 0

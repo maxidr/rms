@@ -3,9 +3,14 @@ class Estado
 	include Comparable
 
 	attr_reader :codigo, :nombre
+	
+	
+	def self.all
+    @@estados
+  end
 
 	def initialize( codigo )
-		@@estados ||= { 0 => 'Iniciado',
+	  @@estados ||= { 0 => 'Iniciado',
 										1 => 'Pendiente de aprobación por sector',
 										2 => 'Rechazado por el sector',
 										3 => 'Aprobado por el sector',
@@ -16,8 +21,7 @@ class Estado
 										8 => 'Entregado, pendiente de verificación',
 										9 => 'Entrega verificada',
 										10 => 'Finalizado',
-										-1 => 'Cancelado'}
-
+										-1 => 'Cancelado'}		
 		@codigo = codigo
 		raise "El valor #{codigo} es un código de estado inválido" unless @@estados.key? codigo
 		@nombre = @@estados[@codigo]
@@ -35,9 +39,8 @@ class Estado
 	ENTREGADO											= Estado.new 9
 	FINALIZADO										= Estado.new 10
 	CANCELADO 										= Estado.new -1
-
-
-
+  
+  
 	def <=>(other_estado)
 		codigo <=> other_estado.codigo
 	end
