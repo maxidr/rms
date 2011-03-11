@@ -11,3 +11,4 @@ environment = Compass::AppIntegration::Rails.env
 # relative_assets = true
 preferred_syntax = :sass
 
+Compass.configuration.sass_options = { :never_update => true }  if RAILS_ENV == 'production'
