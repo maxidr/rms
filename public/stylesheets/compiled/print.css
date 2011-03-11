@@ -1,3 +1,93 @@
-/* Welcome to Compass. Use this file to define print styles.
- * Import this file using the following HTML or equivalent:
- * <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" /> */
+/*
+Syntax error: Invalid CSS after "#FFF": expected expression (e.g. 1px, bold), was ";"
+        on line 8 of /home/maxi/Projects/rms/app/stylesheets/print.sass
+
+3:   Import this file using the following HTML or equivalent:
+4:   <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" /> */
+5:   
+6: 
+7: body
+8:   background-color: #FFF; 
+9:   #content
+10:     width: auto
+11:     margin: 0
+12:     padding: 0
+13:     border: none
+
+Backtrace:
+/home/maxi/Projects/rms/app/stylesheets/print.sass:8
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/scss/parser.rb:838:in `expected'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/script/lexer.rb:193:in `expected!'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/script/parser.rb:392:in `assert_done'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/script/parser.rb:50:in `parse'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/script/parser.rb:120:in `parse'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/script.rb:32:in `parse'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/engine.rb:672:in `parse_script'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/engine.rb:470:in `parse_property'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/engine.rb:459:in `parse_property_or_rule'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/engine.rb:440:in `parse_line'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/engine.rb:328:in `build_tree'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/engine.rb:347:in `block in append_children'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/engine.rb:346:in `each'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/engine.rb:346:in `append_children'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/engine.rb:337:in `block in build_tree'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/engine.rb:330:in `each'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/engine.rb:330:in `build_tree'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/engine.rb:347:in `block in append_children'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/engine.rb:346:in `each'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/engine.rb:346:in `append_children'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/engine.rb:216:in `_to_tree'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/engine.rb:179:in `block in to_tree'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/haml/util.rb:294:in `silence_haml_warnings'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/engine.rb:179:in `to_tree'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/files.rb:44:in `tree_for'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/plugin.rb:223:in `update_stylesheet'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/plugin.rb:88:in `block (2 levels) in update_stylesheets'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/plugin.rb:81:in `each'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/plugin.rb:81:in `block in update_stylesheets'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/plugin.rb:79:in `each'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/plugin.rb:79:in `update_stylesheets'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/plugin.rb:50:in `check_for_updates'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/haml-3.0.25/lib/sass/plugin/rack.rb:40:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/pdfkit-0.5.0/lib/pdfkit/middleware.rb:15:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/warden-1.0.2/lib/warden/manager.rb:35:in `block in call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/warden-1.0.2/lib/warden/manager.rb:34:in `catch'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/warden-1.0.2/lib/warden/manager.rb:34:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/actionpack-3.0.3/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/actionpack-3.0.3/lib/action_dispatch/middleware/head.rb:14:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/rack-1.2.1/lib/rack/methodoverride.rb:24:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/actionpack-3.0.3/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/actionpack-3.0.3/lib/action_dispatch/middleware/flash.rb:182:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/actionpack-3.0.3/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/actionpack-3.0.3/lib/action_dispatch/middleware/cookies.rb:295:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/activerecord-3.0.3/lib/active_record/query_cache.rb:32:in `block in call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/activerecord-3.0.3/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/activerecord-3.0.3/lib/active_record/query_cache.rb:12:in `cache'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/activerecord-3.0.3/lib/active_record/query_cache.rb:31:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/activerecord-3.0.3/lib/active_record/connection_adapters/abstract/connection_pool.rb:353:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/actionpack-3.0.3/lib/action_dispatch/middleware/callbacks.rb:46:in `block in call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/activesupport-3.0.3/lib/active_support/callbacks.rb:415:in `_run_call_callbacks'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/actionpack-3.0.3/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/rack-1.2.1/lib/rack/sendfile.rb:107:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/actionpack-3.0.3/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/actionpack-3.0.3/lib/action_dispatch/middleware/show_exceptions.rb:46:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/railties-3.0.3/lib/rails/rack/logger.rb:13:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/rack-1.2.1/lib/rack/runtime.rb:17:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/activesupport-3.0.3/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/rack-1.2.1/lib/rack/lock.rb:11:in `block in call'
+<internal:prelude>:10:in `synchronize'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/rack-1.2.1/lib/rack/lock.rb:11:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/actionpack-3.0.3/lib/action_dispatch/middleware/static.rb:30:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/railties-3.0.3/lib/rails/application.rb:168:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/railties-3.0.3/lib/rails/application.rb:77:in `method_missing'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/railties-3.0.3/lib/rails/rack/log_tailer.rb:14:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/rack-1.2.1/lib/rack/content_length.rb:13:in `call'
+/home/maxi/.rvm/gems/ruby-1.9.2-p0/gems/rack-1.2.1/lib/rack/handler/webrick.rb:52:in `service'
+/home/maxi/.rvm/rubies/ruby-1.9.2-p0/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+/home/maxi/.rvm/rubies/ruby-1.9.2-p0/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+/home/maxi/.rvm/rubies/ruby-1.9.2-p0/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Invalid CSS after \"#FFF\": expected expression (e.g. 1px, bold), was \";\"\A         on line 8 of /home/maxi/Projects/rms/app/stylesheets/print.sass\A \A 3:   Import this file using the following HTML or equivalent:\A 4:   <link href=\"/stylesheets/print.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\" /> */\A 5:   \A 6: \A 7: body\A 8:   background-color: #FFF; \A 9:   #content\A 10:     width: auto\A 11:     margin: 0\A 12:     padding: 0\A 13:     border: none"; }

@@ -18,8 +18,7 @@ gem "meta_search"
 
 #gem "hassle"
 gem "compass", ">= 0.10.6"
-gem "fancy-buttons"
-
+gem "wicked_pdf"
 
 # Use unicorn as the web server
 # gem 'unicorn'

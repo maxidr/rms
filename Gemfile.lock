@@ -40,8 +40,6 @@ GEM
       warden (~> 1.0.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
-    fancy-buttons (1.0.6)
-      compass (= 0.10.6)
     formtastic (1.2.3)
       actionpack (>= 2.3.7)
       activesupport (>= 2.3.7)
@@ -94,6 +92,7 @@ GEM
     tzinfo (0.3.23)
     warden (1.0.2)
       rack (>= 1.0.0)
+    wicked_pdf (0.6.0)
     will_paginate (3.0.pre2)
 
 PLATFORMS
@@ -104,7 +103,6 @@ DEPENDENCIES
   cancan
   compass (>= 0.10.6)
   devise
-  fancy-buttons
   formtastic (~> 1.2.3)
   hirb
   meta_search
@@ -113,4 +111,5 @@ DEPENDENCIES
   slim
   slim-rails
   sqlite3-ruby
+  wicked_pdf
   will_paginate (~> 3.0.pre2)

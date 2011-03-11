@@ -3,6 +3,7 @@ class RequerimientosController < ApplicationController
 
 	respond_to :html, :xml, :json
 	respond_to :js, :only => [:motivo_rechazo, :motivo_rechazo_compras]
+	respond_to :pdf, :only => [:show]
 
 	before_filter :authenticate_usuario!
 	# IMPROVE: Utilizar el método de cancan load_and_authorize_resource (https://github.com/ryanb/cancan/wiki/authorizing-controller-actions)
@@ -182,7 +183,25 @@ class RequerimientosController < ApplicationController
   end
 
   def show
-   	respond_with(@requerimiento)
+#   	respond_with @requerimiento do |format|
+#   	  format.pdf{ render :pdf => "requerimiento.pdf" }
+#   	end
+   	
+   	respond_to do |format|
+      format.html
+      format.pdf do
+          render :pdf => "requerimiento_#{@requerimiento.id}", :template => 'requerimientos/show.html.erb'
+#                  :template => 'requerimientos/show.pdf.erb',
+#                  :layout => 'pdf.html.erb',
+#                 :template => 'requerimientos/show.html.erb',
+#                 :layout => 'pdf',
+#                 :footer => {
+#                    :center => "Center",
+#                    :left => "Left",
+#                    :right => "Right"
+#                 }
+      end
+    end
   end
 
   # GET /requerimientos/new

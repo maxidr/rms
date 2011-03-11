@@ -56,12 +56,12 @@
       </dl>
     </div>
   </div>
-  <%= render "materiales" %>
+  <%= render "materiales.html.erb" %>
 
   <% if @requerimiento.estado >= Estado::APROBADO_X_COMPRAS && @requerimiento.estado != Estado::RECHAZO_X_COMPRAS %>
-	  <%= render "presupuestos/aprobado", :presupuesto => @requerimiento.presupuesto_aprobado %>
+	  <%= render "presupuestos/aprobado.html.erb", :presupuesto => @requerimiento.presupuesto_aprobado %>
   <% else %>
-	  <%= render "presupuestos/list", :presupuestos => @requerimiento.presupuestos %>
+	  <%= render "presupuestos/list.html.erb", :presupuestos => @requerimiento.presupuestos %>
   <% end %>
 
 
