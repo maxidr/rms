@@ -20,9 +20,12 @@ class Presupuesto < ActiveRecord::Base
   belongs_to :proveedor
   belongs_to :moneda
   belongs_to :condicion_pago
+  has_many :desgloses
 
   validates_presence_of :monto, :moneda, :condicion_pago, :proveedor
   validates_numericality_of :monto, :greater_than => 0
+  
+  accepts_nested_attributes_for :desgloses
 
 end
 

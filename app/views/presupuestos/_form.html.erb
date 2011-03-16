@@ -1,6 +1,19 @@
 <%= semantic_form_for [@requerimiento, @presupuesto] do |f| %>
   <%= f.inputs do %>
     <%= f.input :proveedor_id, :as => :select, :collection => Proveedor.all, :label_method => :razon_social %>
+
+    <%= f.inputs :for => :desgloses, :class => :desglose do |desglose| %>
+      <li>
+        <!-- <%= label_tag 'Material' %> -->
+        <!-- <%= desglose.object.material.nombre %> -->
+        <h3><%= desglose.object.material.nombre %></h3>
+        <p>(<%= desglose.object.material.cantidad %>)</p>
+      </li>
+      <%= desglose.inputs :detalle, :unidades, :precio_unitario, :input_html => { :class => 'precio_con_iva' } %>
+      <%= desglose.input :iva, :label => 'IVA (%)' %>
+      <%= desglose.input :precio_unitario_con_iva, :input_html => { :class => 'precio_sin_iva' } %>
+    <% end %>
+
     <%= f.inputs :name => 'Monto', :class => 'complex-inputs' do %>
       <%= f.input :moneda, :label_method => :simbolo, 
         :label => false, :hint => 'Moneda', :selected => Moneda.find_by_simbolo('$').id %>

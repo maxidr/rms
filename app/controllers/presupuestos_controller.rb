@@ -26,6 +26,9 @@ class PresupuestosController < ApplicationController
   # GET /presupuestos/new.xml
   def new
     @presupuesto = Presupuesto.new
+    @requerimiento.materiales.each do |material|
+      @presupuesto.desgloses << Desglose.new(:material => material, :iva => 21)
+    end
 
     respond_to do |format|
       format.html # new.html.erb
