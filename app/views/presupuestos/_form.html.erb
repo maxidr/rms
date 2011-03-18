@@ -9,9 +9,11 @@
         <h3><%= desglose.object.material.nombre %></h3>
         <p>(<%= desglose.object.material.cantidad %>)</p>
       </li>
-      <%= desglose.inputs :detalle, :unidades, :precio_unitario, :input_html => { :class => 'precio_con_iva' } %>
+      <%= desglose.input :detalle %>
+      <%= desglose.input :unidades %>
+      <%= desglose.input :precio_unitario, :input_html => { :class => 'precio_sin_iva' } %>
       <%= desglose.input :iva, :label => 'IVA (%)' %>
-      <%= desglose.input :precio_unitario_con_iva, :input_html => { :class => 'precio_sin_iva' } %>
+      <%= desglose.input :precio_unitario_con_iva, :input_html => { :class => 'precio_con_iva' } %>
     <% end %>
 
     <%= f.inputs :name => 'Monto', :class => 'complex-inputs' do %>
@@ -23,6 +25,10 @@
     <%= f.input :detalle, :as => :text %>
   <% end %>
   <%= f.buttons %>
+<% end %>
+
+<% content_for :javascript do %>
+  <%= javascript_include_tag 'presupuesto' %>
 <% end %>
 
 
