@@ -2,6 +2,6 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Ver', @condicion_pago %> |
-<%= link_to 'Volver', condiciones_pagos_path %>
+<%= link_to 'Ver', @condicion_pago, class: 'boton' %>
+<%= link_to 'Cancelar y volver', condiciones_pagos_path, class: 'back_button' %>
 

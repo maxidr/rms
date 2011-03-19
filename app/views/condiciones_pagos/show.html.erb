@@ -1,14 +1,12 @@
-<p>
-  <b>Nombre:</b>
-  <%= @condicion_pago.nombre %>
-</p>
-
-<p>
-  <b>Descripción:</b>
-  <%= @condicion_pago.descripcion %>
-</p>
+<h1>Detalles de la condición de pago</h1>
+<dl>
+  <dt>Nombre</dt>
+  <dd><%= @condicion_pago.nombre %></dd>
+  <dt>Descripción</dt>
+  <dd><%= @condicion_pago.descripcion %></dd>
+</dl>
 
 
-<%= link_to 'Editar', edit_condicion_pago_path(@condicion_pago) %> |
-<%= link_to 'Volver', condiciones_pagos_path %>
+<%= link_to 'Editar', edit_condicion_pago_path(@condicion_pago), class: 'boton' %>
+<%= link_to 'Volver', condiciones_pagos_path, class: 'back_button' %>
 

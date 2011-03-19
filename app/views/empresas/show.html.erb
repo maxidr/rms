@@ -1,9 +1,10 @@
-<p>
-  <b>Nombre:</b>
-  <%= @empresa.nombre %>
-</p>
+<h2>Detalles de la empresa</h2>
+<dl>
+  <dt>Nombre</dt>
+  <dd><%= @empresa.nombre %></dd>
+</dl>
 
 
-<%= link_to 'Editar', edit_empresa_path(@empresa) %> |
-<%= link_to 'Volver', empresas_path %>
+<%= link_to 'Editar', edit_empresa_path(@empresa), :class => 'boton' %>
+<%= link_to 'Volver', empresas_path, :class => 'back_button' %>
 

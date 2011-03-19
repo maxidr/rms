@@ -1,0 +1,32 @@
+/* line 2, ../../../app/stylesheets/presupuesto.sass */
+form.formtastic fieldset.inputs fieldset.precio_unitario ol li.numeric {
+  width: 100px;
+}
+/* line 4, ../../../app/stylesheets/presupuesto.sass */
+form.formtastic fieldset.inputs fieldset.precio_unitario ol li.numeric input {
+  width: 100%;
+}
+
+/* line 6, ../../../app/stylesheets/presupuesto.sass */
+form.formtastic fieldset.desglose {
+  margin-top: 15px;
+  border-top: 1px dotted #dddddd;
+}
+/* line 10, ../../../app/stylesheets/presupuesto.sass */
+form.formtastic fieldset.desglose ol li.title h3 {
+  font-size: 1.3em;
+  font-weight: bold;
+  font-style: italic;
+  color: #5e5e5e;
+  padding-bottom: 5px;
+}
+/* line 16, ../../../app/stylesheets/presupuesto.sass */
+form.formtastic fieldset.desglose ol li.title p {
+  font-style: italic;
+  font-size: 0.9em;
+}
+
+/* line 20, ../../../app/stylesheets/presupuesto.sass */
+form.formtastic fieldset.buttons {
+  padding-top: 20px;
+}

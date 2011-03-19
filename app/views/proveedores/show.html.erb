@@ -1,15 +1,41 @@
-<%= show_for @proveedor do |p| %>
-	<%= p.attribute :razon_social %>
-	<%= p.attribute :domicilio %>
-	<%= p.attribute :telefono, :label => 'Teléfono' %>
-	<%= p.attribute :cuit %>
-	<%= p.attribute :localidad %>
-	<%= p.attribute :cod_postal, :label => 'Código postal' %>
-	<%= p.attribute :representante %>
-	<%= p.attribute :jefe_ventas, :label => 'Jefe de ventas' %>
-	<%= p.attribute :memo %>
-<% end %>
+<h2>Detalles del proveedor</h2>
+<dl>
+  <dt>Razón Social</dt>
+  <dd><%= @proveedor.razon_social %></dd>
+</dl>
+<dl>
+  <dt>CUIT</dt>
+  <dd><%= @proveedor.cuit %></dd>
+</dl>
+<dl>
+  <dt>Teléfono</dt>
+  <dd><%= @proveedor.telefono %></dd>
+</dl>
+<dl>
+  <dt>Domicilio</dt>
+  <dd><%= @proveedor.domicilio %></dd>
+</dl>
+<dl>
+  <dt>Localidad</dt>
+  <dd><%= @proveedor.localidad %></dd>
+</dl>
+<dl>
+  <dt>Código postal</dt>
+  <dd><%= @proveedor.cod_postal %></dd>
+</dl>
+<dl>
+  <dt>Representante</dt>
+  <dd><%= @proveedor.representante %></dd>
+</dl>
+<dl>
+  <dt>Jefe de ventas</dt>
+  <dd><%= @proveedor.jefe_ventas %></dd>
+</dl>
+<dl>
+  <dt>Memo</dt>
+  <dd><%= @proveedor.memo %></dd>
+</dl>
 
-<%= link_to 'Editar', edit_proveedor_path(@proveedor) %> |
-<%= link_to 'Volver', proveedores_path %>
+<%= link_to 'Editar', edit_proveedor_path(@proveedor), :class => 'boton' if can? :edit, @proveedor %>
+<%= link_to 'Volver', proveedores_path, :class => 'back_button' %>
 

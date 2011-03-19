@@ -1,0 +1,50 @@
+<h2>Presupuesto del requerimiento n° <%= @presupuesto.requerimiento.id %></h2>
+<dl>
+  <dt>Proveedor</dt>
+  <dd><%= link_to @presupuesto.proveedor.razon_social, @presupuesto.proveedor, html_options = { target: '_blank'}  %>
+</dl>
+<dl>
+  <dt>Condición de pago</dt>
+  <dd><%= @presupuesto.condicion_pago.nombre %></dd>
+</dl>
+<% unless @presupuesto.detalle.blank? %>
+  <dl>
+    <dt>Detalle</dt>
+    <dd><%= @presupuesto.detalle %></dd>
+  </dl>
+<% end %>
+
+<br />
+
+<table>
+  <thead>
+    <tr>
+      <th>Material</th>
+      <th>IVA</th>
+      <th>Precio unitario</th>
+      <th>Unidades</th>
+      <th>Precio total final</th>
+      <th>Detalles</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @presupuesto.desgloses.each do |desglose| %>
+    <tr>
+      <td><%= link_to desglose.material.nombre, desglose.material, html_options: { target: '_blank'}  %></td>
+      <td><%= iva(desglose) %></td>
+      <td>
+        <%= precio_unitario(desglose, @presupuesto.moneda) %>
+      </td>
+      <td><%= desglose.unidades %></td>
+      <td>
+        <%= @presupuesto.moneda.simbolo %>
+        <%= number_with_precision desglose.monto_total %>
+      </td>
+      <td><%= desglose.detalle %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Volver', requerimiento_path(@presupuesto.requerimiento), :class => 'back_button' %>
+

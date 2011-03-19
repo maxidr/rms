@@ -1,28 +1,24 @@
 <%= semantic_form_for [@requerimiento, @presupuesto] do |f| %>
   <%= f.inputs do %>
     <%= f.input :proveedor_id, :as => :select, :collection => Proveedor.all, :label_method => :razon_social %>
-
-    <%= f.inputs :for => :desgloses, :class => :desglose do |desglose| %>
-      <li>
-        <!-- <%= label_tag 'Material' %> -->
-        <!-- <%= desglose.object.material.nombre %> -->
-        <h3><%= desglose.object.material.nombre %></h3>
-        <p>(<%= desglose.object.material.cantidad %>)</p>
-      </li>
-      <%= desglose.input :detalle %>
-      <%= desglose.input :unidades %>
-      <%= desglose.input :precio_unitario, :input_html => { :class => 'precio_sin_iva' } %>
-      <%= desglose.input :iva, :label => 'IVA (%)' %>
-      <%= desglose.input :precio_unitario_con_iva, :input_html => { :class => 'precio_con_iva' } %>
-    <% end %>
-
-    <%= f.inputs :name => 'Monto', :class => 'complex-inputs' do %>
-      <%= f.input :moneda, :label_method => :simbolo, 
-        :label => false, :hint => 'Moneda', :selected => Moneda.find_by_simbolo('$').id %>
-      <%= f.input :monto, :label => false %>    
-    <% end %>
+    <%= f.input :moneda, :label_method => :simbolo, :selected => Moneda.find_by_simbolo('$').id %>
     <%= f.input :condicion_pago, :label_method => :nombre %>
     <%= f.input :detalle, :as => :text %>
+
+    <%= f.inputs :for => :desgloses, :class => :desglose do |desglose| %>
+      <li class="title">
+        <h3><%= desglose.object.material.nombre %></h3>
+        <p>(Cantidad: <%= desglose.object.material.cantidad %>)</p>
+      </li>
+      <%= desglose.input :material_id, :as => :hidden %>
+      <%= desglose.input :unidades %>
+      <%= desglose.input :iva, :label => 'IVA (%)', :as => :select, :collection => Presupuesto::IVA, :include_blank => false %>
+      <%= desglose.inputs :name => 'Precio unitario', class: 'complex-inputs precio_unitario' do %>
+        <%= desglose.input :precio_unitario, label: false %>
+        <%= desglose.input :mas_iva, :as => :boolean, :label => '+ IVA' %>
+      <% end %>
+      <%= desglose.input :detalle %>
+    <% end %>
   <% end %>
   <%= f.buttons %>
 <% end %>
@@ -31,6 +27,7 @@
   <%= javascript_include_tag 'presupuesto' %>
 <% end %>
 
-
-
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag 'compiled/presupuesto.css', :media => 'screen, projection' %>
+<% end %>
 

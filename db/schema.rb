@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110316172916) do
+ActiveRecord::Schema.define(:version => 20110319161419) do
 
   create_table "caracteristicas", :force => true do |t|
     t.string   "nombre"
@@ -40,11 +40,11 @@ ActiveRecord::Schema.define(:version => 20110316172916) do
     t.integer  "unidades"
     t.decimal  "precio_unitario"
     t.decimal  "iva"
-    t.decimal  "precio_final"
     t.integer  "presupuesto_id"
     t.integer  "material_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "mas_iva"
   end
 
   create_table "detalles_aprobacion_compras", :force => true do |t|
@@ -118,7 +118,6 @@ ActiveRecord::Schema.define(:version => 20110316172916) do
   create_table "presupuestos", :force => true do |t|
     t.integer  "proveedor_id"
     t.integer  "moneda_id"
-    t.decimal  "monto"
     t.integer  "condicion_pago_id"
     t.datetime "created_at"
     t.datetime "updated_at"
