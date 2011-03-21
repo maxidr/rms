@@ -190,16 +190,13 @@ class RequerimientosController < ApplicationController
    	respond_to do |format|
       format.html
       format.pdf do
-          render :pdf => "requerimiento_#{@requerimiento.id}", :template => 'requerimientos/show.html.erb'
-#                  :template => 'requerimientos/show.pdf.erb',
-#                  :layout => 'pdf.html.erb',
-#                 :template => 'requerimientos/show.html.erb',
-#                 :layout => 'pdf',
-#                 :footer => {
-#                    :center => "Center",
-#                    :left => "Left",
-#                    :right => "Right"
-#                 }
+          render :pdf => "requerimiento_#{@requerimiento.id}",
+                 :template => 'requerimientos/reporte/show.pdf.slim',
+                 :show_as_html => params[:debug].present?,      # allow debuging based on url param
+                 :layout => 'pdf.html.erb',
+                 :footer => {
+                    :right => "Reporte generado el #{l DateTime.current}"
+                 }
       end
     end
   end

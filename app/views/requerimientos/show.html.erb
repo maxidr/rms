@@ -29,7 +29,7 @@
           <%= @requerimiento.estado.to_s %>
 		      <%- if @requerimiento.estado == Estado::PENDIENTE_RECEPCION %>
 		        <i>
-		        <%= " (Fecha probable de entrega: #{l @requerimiento.compra.fecha_probable_entrega})" %>
+		          <%= " (Fecha probable de entrega: \n #{l @requerimiento.compra.fecha_probable_entrega})" %>
 		        </i>
 		      <% end -%>
         </dd>  

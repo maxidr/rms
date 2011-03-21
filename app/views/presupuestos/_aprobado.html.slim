@@ -1,3 +1,4 @@
+
 h2 Presupuesto aprobado
 
 .rqm-info
@@ -5,8 +6,8 @@ h2 Presupuesto aprobado
     dt Razón social
     dd = presupuesto.proveedor.razon_social
   dl
-    dt Monto
-    dd = "#{presupuesto.moneda.simbolo} #{number_with_precision presupuesto.monto}"
+    dt Monto total final
+    dd = "#{presupuesto.moneda.simbolo} #{number_with_precision presupuesto.monto_total}"
   dl
     dt Condición de pago
     dd = presupuesto.condicion_pago.nombre
@@ -14,5 +15,6 @@ h2 Presupuesto aprobado
     dl
       dt Detalle
       dd = presupuesto.detalle
+  = link_to 'Ver detalles del presupuesto', presupuesto
   
 

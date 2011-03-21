@@ -11,8 +11,8 @@ html
 			b Proveedor:
 			= @presupuesto.proveedor.razon_social
 		p
-			b Monto:
-			= "#{@presupuesto.moneda.simbolo} #{number_with_precision @presupuesto.monto}"
+			b Monto total final:
+			= "#{@presupuesto.moneda.simbolo} #{number_with_precision @presupuesto.monto_total}"
 		p
 			b Condición de pago:
 			= @presupuesto.condicion_pago.nombre

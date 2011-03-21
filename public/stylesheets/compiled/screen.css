@@ -115,7 +115,7 @@ h1, h2 {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: url('/images/button_bg.png?1298251188') no-repeat;
+  background: url('/images/button_bg.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -150,19 +150,61 @@ h1, h2 {
 
 /* line 88, ../../../app/stylesheets/screen.sass */
 .icon-sort {
-  background: url('/images/sort-alphabet.png?1298251188') no-repeat;
+  background: url('/images/sort-alphabet.png?1298647110') no-repeat;
   width: 32px;
   height: 32px;
   overflow: hidden;
 }
 
-/* line 91, ../../../app/stylesheets/screen.sass */
+/* line 99, ../../../app/stylesheets/screen.sass */
+.details_button {
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  background: url('/images/button_bg.png?1298647110') no-repeat;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  background-repeat: repeat-x;
+  background-color: #222222;
+  display: inline-block;
+  padding: 5px 10px 6px;
+  color: white;
+  line-height: 1;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -o-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -khtml-border-radius: 15px;
+  border-radius: 15px;
+  position: relative;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: normal;
+  text-decoration: none;
+  border: none;
+  font-size: 0.8em;
+  font-weight: normal;
+  text-decoration: none;
+  border: none;
+  margin-right: 3px;
+  margin-top: 5px;
+}
+/* line 77, ../../../app/stylesheets/screen.sass */
+.details_button:hover {
+  background-color: #3c3c3c;
+  color: white;
+  text-decoration: none;
+}
+
+/* line 103, ../../../app/stylesheets/screen.sass */
 .contextual {
   float: right;
   font-size: 0.9em;
   margin-top: 5px;
   white-space: nowrap;
-  background: url('/images/plus-circle.png?1298251188') no-repeat;
+  background: url('/images/plus-circle.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -372,7 +414,7 @@ h1, h2 {
   font-weight: normal;
   font-size: 0.9em;
   font-style: italic;
-  background: url('/images/eraser.png?1300482377') no-repeat;
+  background: url('/images/eraser.png?1299866740') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -454,7 +496,7 @@ div.accordion {
 
 /* line 84, ../../../app/stylesheets/partials/_tables.sass */
 a.sort_link {
-  background: url('/images/sort-small.png?1298251188') no-repeat;
+  background: url('/images/sort-small.png?1298647110') no-repeat;
   width: 32px;
   height: 32px;
   overflow: hidden;
@@ -463,7 +505,7 @@ a.sort_link {
   padding-right: 16px;
 }
 
-/* line 92, ../../../app/stylesheets/partials/_tables.sass */
+/* line 90, ../../../app/stylesheets/partials/_tables.sass */
 table {
   border: 1px solid #e4e4e4;
   border-collapse: collapse;
@@ -471,7 +513,7 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
-/* line 99, ../../../app/stylesheets/partials/_tables.sass */
+/* line 97, ../../../app/stylesheets/partials/_tables.sass */
 table thead th {
   background: url("/images/shadow_top.png") repeat-x scroll left center #cccccc;
   border-color: #d5d5d5 #d5d5d5 #aaaaaa;
@@ -485,44 +527,44 @@ table thead th {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   font-weight: bold;
 }
-/* line 112, ../../../app/stylesheets/partials/_tables.sass */
+/* line 110, ../../../app/stylesheets/partials/_tables.sass */
 table thead th a {
   border: medium none;
   color: #444444;
 }
-/* line 116, ../../../app/stylesheets/partials/_tables.sass */
+/* line 114, ../../../app/stylesheets/partials/_tables.sass */
 table thead th a:hover {
   color: #dddddd;
   text-decoration: underline;
 }
-/* line 120, ../../../app/stylesheets/partials/_tables.sass */
+/* line 118, ../../../app/stylesheets/partials/_tables.sass */
 table tbody .odd {
   background-color: white;
 }
-/* line 122, ../../../app/stylesheets/partials/_tables.sass */
+/* line 120, ../../../app/stylesheets/partials/_tables.sass */
 table tbody tr {
   text-align: center;
   white-space: nowrap;
   background-color: #dddddd;
 }
-/* line 127, ../../../app/stylesheets/partials/_tables.sass */
+/* line 125, ../../../app/stylesheets/partials/_tables.sass */
 table tbody tr:hover {
   background-color: #f8e6a4;
 }
-/* line 130, ../../../app/stylesheets/partials/_tables.sass */
+/* line 128, ../../../app/stylesheets/partials/_tables.sass */
 table tbody tr td {
   text-align: center;
   font-size: 0.9em;
   vertical-align: middle;
   padding: 2px;
 }
-/* line 136, ../../../app/stylesheets/partials/_tables.sass */
+/* line 134, ../../../app/stylesheets/partials/_tables.sass */
 table tbody tr td.actions a {
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: url('/images/button_bg.png?1298251188') no-repeat;
+  background: url('/images/button_bg.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -544,12 +586,12 @@ table tbody tr td.actions a {
   font-weight: normal;
   text-decoration: none;
   border: none;
-  visibility: hidden;
   font-size: 0.8em;
   font-weight: normal;
   text-decoration: none;
   border: none;
   margin-right: 3px;
+  visibility: hidden;
 }
 /* line 77, ../../../app/stylesheets/screen.sass */
 table tbody tr td.actions a:hover {
@@ -557,11 +599,11 @@ table tbody tr td.actions a:hover {
   color: white;
   text-decoration: none;
 }
-/* line 145, ../../../app/stylesheets/partials/_tables.sass */
+/* line 137, ../../../app/stylesheets/partials/_tables.sass */
 table tbody tr a {
   color: #666666;
 }
-/* line 147, ../../../app/stylesheets/partials/_tables.sass */
+/* line 139, ../../../app/stylesheets/partials/_tables.sass */
 table tbody tr a:hover {
   border-bottom: 1px dotted #999999;
   color: #999999;
@@ -632,7 +674,7 @@ form.formtastic fieldset.comboselect fieldset input.csadd {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: url('/images/button_bg.png?1298251188') no-repeat;
+  background: url('/images/button_bg.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -668,7 +710,7 @@ form.formtastic fieldset.comboselect fieldset input.csremove {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: url('/images/button_bg.png?1298251188') no-repeat;
+  background: url('/images/button_bg.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -750,7 +792,7 @@ form.formtastic fieldset.inputs ol li input, form.formtastic fieldset.inputs ol 
   font-size: 1em;
   margin: 0;
   padding: 2px 0;
-  background: url('/images/shadow.gif?1298251188') no-repeat;
+  background: url('/images/shadow.gif?1298647110') no-repeat;
   width: none;
   height: none;
   overflow: hidden;
@@ -807,7 +849,7 @@ form.formtastic fieldset.buttons ol li input {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: url('/images/button_bg.png?1298251188') no-repeat;
+  background: url('/images/button_bg.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -851,7 +893,7 @@ form.formtastic label {
   border-top: 1px solid #dddddd;
   font-weight: normal;
   font-size: 0.9em;
-  background: url('/images/arrow-curve-180.png?1298251188') no-repeat;
+  background: url('/images/arrow-curve-180.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -941,7 +983,7 @@ dl dd ul {
   -khtml-border-radius: 5px;
   border-radius: 5px;
   border: 3px solid #ffff99;
-  background: url('/images/exclamation-diamond.png?1298260945') no-repeat;
+  background: url('/images/exclamation-diamond.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -977,7 +1019,7 @@ dl dd ul {
   -khtml-border-radius: 5px;
   border-radius: 5px;
   border: 3px solid #80ff80;
-  background: url('/images/tick.png?1298260945') no-repeat;
+  background: url('/images/tick.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -1013,7 +1055,7 @@ dl dd ul {
   -khtml-border-radius: 5px;
   border-radius: 5px;
   border: 3px solid #ff9999;
-  background: url('/images/exclamation-red.png?1298260945') no-repeat;
+  background: url('/images/exclamation-red.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -1059,30 +1101,36 @@ dl dd ul {
   clear: right;
 }
 /* line 17, ../../../app/stylesheets/partials/_rqm.sass */
+#rqm .rqm-info a {
+  font-style: italic;
+  padding: 10px;
+  display: block;
+}
+/* line 21, ../../../app/stylesheets/partials/_rqm.sass */
 #rqm h2 {
   font-size: 18px;
   padding-left: 10px;
   padding-top: 10px;
   clear: left;
 }
-/* line 23, ../../../app/stylesheets/partials/_rqm.sass */
+/* line 27, ../../../app/stylesheets/partials/_rqm.sass */
 #rqm table {
   margin: 0 auto;
   margin-bottom: 15px;
   width: 90%;
 }
-/* line 27, ../../../app/stylesheets/partials/_rqm.sass */
+/* line 31, ../../../app/stylesheets/partials/_rqm.sass */
 #rqm p {
   padding: 0 10px 10px;
 }
-/* line 29, ../../../app/stylesheets/partials/_rqm.sass */
+/* line 33, ../../../app/stylesheets/partials/_rqm.sass */
 #rqm .estado_rechazado {
   font-weight: bold;
   color: #ff3333;
 }
-/* line 34, ../../../app/stylesheets/partials/_rqm.sass */
+/* line 38, ../../../app/stylesheets/partials/_rqm.sass */
 #rqm .boton-add {
-  background: url('/images/plus-circle.png?1298251188') no-repeat;
+  background: url('/images/plus-circle.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -1101,17 +1149,17 @@ dl dd ul {
 #rqm .boton-add a {
   padding-left: 20px;
 }
-/* line 46, ../../../app/stylesheets/partials/_rqm.sass */
+/* line 50, ../../../app/stylesheets/partials/_rqm.sass */
 #rqm #rqm_actions {
   padding-left: 10px;
 }
-/* line 48, ../../../app/stylesheets/partials/_rqm.sass */
+/* line 52, ../../../app/stylesheets/partials/_rqm.sass */
 #rqm #rqm_actions a {
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: url('/images/button_bg.png?1298251188') no-repeat;
+  background: url('/images/button_bg.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -1140,13 +1188,13 @@ dl dd ul {
   color: white;
   text-decoration: none;
 }
-/* line 50, ../../../app/stylesheets/partials/_rqm.sass */
+/* line 54, ../../../app/stylesheets/partials/_rqm.sass */
 #rqm #rqm_actions a.negative_action {
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: url('/images/button_bg.png?1298251188') no-repeat;
+  background: url('/images/button_bg.png?1298647110') no-repeat;
   width: auto;
   height: auto;
   overflow: hidden;

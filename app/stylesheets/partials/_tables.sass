@@ -87,8 +87,6 @@ a.sort_link
   background-position: 100% 50%
   padding-right: 16px
 
-
-
 table
   border: 1px solid #E4E4E4
   border-collapse: collapse
@@ -134,14 +132,8 @@ table
         padding: 2px
         &.actions
           a
-            @include boton
+            +action_button
             visibility: hidden
-            font-size: 0.8em
-            font-weight: normal
-            //margin-left: 5px
-            text-decoration: none
-            border: none
-            margin-right: 3px
       a
         color: #666
         &:hover

@@ -22,7 +22,7 @@ class Requerimiento < ActiveRecord::Base
   has_many :materiales
   has_many :presupuestos
   has_one :compra
-
+  
   composed_of :estado, :mapping => %w(estado codigo)
 
   validates_presence_of :empresa, :sector, :rubro, :solicitante

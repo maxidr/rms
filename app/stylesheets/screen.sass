@@ -88,6 +88,18 @@ h1, h2
 .icon-sort
   +sprite-background("sort-alphabet.png")
 
+@mixin action_button
+  @include boton  
+  font-size: 0.8em
+  font-weight: normal
+  text-decoration: none
+  border: none
+  margin-right: 3px
+
+.details_button
+  +action_button
+  margin-top: 5px
+
 .contextual
   float: right
   font-size: 0.9em
