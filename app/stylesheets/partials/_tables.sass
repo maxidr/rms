@@ -2,7 +2,24 @@
   margin-top: 8px
   font-size: 90%
   text-align: center
-
+  a
+    font-weight: bold
+    padding: 2px 3px
+    &:hover
+      background-color: #F8E6A4
+      text-decoration: none
+      color: inherit
+  em
+    border-bottom: 3px solid #484848
+    //border: 1px solid #C3C3C3
+    padding: 2px 5px
+    margin: 2px 5px
+    font-style: italic
+    // F8E6A4
+    &:before
+      content: 'página '
+  span.disabled
+    display: none
 #filters
   padding-bottom: 4px
   a.clean-filters
@@ -33,7 +50,7 @@
         font-style: italic
   fieldset.inputs ol li select
     width: 100%
-  
+
   fieldset.buttons
     margin: 0
     padding: 0
@@ -124,6 +141,7 @@ table
             //margin-left: 5px
             text-decoration: none
             border: none
+            margin-right: 3px
       a
         color: #666
         &:hover

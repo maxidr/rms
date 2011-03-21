@@ -1,9 +1,9 @@
-<p>
-  <b>Nombre:</b>
-  <%= @rubro.nombre %>
-</p>
+<h2>Detalles del rubro</h2>
+<dl>
+  <dt>Nombre</dt>
+  <dd><%= @rubro.nombre %></dd>
+</dl>
 
-
-<%= link_to 'Editar', edit_rubro_path(@rubro) %> |
-<%= link_to 'Volver', rubros_path %>
+<%= link_to 'Editar', edit_rubro_path(@rubro), :class => 'boton' %>
+<%= link_to 'Volver', rubros_path, :class => 'back_button' %>
 

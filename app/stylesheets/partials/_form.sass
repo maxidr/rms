@@ -1,11 +1,9 @@
 @import "partials/formtastic_base"
 
 form.formtastic
-  
+
   +formtastic(100%, 20%, 70%, 4%, "left")
-  
-  
-  
+
   fieldset.comboselect
     display: inline
     width: auto
@@ -23,22 +21,27 @@ form.formtastic
         padding: 3px 11px 4px
     .csright
       width: 200px
-  fieldset.inputs fieldset.complex-inputs 
+  fieldset.inputs fieldset.complex-inputs
     padding: 5px
     width: auto
     legend
-      float: left          
+      float: left
       text-align: left
       width: 16%
       font-size: 0.9em
       padding: 5px 0
       padding-left: 4%
+    ol li.boolean
+      label
+        padding-left: 0
+        width: auto
     ol li
       float: left
       width: auto
       padding: 0
       margin: 0
       padding-right: 5px
+      .radio
       select
         width: auto
       p.inline-hints
@@ -82,6 +85,7 @@ form.formtastic
       font-style: italic
       font-size: 0.8em
       padding-top: 4px
+
   fieldset.buttons
     padding-top: 5px
     ol li

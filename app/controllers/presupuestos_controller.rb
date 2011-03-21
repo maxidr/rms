@@ -4,7 +4,7 @@ class PresupuestosController < ApplicationController
 
 	before_filter :authenticate_usuario!
 
-	before_filter :obtener_presupuesto_de_request, :only => [:edit, :update, :destroy, :aprobar]
+	before_filter :obtener_presupuesto_de_request, :only => [:edit, :update, :destroy, :aprobar, :show ]
 	before_filter :obtener_requerimiento_de_request, :only => [:new, :create, :verificar_permisos_creacion]
 
 	before_filter :verificar_permisos_modificacion, :only => [:edit, :update, :destroy]
@@ -22,10 +22,17 @@ class PresupuestosController < ApplicationController
 		end
 	end
 
+	def show
+    respond_with @presupuesto
+	end
+
   # GET /presupuestos/new
   # GET /presupuestos/new.xml
   def new
     @presupuesto = Presupuesto.new
+    @requerimiento.materiales.each do |material|
+      @presupuesto.desgloses << Desglose.new(:material => material, :iva => 21.0)
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,13 +47,15 @@ class PresupuestosController < ApplicationController
   # POST /presupuestos
   # POST /presupuestos.xml
   def create
-		@presupuesto = @requerimiento.presupuestos.create(params[:presupuesto])
+    @presupuesto = Presupuesto.new(params[:presupuesto])
+    @presupuesto.requerimiento = @requerimiento
 
     respond_to do |format|
       if @presupuesto.save
         format.html { redirect_to(@requerimiento, :notice => 'Se agregó el presupuesto.') }
         format.xml  { render :xml => @presupuesto, :status => :created, :location => @presupuesto }
       else
+        logger.debug "Errores: #{@presupuesto.errors}"
         format.html { render :action => "new" }
         format.xml  { render :xml => @presupuesto.errors, :status => :unprocessable_entity }
       end

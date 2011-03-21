@@ -16,13 +16,28 @@
 #
 
 class Presupuesto < ActiveRecord::Base
+  extend ActiveSupport::Memoizable
+
   belongs_to :requerimiento
   belongs_to :proveedor
   belongs_to :moneda
   belongs_to :condicion_pago
+  has_many :desgloses
 
-  validates_presence_of :monto, :moneda, :condicion_pago, :proveedor
-  validates_numericality_of :monto, :greater_than => 0
+  IVA = [21, 10.5, 0]
+
+  #validates_presence_of :monto, :moneda, :condicion_pago, :proveedor
+  validates_presence_of :moneda, :condicion_pago, :proveedor, :desgloses
+ # validates_numericality_of :monto, :greater_than => 0
+  validates_associated :desgloses
+
+  accepts_nested_attributes_for :desgloses
+
+  def monto_total
+    desgloses.inject(0) { |sum, d| sum += d.monto_total }
+  end
+
+  memoize :monto_total
 
 end
 

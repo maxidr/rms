@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  detalle: MyString
+  unidades: 1
+  precio_unitario: 9.99
+  iva: 9.99
+  precio_final: 9.99
+  presupuesto: 
+
+two:
+  detalle: MyString
+  unidades: 1
+  precio_unitario: 9.99
+  iva: 9.99
+  precio_final: 9.99
+  presupuesto: 

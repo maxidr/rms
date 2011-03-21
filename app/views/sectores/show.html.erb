@@ -11,15 +11,18 @@
   	  -
   	<% end %>
 	</dd>
-
-	<dt>Responsables</dt>
-	<dd>
-		<ul>
-		<% @sector.responsables.each do |responsable| %>
-			<li><%= responsable.nombre_completo %></li>
-		<% end %>
-		</ul>
-	</dd>
+  <dt>Responsables</dt>
+  <dd>
+    <% if @sector.responsables.count > 0 %>
+	    <ul>
+	    <% @sector.responsables.each do |responsable| %>
+		    <li><%= responsable.nombre_completo %></li>
+	    <% end %>
+	    </ul>
+    <% else %>
+      -
+    <% end %>
+  </dd>
 </dl>
 
 <%= link_to 'Editar', edit_sector_path(@sector), :class => 'boton' %>
