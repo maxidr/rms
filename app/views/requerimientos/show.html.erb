@@ -22,7 +22,7 @@
       <dl>
         <dt>Fecha de carga</dt>
         <dd><%= l @requerimiento.created_at %></dd>
-      </dl>    
+      </dl>
       <dl>
         <dt>Estado</dt>
         <dd class=" <%= @requerimiento.estado.rechazo? ? 'estado_rechazado' : '' %> ">
@@ -32,7 +32,7 @@
 		          <%= " (Fecha probable de entrega: \n #{l @requerimiento.compra.fecha_probable_entrega})" %>
 		        </i>
 		      <% end -%>
-        </dd>  
+        </dd>
       </dl>
       <% if @requerimiento.estado.rechazo? %>
         <dl>
@@ -107,13 +107,17 @@
 	    <%= render "comprar" %>
     <% end %>
 
+    <% if can? :generar_reporte, @requerimiento %>
+      <%= link_to "Generar reporte", requerimiento_path(@reporte, :format => :pdf) %>
+    <% end %>
+
 
 
     <% if can? :edit, @requerimiento %>
   	  <%= link_to 'Editar', edit_requerimiento_path(@requerimiento), :class => 'edit' %>
     <% end %>
   </div>
-  
+
   <%= link_to 'Volver', requerimientos_path, :class => 'back_button' %>
   <br/>
 </div>

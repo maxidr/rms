@@ -1,0 +1,95 @@
+
+h1 Requerimiento N° #{@requerimiento.id}
+
+dl
+  dt Solicitante
+  dd = @requerimiento.solicitante
+  dt Fecha de carga
+  dd = l @requerimiento.created_at
+  dt Empresa
+  dd = @requerimiento.empresa
+  dt Sector
+  dd = @requerimiento.sector
+  dt Rubro
+  dd = @requerimiento.rubro
+  dt Estado
+  dd = @requerimiento.estado.to_s
+
+h2 Materiales
+
+table
+  thead
+    tr
+      th Material
+      th Cantidad
+      th Detalle
+  tbody
+    - @requerimiento.materiales.each do |material|
+      tr
+        td = material.nombre
+        td = material.cantidad
+        td = material.detalle
+      - material.caracteristicas.each do |caracteristica|
+        tr.caracteristicas
+          td(colspan=3) = "#{caracteristica.nombre}: #{caracteristica.valor}"
+
+
+h2 Presupuesto
+
+- presupuesto = @requerimiento.presupuesto_aprobado
+
+dl
+  dt Proveedor
+  dd = presupuesto.proveedor.razon_social
+
+  dt Condición de pago
+  dd = presupuesto.condicion_pago.nombre
+  - unless presupuesto.detalle.blank?
+    dt Detalle
+    dd = presupuesto.detalle
+  dt Fecha probable de entrega
+  dd = l @requerimiento.compra.fecha_probable_entrega, :format => :long
+  - if @requerimiento.estado >= Estado::ENTREGADO and @requerimiento.compra.fecha_entrega
+    dt Entregado el
+    dd = l @requerimiento.compra.fecha_entrega
+
+table.desglose
+  thead
+    tr
+      th Material
+      th Detalles
+      th Precio unitario
+      th IVA
+      th Unidades solicitadas
+      th Monto total
+  tbody
+    - presupuesto.desgloses.each do |desglose|
+      tr
+        td = desglose.material.nombre
+        td.smaller = desglose.detalle
+        td
+          = "#{presupuesto.moneda.simbolo} #{desglose.precio_unitario}"
+          = " + IVA" if desglose.mas_iva
+        td = iva(desglose)
+        td = desglose.unidades
+        td #{presupuesto.moneda.simbolo} #{desglose.monto_total}
+    tr.totalizador
+      td.label(colspan=5) Monto total final
+      td #{presupuesto.moneda.simbolo} #{presupuesto.monto_total}
+
+
+h2 Historial de cambios
+- estado_anterior = Estado::INICIO
+- EstadoHistorico.del_requerimiento(@requerimiento).each do |historico|
+  h3
+    = "#{estado_anterior.nombre} "
+    == "&rarr;"
+    = " #{historico.estado.nombre}"
+    - estado_anterior = historico.estado
+
+  dl
+    dt Fecha
+    dd = l historico.created_at
+    - if historico.detalle
+      = render "/reportes/#{historico.detalle.class.to_s.underscore}", { :detalle => historico.detalle }
+

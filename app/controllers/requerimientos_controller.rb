@@ -175,7 +175,7 @@ class RequerimientosController < ApplicationController
 
   def index
 #    @requerimientos = Requerimiento.where(:solicitante_id => current_usuario)
-		#	FIXME: El usuario puede ver sus requerimientos y los que debe autorizar    
+		#	FIXME: El usuario puede ver sus requerimientos y los que debe autorizar
 		@search = Requerimiento.para_usuario(current_usuario).search(params[:search])
 		respond_with @requerimientos = @search.paginate(:page => params[:page], :per_page => 15)
 
@@ -186,12 +186,12 @@ class RequerimientosController < ApplicationController
 #   	respond_with @requerimiento do |format|
 #   	  format.pdf{ render :pdf => "requerimiento.pdf" }
 #   	end
-   	
+
    	respond_to do |format|
       format.html
       format.pdf do
           render :pdf => "requerimiento_#{@requerimiento.id}",
-                 :template => 'requerimientos/reporte/show.pdf.slim',
+                 :template => 'reportes/show.pdf.slim',
                  :show_as_html => params[:debug].present?,      # allow debuging based on url param
                  :layout => 'pdf.html.erb',
                  :footer => {

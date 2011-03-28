@@ -22,7 +22,7 @@ class Requerimiento < ActiveRecord::Base
   has_many :materiales
   has_many :presupuestos
   has_one :compra
-  
+
   composed_of :estado, :mapping => %w(estado codigo)
 
   validates_presence_of :empresa, :sector, :rubro, :solicitante
@@ -66,7 +66,10 @@ class Requerimiento < ActiveRecord::Base
 
 	def recepcionar!(usuario)
 		con_detalle = DetalleRecepcion.new(:recepcionista => usuario)
-		cambiar_estado_a Estado::PENDIENTE_VERIFICACION, con_detalle
+		cambiar_estado_a(Estado::PENDIENTE_VERIFICACION, con_detalle) do
+		  compra.fecha_entrega = Date.today
+		  compra.save
+		end
 		RequerimientosMailer.informar_recepcion(self).deliver
 	end
 

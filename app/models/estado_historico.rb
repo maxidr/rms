@@ -17,6 +17,8 @@ class EstadoHistorico < ActiveRecord::Base
 	belongs_to :requerimiento
 	belongs_to :detalle, :polymorphic => true, :dependent => :destroy
 
+	composed_of :estado, :mapping => %w(codigo_estado codigo)
+
 	attr_accessible :requerimiento, :detalle, :codigo_estado
 
 	# IMPROVE: Agregar el estado como composed_of
