@@ -42,5 +42,9 @@ Rms::Application.configure do
 	if "irb" == $0
     ActiveRecord::Base.logger = Logger.new(STDOUT)
   end
+  
+  config.after_initialize do
+    WICKED_PDF[:exe_path] = "/usr/local/bin/wkhtmltopdf"
+  end
 end
 
