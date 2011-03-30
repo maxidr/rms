@@ -37,8 +37,9 @@ class Requerimiento < ActiveRecord::Base
         predicate = predicate.or(t[:sector_id].in(sectores.map{ |s| s.id }))
 ##         del_sector = where("sector_id IN (?)", sectores)
       end
-
-      if usuario.sector.expedicion?
+      
+      if usuario.sector.try(:expedicion?)
+#      if usuario.sector.expedicion?
         predicate = predicate.or(t[:estado].eq(Estado::PENDIENTE_RECEPCION.codigo))
       end
       where(predicate)
