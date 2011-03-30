@@ -47,8 +47,9 @@ dl
   - unless presupuesto.detalle.blank?
     dt Detalle
     dd = presupuesto.detalle
-  dt Fecha probable de entrega
-  dd = l @requerimiento.compra.fecha_probable_entrega, :format => :long
+  - unless @requerimiento.compra.nil?
+    dt Fecha probable de entrega
+    dd = l @requerimiento.compra.fecha_probable_entrega, :format => :long
   - if @requerimiento.estado >= Estado::ENTREGADO and @requerimiento.compra.fecha_entrega
     dt Entregado el
     dd = l @requerimiento.compra.fecha_entrega

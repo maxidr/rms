@@ -29,7 +29,11 @@ class RowWrapper
 	
 	def[](position) 
 		normalize @row[position]
-	end	
+	end
+	
+	def[]=(position, value) 
+		@row[position] = value
+	end		
 	
 	def normalize(text)
 		unless text.nil?

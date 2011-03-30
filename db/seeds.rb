@@ -81,6 +81,7 @@ Moneda.find_or_create_by_simbolo(:simbolo => "€", :nombre => 'Euros')
 # Utiliza la clase que se encuentra en lib/csvimport.rb
 require 'csvimport'
 CSVImport.new(RAILS_ROOT + '/db/proveedores.csv').load do |row|
+  row[9] = "-" if row[9].nil?
 	Proveedor.find_or_create_by_razon_social(
 		:razon_social 	=> row[1],
 		:domicilio 			=> row[2],

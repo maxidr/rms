@@ -103,7 +103,7 @@ class Ability
 		end
 
 		can :generar_reporte, Requerimiento do |rqm|
-		  rqm.estado == Estado::ENTREGADO || rqm.estado == Estado::FINALIZADO
+		  rqm.estado.in? Estado::APROBADO_X_COMPRAS, Estado::PENDIENTE_RECEPCION, Estado::PENDIENTE_VERIFICACION, Estado::ENTREGADO, Estado::FINALIZADO
 		end
 
 	end
