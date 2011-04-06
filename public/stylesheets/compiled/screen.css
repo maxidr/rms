@@ -604,11 +604,17 @@ table tbody tr td.actions a:hover {
   color: white;
   text-decoration: none;
 }
-/* line 141, ../../../app/stylesheets/partials/_tables.sass */
+/* line 140, ../../../app/stylesheets/partials/_tables.sass */
+table tbody tr td.actions a img {
+  margin-top: 3px;
+  margin-bottom: 2px;
+  margin-left: 5px;
+}
+/* line 145, ../../../app/stylesheets/partials/_tables.sass */
 table tbody tr a {
   color: #666666;
 }
-/* line 143, ../../../app/stylesheets/partials/_tables.sass */
+/* line 147, ../../../app/stylesheets/partials/_tables.sass */
 table tbody tr a:hover {
   border-bottom: 1px dotted #999999;
   color: #999999;

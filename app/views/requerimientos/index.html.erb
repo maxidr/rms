@@ -95,6 +95,15 @@
         row.next("tr.row_details").removeClass("hover");
       }
     }
+    
+    $(".actions a").bind("ajax:before",  function(){
+      $(this).append('<%= image_tag 'ajax-loader.gif' %>');
+      $(this).css('padding-bottom', '15px');
+//      $(this).parent().parent().next('tr.row_details').show();
+//      alert("test");
+    });
+    
+    //ajax:after 
   });
 </script>
 
