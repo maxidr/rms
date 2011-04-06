@@ -12,7 +12,7 @@ Rms::Application.routes.draw do
   resources :requerimientos do
 		# Rutea materiales con referencia a requerimientos para new y para create (post)
 		# requerimientos/3/materiales/new
-    resources :materiales, :only => [:new, :create]
+    resources :materiales, :only => [:new, :create, :index]
     resources :presupuestos, :only => [:new, :create]
 
     member do

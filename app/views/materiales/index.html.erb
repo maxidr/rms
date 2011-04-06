@@ -5,19 +5,13 @@
     <th>Material</th>
     <th>Cantidad</th>
     <th>Detalle</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @materiales.each do |material| %>
   <tr>
-    <td><%= material.material %></td>
+    <td><%= material.nombre %></td>
     <td><%= material.cantidad %></td>
     <td><%= material.detalle %></td>
-    <td><%= link_to 'Ver', material %></td>
-    <td><%= link_to 'Editar', edit_material_path(material) %></td>
-    <td><%= link_to 'Eliminar', material, :confirm => 'Esta seguro?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

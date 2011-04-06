@@ -9,11 +9,12 @@ class MaterialesController < ApplicationController
   # GET /materiales
   # GET /materiales.xml
   def index
-    @materiales = Material.all
+    @requerimiento = Requerimiento.find(params[:requerimiento_id])
+    @materiales = @requerimiento.materiales
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @materiales }
+      format.js
     end
   end
 

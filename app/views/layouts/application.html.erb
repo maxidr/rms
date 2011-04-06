@@ -23,6 +23,7 @@
 
   <!-- Autogrow textarea -->
   <%= javascript_include_tag 'jquery.ata.js' %>
+  <%= javascript_include_tag 'jExpand.js' %>
 
   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
 
@@ -67,47 +68,6 @@
         <%= yield %>
       </div>
     </div>
-<!--
-	  <% if usuario_signed_in? %>
-		  <%= render "layouts/user_nav" %>
-		  <%= render "layouts/menu" %>
-	  <% end %>
--->
-  <!--
-	  warn
-	  info
-	  notice
-	  alert
-	  error
-  -->
-<!--
-	  <div id="notification_area">
-		  <% if flash[:alert] %>
-			  <div class="notification warning hideit">
-				  <p><strong>Precuación: </strong><%= flash[:alert] %></p>
-			  </div>
-		  <% end %>
-		  <% if flash[:info] %>
-   			<div class="notification information hideit">
-   				<p><strong>Información: </strong><%= flash[:info] %></p>
-   			</div>
-   		<% end %>
-		  <% if notice != nil%>
-			  <div class="notification success hideit">
-				  <p><strong>Correcto: </strong><%= notice %></p>
-	      </div>
-      <% end %>
-      <% if flash[:error] %>
-			  <div class="notification failure hideit">
-   				<p><strong>Error: </strong><%= flash[:error] %></p>
-	      </div>
-	    <% end %>
-	  </div>
-
-	  <div id="content">
-		  <%= yield %>
-	  </div>
--->
   </div>
   <%= yield :javascript %>
 </body>

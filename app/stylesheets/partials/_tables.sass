@@ -122,18 +122,22 @@ table
       white-space: nowrap
       background-color: lighten(#D5D5D5, 3%)
       //background-color: lighten(#666699, 20%)
-      &:hover
+      &:hover, &.hover
         //background-color: #FFFFDD
         background-color: lighten(#EEC015, 30%)
-      td
+      &.row_details > td
+        text-align: left
+        font-style: italic
+      td        
         text-align: center
         font-size: 0.90em
         vertical-align: middle
-        padding: 2px
+        padding: 5px
         &.actions
           a
             +action_button
             visibility: hidden
+        
       a
         color: #666
         &:hover

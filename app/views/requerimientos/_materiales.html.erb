@@ -9,35 +9,6 @@
   Materiales
 </h2>
 
-
-<% if @requerimiento.materiales.empty? %>
-	Aun no posee materiales cargados
-<% else %>
-	<table>
-		<thead>
-			<tr>
-				<th>Material</th>
-				<th>Cantidad</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @requerimiento.materiales.each do |material| %>
-				<tr>
-					<td><%= material.nombre %></td>
-					<td><%= material.cantidad %></td>
-					<td class="actions"><%= link_to 'Ver', material_path(material) %>
-					<% if can? :edit, @requerimiento %>
-						<%= link_to 'Editar', edit_material_path(material) %>
-						<%= link_to 'Eliminar', material, :confirm => 'Esta seguro?', :method => :delete %>
-					 	<%= link_to 'Agregar característica', new_material_caracteristica_path(material) %>
-				 	<% end %>
-					</td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
-<% end %>
-
+<%= render "tabla_materiales", :requerimiento => @requerimiento %>
 
 

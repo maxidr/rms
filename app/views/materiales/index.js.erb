@@ -1,0 +1,11 @@
+var row = $("table tr#<%= @requerimiento.id %>");
+row.next('.row_details').remove();
+new_row = $("<tr></tr>")
+  .addClass("row_details").addClass("hover")
+  .append("<td colspan='6'><b>Materiales: </b><%= @materiales.map(&:nombre).to_sentence %></td>");
+
+if( row.hasClass('odd') ){  new_row.addClass("odd"); }  
+row.after(new_row);
+
+$("table tr#<%= @requerimiento.id %> td").first().attr("rowspan", "2");
+$("table tr#<%= @requerimiento.id %> td").last().attr("rowspan", "2");

@@ -45,7 +45,7 @@
 		</thead>
 		<tbody>
 			<% @requerimientos.each do |requerimiento| %>
-				<tr>
+				<tr id="<%= requerimiento.id %>">
 					<td><%= link_to "#{requerimiento.id}", requerimiento, :title => "Editar requerimiento n° #{requerimiento.id}"  %></td>
 					<td><%=	l requerimiento.created_at, :format => :short %></td>
 					<td><%= requerimiento.solicitante %></td>
@@ -53,10 +53,12 @@
 					<td><%= requerimiento.sector %></td>
 					<td><%= requerimiento.rubro %></td>
 					<td><%= requerimiento.estado %></td>
-					<td class="actions"><%= link_to 'Ver', requerimiento %>
-					<% if can? :edit, requerimiento %>
-						<%= link_to 'Editar', edit_requerimiento_path(requerimiento) %>
-					<% end %>
+					<td class="actions">
+					  <%= link_to 'Ver', requerimiento %>
+					  <% if can? :edit, requerimiento %>
+						  <%= link_to 'Editar', edit_requerimiento_path(requerimiento) %>
+					  <% end %>
+					  <%= link_to 'Materiales', requerimiento_materiales_path(requerimiento), :remote => true  %>
 					</td>
 				</tr>
 			<% end %>
@@ -64,4 +66,35 @@
 	</table>
   <%= will_paginate @requerimientos %>
 <% end %>
+
+<script>
+  $(document).ready(function() {
+//    $('tr.row_details').live('mouseover mouseout', function(event) {
+    $('tr').live('mouseover mouseout', function(event) {    
+      if (event.type == 'mouseover') {        
+        add_hover($(this));
+        //$(this).prev("tr").addClass("hover");
+      } else {
+        remove_hover($(this));
+        //$(this).prev("tr").removeClass("hover");
+      }
+    });
+    
+    function add_hover(row){
+      if( row.hasClass('row_details') ){
+        row.prev("tr").addClass("hover");
+      }else{
+        row.next("tr.row_details").addClass("hover");
+      }
+    }
+    
+    function remove_hover(row){
+      if( row.hasClass('row_details') ){
+        row.prev("tr").removeClass("hover");
+      }else{
+        row.next("tr.row_details").removeClass("hover");
+      }
+    }
+  });
+</script>
 

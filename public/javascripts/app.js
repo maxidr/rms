@@ -13,7 +13,7 @@ $(document).ready(function() {
     });
     // Zebra tables
     $("tr:nth-child(odd)").addClass("odd");
-
+    
     $("tr").hover(
       function(){
         $(this).children("td.actions").children().css("visibility", "visible");
@@ -52,7 +52,9 @@ $(document).ready(function() {
         $('.accordion').accordion("activate");
       }
     });
+       
     
-
 });
+
+
 
