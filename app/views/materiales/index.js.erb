@@ -1,11 +1,7 @@
 var row = $("table tr#<%= @requerimiento.id %>");
-row.next('.row_details').remove();
-new_row = $("<tr></tr>")
-  .addClass("row_details").addClass("hover")
-  .append("<td colspan='6'><b>Materiales: </b><%= @materiales.map(&:nombre).to_sentence %></td>");
+new_row = row.next('.row_details').addClass('hover');
 
-if( row.hasClass('odd') ){  new_row.addClass("odd"); }  
-row.after(new_row);
+new_row.children('td').empty().append("<b>Materiales: </b><%= @materiales.map(&:nombre).to_sentence %>");
 
-$("table tr#<%= @requerimiento.id %> td").first().attr("rowspan", "2");
-$("table tr#<%= @requerimiento.id %> td").last().attr("rowspan", "2");
+if( row.hasClass('odd') ){  new_row.addClass("odd"); }
+

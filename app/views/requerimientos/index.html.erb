@@ -15,11 +15,11 @@
 	    <%= f.input :empresa_id_eq, :label => 'Empresa', :as => :select, :collection => Empresa.all %>
 	    <%= f.input :sector_id_eq, :label => 'Sector', :as => :select, :collection => Sector.all %>
 	    <%= f.input :rubro_id_eq, :label => 'Rubro', :as => :select, :collection => Rubro.all %>
-	    <%= f.input :estado_eq, :label => 'Estado', :as => :select, :collection => estados_for_collection %>	    
+	    <%= f.input :estado_eq, :label => 'Estado', :as => :select, :collection => estados_for_collection %>
     <% end %>
     <%= f.buttons do %>
       <%= f.commit_button :search %>
-      <li class="reset">  
+      <li class="reset">
         <%= link_to 'Ver todos (sin filtrar)', Requerimiento %>
       </li>
     <% end %>
@@ -29,7 +29,7 @@
 
 <% if @requerimientos.empty? %>
 	<p>Aun no hay requerimientos cargados.</p>
-<% else %>  
+<% else %>
 	<table>
 		<thead>
 			<tr>
@@ -61,6 +61,9 @@
 					  <%= link_to 'Materiales', requerimiento_materiales_path(requerimiento), :remote => true  %>
 					</td>
 				</tr>
+				<tr class="row_details" style="display:none;">
+				  <td colspan='6'></td>
+				</tr>
 			<% end %>
 		</tbody>
 	</table>
@@ -69,17 +72,14 @@
 
 <script>
   $(document).ready(function() {
-//    $('tr.row_details').live('mouseover mouseout', function(event) {
-    $('tr').live('mouseover mouseout', function(event) {    
-      if (event.type == 'mouseover') {        
+    $('tr').live('mouseover mouseout', function(event) {
+      if (event.type == 'mouseover') {
         add_hover($(this));
-        //$(this).prev("tr").addClass("hover");
       } else {
         remove_hover($(this));
-        //$(this).prev("tr").removeClass("hover");
       }
     });
-    
+
     function add_hover(row){
       if( row.hasClass('row_details') ){
         row.prev("tr").addClass("hover");
@@ -87,7 +87,7 @@
         row.next("tr.row_details").addClass("hover");
       }
     }
-    
+
     function remove_hover(row){
       if( row.hasClass('row_details') ){
         row.prev("tr").removeClass("hover");
@@ -95,15 +95,20 @@
         row.next("tr.row_details").removeClass("hover");
       }
     }
-    
+
     $(".actions a").bind("ajax:before",  function(){
-      $(this).append('<%= image_tag 'ajax-loader.gif' %>');
-      $(this).css('padding-bottom', '15px');
-//      $(this).parent().parent().next('tr.row_details').show();
-//      alert("test");
+      row = $(this).parents('tr');
+      row.children('td').first().attr("rowspan", "2");
+      row.children('td').last().attr("rowspan", "2");
+      row_details = row.next();
+      row_details.hide();
+      row_details
+        .children('td')
+        .empty()
+        .append('<%= image_tag 'ajax-loader.gif' %>');
+      row_details.show();
     });
-    
-    //ajax:after 
+
   });
 </script>
 
