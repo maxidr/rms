@@ -23,17 +23,19 @@ unless usr = Usuario.find_by_identificador('mdellorusso')
 		:password => 'lucas12'})
 #	usr.sector = Sector.where(:nombre => 'Mantenimiento').first
 #	puts "El usuario mdellorusso no pudo ser creado" unless usr.save
+  usr.rol = :administrador
 	usr.save
 end
 
-responsable = Usuario.find_by_identificador('jlopez')
+responsable = Usuario.find_by_identificador('epuche')
 if responsable.nil?
-	responsable = Usuario.create({:nombre => 'Juan', :apellido => 'Lopez',
-		:identificador => 'jlopez',
-		:email => 'mdellorusso@aonken.com.ar',
-		:password => 'jlopez', :rol => 'operador'})
+	responsable = Usuario.create({:nombre => 'Emilio', :apellido => 'Puche',
+		:identificador => 'epuche',
+		:email => 'epuche@laindell.com',
+		:password => '123456'})
 #	responsable.sector = Sector.where(:nombre => 'Compras').first
 #	puts "El usuario jlopez no pudo ser creado" unless responsable.save
+  responsable.rol = :administrador
 	responsable.save
 end
 
