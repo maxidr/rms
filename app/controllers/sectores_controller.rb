@@ -9,8 +9,6 @@ class SectoresController < ApplicationController
   # GET /sectores
   def index
 		respond_with @sectores = @sectores.paginate(:page => params[:page], :per_page => 10)
-		#@search = Proveedor.search(params[:search])
-		#respond_with @proveedores = @search.paginate(:page => params[:page], :per_page => 15)
   end
 
   # GET /sectores/1
@@ -66,6 +64,18 @@ class SectoresController < ApplicationController
       format.html { redirect_to(sectores_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def enable
+    logger.debug("Sector a habilitar: #{@sector.nombre}")
+    @sector.disabled_at = nil
+    logger.debug("Valido: #{@sector.valid?}, errores: #{@sector.errors}")
+    if @sector.save
+      flash[:notice] = "Se habilitó el sector #{@sector.nombre}"
+    else
+      flash[:error] = @sector.errors.full_messages
+    end
+    redirect_to sectores_path
   end
 end
 

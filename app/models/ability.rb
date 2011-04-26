@@ -11,6 +11,7 @@ class Ability
 
 		if usuario.admin?
 			can :manage, [Sector, Rubro, Empresa, Proveedor, Moneda, CondicionPago, Usuario]
+			can :enable, Sector
 		end
 
 		can [:edit, :add_material], Requerimiento do |rqm|

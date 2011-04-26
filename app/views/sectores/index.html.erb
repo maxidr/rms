@@ -10,6 +10,7 @@
 		  <th>Nombre</th>
 		  <th>Responsables</th>
 		  <th>E-mail</th>
+		  <th>Habilitado?</th>
 		  <th></th>
 		</tr>
 	</thead>
@@ -25,10 +26,15 @@
 			  <td><%= sector.responsables.size %></td>
 		  <% end -%>
 		  <td><%= sector.email %></td>
+		  <td><%= sector.enabled? ? 'Si' : 'No' %></td>
 		  <td class="actions">
 		  	<%= link_to 'Ver', sector %>
 		  	<%= link_to 'Editar', edit_sector_path(sector) %>
-		  	<%= link_to 'Eliminar', sector, :confirm => 'Esta seguro?', :method => :delete %>
+		  	<% if sector.enabled? %>
+  		  	<%= link_to 'Deshabilitar', sector, :confirm => 'Esta seguro?', :method => :delete %>
+  		  <% else %>
+  		    <%= link_to 'Habilitar', enable_sector_path(sector), :confirm => 'Esta seguro?', :method => :put %>
+  		  <% end %>
 		  </td>
 		</tr>
 	<% end %>

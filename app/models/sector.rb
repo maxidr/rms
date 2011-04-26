@@ -17,8 +17,9 @@ class Sector < ActiveRecord::Base
 
   validates_presence_of :nombre, :responsables
   validates_uniqueness_of :nombre
-  
+
   scope :with_responsable, lambda { |usuario| joins(:responsables).where('usuarios.id' => usuario.id ) }
+  scope :enabled, where('sectores.disabled_at IS NULL')
 
 	# IMPROVE: Mejorar el modo de fijar estos datos (tal vez se mejor generar una pantalla donde un usuario pueda indicar donde mandar los mails en cada estado del requerimiento)
 	#	Se fijan estos valores ya que es importante identificar unequivocamente estos sectores
@@ -43,6 +44,10 @@ class Sector < ActiveRecord::Base
 		id == EXPEDICION_ID
 	end
 
+	def enabled?
+    self.disabled_at.nil?
+	end
+
 	# Determina los emails del sector. Estos son: el mail del sector (si ubiera) y el del responsable (si ubiera).
 	# @return [String] Los mails separados por comas
 	def emails
@@ -64,6 +69,10 @@ class Sector < ActiveRecord::Base
 
   def to_s
     nombre
+  end
+
+  def destroy
+    self.update_attribute(:disabled_at, Time.now)
   end
 end
 

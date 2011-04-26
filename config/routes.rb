@@ -51,7 +51,11 @@ Rms::Application.routes.draw do
 
   resources :rubros
 
-  resources :sectores
+  resources :sectores do
+    member do
+      put 'enable'
+    end
+  end
 
   resources :empresas
 

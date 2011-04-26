@@ -5,10 +5,10 @@
 		= f.input :identificador, :hint => "Nombre que utilizará para ingresar al sistema"
 		= f.input :email
 		- if can? :change_rol_and_sector, current_usuario
-			= f.input :sector
+			= f.input :sector, :collection => Sector.enabled
 			= f.input :rol, :as => :select, :collection => Usuario::ROLES
 		- else
-			= f.input :sector, :input_html => { :disabled => true }
+			= f.input :sector, :input_html => { :disabled => true }, :collection => Sector.enabled
 			= f.input :rol, :as => :select, :collection => Usuario::ROLES, :input_html => { :disabled => true }
 		- if @usuario.persisted?
 			= f.input :password, :label => "Contraseña", :hint => "dejar en blanco si no desea cambiarla", :required => false
