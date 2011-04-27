@@ -11,7 +11,7 @@
 #
 
 class Sector < ActiveRecord::Base
-	# FIXME: No se debe permitir que la eliminación física de los sectores (habilitado: true, default_scope)
+
   belongs_to :responsable, :class_name => 'Usuario'
   has_and_belongs_to_many :responsables, :class_name => 'Usuario'
 
@@ -71,6 +71,7 @@ class Sector < ActiveRecord::Base
     nombre
   end
 
+  # Evita que el sector sea eliminado físicamente de la base.
   def destroy
     self.update_attribute(:disabled_at, Time.now)
   end

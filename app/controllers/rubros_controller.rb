@@ -34,7 +34,7 @@ class RubrosController < ApplicationController
   def create
     respond_to do |format|
       if @rubro.save
-        format.html { redirect_to(@rubro, :notice => 'Rubro was successfully created.') }
+        format.html { redirect_to(@rubro, :notice => "Se creó el rubro #{@rubro.nombre}.") }
         format.xml  { render :xml => @rubro, :status => :created, :location => @rubro }
       else
         format.html { render :action => "new" }
@@ -48,7 +48,7 @@ class RubrosController < ApplicationController
   def update
     respond_to do |format|
       if @rubro.update_attributes(params[:rubro])
-        format.html { redirect_to(@rubro, :notice => 'Rubro was successfully updated.') }
+        format.html { redirect_to(@rubro, :notice => "Se actualizó el rubro #{@rubro.nombre}.") }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -67,5 +67,17 @@ class RubrosController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  
+  def enable
+    @rubro.disabled_at = nil
+    if @rubro.save
+      flash[:notice] = "Se habilitó el rubro #{@rubro.nombre}"
+    else
+      flash[:error] = @rubro.errors.full_messages
+    end
+    redirect_to rubros_path
+  end
+  
 end
 

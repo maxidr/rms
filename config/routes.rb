@@ -49,7 +49,12 @@ Rms::Application.routes.draw do
 
 #  resources :usuarios
 
-  resources :rubros
+  resources :rubros do
+    member do
+      put 'enable'
+    end
+  end
+  
 
   resources :sectores do
     member do

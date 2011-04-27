@@ -8,6 +8,7 @@
 	<thead>
 		<tr>
 		  <th>Nombre</th>
+		  <th>¿Está habilitado?</th>
 		  <th></th>
 		</tr>
 	</thead>
@@ -17,9 +18,14 @@
 		  <td>
 		    <%= link_to rubro.nombre, edit_rubro_path(rubro) %>
 		  </td>
+		  <td><%= rubro.enabled? ? 'Si' : 'No' %></td>
 		  <td class="actions">
 				<%= link_to 'Editar', edit_rubro_path(rubro) %>
-				<%= link_to 'Eliminar', rubro, :confirm => 'Esta seguro?', :method => :delete %>
+        <% if rubro.enabled? %>
+  		  	<%= link_to 'Deshabilitar', rubro, :confirm => 'Esta seguro?', :method => :delete %>
+  		  <% else %>
+  		    <%= link_to 'Habilitar', enable_rubro_path(rubro), :confirm => 'Esta seguro?', :method => :put %>
+  		  <% end %>
 			</td>
 		</tr>
 	<% end %>
