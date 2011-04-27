@@ -9,9 +9,17 @@ Rms::Application.routes.draw do
     end
   end
 
-  resources :monedas
+  resources :monedas do
+    member do
+      put 'enable'
+    end
+  end
 
-  resources :condiciones_pagos
+  resources :condiciones_pagos do
+    member do
+      put 'enable'
+    end
+  end
 
   resources :requerimientos do
 		# Rutea materiales con referencia a requerimientos para new y para create (post)
