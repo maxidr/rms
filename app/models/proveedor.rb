@@ -14,14 +14,25 @@
 #
 
 class Proveedor < ActiveRecord::Base
-  default_scope order(:razon_social)
-	# FIXME: No se debe permitir que la eliminación física de los proveedores (habilitado: true, default_scope)
+  
 	validates_presence_of :razon_social, :cuit
 	validates_uniqueness_of :razon_social
 
 	attr_accessible :razon_social, :domicilio, :telefono, :cuit,
 										:localidad, :cod_postal,
 										:representante, :jefe_ventas, :memo
+	
+	default_scope order(:razon_social)									
+  scope :enabled, where('proveedores.disabled_at IS NULL')
+  
+	def enabled?
+    self.disabled_at.nil?
+	end
+  
+  # Evita que el sector sea eliminado físicamente de la base.
+  def destroy
+    self.update_attribute(:disabled_at, Time.now)
+  end									
 
 end
 

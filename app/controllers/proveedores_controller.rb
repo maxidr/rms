@@ -70,18 +70,15 @@ class ProveedoresController < ApplicationController
     end
   end
 
-#  def proveedores
-#  	return @proveedores if defined? @proveedores
-#  	@proveedores = Proveedor.paginate :page => params[:page] || 1
-#  	authorize! :index, @proveedores
-#  	@proveedores
-#  end
-#
-#  def proveedor
-#  	return @proveedor if defined? @proveedor
-#  	@proveedor = Proveedor.find(params[:id])
-#  	authorize! params[:action].to_sym, @proveedor
-#  	@proveedor
-#  end
+  def enable
+    @proveedor.disabled_at = nil
+    if @proveedor.save
+      flash[:notice] = "Se habilitó el proveedor con razón social #{@proveedor.razon_social}"
+    else
+      flash[:error] = @proveedor.errors.full_messages
+    end
+    redirect_to proveedores_path
+  end
+
 end
 

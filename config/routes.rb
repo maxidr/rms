@@ -3,7 +3,11 @@ Rms::Application.routes.draw do
 	devise_for :usuarios
 	resources :usuarios
 
-  resources :proveedores
+  resources :proveedores do
+    member do
+      put 'enable'
+    end
+  end
 
   resources :monedas
 
