@@ -3,11 +3,23 @@ Rms::Application.routes.draw do
 	devise_for :usuarios
 	resources :usuarios
 
-  resources :proveedores
+  resources :proveedores do
+    member do
+      put 'enable'
+    end
+  end
 
-  resources :monedas
+  resources :monedas do
+    member do
+      put 'enable'
+    end
+  end
 
-  resources :condiciones_pagos
+  resources :condiciones_pagos do
+    member do
+      put 'enable'
+    end
+  end
 
   resources :requerimientos do
 		# Rutea materiales con referencia a requerimientos para new y para create (post)
@@ -49,7 +61,12 @@ Rms::Application.routes.draw do
 
 #  resources :usuarios
 
-  resources :rubros
+  resources :rubros do
+    member do
+      put 'enable'
+    end
+  end
+  
 
   resources :sectores do
     member do
@@ -57,7 +74,11 @@ Rms::Application.routes.draw do
     end
   end
 
-  resources :empresas
+  resources :empresas do
+    member do
+      put 'enable'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

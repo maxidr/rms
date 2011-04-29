@@ -12,9 +12,9 @@
     <%= f.inputs do %>
 	    <%= f.input :id_eq, :label => 'N°' %>
 	    <%= f.input :solicitante_id_eq, :label => 'Solicitante', :as => :select, :collection => Usuario.all %>
-	    <%= f.input :empresa_id_eq, :label => 'Empresa', :as => :select, :collection => Empresa.all %>
-	    <%= f.input :sector_id_eq, :label => 'Sector', :as => :select, :collection => Sector.all %>
-	    <%= f.input :rubro_id_eq, :label => 'Rubro', :as => :select, :collection => Rubro.all %>
+	    <%= f.input :empresa_id_eq, :label => 'Empresa', :as => :select, :collection => Empresa.enabled %>
+	    <%= f.input :sector_id_eq, :label => 'Sector', :as => :select, :collection => Sector.enabled %>
+	    <%= f.input :rubro_id_eq, :label => 'Rubro', :as => :select, :collection => Rubro.enabled %>
 	    <%= f.input :estado_eq, :label => 'Estado', :as => :select, :collection => estados_for_collection %>
     <% end %>
     <%= f.buttons do %>

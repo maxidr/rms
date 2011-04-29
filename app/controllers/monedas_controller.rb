@@ -34,7 +34,7 @@ class MonedasController < ApplicationController
   def create
     respond_to do |format|
       if @moneda.save
-        format.html { redirect_to(@moneda, :notice => 'Moneda was successfully created.') }
+        format.html { redirect_to(@moneda, :notice => "Se creó la moneda #{@moneda.nombre}.") }
         format.xml  { render :xml => @moneda, :status => :created, :location => @moneda }
       else
         format.html { render :action => "new" }
@@ -48,7 +48,7 @@ class MonedasController < ApplicationController
   def update
     respond_to do |format|
       if @moneda.update_attributes(params[:moneda])
-        format.html { redirect_to(@moneda, :notice => 'Moneda was successfully updated.') }
+        format.html { redirect_to(@moneda, :notice => 'Se actualizó la moneda #{@moneda.nombre}.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -66,6 +66,16 @@ class MonedasController < ApplicationController
       format.html { redirect_to(monedas_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def enable
+    @moneda.disabled_at = nil
+    if @moneda.save
+      flash[:notice] = "Se habilitó la moneda #{@moneda.nombre}"
+    else
+      flash[:error] = @moneda.errors.full_messages
+    end
+    redirect_to monedas_path
   end
 end
 

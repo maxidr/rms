@@ -1,8 +1,8 @@
 <%= semantic_form_for(@requerimiento) do |f| %>
   <%= f.inputs do %>
-    <%= f.input :empresa %>
+    <%= f.input :empresa, :collection => Empresa.enabled %>
     <%= f.input :sector, :collection => Sector.enabled %>
-    <%= f.input :rubro %>
+    <%= f.input :rubro, :collection => Rubro.enabled %>
   <% end %>
   <%= f.buttons do %>
     <% f.commit_button "Continuar" %>

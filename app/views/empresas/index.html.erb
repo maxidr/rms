@@ -8,18 +8,22 @@
 	<thead>
 		<tr>
 		  <th>Nombre</th>
+		  <th>¿Está habilitada?</th>
 		  <th></th>
 		</tr>
 	</thead>
 	<tbody>
 	<% @empresas.each do |empresa| %>
 		<tr>
-		  <td>
-		    <%= link_to empresa.nombre, edit_empresa_path(empresa) %>
-		  </td>
+		  <td><%= link_to empresa.nombre, edit_empresa_path(empresa) %></td>
+		  <td><%= empresa.enabled? ? 'Si' : 'No' %></td>
 		  <td class="actions">
-				<%= link_to 'Editar', edit_empresa_path(empresa) %>
 				<%= link_to 'Eliminar', empresa, :confirm => 'Esta seguro?', :method => :delete %>
+				<% if empresa.enabled? %>
+  		  	<%= link_to 'Deshabilitar', empresa, :confirm => 'Esta seguro?', :method => :delete %>
+  		  <% else %>
+  		    <%= link_to 'Habilitar', enable_empresa_path(empresa), :confirm => 'Esta seguro?', :method => :put %>
+  		  <% end %>
 			</td>
 		</tr>
 	<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110426010652) do
+ActiveRecord::Schema.define(:version => 20110427184942) do
 
   create_table "caracteristicas", :force => true do |t|
     t.string   "nombre"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20110426010652) do
     t.text     "descripcion"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "disabled_at"
   end
 
   create_table "desgloses", :force => true do |t|
@@ -89,6 +90,7 @@ ActiveRecord::Schema.define(:version => 20110426010652) do
     t.string   "nombre"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "disabled_at"
   end
 
   create_table "estados_historicos", :force => true do |t|
@@ -113,6 +115,7 @@ ActiveRecord::Schema.define(:version => 20110426010652) do
     t.string   "nombre"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "disabled_at"
   end
 
   create_table "presupuestos", :force => true do |t|
@@ -138,6 +141,7 @@ ActiveRecord::Schema.define(:version => 20110426010652) do
     t.string   "representante"
     t.string   "jefe_ventas"
     t.text     "memo"
+    t.datetime "disabled_at"
   end
 
   create_table "requerimientos", :force => true do |t|
@@ -154,6 +158,7 @@ ActiveRecord::Schema.define(:version => 20110426010652) do
     t.string   "nombre"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "disabled_at"
   end
 
   create_table "sectores", :force => true do |t|

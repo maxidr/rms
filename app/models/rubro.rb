@@ -10,8 +10,18 @@
 #
 
 class Rubro < ActiveRecord::Base
-	# FIXME: No se debe permitir que la eliminación física de los proveedores (habilitado: true, default_scope)
   validates :nombre, :presence => true
+  
+  scope :enabled, where('rubros.disabled_at IS NULL')
+  
+	def enabled?
+    self.disabled_at.nil?
+	end
+  
+  # Evita que el sector sea eliminado físicamente de la base.
+  def destroy
+    self.update_attribute(:disabled_at, Time.now)
+  end
 
   def to_s
     nombre

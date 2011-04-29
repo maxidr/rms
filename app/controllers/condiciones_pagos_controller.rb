@@ -67,5 +67,17 @@ class CondicionesPagosController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def enable
+    @condicion_pago.disabled_at = nil
+    if @condicion_pago.save
+      flash[:notice] = "Se habilitó la condición de pago #{@condicion_pago.nombre}"
+    else
+      flash[:error] = @condicion_pago.errors.full_messages
+    end
+    redirect_to condiciones_pagos_path
+  end
+
+  
 end
 

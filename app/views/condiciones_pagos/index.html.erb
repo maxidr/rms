@@ -9,6 +9,7 @@
 		<tr>
 		  <th>Nombre</th>
 		  <th>Descripción</th>
+		  <th>¿Está habilitado?</th>
 		  <th></th>
 		</tr>
 	</thead>
@@ -20,9 +21,14 @@
 		  <td>
 		    <%= condicion_pago.descripcion %>
 		  </td>
+		  <td><%= condicion_pago.enabled? ? 'Si' : 'No' %></td>
 		  <td class="actions">
 				<%= link_to 'Editar', edit_condicion_pago_path(condicion_pago) %>
-				<%= link_to 'Eliminar', condicion_pago, :confirm => 'Está seguro?', :method => :delete %>
+				<% if condicion_pago.enabled? %>
+  		  	<%= link_to 'Deshabilitar', condicion_pago, :confirm => 'Esta seguro?', :method => :delete %>
+  		  <% else %>
+  		    <%= link_to 'Habilitar', enable_condicion_pago_path(condicion_pago), :confirm => 'Esta seguro?', :method => :put %>
+  		  <% end %>
 		  </td>
 		</tr>
 	<% end %>

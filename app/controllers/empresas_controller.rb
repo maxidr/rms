@@ -34,7 +34,7 @@ class EmpresasController < ApplicationController
   def create
     respond_to do |format|
       if @empresa.save
-        format.html { redirect_to(@empresa, :notice => 'Empresa was successfully created.') }
+        format.html { redirect_to(@empresa, :notice => "Se creó la empresa #{@empresa.nombre}") }
         format.xml  { render :xml => @empresa, :status => :created, :location => @empresa }
       else
         format.html { render :action => "new" }
@@ -48,7 +48,7 @@ class EmpresasController < ApplicationController
   def update
     respond_to do |format|
       if @empresa.update_attributes(params[:empresa])
-        format.html { redirect_to(@empresa, :notice => 'Empresa was successfully updated.') }
+        format.html { redirect_to(@empresa, :notice => "Se actualizó la empresa #{@empresa.nombre}.") }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -67,5 +67,16 @@ class EmpresasController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def enable
+    @empresa.disabled_at = nil
+    if @empresa.save
+      flash[:notice] = "Se habilitó la empresa #{@empresa.nombre}"
+    else
+      flash[:error] = @empresa.errors.full_messages
+    end
+    redirect_to rubros_path
+  end
+
 end
 

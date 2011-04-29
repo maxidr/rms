@@ -8,6 +8,7 @@
 		<tr>
 		  <th>Símbolo</th>
 		  <th>Nombre</th>
+		  <th>¿Está habilitado?</th>
 		  <th></th>
 		</tr>
 	</thead>
@@ -16,9 +17,14 @@
 		<tr>
 		  <td><%= link_to moneda.simbolo, edit_moneda_path(moneda), :title => "Editar #{moneda.nombre}" %></td>
 		  <td><%= link_to moneda.nombre, edit_moneda_path(moneda), :title => "Editar #{moneda.nombre}" %></td>
+		  <td><%= moneda.enabled? ? 'Si' : 'No' %></td>
 		  <td class="actions">
 				<%= link_to 'Editar', edit_moneda_path(moneda) %>
-				<%= link_to 'Eliminar', moneda, :confirm => 'Are you sure?', :method => :delete %>
+				<% if moneda.enabled? %>
+  		  	<%= link_to 'Deshabilitar', moneda, :confirm => 'Esta seguro?', :method => :delete %>
+  		  <% else %>
+  		    <%= link_to 'Habilitar', enable_moneda_path(moneda), :confirm => 'Esta seguro?', :method => :put %>
+  		  <% end %>
 			</td>
 		</tr>
 	<% end %>

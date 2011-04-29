@@ -26,6 +26,7 @@
 		  <th title="ordenar por CUIT"><%= sort_link @search, :cuit %></th>
 		  <th>Teléfono</th>
 		  <th>Representante</th>
+		  <th>¿Está habilitado?</th>
 		  <th></th>
 		</tr>
 	</thead>
@@ -36,10 +37,16 @@
  		  <td><%= proveedor.cuit %></td>
 		  <td><%= proveedor.telefono %></td>
       <td><%= proveedor.representante %></td>
+      <td><%= proveedor.enabled? ? 'Si' : 'No' %></td>
 		  <td class="actions">
 	    	<%= link_to 'Ver', proveedor, :class => 'show' %>
 	    	<%= link_to 'Editar', edit_proveedor_path(proveedor) %>
-	    	<%= link_to 'Eliminar', proveedor, :confirm => 'Esta seguro?', :method => :delete %>
+        <% if proveedor.enabled? %>
+  		  	<%= link_to 'Deshabilitar', proveedor, :confirm => 'Esta seguro?', :method => :delete %>
+  		  <% else %>
+  		    <%= link_to 'Habilitar', enable_proveedor_path(proveedor), :confirm => 'Esta seguro?', :method => :put %>
+  		  <% end %>
+			</td>
 		  </td>
 		</tr>
 	<% end %>
