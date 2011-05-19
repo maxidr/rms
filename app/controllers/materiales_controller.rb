@@ -3,7 +3,7 @@ class MaterialesController < ApplicationController
 
 	before_filter :authenticate_usuario!
 	before_filter :load_material, :only => [:show, :edit, :update, :destroy]
-	before_filter :check_rqm_state, :only => [:edit, :update, :destroy]
+#	before_filter :check_rqm_state, :only => [:edit, :update, :destroy]
 	before_filter :check_creation, :only => [:create, :new]
 
   # GET /materiales
@@ -88,11 +88,11 @@ class MaterialesController < ApplicationController
 
   private
 
-  def check_rqm_state
-		if cannot? :edit, @material.requerimiento
-			redirect_to @material, :alert => 'No puede alterar el contenido de un requerimiento hasta que no cambie su estado'
-		end
-	end
+#  def check_rqm_state
+#		if cannot? :edit, @material.requerimiento
+#			redirect_to @material, :alert => 'No puede alterar el contenido de un requerimiento hasta que no cambie su estado'
+#		end
+#	end
 
 	def check_creation
 		@requerimiento = Requerimiento.find(params[:requerimiento_id])

@@ -17,6 +17,22 @@ class Ability
 		can [:edit, :add_material], Requerimiento do |rqm|
 		  iniciado_or_rechazado(rqm) and rqm.solicitante == usuario
 		end
+		
+    can :edit_only_details, Material do |material|
+      iniciado_or_rechazado(material.requerimiento)      
+    end
+    
+    # El material se puede modificar en cualquier momento. Si el pedido no se encuentra
+    # en estado iniciado o rechazado entonces solo se puede editar el detalle.    
+    can [:edit, :update], Material do |material|
+      true
+    end
+    
+    can :destroy, Material do |material|
+      can? :edit, material.requerimiento
+    end
+
+		
 		can [:add_caracteristica, :edit_caracteristica], Material do |m|
 			iniciado_or_rechazado(m.requerimiento)
 		end
@@ -79,12 +95,10 @@ class Ability
 		# Solo los administradores puede modificar su rol o sector, o el de otros usuarios
 		can :change_rol_and_sector, Usuario, :admin? => true
 
-#		can :show, Requerimiento do |rqm|
-#		  sectores = Sector.with_responsable usuario
-#
-#      Requerimiento.where("sector_id IN (?) OR solicitante_id = ?", s, u)
-#		end
-
+    can :destroy, Requerimiento do |rqm|
+      rqm.estado == Estado::INICIO and (usuario.admin? or rqm.solicitante == usuario )
+    end    
+    
 		can :recepcionar, Requerimiento do |rqm|
 			unless usuario.sector.nil?
 				usuario.sector.expedicion? and rqm.estado == Estado::PENDIENTE_RECEPCION

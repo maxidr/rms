@@ -4,28 +4,7 @@
 
 <h1>Requerimientos</h1>
 
-<div id="filters" class="accordion">
-  <h3><a href="#">Fitros</a></h3>
-  <div class="filters-content">
-  <a href="" class='clean-filters'>Limpiar valores</a>
-  <%= semantic_form_for @search do |f| %>
-    <%= f.inputs do %>
-	    <%= f.input :id_eq, :label => 'N°' %>
-	    <%= f.input :solicitante_id_eq, :label => 'Solicitante', :as => :select, :collection => Usuario.all %>
-	    <%= f.input :empresa_id_eq, :label => 'Empresa', :as => :select, :collection => Empresa.enabled %>
-	    <%= f.input :sector_id_eq, :label => 'Sector', :as => :select, :collection => Sector.enabled %>
-	    <%= f.input :rubro_id_eq, :label => 'Rubro', :as => :select, :collection => Rubro.enabled %>
-	    <%= f.input :estado_eq, :label => 'Estado', :as => :select, :collection => estados_for_collection %>
-    <% end %>
-    <%= f.buttons do %>
-      <%= f.commit_button :search %>
-      <li class="reset">
-        <%= link_to 'Ver todos (sin filtrar)', Requerimiento %>
-      </li>
-    <% end %>
-  <% end %>
-  </div>
-</div>
+<%= render :partial => 'filters' %>
 
 <% if @requerimientos.empty? %>
 	<p>Aun no hay requerimientos cargados.</p>
@@ -59,6 +38,9 @@
 						  <%= link_to 'Editar', edit_requerimiento_path(requerimiento) %>
 					  <% end %>
 					  <%= link_to 'Materiales', requerimiento_materiales_path(requerimiento), :remote => true  %>
+					  <% if can? :destroy, requerimiento %>
+					    <%= link_to 'Eliminar', requerimiento, :confirm => "Esta seguro que desea eliminar la petición #{requerimiento.id}?", :method => :delete, :class => :negative_action %>
+					  <% end %>
 					</td>
 				</tr>
 				<tr class="row_details" style="display:none;">
@@ -111,4 +93,5 @@
 
   });
 </script>
+
 

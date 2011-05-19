@@ -254,17 +254,16 @@ class RequerimientosController < ApplicationController
 
 
 
-#  # DELETE /requerimientos/1
-#  # DELETE /requerimientos/1.xml
-#  def destroy
-#    @requerimiento = Requerimiento.find(params[:id])
-#    @requerimiento.destroy
-
-#    respond_to do |format|
-#      format.html { redirect_to(requerimientos_url) }
-#      format.xml  { head :ok }
-#    end
-#  end
+  # DELETE /requerimientos/1
+  # DELETE /requerimientos/1.xml
+  def destroy
+    @requerimiento = Requerimiento.find(params[:id])
+    @requerimiento.destroy
+    respond_to do |format|
+      format.html { redirect_to(requerimientos_url) }
+      format.xml  { head :ok }
+    end
+  end
 
 	private
 

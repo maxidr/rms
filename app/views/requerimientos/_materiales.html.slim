@@ -1,0 +1,27 @@
+- if can? :add_material, @requerimiento
+  .contextual
+  	= link_to 'Agregar material', new_requerimiento_material_path(@requerimiento)
+
+h2 Materiales
+
+- if @requerimiento.materiales.empty? 
+	p Aun no posee materiales cargados
+- else 
+  table
+    thead
+		  tr
+			  th Material
+			  th Cantidad
+			  th 
+    tbody
+      - @requerimiento.materiales.each do |material| 
+				tr
+					td = material.nombre
+					td = material.cantidad
+					td.actions
+					  = link_to 'Ver', material_path(material)
+					  = link_to 'Editar', edit_material_path(material) if can? :edit, material
+					  = link_to 'Eliminar', material, :confirm => 'Esta seguro?', :method => :delete if can? :destroy, material 
+					  = link_to 'Agregar característica', new_material_caracteristica_path(material) if can? :add_caracteristica, material
+
+

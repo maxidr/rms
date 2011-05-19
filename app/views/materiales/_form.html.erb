@@ -1,7 +1,8 @@
 <%= semantic_form_for([@requerimiento, @material]) do |f| %>
+  <% params = filtered_input_params(@material) %>
   <%= f.inputs do %>
-    <%= f.input :nombre %>
-    <%= f.input :cantidad, :label => 'Cantidad/Unidad'%>
+    <%= f.input :nombre, params %>
+    <%= f.input :cantidad, params.merge({:label => 'Cantidad/Unidad'}) %>
     <%= f.input :detalle %>
   <% end %>
   <%= f.buttons %>
