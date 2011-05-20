@@ -192,6 +192,7 @@ ActiveRecord::Schema.define(:version => 20110427184942) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.integer  "sector_id"
+    t.integer  "roles_mask"
     t.integer  "rol_id",                              :default => 0,  :null => false
   end
 
