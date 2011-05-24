@@ -1,7 +1,7 @@
 # coding: utf-8
 namespace :deploy do
-  PRODUCTION_APP = 'a1-perseus'
-  STAGING_APP = 'a1-perseus-dev'
+  PRODUCTION_APP = 'perseus'
+  STAGING_APP = 'perseus-dev'
 
   def run(*cmd)
     system(*cmd)
