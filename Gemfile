@@ -6,7 +6,8 @@ gem 'rails', '3.0.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'devise'
+gem 'apslabs_oauth_client', :git => 'git://github.com/apslab/apslabs_oauth_client.git'
+
 
 gem 'cancan'
 gem 'formtastic', '~> 1.2.3'

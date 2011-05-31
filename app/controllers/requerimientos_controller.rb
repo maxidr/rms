@@ -5,7 +5,9 @@ class RequerimientosController < ApplicationController
 	respond_to :js, :only => [:motivo_rechazo, :motivo_rechazo_compras]
 	respond_to :pdf, :only => [:show]
 
-	before_filter :authenticate_usuario!
+#	before_filter :authenticate_usuario!
+  before_filter :login_required
+
 	# IMPROVE: Utilizar el método de cancan load_and_authorize_resource (https://github.com/ryanb/cancan/wiki/authorizing-controller-actions)
 	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion, :check_state, :show, :update, :aprobar, :motivo_rechazo, :rechazar, :solicitar_aprobacion_compras, :motivo_rechazo_compras, :rechazar_por_compras, :recepcionar, :verificar_entrega, :finalizar, :motivo_rechazo_entrega, :rechazar_entrega]
 	before_filter :check_state, :only => [:edit, :update]
@@ -14,7 +16,7 @@ class RequerimientosController < ApplicationController
 	def finalizar
 		authorize! :finalizar, @requerimiento
 		respond_with @requerimiento do |format|
-			if @requerimiento.finalizar! current_usuario
+			if @requerimiento.finalizar! current_user
 				flash[:notice] = "El requerimiento fue finalizado con éxito."
 			end
 			format.html{ render :show }
@@ -26,7 +28,7 @@ class RequerimientosController < ApplicationController
 		authorize! :rechazar_entrega, @requerimiento
 		logger.debug "Se rechaza la entrega del requerimiento: #{@requerimiento}"
 		@rechazo = DetalleRechazoEntrega.new(params[:detalle_rechazo_entrega])
-		@rechazo.rechazado_por = current_usuario
+		@rechazo.rechazado_por = current_user
 		respond_with @requerimiento  do |format|
 			if @requerimiento.rechazar_entrega! @rechazo
 				format.html { redirect_to @requerimiento }
@@ -57,7 +59,7 @@ class RequerimientosController < ApplicationController
 		logger.debug "Recepcionar requerimiento"
 		authorize! :recepcionar, @requerimiento
 		respond_with @requerimiento do |format|
-			if @requerimiento.recepcionar!(current_usuario)
+			if @requerimiento.recepcionar!(current_user)
 				flash[:notice] = "Se recepcionaron los materiales del requerimiento"
 			end
 			format.html{ render :show	}
@@ -89,7 +91,7 @@ class RequerimientosController < ApplicationController
 			if motivo.blank?
 				flash[:error] = "Debe especificar un motivo para el rechazo"
 				format.html { render :motivo_rechazo_compras }
-			elsif @requerimiento.rechazar_por_compras!(motivo, current_usuario)
+			elsif @requerimiento.rechazar_por_compras!(motivo, current_user)
 				flash[:notice] = "Se rechazó el requerimiento"
 				format.html { redirect_to @requerimiento }
 			else
@@ -143,7 +145,7 @@ class RequerimientosController < ApplicationController
 	# PUT /requerimientos/{id}/aprobar
 	def aprobar
 		logger.debug("Se aprueba el requerimiento")
-		if @requerimiento.aprobar_por_sector! current_usuario
+		if @requerimiento.aprobar_por_sector! current_user
 			flash[:notice] = "Se autorizó el requerimiento"
 			respond_with @requerimiento
 		else
@@ -157,7 +159,7 @@ class RequerimientosController < ApplicationController
 	def rechazar
 		logger.debug("Se rechaza el requerimiento")
 		logger.debug(params[:rechazo])
-		if @requerimiento.rechazar_por_sector!( params[:rechazo][:motivo], current_usuario )
+		if @requerimiento.rechazar_por_sector!( params[:rechazo][:motivo], current_user )
 			flash[:notice] = "Se rechazó el requerimiento y se envió un email al solicitante"
 			respond_with @requerimiento, :location => @requerimiento
 		else
@@ -174,9 +176,9 @@ class RequerimientosController < ApplicationController
 	end
 
   def index
-#    @requerimientos = Requerimiento.where(:solicitante_id => current_usuario)
+#    @requerimientos = Requerimiento.where(:solicitante_id => current_user)
 		#	FIXME: El usuario puede ver sus requerimientos y los que debe autorizar
-		@search = Requerimiento.para_usuario(current_usuario).search(params[:search])
+		@search = Requerimiento.para_usuario(current_user).search(params[:search])
 		respond_with @requerimientos = @search.paginate(:page => params[:page], :per_page => 15)
 
 #		respond_with( @requerimientos = Requerimiento.includes(:solicitante, :empresa, :sector, :rubro).all )
@@ -205,7 +207,7 @@ class RequerimientosController < ApplicationController
   # GET /requerimientos/new.xml
   def new
     @requerimiento = Requerimiento.new
-    @requerimiento.solicitante = current_usuario
+    @requerimiento.solicitante = current_user
     respond_with @requerimiento
   end
 
@@ -217,7 +219,7 @@ class RequerimientosController < ApplicationController
   # POST /requerimientos.xml
   def create
     @requerimiento = Requerimiento.new(params[:requerimiento])
-    @requerimiento.solicitante = current_usuario
+    @requerimiento.solicitante = current_user
     if @requerimiento.save
     	respond_with @requerimiento, :status => :created, :location => new_requerimiento_material_url(@requerimiento)
     else

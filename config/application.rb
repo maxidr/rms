@@ -40,6 +40,10 @@ module Rms
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
+    config.apslabs_federation_app_id = 'perseus'
+    config.apslabs_federation_app_key = 'ec85887f354e1447a30649fe3a0h08cf33dc269328'
+    config.apslabs_federation_url = 'http://federation.apslabs.com.ar/'
+
   end
 
 end

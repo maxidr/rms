@@ -1,6 +1,6 @@
 Rms::Application.routes.draw do
 
-	devise_for :usuarios
+#	devise_for :usuarios
 	resources :usuarios
 
   resources :proveedores do
@@ -66,7 +66,7 @@ Rms::Application.routes.draw do
       put 'enable'
     end
   end
-  
+
 
   resources :sectores do
     member do
