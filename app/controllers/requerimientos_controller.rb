@@ -69,7 +69,7 @@ class RequerimientosController < ApplicationController
 		logger.debug("Se confirma la compra del requerimiento n° #{@compra.requerimiento.id}")
 		logger.debug("Fecha probable de compra: #{@compra.fecha_probable_entrega}")
 		@requerimiento = @compra.requerimiento
-		@compra.presupuesto = @requerimiento.presupuesto_aprobado
+		@compra.presupuesto = @requerimiento.presupuestos.aprobado
 		respond_with @compra, :location => @requerimiento  do |format|
 			#	FIXME: Esta parte debería ser una transacción
 			if @compra.save

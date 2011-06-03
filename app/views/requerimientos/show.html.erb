@@ -60,7 +60,7 @@
   <%= render "materiales.html.erb" %>
 
   <% if @requerimiento.estado >= Estado::APROBADO_X_COMPRAS && @requerimiento.estado != Estado::RECHAZO_X_COMPRAS %>
-	  <%= render "presupuestos/aprobado.html.erb", :presupuesto => @requerimiento.presupuesto_aprobado %>
+	  <%= render "presupuestos/aprobado.html.erb", :presupuesto => @requerimiento.presupuestos.aprobado %>
   <% else %>
 	  <%= render "presupuestos/list.html.erb", :presupuestos => @requerimiento.presupuestos %>
   <% end %>
