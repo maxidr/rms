@@ -36,8 +36,12 @@ class Presupuesto < ActiveRecord::Base
   def monto_total
     desgloses.inject(0) { |sum, d| sum += d.monto_total }
   end
-
   memoize :monto_total
+  
+  def con_iva?
+    desgloses.any? { |d| d.iva > 0 }
+  end  
+  memoize :con_iva?
 
 end
 

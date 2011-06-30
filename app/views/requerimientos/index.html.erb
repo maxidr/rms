@@ -25,7 +25,7 @@
 		<tbody>
 			<% @requerimientos.each do |requerimiento| %>
 				<tr id="<%= requerimiento.id %>">
-					<td><%= link_to "#{requerimiento.id}", requerimiento, :title => "Editar requerimiento n° #{requerimiento.id}"  %></td>
+					<td><%= link_to "#{requerimiento.id}", requerimiento, :title => "Editar requerimiento n° #{requerimiento.id}"  %> <%= iva_mark(requerimiento) %> </td>
 					<td><%=	l requerimiento.created_at, :format => :short %></td>
 					<td><%= requerimiento.solicitante %></td>
 					<td><%= requerimiento.empresa %></td>

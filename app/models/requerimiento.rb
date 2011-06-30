@@ -20,7 +20,12 @@ class Requerimiento < ActiveRecord::Base
   belongs_to :sector
   belongs_to :rubro
   has_many :materiales
-  has_many :presupuestos
+  has_many :presupuestos do
+    def aprobado
+      detect{ |p| p.aprobado } if proxy_owner.estado >= Estado::APROBADO_X_COMPRAS
+    end
+  end
+      
   has_one :compra
 
   composed_of :estado, :mapping => %w(estado codigo)
@@ -147,9 +152,9 @@ class Requerimiento < ActiveRecord::Base
 		estado_historico.detalle.motivo unless estado_historico.nil? && estado_historico.detalle.nil?
 	end
 
-	def presupuesto_aprobado
-		presupuestos.detect{ |p| p.aprobado } if estado >= Estado::APROBADO_X_COMPRAS
-	end
+#	def presupuesto_aprobado
+#		presupuestos.detect{ |p| p.aprobado } if estado >= Estado::APROBADO_X_COMPRAS
+#	end
 
 	def compra_realizada?
 		!compra.nil?
