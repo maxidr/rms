@@ -31,6 +31,8 @@ class Requerimiento < ActiveRecord::Base
   composed_of :estado, :mapping => %w(estado codigo)
 
   validates_presence_of :empresa, :sector, :rubro, :solicitante
+  
+  default_scope order('id ASC')
 
   scope :para_usuario, lambda { |usuario|
     unless usuario.admin? or [Sector.compras, Sector.administracion].include? usuario.sector
