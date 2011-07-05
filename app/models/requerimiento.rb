@@ -32,7 +32,7 @@ class Requerimiento < ActiveRecord::Base
 
   validates_presence_of :empresa, :sector, :rubro, :solicitante
   
-  default_scope order('id ASC')
+  default_scope order('id DESC')
 
   scope :para_usuario, lambda { |usuario|
     unless usuario.admin? or [Sector.compras, Sector.administracion].include? usuario.sector
