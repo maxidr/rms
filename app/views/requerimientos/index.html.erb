@@ -12,13 +12,13 @@
 	<table>
 		<thead>
 			<tr>
-				<th title="ordenar por N°"><%= sort_link @search, :id, 'N°' %></th>
+        <th title="ordenar por N°"><%= sort_link @search, :id, 'N°' %></th>
 				<th title="ordenar por fecha"><%= sort_link @search, :created_at, 'Fecha' %></th>
 				<th title="ordenar por solicitante"><%= sort_link @search, :solicitante, 'Solicitante' %></th>
         <th title="ordenar por empresa"><%= sort_link @search, :empresa, 'Empresa' %></th>
         <th title="ordenar por sector"><%= sort_link @search, :sector, 'Sector' %></th>
         <th title="ordenar por rubro"><%= sort_link @search, :rubro, 'Rubro' %></th>
-				<th>Estado</th>
+        <th title="ordenar por estado"><%= sort_link @search, :estado, 'Estado' %></th>
 				<th></th>
 			</tr>
 		</thead>
