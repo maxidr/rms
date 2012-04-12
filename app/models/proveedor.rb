@@ -23,6 +23,7 @@ class Proveedor < ActiveRecord::Base
 										:representante, :jefe_ventas, :memo
 	
   scope :enabled, where('proveedores.disabled_at IS NULL')
+  scope :sorted, order('razon_social ASC')
   
 	def enabled?
     self.disabled_at.nil?
