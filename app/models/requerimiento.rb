@@ -33,6 +33,17 @@ class Requerimiento < ActiveRecord::Base
   validates_presence_of :empresa, :sector, :rubro, :solicitante
   
   #default_scope order('id DESC')
+ 
+  # Busca los requerimientos por razon social del proveedor
+  # en los casos de que el estado sea aprobado por compras 
+  # (o posterior)
+  scope :by_supplier, lambda { |supplier_id| 
+    where("requerimientos.estado >= #{Estado::APROBADO_X_COMPRAS.codigo}")
+      .joins(:presupuestos => :proveedor)
+      .where('proveedores.id = ?', supplier_id)
+  }
+
+  search_methods :by_supplier
 
   scope :para_usuario, lambda { |usuario|
     unless usuario.admin? or [Sector.compras, Sector.administracion].include? usuario.sector
