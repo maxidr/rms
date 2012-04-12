@@ -22,7 +22,6 @@ class Proveedor < ActiveRecord::Base
 										:localidad, :cod_postal,
 										:representante, :jefe_ventas, :memo
 	
-	default_scope order(:razon_social)									
   scope :enabled, where('proveedores.disabled_at IS NULL')
   
 	def enabled?

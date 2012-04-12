@@ -176,8 +176,7 @@ class RequerimientosController < ApplicationController
   def index
 #    @requerimientos = Requerimiento.where(:solicitante_id => current_usuario)
 		#	FIXME: El usuario puede ver sus requerimientos y los que debe autorizar
-    load_default_order
-		@search = Requerimiento.para_usuario(current_usuario).search(params[:search])
+		@search = Requerimiento.para_usuario(current_usuario).search(search_params('id.desc'))
 		respond_with @requerimientos = @search.paginate(:page => params[:page], :per_page => 15)
 
 #		respond_with( @requerimientos = Requerimiento.includes(:solicitante, :empresa, :sector, :rubro).all )
@@ -267,11 +266,6 @@ class RequerimientosController < ApplicationController
   end
 
 	private
-
-    def load_default_order
-      params[:search] = {:meta_sort => 'id.desc'} unless params[:search] && params[:search][:meta_sort]
-    end
-
 
 		def obtener_rqm
 			@requerimiento = Requerimiento.find(params[:id])

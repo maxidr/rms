@@ -6,6 +6,12 @@ class ApplicationController < ActionController::Base
   	@current_ability ||= Ability.new(current_usuario)
   end
 
+  def search_params(default_sort = nil)
+    search = params[:search]
+    search = {'meta_sort' => 'razon_social.asc'}.merge(params[:search] || {}) if default_sort
+    search
+  end
+
   rescue_from CanCan::AccessDenied do |exception|
   	logger.debug(exception.message)
   	msg = "No posee permisos suficientes para acceder a la página solicitada"
