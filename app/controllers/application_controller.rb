@@ -6,10 +6,11 @@ class ApplicationController < ActionController::Base
   	@current_ability ||= Ability.new(current_usuario)
   end
 
+  # Obtiene los parámetros de búsqueda y orden. En caso de no solicitarse el orden
+  # en el request se utilizará la columna recibida como parámetro (default_sort).
   def search_params(default_sort = nil)
-    search = params[:search]
-    search = {'meta_sort' => 'razon_social.asc'}.merge(params[:search] || {}) if default_sort
-    search
+    return params[:search] if params[:search] && params[:search][:meta_sort]
+    {'meta_sort' => default_sort }.merge(params[:search] || {}).symbolize_keys 
   end
 
   rescue_from CanCan::AccessDenied do |exception|

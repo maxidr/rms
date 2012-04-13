@@ -43,6 +43,16 @@ class Requerimiento < ActiveRecord::Base
       .where('proveedores.id = ?', supplier_id)
   }
 
+  # Scope para ordenar las columnas de los requerimientos en el index de requerimientos.
+  scope :sort_by_empresa_asc, order('empresas.nombre ASC')
+  scope :sort_by_empresa_desc, order('empresas.nombre DESC')
+  scope :sort_by_solicitante_asc, order('usuarios.nombre ASC')
+  scope :sort_by_solicitante_desc, order('usuarios.nombre DESC')
+  scope :sort_by_sector_asc, order('sectores.nombre ASC')
+  scope :sort_by_sector_desc, order('sectores.nombre DESC')
+  scope :sort_by_rubro_asc, order('rubros.nombre ASC')
+  scope :sort_by_rubro_desc, order('rubros.nombre DESC')
+
   search_methods :by_supplier
 
   scope :para_usuario, lambda { |usuario|

@@ -176,7 +176,9 @@ class RequerimientosController < ApplicationController
   def index
 #    @requerimientos = Requerimiento.where(:solicitante_id => current_usuario)
 		#	FIXME: El usuario puede ver sus requerimientos y los que debe autorizar
-		@search = Requerimiento.para_usuario(current_usuario).search(search_params('id.desc'))
+		@search = Requerimiento.para_usuario(current_usuario)
+      .joins(:empresa, :solicitante, :sector, :rubro)
+      .search(search_params('id.desc'))
 		respond_with @requerimientos = @search.paginate(:page => params[:page], :per_page => 15)
 
 #		respond_with( @requerimientos = Requerimiento.includes(:solicitante, :empresa, :sector, :rubro).all )
