@@ -12,7 +12,14 @@
 <div id="rqm">
 
   <h1>Requerimiento N° <%= @requerimiento.id %></h1>
-
+  <div class="estado <%= @requerimiento.estado.rechazo? ? 'estado_rechazado' : '' %>">
+    <%= @requerimiento.estado.to_s %>
+    <%- if @requerimiento.estado == Estado::PENDIENTE_RECEPCION %>
+      <i>
+        <%= " (Fecha probable de entrega: \n #{l @requerimiento.compra.fecha_probable_entrega})" %>
+      </i>
+    <% end -%>
+  </div>
   <div class="rqm-info">
     <div class="left">
       <dl>
@@ -23,21 +30,10 @@
         <dt>Fecha de carga</dt>
         <dd><%= l @requerimiento.created_at %></dd>
       </dl>
-      <dl>
-        <dt>Estado</dt>
-        <dd class=" <%= @requerimiento.estado.rechazo? ? 'estado_rechazado' : '' %> ">
-          <%= @requerimiento.estado.to_s %>
-		      <%- if @requerimiento.estado == Estado::PENDIENTE_RECEPCION %>
-		        <i>
-		          <%= " (Fecha probable de entrega: \n #{l @requerimiento.compra.fecha_probable_entrega})" %>
-		        </i>
-		      <% end -%>
-        </dd>
-      </dl>
       <% if @requerimiento.estado.rechazo? %>
         <dl>
           <dt>Motivo del rechazo</dt>
-          <dd class="estado_rechazado"><%= @requerimiento.motivo_rechazo %></dd>
+          <dd class="estado_rechazado_title"><%= @requerimiento.motivo_rechazo %></dd>
         </dl>
       <% end %>
     </div>
@@ -53,6 +49,10 @@
       <dl>
         <dt>Rubro</dt>
         <dd><%= @requerimiento.rubro %></dd>
+      </dl>
+      <dl>
+        <dt>Consumo</dt>
+        <dd><%= @requerimiento.consumo %></dd>
       </dl>
     </div>
   </div>

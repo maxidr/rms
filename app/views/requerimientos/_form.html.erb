@@ -3,6 +3,7 @@
     <%= f.input :empresa, :collection => Empresa.enabled %>
     <%= f.input :sector, :collection => Sector.enabled %>
     <%= f.input :rubro, :collection => Rubro.enabled %>
+    <%= f.input :consumo,:collection => Requerimiento::FRECUENCIAS_CONSUMO %>
   <% end %>
   <%= f.buttons do %>
     <% f.commit_button "Continuar" %>

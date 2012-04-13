@@ -30,10 +30,12 @@ class Requerimiento < ActiveRecord::Base
 
   composed_of :estado, :mapping => %w(estado codigo)
 
+  FRECUENCIAS_CONSUMO = %w(semanal quincenal bimestral trimestral semestral anual)
+
   validates_presence_of :empresa, :sector, :rubro, :solicitante
+  validates_inclusion_of :consumo, :in => FRECUENCIAS_CONSUMO
   
-  #default_scope order('id DESC')
- 
+
   # Busca los requerimientos por razon social del proveedor
   # en los casos de que el estado sea aprobado por compras 
   # (o posterior)
