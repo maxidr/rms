@@ -11,6 +11,16 @@ Crear y poblar BBDD:
 	rake db:migrate
 	rake db:seed
 
+
+#### Version 1.1
+
+Se incorporan las siguientes correcciones:
+
+* Se corrige el ordenamiento por columnas en el listado de requerimientos (N°, fecha, solicitante, empresa, sector y rubro)
+* Se agrega el orden por "Estado" en la lista de requerimientos.
+* Se agrega el filtro de razón social del proveedor en la pantalla de requerimientos.  Se filtrarán solo los requerimientos que ya hayan sido aprobados por compras (o sea, que poseen un presupuesto asignado).
+* Se agrega el campo "Consumo" en los requerimientos.  El consumo puede ser una opción dentro de "semanal, quincenal, bimestral, trimestral, semestral y anual"
+
 ....
 
 Fugue icons from http://p.yusukekamiyamane.com/
