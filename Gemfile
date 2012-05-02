@@ -21,6 +21,7 @@ gem "compass", ">= 0.10.6"
 gem "wicked_pdf"
 
 gem "heroku"
+gem 'version'
 
 # Use unicorn as the web server
 # gem 'unicorn'

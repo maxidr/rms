@@ -11,17 +11,42 @@ Crear y poblar BBDD:
 	rake db:migrate
 	rake db:seed
 
+[Changelog](https://github.com/maxidr/rms/blob/master/CHANGELOG.md)
 
-#### Version 1.1
+-----------------------------------------------------------------------
 
-Se incorporan las siguientes correcciones:
+Despliegue 
+==========
 
-* Se corrige el ordenamiento por columnas en el listado de requerimientos (N°, fecha, solicitante, empresa, sector y rubro)
-* Se agrega el orden por "Estado" en la lista de requerimientos.
-* Se agrega el filtro de razón social del proveedor en la pantalla de requerimientos.  Se filtrarán solo los requerimientos que ya hayan sido aprobados por compras (o sea, que poseen un presupuesto asignado).
-* Se agrega el campo "Consumo" en los requerimientos.  El consumo puede ser una opción dentro de "semanal, quincenal, bimestral, trimestral, semestral y anual"
+## Metodología de despliegue
 
-....
+Los depliegues se realizan en dos ambientes: staging y production.  Se require desplegar primero en staging y luego en production.  Al desplegar en staging automáticamente se incrementa la versión del proyecto.  Para desplegar en production se requiere tener una version ya generada (realizada por el despliegue en staging).
+
+### Despliegue a staging
+    
+    rake deploy:staging
+
+Esto genera una nueva versión y crea un tag (en git) para contenerlo.  Cuando se utiliza este comando, automáticamente incrementa el número de versión (la sección de revisión, ver [semantic versioning](http://semver.org/)).  Luego de ello, la tarea, despliega el proyecto en heroku usando la rama.
+
+### Desplegar al ambiente de producción
+
+    rake deploy:production
+
+Esta tarea despliega la aplicación a la instancia de producción a heroku (remoto production) usando la último tag versionado.  Si necesita desplegar una versión que no es la última tageada puede utilizar el parámetro *tag* con el número de versión (ej.: rake deploy:production tag=0.1.2).
+
+
+We have 3 environment to deploy in heroku
+
+* dev        ->  http://poseidon-dev.herokuapp.com
+* staging    ->  http://poseidon-test.heroku.com
+* production ->  http://poseidon.herokuapp.com (not working yet)
+
+For see configuration related with remote service use:
+
+    rake deploy:show_environments
+
+
+-------------------------------------------------------------------------------------------------------
 
 Fugue icons from http://p.yusukekamiyamane.com/
 
