@@ -11,12 +11,11 @@ Crear y poblar BBDD:
 	rake db:migrate
 	rake db:seed
 
-[Changelog](https://github.com/maxidr/rms/blob/master/CHANGELOG.md)
+----------------------------------------------------------------------
+
+*[Changelog](https://github.com/maxidr/rms/blob/master/CHANGELOG.md)*
 
 -----------------------------------------------------------------------
-
-Despliegue 
-==========
 
 ## Metodología de despliegue
 
@@ -35,15 +34,12 @@ Esto genera una nueva versión y crea un tag (en git) para contenerlo.  Cuando s
 Esta tarea despliega la aplicación a la instancia de producción a heroku (remoto production) usando la último tag versionado.  Si necesita desplegar una versión que no es la última tageada puede utilizar el parámetro *tag* con el número de versión (ej.: rake deploy:production tag=0.1.2).
 
 
-We have 3 environment to deploy in heroku
+### Listado de ambientes
 
-* dev        ->  http://poseidon-dev.herokuapp.com
-* staging    ->  http://poseidon-test.heroku.com
-* production ->  http://poseidon.herokuapp.com (not working yet)
-
-For see configuration related with remote service use:
+Para listar la información de los ambientes que maneja la tarea rake puede ejecutar:
 
     rake deploy:show_environments
+
 
 
 -------------------------------------------------------------------------------------------------------
