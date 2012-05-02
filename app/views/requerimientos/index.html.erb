@@ -1,5 +1,6 @@
 <div class="contextual">
   <%= link_to 'Nuevo requerimiento', new_requerimiento_path %>
+  <%= link_to 'Exportar', params.merge(:format => 'xls'), :class => :export_xls %>
 </div>
 
 <h1>Requerimientos</h1>

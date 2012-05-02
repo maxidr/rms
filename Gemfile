@@ -22,6 +22,7 @@ gem "wicked_pdf"
 
 gem "heroku"
 gem 'version'
+gem 'spreadsheet'
 
 # Use unicorn as the web server
 # gem 'unicorn'

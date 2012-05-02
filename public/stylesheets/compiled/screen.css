@@ -255,6 +255,17 @@ h1, h2 {
 .contextual a {
   padding-left: 20px;
 }
+/* line 116, ../../../app/stylesheets/screen.sass */
+.contextual .export_xls {
+  background: url('/images/page_white_excel.png?1142211336') no-repeat;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  padding-bottom: 3px;
+  padding-top: 2px;
+  padding-left: 20px;
+  margin-left: 10px;
+}
 
 /* line 1, ../../../app/stylesheets/partials/_top-menu.sass */
 #top-menu {
