@@ -15,29 +15,34 @@ class RequerimientosPresenter
       "Proveedor del presupuesto", "Moneda", "Monto total final", "Condición de pago", "Destalles del presupuesto"]
     add_titles(sheet, titles)
     load_content(sheet, @reqs) do |rqm|
-      row = [
-        rqm.id, 
-        l(rqm.created_at, :format => :short), 
-        rqm.solicitante.try(:to_s),
-        rqm.empresa.try(:to_s),
-        rqm.sector.try(:to_s),
-        rqm.rubro.try(:to_s),
-        rqm.estado.try(:to_s) ]
+      row = row(rqm)
       if presupuesto = rqm.presupuestos.aprobado
-        row.concat [
-          presupuesto.proveedor.razon_social,
-          presupuesto.moneda.simbolo, 
-          number_with_precision(presupuesto.monto_total),
-          presupuesto.condicion_pago.nombre,
-          presupuesto.detalle
-        ]
+        row.concat row_for_presupuesto(presupuesto)
       end
       row
     end
     stringify(book)
   end
 
-  private 
+  private
+
+  def row_for_presupuesto(presupuesto)
+    [ presupuesto.proveedor.razon_social,
+      presupuesto.moneda.simbolo, 
+      presupuesto.monto_total.to_f,
+      presupuesto.condicion_pago.nombre,
+      presupuesto.detalle ]
+  end
+
+  def row(rqm)
+    [ rqm.id, 
+      l(rqm.created_at, :format => :short), 
+      rqm.solicitante.try(:to_s),
+      rqm.empresa.try(:to_s),
+      rqm.sector.try(:to_s),
+      rqm.rubro.try(:to_s),
+      rqm.estado.try(:to_s) ]
+  end
 
   def stringify(book)
     blob = StringIO.new ""
