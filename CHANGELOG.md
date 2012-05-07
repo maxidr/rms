@@ -9,4 +9,7 @@
 
 * El listado de requerimientos puede ser exportado a excel juntos con sus presupuestos aprobados (Issue #142)
 
+## Version 0.1.5
 
+* Errores #146: Ocurre un error al intentar aprobar algunos requerimientos por compras
+* Funcionalidad #145: Consumo, se agrega la opción 'eventual'
