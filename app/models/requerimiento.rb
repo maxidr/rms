@@ -30,7 +30,7 @@ class Requerimiento < ActiveRecord::Base
 
   composed_of :estado, :mapping => %w(estado codigo)
 
-  FRECUENCIAS_CONSUMO = %w(semanal quincenal bimestral trimestral semestral anual)
+  FRECUENCIAS_CONSUMO = %w(eventual semanal quincenal bimestral trimestral semestral anual)
 
   validates_presence_of :empresa, :sector, :rubro, :solicitante
   validates_inclusion_of :consumo, :in => FRECUENCIAS_CONSUMO
