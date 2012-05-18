@@ -20,7 +20,7 @@ gem "meta_search"
 gem "compass", ">= 0.10.6"
 gem "wicked_pdf"
 
-gem "heroku"
+gem "heroku", '>= 2.25.0'
 gem 'version'
 
 # Use unicorn as the web server
@@ -51,3 +51,6 @@ group :development do
   gem 'hirb'
 end
 
+group :development, :test do
+  gem "rspec-rails", "~> 2.0"
+end
