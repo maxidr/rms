@@ -124,15 +124,26 @@ class Requerimiento < ActiveRecord::Base
   end
 
   def aprobar_presupuesto_por_compras!(presupuesto, autorizante)
-  	con_detalle = DetalleAprobacionCompras.new(:autorizante => autorizante, :presupuesto => presupuesto)
-
-  	cambiar_estado_a(Estado::APROBADO_X_COMPRAS, con_detalle) do
-    	presupuesto.aprobado = true
-	  	presupuesto.save!
-  	end
-
-		RequerimientosMailer.informar_autorizacion_compras(self, autorizante, presupuesto).deliver
+    detalle = DetalleVerificacionCompras.para_el_presupuesto(presupuesto).aprobar_por(autorizante)
+    responsables_de_compras = Sector.compras.responsables
+    if detalle.aprobacion_finalizada?(responsables_de_compras)
+      cambiar_estado_a(Estado::APROBADO_X_COMPRAS, detalle) do
+        presupuesto.aprobado = true
+        presupuesto.save!
+      end
+    end
   end
+
+  #def aprobar_presupuesto_por_compras!(presupuesto, autorizante)
+  #	con_detalle = DetalleAprobacionCompras.new(:autorizante => autorizante, :presupuesto => presupuesto)
+
+  #	cambiar_estado_a(Estado::APROBADO_X_COMPRAS, con_detalle) do
+  #  	presupuesto.aprobado = true
+	#  	presupuesto.save!
+  #	end
+
+	#	RequerimientosMailer.informar_autorizacion_compras(self, autorizante, presupuesto).deliver
+  #end
 
 	def solicitar_aprobacion_compras!
 		cambiar_estado_a Estado::PENDIENTE_APROBACION_COMPRAS

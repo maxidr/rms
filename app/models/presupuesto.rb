@@ -23,6 +23,7 @@ class Presupuesto < ActiveRecord::Base
   belongs_to :moneda
   belongs_to :condicion_pago
   has_many :desgloses
+  has_many :verificaciones, :class_name => 'VerificacionEncargadoCompras'
 
   IVA = [21, 10.5, 0]
 

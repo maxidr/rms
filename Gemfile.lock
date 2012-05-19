@@ -42,6 +42,11 @@ GEM
     diff-lcs (1.1.3)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    factory_girl (3.3.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (3.3.0)
+      factory_girl (~> 3.3.0)
+      railties (>= 3.0.0)
     formtastic (1.2.3)
       actionpack (>= 2.3.7)
       activesupport (>= 2.3.7)
@@ -105,6 +110,8 @@ GEM
       railties (>= 3.0)
       rspec (~> 2.10.0)
     rubyzip (0.9.8)
+    shoulda-matchers (1.1.0)
+      activesupport (>= 3.0.0)
     show_for (0.2.3)
     slim (0.8.1)
       temple (~> 0.1.6)
@@ -131,12 +138,14 @@ DEPENDENCIES
   cancan
   compass (>= 0.10.6)
   devise
+  factory_girl_rails
   formtastic (~> 1.2.3)
   heroku (>= 2.25.0)
   hirb
   meta_search
   rails (= 3.0.3)
   rspec-rails (~> 2.0)
+  shoulda-matchers
   show_for
   slim
   slim-rails
