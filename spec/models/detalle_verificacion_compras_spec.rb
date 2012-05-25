@@ -50,7 +50,7 @@ describe DetalleVerificacionCompras do
     it 'debe crear una verificacionEncargadoCompras para el presupuesto del DetalleVerificacionCompras' do
       @detalle.aprobar_por(@autorizante)
       @detalle.presupuesto.verificaciones.should_not be_empty
-      @detalle.verificaciones.should_not be_empty
+      #@detalle.verificaciones.should_not be_empty
     end
   end
 
@@ -63,12 +63,20 @@ describe DetalleVerificacionCompras do
       end
     end
 
+    let(:verificaciones_responsables_de_compras) do
+      responsables_de_compras.map do |responsable|
+        verificacion = double('detalle_verificacion_compras')
+        verificacion.stub(:verificador_id) { responsable.id }
+        verificacion
+      end
+    end
+
     before do
       @detalle = DetalleVerificacionCompras.new
       verificaciones = double(Array)
-      verificaciones.stub!(:count).and_return(responsables_de_compras.count)
-      verificaciones.stub!(:select).and_return(responsables_de_compras)
-      @detalle.stub(:verificaciones).and_return(verificaciones)
+      verificaciones.stub!(:count).and_return(verificaciones_responsables_de_compras.count)
+      verificaciones.stub!(:select).and_return(verificaciones_responsables_de_compras)
+      @detalle.stub_chain(:presupuesto, :verificaciones).and_return(verificaciones)
     end
     context 'si todos los responsables de compras autorizaron el presupuesto' do
       it 'debe retornar true' do
@@ -77,10 +85,16 @@ describe DetalleVerificacionCompras do
     end
 
     context 'si algunos responsables de compras no autorizaron el presupuesto' do
+
+      before do
+        algunas_verificaciones = verificaciones_responsables_de_compras.first(2)
+        verificaciones = double(Array)
+        verificaciones.stub!(:select).and_return(algunas_verificaciones)
+        verificaciones.stub!(:count).and_return(algunas_verificaciones.size)
+        @detalle.stub_chain(:presupuesto, :verificaciones).and_return(verificaciones)
+      end
+
       it 'debe retornar false' do
-        algunos_responsables = responsables_de_compras.first(2)
-        @detalle.verificaciones.stub!(:select).and_return(algunos_responsables)
-        @detalle.verificaciones.stub!(:count).and_return(algunos_responsables.size)
         @detalle.aprobacion_finalizada?(responsables_de_compras).should be_false
       end
     end

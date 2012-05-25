@@ -66,12 +66,12 @@ describe Requerimiento do
       end
 
       it 'del listado de presupuesto, uno pasa a ser el pendiente de aprobacion' do
-        @requerimiento.presupuestos.aprobable.should_not be_nil
+        @requerimiento.presupuestos.seleccionado.should == @presupuesto
       end
 
       it 'debe quedar asociado con el detalleVerificacionCompras con la aprobado del autorizante' do
-        presupuesto_aprobado = @requerimiento.presupuestos.aprobado
-        presupuesto_aprobado.verificaciones.should_not be_empty
+        presupuesto_seleccionado = @requerimiento.presupuestos.seleccionado
+        presupuesto_seleccionado.verificaciones.should_not be_empty
       end
     end
   end

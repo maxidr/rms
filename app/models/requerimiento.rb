@@ -26,7 +26,7 @@ class Requerimiento < ActiveRecord::Base
     end
 
     def seleccionado
-      detect { |p| p.seleccionado } if proxy_owner.estado >= Estado::PENDIENTE_APROBACION_COMPRAS
+      detect{ |p| p.seleccionado } if proxy_owner.estado >= Estado::PENDIENTE_APROBACION_COMPRAS
     end
   end
      
@@ -127,7 +127,7 @@ class Requerimiento < ActiveRecord::Base
 		RequerimientosMailer.informar_rechazo_compras(self, rechazado_por, motivo).deliver
   end
 
-  def aprobar_presupuesto_por_compras!(presupuesto, autorizante)
+  def aprobar_presupuesto_por_compras!(presupuesto, autorizante)     
     detalle = DetalleVerificacionCompras.para_el_presupuesto(presupuesto).aprobar_por(autorizante)
     
     responsables_de_compras = Sector.compras.responsables
