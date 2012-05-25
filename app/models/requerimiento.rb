@@ -125,6 +125,7 @@ class Requerimiento < ActiveRecord::Base
 
   def aprobar_presupuesto_por_compras!(presupuesto, autorizante)
     detalle = DetalleVerificacionCompras.para_el_presupuesto(presupuesto).aprobar_por(autorizante)
+    
     responsables_de_compras = Sector.compras.responsables
     if detalle.aprobacion_finalizada?(responsables_de_compras)
       cambiar_estado_a(Estado::APROBADO_X_COMPRAS, detalle) do

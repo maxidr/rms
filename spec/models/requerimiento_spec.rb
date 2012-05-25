@@ -22,11 +22,35 @@ describe Requerimiento do
 
   describe '#aprobar_presupuesto_por_compras!' do
     before do
-      @requerimiento = Requerimiento.new
+      @requerimiento = build(:requerimiento)
+      @requerimiento.estado = Estado::PENDIENTE_APROBACION_COMPRAS  
+      @requerimiento.save
+      
+      @presupuesto = build(:presupuesto)
+      @presupuesto.requerimiento = @requerimiento
+      @presupuesto.save
+
+      @autorizante = create(:usuario)
+      puts "autorizante id: #{@autorizante.id}"
     end
     context 'cuando el presupuesto es aprobado por el autorizante que faltaba' do
-      it 'debe quedar aprobado'
-      it 'debe quedar asociado con el detalleVerificacionCompras con la aprobacion del autorizante'
+      before do
+        Sector.stub_chain(:compras, :responsables).and_return([@autorizante])
+        @requerimiento.aprobar_presupuesto_por_compras!(@presupuesto, @autorizante)
+      end
+
+      it 'debe quedar en estado aprobado por compras' do
+        @requerimiento.estado.should == Estado::APROBADO_X_COMPRAS        
+      end
+      it 'el presupuesto debe quedar aprobado' do
+        @requerimiento.presupuestos.aprobado.should_not be_nil
+      end
+
+      it 'debe quedar asociado con el detalleVerificacionCompras con la aprobacion del autorizante' do
+        presupuesto_aprobado = @requerimiento.presupuestos.aprobado
+        presupuesto_aprobado.verificaciones.should_not be_empty
+        #presupuesto_aprobado.aprobado
+      end
     end
   end
 end

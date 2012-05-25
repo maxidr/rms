@@ -39,17 +39,18 @@ describe DetalleVerificacionCompras do
 
   describe '#aprobar_por' do
     before do
-      @presupuesto = Presupuesto.new
+      #@presupuesto = Presupuesto.new
+      @presupuesto = create(:presupuesto)
       @detalle = DetalleVerificacionCompras.new(:presupuesto => @presupuesto)
-      @autorizante = Usuario.new(:nombre => 'Julian', :apellido => 'Alvarez') 
+      #@autorizante = Usuario.new(:nombre => 'Julian', :apellido => 'Alvarez') 
+      @autorizante = create(:usuario)
       @now = DateTime.now
       DateTime.stub!(:now) { @now }
     end
-    it 'debe crear una verificacionEncargadoCompras al DetalleVerificacionCompras' do
-      @detalle.verificaciones
-        .should_receive(:create)
-        .with(hash_including(:verificador => @autorizante, :presupuesto => @detalle.presupuesto, :fecha_aprobacion => @now))
+    it 'debe crear una verificacionEncargadoCompras para el presupuesto del DetalleVerificacionCompras' do
       @detalle.aprobar_por(@autorizante)
+      @detalle.presupuesto.verificaciones.should_not be_empty
+      @detalle.verificaciones.should_not be_empty
     end
   end
 
@@ -64,10 +65,10 @@ describe DetalleVerificacionCompras do
 
     before do
       @detalle = DetalleVerificacionCompras.new
-      @detalle.verificaciones = []
-      @detalle.verificaciones.stub!(:count).and_return(responsables_de_compras.count)
-      @detalle.verificaciones.stub!(:select).and_return(responsables_de_compras)
-      #@detalle.stub_chain(:verificaciones, :select).and_return(responsables_de_compras)
+      verificaciones = double(Array)
+      verificaciones.stub!(:count).and_return(responsables_de_compras.count)
+      verificaciones.stub!(:select).and_return(responsables_de_compras)
+      @detalle.stub(:verificaciones).and_return(verificaciones)
     end
     context 'si todos los responsables de compras autorizaron el presupuesto' do
       it 'debe retornar true' do

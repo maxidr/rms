@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120413134713) do
+ActiveRecord::Schema.define(:version => 20120413185517) do
 
   create_table "caracteristicas", :force => true do |t|
     t.string   "nombre"
@@ -84,6 +84,11 @@ ActiveRecord::Schema.define(:version => 20120413134713) do
   create_table "detalles_rechazo_sector", :force => true do |t|
     t.integer "autorizante_id"
     t.text    "motivo"
+  end
+
+  create_table "detalles_verificacion_compras", :force => true do |t|
+    t.boolean "aprobado"
+    t.integer "presupuesto_id"
   end
 
   create_table "empresas", :force => true do |t|
@@ -194,6 +199,16 @@ ActiveRecord::Schema.define(:version => 20120413134713) do
     t.string   "last_sign_in_ip"
     t.integer  "sector_id"
     t.integer  "rol_id",                              :default => 0,  :null => false
+  end
+
+  create_table "verificaciones_encargado_compras", :force => true do |t|
+    t.integer  "verificador_id"
+    t.datetime "fecha_aprobacion"
+    t.datetime "fecha_rechazo"
+    t.string   "motivo_rechazo"
+    t.integer  "presupuesto_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
