@@ -24,8 +24,12 @@ class Requerimiento < ActiveRecord::Base
     def aprobado
       detect{ |p| p.aprobado } if proxy_owner.estado >= Estado::APROBADO_X_COMPRAS
     end
+
+    def seleccionado
+      detect { |p| p.seleccionado } if proxy_owner.estado >= Estado::PENDIENTE_APROBACION_COMPRAS
+    end
   end
-      
+     
   has_one :compra
 
   composed_of :estado, :mapping => %w(estado codigo)

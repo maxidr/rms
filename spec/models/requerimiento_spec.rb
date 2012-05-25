@@ -1,3 +1,4 @@
+# enconding: UTF-8
 require 'spec_helper'
 
 describe Requerimiento do
@@ -31,7 +32,6 @@ describe Requerimiento do
       @presupuesto.save
 
       @autorizante = create(:usuario)
-      puts "autorizante id: #{@autorizante.id}"
     end
     context 'cuando el presupuesto es aprobado por el autorizante que faltaba' do
       before do
@@ -49,7 +49,29 @@ describe Requerimiento do
       it 'debe quedar asociado con el detalleVerificacionCompras con la aprobacion del autorizante' do
         presupuesto_aprobado = @requerimiento.presupuestos.aprobado
         presupuesto_aprobado.verificaciones.should_not be_empty
-        #presupuesto_aprobado.aprobado
+      end
+    end
+
+    context 'cuando el presupuesto es aprobado por un autorizante, pero aun faltan aprobaciones' do
+      before do
+        @otro_autorizante = create(:usuario)
+        Sector.stub_chain(:compras, :responsables).and_return([@autorizante, @otro_autorizante])
+        @requerimiento.aprobar_presupuesto_por_compras!(@presupuesto, @autorizante)
+      end
+      it 'debe quedar en el estado que estaba (pendiente de aprobacion por compras)' do
+        @requerimiento.estado.should == Estado::PENDIENTE_APROBACION_COMPRAS
+      end
+      it 'el presupuesto no debe quedar aprobado' do
+        @requerimiento.presupuestos.aprobado.should be_nil
+      end
+
+      it 'del listado de presupuesto, uno pasa a ser el pendiente de aprobacion' do
+        @requerimiento.presupuestos.aprobable.should_not be_nil
+      end
+
+      it 'debe quedar asociado con el detalleVerificacionCompras con la aprobado del autorizante' do
+        presupuesto_aprobado = @requerimiento.presupuestos.aprobado
+        presupuesto_aprobado.verificaciones.should_not be_empty
       end
     end
   end

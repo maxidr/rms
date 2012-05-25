@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120413185517) do
+ActiveRecord::Schema.define(:version => 20120525173139) do
 
   create_table "caracteristicas", :force => true do |t|
     t.string   "nombre"
@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(:version => 20120413185517) do
     t.integer  "requerimiento_id"
     t.string   "detalle"
     t.boolean  "aprobado",          :default => false
+    t.boolean  "seleccionado",      :default => false
   end
 
   create_table "proveedores", :force => true do |t|

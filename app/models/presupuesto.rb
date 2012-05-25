@@ -13,6 +13,7 @@
 #  requerimiento_id  :integer
 #  detalle           :string(255)
 #  aprobado          :boolean         default(false)
+#  seleccionado      :boolean         default(false)
 #
 
 class Presupuesto < ActiveRecord::Base
