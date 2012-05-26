@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :moneda do
-    simbolo "$"
+    sequence(:simbolo) { |n| "simbolo #{n}" }
     nombre "Pesos"
   end
 

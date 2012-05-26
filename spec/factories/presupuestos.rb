@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :presupuesto do
-    association :moneda, :factory => :pesos
+    moneda
     condicion_pago
     proveedor
     desgloses { FactoryGirl.create_list(:desglose, 1) }

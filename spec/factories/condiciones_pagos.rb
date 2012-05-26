@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :condicion_pago do
-    nombre "Contado"
+    sequence(:nombre) { |n| "Contado #{n}" }
     descripcion "MyString"
   end
 end

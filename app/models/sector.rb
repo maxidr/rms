@@ -13,7 +13,8 @@
 class Sector < ActiveRecord::Base
 
   belongs_to :responsable, :class_name => 'Usuario'
-  has_and_belongs_to_many :responsables, :class_name => 'Usuario'
+  has_and_belongs_to_many :responsables, :class_name => 'Usuario',
+    :after_remove => :notify_observer
 
   validates_presence_of :nombre, :responsables
   validates_uniqueness_of :nombre
@@ -21,8 +22,9 @@ class Sector < ActiveRecord::Base
   scope :with_responsable, lambda { |usuario| joins(:responsables).where('usuarios.id' => usuario.id ) }
   scope :enabled, where('sectores.disabled_at IS NULL')
 
-	# IMPROVE: Mejorar el modo de fijar estos datos (tal vez se mejor generar una pantalla donde un usuario pueda indicar donde mandar los mails en cada estado del requerimiento)
-	#	Se fijan estos valores ya que es importante identificar unequivocamente estos sectores
+	# IMPROVE: Mejorar el modo de fijar estos datos (tal vez se mejor generar una pantalla donde un 
+  # usuario pueda indicar donde mandar los mails en cada estado del requerimiento).
+	#	Se fijan estos valores ya que es importante identificar inequivocamente estos sectores
 	# para el resto de los procesos (enviar notificaciones a compras, a administración y a expedición)
   COMPRAS_ID = 9
   ADMINISTRACION_ID = 8
@@ -74,6 +76,12 @@ class Sector < ActiveRecord::Base
   # Evita que el sector sea eliminado físicamente de la base.
   def destroy
     self.update_attribute(:disabled_at, Time.now)
+  end
+
+  private
+
+  def notify_observer(responsable_removed)
+    ComprasResponsablesObserver.new(self).notify
   end
 end
 

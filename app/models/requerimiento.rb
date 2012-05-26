@@ -80,6 +80,7 @@ class Requerimiento < ActiveRecord::Base
     end
   }
 
+  scope :pendientes_de_aprobacion_compras, where(:estado => Estado::PENDIENTE_APROBACION_COMPRAS)
 
 	# Finalizar el requerimiento
 	# @param [Usuario] responsable del sector que genera la finalización del requerimiento
@@ -127,8 +128,9 @@ class Requerimiento < ActiveRecord::Base
 		RequerimientosMailer.informar_rechazo_compras(self, rechazado_por, motivo).deliver
   end
 
-  def aprobar_presupuesto_por_compras!(presupuesto, autorizante)     
-    detalle = DetalleVerificacionCompras.para_el_presupuesto(presupuesto).aprobar_por(autorizante)
+  def aprobar_presupuesto_por_compras!(presupuesto, autorizante = nil)
+    detalle = DetalleVerificacionCompras.para_el_presupuesto(presupuesto)
+    detalle.aprobar_por(autorizante) if autorizante
     
     responsables_de_compras = Sector.compras.responsables
     if detalle.aprobacion_finalizada?(responsables_de_compras)
@@ -201,19 +203,18 @@ class Requerimiento < ActiveRecord::Base
 		!compra.nil?
 	end
 
-	private
 
-		def cambiar_estado_a(estado, detalle = nil)
-			self.estado = estado
-			self.transaction do
-				detalle.save! unless detalle.nil?
-				EstadoHistorico.create(:codigo_estado => estado.codigo, :requerimiento => self, :detalle => detalle)
-				yield if block_given?
-				self.save!
-			end
+  def cambiar_estado_a(estado, detalle = nil)
+    self.estado = estado
+    self.transaction do
+      detalle.save! unless detalle.nil?
+      EstadoHistorico.create(:codigo_estado => estado.codigo, :requerimiento => self, :detalle => detalle)
+      yield if block_given?
+      self.save!
+    end
 #			self.estado = estado
 #			EstadoHistorico.create(:codigo_estado => estado.codigo, :requerimiento => self, :detalle => detalle)
-		end
+  end
 
 end
 

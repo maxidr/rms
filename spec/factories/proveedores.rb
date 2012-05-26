@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :proveedor do
-    razon_social "Proveedor 1"
-    cuit "30-12333444-2"
+    sequence(:razon_social) { |n| "Proveedor #{n}" }
+    sequence(:cuit) { |n| "30-1#{n}333444-2" }
   end
 end

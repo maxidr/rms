@@ -5,4 +5,5 @@ FactoryGirl.define do
     sequence(:nombre) { |n| "sector #{n}" }
     responsables { FactoryGirl.create_list(:usuario, 1) }
   end
+
 end
