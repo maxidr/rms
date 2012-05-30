@@ -4,6 +4,7 @@ class RequerimientosController < ApplicationController
 	respond_to :html, :xml, :json
 	respond_to :js, :only => [:motivo_rechazo, :motivo_rechazo_compras]
 	respond_to :pdf, :only => [:show]
+  respond_to :xls, :only => [:index]
 
 	before_filter :authenticate_usuario!
 	# IMPROVE: Utilizar el método de cancan load_and_authorize_resource (https://github.com/ryanb/cancan/wiki/authorizing-controller-actions)
@@ -179,9 +180,10 @@ class RequerimientosController < ApplicationController
 		@search = Requerimiento.para_usuario(current_usuario)
       .joins(:empresa, :solicitante, :sector, :rubro)
       .search(search_params('id.desc'))
-		respond_with @requerimientos = @search.paginate(:page => params[:page], :per_page => 15)
-
-#		respond_with( @requerimientos = Requerimiento.includes(:solicitante, :empresa, :sector, :rubro).all )
+    respond_with do |format|
+      format.html { @requerimientos = @search.paginate(:page => params[:page], :per_page => 15) }
+      format.xls { send_data RequerimientosPresenter.new(@search).to_xls, :filename => 'requerimientos.xls' }
+    end
   end
 
   def show
@@ -268,7 +270,7 @@ class RequerimientosController < ApplicationController
   end
 
 	private
-
+    
 		def obtener_rqm
 			@requerimiento = Requerimiento.find(params[:id])
 		end

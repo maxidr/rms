@@ -35,7 +35,12 @@ class Presupuesto < ActiveRecord::Base
   # Cuando un responsable verifica un presupuesto dentro de la lista que contiene el requerimiento, dicho
   # presupuesto pasa a estar "seleccionado".
   has_many :verificaciones, :class_name => 'VerificacionEncargadoCompras', 
-    :after_add => :add_presupuesto_as_selected
+    :after_add => :add_presupuesto_as_selected do
+
+    def verificadores
+      map { |v| v.verificador }
+    end
+  end
 
   IVA = [21, 10.5, 0]
 

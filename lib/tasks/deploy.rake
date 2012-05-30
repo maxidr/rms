@@ -48,8 +48,8 @@ namespace :deploy do
     run "git tag #{last_version}"
     # deploy to heroku the last tag
     #run "git push #{env} +#{last_version}~{}:master"
-    print "Deploying version #{last_version} to #{ENVIRONMENTS[:dev]}...\n"
-    run "git push #{ENVIRONMENTS[:dev]} #{last_version}^{}:master"
+    print "Deploying version #{last_version} to #{ENVIRONMENTS[:staging]}...\n"
+    run "git push #{ENVIRONMENTS[:staging]} #{last_version}^{}:master"
   end
 
 

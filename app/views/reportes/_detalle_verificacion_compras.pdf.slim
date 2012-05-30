@@ -1,0 +1,7 @@
+h3 Autorizaciones simultaneas de compras
+
+- detalle.presupuesto.verificaciones.each do |v|
+  dt Autorizado por
+  dd #{v.verificador.nombre_completo} 
+  dt el 
+  dd #{l v.created_at}

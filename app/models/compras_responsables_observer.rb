@@ -15,7 +15,7 @@ class ComprasResponsablesObserver
     pendientes = Requerimiento.pendientes_de_aprobacion_compras
     pendientes.each do |rqm|
       presupuesto_seleccionado = rqm.presupuestos.seleccionado
-      rqm.aprobar_presupuesto_por_compras!(presupuesto_seleccionado)
+      rqm.aprobar_presupuesto_por_compras!(presupuesto_seleccionado) if presupuesto_seleccionado
     end
   end
 end

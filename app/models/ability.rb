@@ -67,24 +67,31 @@ class Ability
 		end
 
 		can :rechazar_por_compras, Requerimiento do |rqm|
-			usuario.sector == @compras && rqm.estado == Estado::PENDIENTE_APROBACION_COMPRAS
-		end
+      rqm.estado == Estado::PENDIENTE_APROBACION_COMPRAS && 
+        @compras.responsables.include?(usuario) && 
+        no_fue_verificado_por_usuario?(usuario)
+    end
 
 		can :gestionar_presupuesto, Requerimiento do |rqm|
-			puts "Sector usuario: #{usuario.sector}"
-			puts "Compras: #{@compras}"
-
 			if rqm.estado == Estado::PENDIENTE_APROBACION_COMPRAS
-				false if usuario.sector == nil
-				usuario.sector == @compras
+				@compras.responsables.include?(usuario)
 			else
 				rqm.estado.in? Estado::INICIO, Estado::RECHAZO_X_SECTOR, Estado::PENDIENTE_APROBACION_SECTOR, Estado::APROBADO_X_SECTOR, Estado::RECHAZO_X_COMPRAS
 			end
 		end
 
 		can :aprobar_presupuestos, Requerimiento do |rqm|
-			rqm.estado == Estado::PENDIENTE_APROBACION_COMPRAS && usuario.sector == @compras
+			rqm.estado == Estado::PENDIENTE_APROBACION_COMPRAS && 
+        @compras.responsables.include?(usuario) &&
+        no_fue_verificado_por_usuario?(rqm, usuario)
+        #usuario.sector == @compras 
 		end
+
+    can :aprobar_presupuesto_seleccionado, Requerimiento do |rqm|
+      rqm.presupuestos.seleccionado &&
+      can?(:aprobar_presupuestos, rqm) &&
+      no_fue_verificado_por_usuario?(rqm, usuario)
+    end
 
 		can :comprar, Requerimiento, :solicitante => usuario, :estado => Estado::APROBADO_X_COMPRAS
 
@@ -127,5 +134,14 @@ class Ability
 		rqm.estado.in?(Estado::INICIO, Estado::RECHAZO_X_SECTOR)
 	end
 
+  def verificadores_de_presupuesto(rqm)
+    return [] unless rqm.presupuestos && rqm.presupuestos.seleccionado
+    seleccionado = rqm.presupuestos.seleccionado
+    seleccionado.verificaciones.verificadores    
+  end
+
+  def no_fue_verificado_por_usuario?(rqm, usuario)
+    (@compras.responsables - verificadores_de_presupuesto(rqm)).include?(usuario)
+  end
 end
 

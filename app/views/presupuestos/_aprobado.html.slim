@@ -1,5 +1,5 @@
 
-h2 Presupuesto aprobado
+h2 Presupuesto #{presupuesto.aprobado ? 'aprobado' : 'seleccionado'}
 
 .rqm-info
   dl
@@ -15,6 +15,13 @@ h2 Presupuesto aprobado
     dl
       dt Detalle
       dd = presupuesto.detalle
+  - unless presupuesto.aprobado
+    dl
+      dt Aprobado por
+      dd = listar_usuarios(presupuesto.verificaciones.verificadores)
+    dl
+      dt Falta aprobación de
+      dd = listar_usuarios( Sector.compras.responsables - presupuesto.verificaciones.verificadores )
   = link_to 'Ver detalles del presupuesto', presupuesto
   
 

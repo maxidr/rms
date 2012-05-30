@@ -11,7 +11,7 @@ gem 'devise'
 gem 'cancan'
 gem 'formtastic', '~> 1.2.3'
 gem 'show_for'
-gem 'slim', :require => 'slim/rails'
+gem 'slim'
 gem "slim-rails"
 gem "will_paginate", "~> 3.0.pre2"
 gem "meta_search"
@@ -22,6 +22,7 @@ gem "wicked_pdf"
 
 gem "heroku", '>= 2.25.0'
 gem 'version'
+gem 'spreadsheet'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -55,4 +56,5 @@ group :development, :test do
   gem "rspec-rails", "~> 2.0"
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
+  gem 'capybara'
 end
