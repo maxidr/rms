@@ -43,24 +43,8 @@ class Ability
 		end
 
 		can :aprobar_por_sector, Requerimiento do |rqm|
-		  # El aprobante es responsable del sector?
-		  if rqm.sector.responsables.exists?(usuario) and rqm.estado == Estado::PENDIENTE_APROBACION_SECTOR
-		    # Se desea aprobar a el mismo?
-        if rqm.solicitante == usuario
-          # Puede hacerlo si no hay mas responsables en el sector
-          rqm.sector.responsables.size == 1
-        else
-          true
-        end
-      else
-        false
-      end
-#			  and (rqm.sector.responsables.exists? usuario)
-#			  and rqm.estado == Estado::PENDIENTE_APROBACION_SECTOR
+		  rqm.sector.responsables.exists?(usuario) && rqm.estado == Estado::PENDIENTE_APROBACION_SECTOR
 		end
-
-#		can :solicitar_aprobacion_compras, Requerimiento, :solicitante => usuario,
-#			:estado => Estado::APROBADO_X_SECTOR, :estado => Estado::RECHAZO_X_COMPRAS
 
 		can :solicitar_aprobacion_compras, Requerimiento do |rqm|
 			rqm.solicitante == usuario && rqm.estado.in?(Estado::APROBADO_X_SECTOR, Estado::RECHAZO_X_COMPRAS)
