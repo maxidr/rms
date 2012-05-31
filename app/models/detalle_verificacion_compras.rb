@@ -8,7 +8,7 @@ class DetalleVerificacionCompras < ActiveRecord::Base
   end
 
   def aprobar_por(autorizante)
-    v = presupuesto.verificaciones.build(:verificador_id => autorizante.id, :fecha_aprobacion => DateTime.new)
+    v = presupuesto.verificaciones.build(:verificador_id => autorizante.id, :fecha_aprobacion => DateTime.now)
     v.save!
     self
   end
