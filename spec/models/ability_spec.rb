@@ -24,4 +24,44 @@ describe Ability do
     end
   end
 
+  context '#can? :add_material, rqm' do
+    before do
+      Sector.stub(:compras) { build(:sector) }
+      @requerimiento = build(:requerimiento, :sector => sector, :solicitante => solicitante)
+      @requerimiento.estado = estado
+      @ability = Ability.new(usuario)
+    end
+    context 'si el usuario que desea hacerlo es el solicitante' do
+      let(:usuario) { build(:usuario) }
+      let(:solicitante) { usuario }
+
+      context 'y el estado del requerimiento es iniciado' do
+        let(:sector) { build(:sector) }
+        let(:estado) { Estado::INICIO }
+        it 'puede hacerlo' do
+          @ability.can?(:add_material, @requerimiento).should be_true
+        end
+      end
+
+      context 'y el estado es aprobado por el sector y el solicitante es uno de los responsables de dicho sector' do
+        let(:sector) { build(:sector, :responsables => [solicitante]) }
+        let(:estado) { Estado::APROBADO_X_SECTOR }
+        it 'puede hacerlo' do
+          @ability.can?(:add_material, @requerimiento).should be_true
+        end
+      end
+    end
+
+    context 'si el usuario que desea hacerlo no es el solicitante' do
+      let(:solicitante) { build(:usuario) }
+      let(:usuario) { build(:usuario) }
+      let(:estado) { Estado::INICIO }
+      let(:sector) { build(:sector) }
+      it 'no puede hacerlo' do
+        @ability.can?(:add_material, @requerimiento).should be_false
+      end
+    end
+
+  end
+
 end

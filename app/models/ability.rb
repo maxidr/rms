@@ -15,12 +15,17 @@ class Ability
 		end
 
 		can [:edit, :add_material], Requerimiento do |rqm|
-		  iniciado_or_rechazado(rqm) and rqm.solicitante == usuario
+      # El que puede agregar materiales es el solicitante, cuando: 
+      # el requerimiento está en estado iniciado o rechazado por el sector
+      # ó cuando está en estado aprobado por el sector y el solicitante es responsable de dicho sector
+      rqm.solicitante == usuario &&
+        ( iniciado_or_rechazado(rqm) || 
+         (rqm.estado == Estado::APROBADO_X_SECTOR && rqm.sector.responsables.include?(rqm.solicitante) ))
 		end
 		
-    can :edit_only_details, Material do |material|
-      iniciado_or_rechazado(material.requerimiento)      
-    end
+    #can :edit_only_details, Material do |material|
+    #  iniciado_or_rechazado(material.requerimiento)      
+    #end
     
     # El material se puede modificar en cualquier momento. Si el pedido no se encuentra
     # en estado iniciado o rechazado entonces solo se puede editar el detalle.    
@@ -33,8 +38,12 @@ class Ability
     end
 
 		
-		can [:add_caracteristica, :edit_caracteristica], Material do |m|
-			iniciado_or_rechazado(m.requerimiento)
+		can [:add_caracteristica, :edit_caracteristica, :edit_only_details], Material do |m|
+      #can?(:add_material, m.requerimiento)
+      rqm = m.requerimiento
+      iniciado_or_rechazado(rqm) ||
+        ( rqm.estado == Estado::APROBADO_X_SECTOR && rqm.sector.responsables.include?(rqm.solicitante) )
+			#iniciado_or_rechazado(m.requerimiento)
 		end
 
 		can :solicitar_aprobacion, Requerimiento do |rqm|
