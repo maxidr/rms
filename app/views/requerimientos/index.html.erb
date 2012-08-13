@@ -28,12 +28,12 @@
 			<% @requerimientos.each do |requerimiento| %>
 				<tr id="<%= requerimiento.id %>">
           <td><%= link_to "#{requerimiento.id}", requerimiento, :title => "Editar requerimiento n° #{requerimiento.id}"  %> <%= iva_mark(requerimiento) %> </td>
-					<td><%=	l requerimiento.created_at, :format => :short %></td>
-					<td><%= requerimiento.solicitante %></td>
-					<td><%= requerimiento.empresa %></td>
-					<td><%= requerimiento.sector %></td>
-					<td><%= requerimiento.rubro %></td>
-					<td><%= requerimiento.estado %></td>
+					<td style="font-size:8px"><%=	l requerimiento.created_at, :format => :short %></td>
+					<td style="font-size:8px"><%= requerimiento.solicitante %></td>
+					<td style="font-size:8px"><%= requerimiento.empresa %></td>
+					<td style="font-size:8px"><%= requerimiento.sector %></td>
+					<td style="font-size:8px"><%= requerimiento.rubro %></td>
+					<td style="font-size:8px"><%= requerimiento.estado %></td>
           <td style="font-size:8px"><%= requerimiento.first_proveedor %></td>
           <td class="actions">
             <%= link_to 'Ver', requerimiento %>
