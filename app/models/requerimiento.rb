@@ -224,8 +224,12 @@ class Requerimiento < ActiveRecord::Base
   end
 
   def first_proveedor
+    prov_aux = ''
     if self.presupuestos.any?
-      self.presupuestos.first.proveedor.razon_social
+      self.presupuestos.each do |provee|
+        prov_aux = prov_aux + " | " + provee.razon_social
+      end
+      prov_aux
     else
       '  '
     end
