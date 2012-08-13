@@ -220,7 +220,7 @@ class Requerimiento < ActiveRecord::Base
     if self.presupuestos.any?
       self.presupuestos.first.proveedor.razon_social
     else
-      'no existe proveedor'
+      '  '
     end
   end
 
