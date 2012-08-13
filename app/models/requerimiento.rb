@@ -29,7 +29,7 @@ class Requerimiento < ActiveRecord::Base
       detect{ |p| p.seleccionado } if proxy_owner.estado >= Estado::PENDIENTE_APROBACION_COMPRAS
     end
   end
-     
+
   has_one :compra
 
   composed_of :estado, :mapping => %w(estado codigo)
@@ -38,12 +38,12 @@ class Requerimiento < ActiveRecord::Base
 
   validates_presence_of :empresa, :sector, :rubro, :solicitante
   validates_inclusion_of :consumo, :in => FRECUENCIAS_CONSUMO
-  
+
 
   # Busca los requerimientos por razon social del proveedor
-  # en los casos de que el estado sea aprobado por compras 
+  # en los casos de que el estado sea aprobado por compras
   # (o posterior)
-  scope :by_supplier, lambda { |supplier_id| 
+  scope :by_supplier, lambda { |supplier_id|
     where("requerimientos.estado >= #{Estado::APROBADO_X_COMPRAS.codigo}")
       .joins(:presupuestos => :proveedor)
       .where('proveedores.id = ?', supplier_id)
@@ -71,7 +71,7 @@ class Requerimiento < ActiveRecord::Base
         predicate = predicate.or(t[:sector_id].in(sectores.map{ |s| s.id }))
 ##         del_sector = where("sector_id IN (?)", sectores)
       end
-      
+
       if usuario.sector.try(:expedicion?)
 #      if usuario.sector.expedicion?
         predicate = predicate.or(t[:estado].eq(Estado::PENDIENTE_RECEPCION.codigo))
@@ -131,7 +131,7 @@ class Requerimiento < ActiveRecord::Base
   def aprobar_presupuesto_por_compras!(presupuesto, autorizante = nil)
     detalle = DetalleVerificacionCompras.para_el_presupuesto(presupuesto)
     detalle.aprobar_por(autorizante) if autorizante
-    
+
     responsables_de_compras = Sector.compras.responsables
     if detalle.aprobacion_finalizada?(responsables_de_compras)
       cambiar_estado_a(Estado::APROBADO_X_COMPRAS, detalle) do
@@ -215,6 +215,15 @@ class Requerimiento < ActiveRecord::Base
 #			self.estado = estado
 #			EstadoHistorico.create(:codigo_estado => estado.codigo, :requerimiento => self, :detalle => detalle)
   end
+
+  def first_proveedor
+    if self.presupuestos.any?
+      self.presupuestos.first.proveedor.razon_social
+    else
+      'no existe proveedor'
+    end
+  end
+
 
 end
 

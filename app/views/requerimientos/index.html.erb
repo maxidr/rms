@@ -33,6 +33,7 @@
 					<td><%= requerimiento.sector %></td>
 					<td><%= requerimiento.rubro %></td>
 					<td><%= requerimiento.estado %></td>
+          <td><%= requerimiento.first_proveedor %></td>
 					<td class="actions">
 					  <%= link_to 'Ver', requerimiento %>
 					  <% if can? :edit, requerimiento %>
