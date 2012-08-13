@@ -43,12 +43,17 @@ class Requerimiento < ActiveRecord::Base
   # Busca los requerimientos por razon social del proveedor
   # en los casos de que el estado sea aprobado por compras
   # (o posterior)
+  #scope :by_supplier, lambda { |supplier_id|
+  #  where("requerimientos.estado >= #{Estado::APROBADO_X_COMPRAS.codigo}")
+  #    .joins(:presupuestos => :proveedor)
+  #    .where('proveedores.id = ?', supplier_id)
+  #}
+
   scope :by_supplier, lambda { |supplier_id|
-    where("requerimientos.estado >= #{Estado::APROBADO_X_COMPRAS.codigo}")
+    requerimientos.all
       .joins(:presupuestos => :proveedor)
       .where('proveedores.id = ?', supplier_id)
   }
-
   # Scope para ordenar las columnas de los requerimientos en el index de requerimientos.
   scope :sort_by_empresa_asc, order('empresas.nombre ASC')
   scope :sort_by_empresa_desc, order('empresas.nombre DESC')
@@ -58,8 +63,8 @@ class Requerimiento < ActiveRecord::Base
   scope :sort_by_sector_desc, order('sectores.nombre DESC')
   scope :sort_by_rubro_asc, order('rubros.nombre ASC')
   scope :sort_by_rubro_desc, order('rubros.nombre DESC')
-  scope :sort_by_proveedor_asc, order('rubros.nombre ASC')
-  scope :sort_by_proveedor_desc, order('rubros.nombre DESC')
+#  scope :sort_by_proveedor_asc, order('rubros.nombre ASC')
+#  scope :sort_by_proveedor_desc, order('rubros.nombre DESC')
 
   search_methods :by_supplier
 
