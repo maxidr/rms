@@ -210,7 +210,6 @@ class Requerimiento < ActiveRecord::Base
 		!compra.nil?
 	end
 
-
   def cambiar_estado_a(estado, detalle = nil)
     self.estado = estado
     self.transaction do
@@ -224,15 +223,14 @@ class Requerimiento < ActiveRecord::Base
   end
 
   def first_proveedor
-    prov_aux = ''
+    prov_aux = ' '
     if self.presupuestos.any?
       self.presupuestos.each do |provee|
         prov_aux = prov_aux + " | " + provee.razon_social
       end
-      prov_aux
-    else
-      '  '
     end
+    return prov_aux
   end
+
 end
 
