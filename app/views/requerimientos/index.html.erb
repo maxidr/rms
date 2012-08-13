@@ -13,6 +13,7 @@
 	<table>
 		<thead>
 			<tr>
+        <th></th>
         <th title="ordenar por N°"><%= sort_link @search, :id, 'N°' %></th>
 				<th title="ordenar por fecha"><%= sort_link @search, :created_at, 'Fecha' %></th>
 				<th title="ordenar por solicitante"><%= sort_link @search, :solicitante, 'Solicitante' %></th>
@@ -21,13 +22,22 @@
         <th title="ordenar por rubro"><%= sort_link @search, :rubro, 'Rubro' %></th>
         <th title="ordenar por estado"><%= sort_link @search, :estado, 'Estado' %></th>
         <th>Proveedor</th>
-				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			<% @requerimientos.each do |requerimiento| %>
 				<tr id="<%= requerimiento.id %>">
-					<td><%= link_to "#{requerimiento.id}", requerimiento, :title => "Editar requerimiento n° #{requerimiento.id}"  %> <%= iva_mark(requerimiento) %> </td>
+          <td class="actions">
+            <%= link_to 'Ver', requerimiento %>
+            <% if can? :edit, requerimiento %>
+              <%= link_to 'Editar', edit_requerimiento_path(requerimiento) %>
+            <% end %>
+            <%= link_to 'Materiales', requerimiento_materiales_path(requerimiento), :remote => true  %>
+            <% if can? :destroy, requerimiento %>
+              <%= link_to 'Eliminar', requerimiento, :confirm => "Esta seguro que desea eliminar la petición #{requerimiento.id}?", :method => :delete, :class => :negative_action %>
+            <% end %>
+          </td>
+          <td><%= link_to "#{requerimiento.id}", requerimiento, :title => "Editar requerimiento n° #{requerimiento.id}"  %> <%= iva_mark(requerimiento) %> </td>
 					<td><%=	l requerimiento.created_at, :format => :short %></td>
 					<td><%= requerimiento.solicitante %></td>
 					<td><%= requerimiento.empresa %></td>
@@ -35,16 +45,6 @@
 					<td><%= requerimiento.rubro %></td>
 					<td><%= requerimiento.estado %></td>
           <td><%= requerimiento.first_proveedor %></td>
-					<td class="actions">
-					  <%= link_to 'Ver', requerimiento %>
-					  <% if can? :edit, requerimiento %>
-						  <%= link_to 'Editar', edit_requerimiento_path(requerimiento) %>
-					  <% end %>
-					  <%= link_to 'Materiales', requerimiento_materiales_path(requerimiento), :remote => true  %>
-					  <% if can? :destroy, requerimiento %>
-					    <%= link_to 'Eliminar', requerimiento, :confirm => "Esta seguro que desea eliminar la petición #{requerimiento.id}?", :method => :delete, :class => :negative_action %>
-					  <% end %>
-					</td>
 				</tr>
 				<tr class="row_details" style="display:none;">
 				  <td colspan='6'></td>
