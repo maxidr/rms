@@ -27,6 +27,14 @@
 		<tbody>
 			<% @requerimientos.each do |requerimiento| %>
 				<tr id="<%= requerimiento.id %>">
+          <td><%= link_to "#{requerimiento.id}", requerimiento, :title => "Editar requerimiento n° #{requerimiento.id}"  %> <%= iva_mark(requerimiento) %> </td>
+					<td><%=	l requerimiento.created_at, :format => :short %></td>
+					<td><%= requerimiento.solicitante %></td>
+					<td><%= requerimiento.empresa %></td>
+					<td><%= requerimiento.sector %></td>
+					<td><%= requerimiento.rubro %></td>
+					<td><%= requerimiento.estado %></td>
+          <td style="font-size:8px"><%= requerimiento.first_proveedor %></td>
           <td class="actions">
             <%= link_to 'Ver', requerimiento %>
             <% if can? :edit, requerimiento %>
@@ -37,14 +45,6 @@
               <%= link_to 'Eliminar', requerimiento, :confirm => "Esta seguro que desea eliminar la petición #{requerimiento.id}?", :method => :delete, :class => :negative_action %>
             <% end %>
           </td>
-          <td><%= link_to "#{requerimiento.id}", requerimiento, :title => "Editar requerimiento n° #{requerimiento.id}"  %> <%= iva_mark(requerimiento) %> </td>
-					<td><%=	l requerimiento.created_at, :format => :short %></td>
-					<td><%= requerimiento.solicitante %></td>
-					<td><%= requerimiento.empresa %></td>
-					<td><%= requerimiento.sector %></td>
-					<td><%= requerimiento.rubro %></td>
-					<td><%= requerimiento.estado %></td>
-          <td><%= requerimiento.first_proveedor %></td>
 				</tr>
 				<tr class="row_details" style="display:none;">
 				  <td colspan='6'></td>
