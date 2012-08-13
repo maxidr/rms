@@ -58,6 +58,8 @@ class Requerimiento < ActiveRecord::Base
   scope :sort_by_sector_desc, order('sectores.nombre DESC')
   scope :sort_by_rubro_asc, order('rubros.nombre ASC')
   scope :sort_by_rubro_desc, order('rubros.nombre DESC')
+  scope :sort_by_proveedor_asc, order('rubros.nombre ASC')
+  scope :sort_by_proveedor_desc, order('rubros.nombre DESC')
 
   search_methods :by_supplier
 
@@ -223,7 +225,5 @@ class Requerimiento < ActiveRecord::Base
       '  '
     end
   end
-
-
 end
 
