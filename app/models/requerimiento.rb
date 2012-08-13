@@ -45,15 +45,15 @@ class Requerimiento < ActiveRecord::Base
   # (o posterior)
 
   scope :by_supplier, lambda { |supplier_id|
-    where("requerimientos.estado >= #{Estado::APROBADO_X_COMPRAS.codigo}")
+    where("requerimientos.estado >= #{Estado::INICIO.codigo}")
     .joins(:presupuestos => :proveedor)
       .where('proveedores.id = ?', supplier_id)
   }
 
 =begin
   scope :by_supplier, lambda { |supplier_id|
-    requerimientos.all
-      .joins(:presupuestos => :proveedor)
+    where("requerimientos.estado >= #{Estado::APROBADO_X_COMPRAS.codigo}")
+    .joins(:presupuestos => :proveedor)
       .where('proveedores.id = ?', supplier_id)
   }
 =end
