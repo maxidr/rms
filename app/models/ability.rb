@@ -15,12 +15,17 @@ class Ability
 		end
 
 		can [:edit, :add_material], Requerimiento do |rqm|
-		  iniciado_or_rechazado(rqm) and rqm.solicitante == usuario
+      # El que puede agregar materiales es el solicitante, cuando: 
+      # el requerimiento está en estado iniciado o rechazado por el sector
+      # ó cuando está en estado aprobado por el sector y el solicitante es responsable de dicho sector
+      rqm.solicitante == usuario &&
+        ( iniciado_or_rechazado(rqm) || 
+         (rqm.estado == Estado::APROBADO_X_SECTOR && rqm.sector.responsables.include?(rqm.solicitante) ))
 		end
 		
-    can :edit_only_details, Material do |material|
-      iniciado_or_rechazado(material.requerimiento)      
-    end
+    #can :edit_only_details, Material do |material|
+    #  iniciado_or_rechazado(material.requerimiento)      
+    #end
     
     # El material se puede modificar en cualquier momento. Si el pedido no se encuentra
     # en estado iniciado o rechazado entonces solo se puede editar el detalle.    
@@ -33,8 +38,12 @@ class Ability
     end
 
 		
-		can [:add_caracteristica, :edit_caracteristica], Material do |m|
-			iniciado_or_rechazado(m.requerimiento)
+		can [:add_caracteristica, :edit_caracteristica, :edit_only_details], Material do |m|
+      #can?(:add_material, m.requerimiento)
+      rqm = m.requerimiento
+      iniciado_or_rechazado(rqm) ||
+        ( rqm.estado == Estado::APROBADO_X_SECTOR && rqm.sector.responsables.include?(rqm.solicitante) )
+			#iniciado_or_rechazado(m.requerimiento)
 		end
 
 		can :solicitar_aprobacion, Requerimiento do |rqm|
@@ -43,24 +52,8 @@ class Ability
 		end
 
 		can :aprobar_por_sector, Requerimiento do |rqm|
-		  # El aprobante es responsable del sector?
-		  if rqm.sector.responsables.exists?(usuario) and rqm.estado == Estado::PENDIENTE_APROBACION_SECTOR
-		    # Se desea aprobar a el mismo?
-        if rqm.solicitante == usuario
-          # Puede hacerlo si no hay mas responsables en el sector
-          rqm.sector.responsables.size == 1
-        else
-          true
-        end
-      else
-        false
-      end
-#			  and (rqm.sector.responsables.exists? usuario)
-#			  and rqm.estado == Estado::PENDIENTE_APROBACION_SECTOR
+		  rqm.sector.responsables.exists?(usuario) && rqm.estado == Estado::PENDIENTE_APROBACION_SECTOR
 		end
-
-#		can :solicitar_aprobacion_compras, Requerimiento, :solicitante => usuario,
-#			:estado => Estado::APROBADO_X_SECTOR, :estado => Estado::RECHAZO_X_COMPRAS
 
 		can :solicitar_aprobacion_compras, Requerimiento do |rqm|
 			rqm.solicitante == usuario && rqm.estado.in?(Estado::APROBADO_X_SECTOR, Estado::RECHAZO_X_COMPRAS)

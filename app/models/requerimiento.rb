@@ -15,6 +15,10 @@
 #  estado         :integer         default(0)
 #
 class Requerimiento < ActiveRecord::Base
+
+  FRECUENCIAS_CONSUMO = %w(eventual semanal quincenal bimestral trimestral semestral anual)
+
+  # Relations ----------------------------------------------------------------------------------------
   belongs_to :solicitante, :class_name => "Usuario"
   belongs_to :empresa
   belongs_to :sector
@@ -34,11 +38,14 @@ class Requerimiento < ActiveRecord::Base
 
   composed_of :estado, :mapping => %w(estado codigo)
 
-  FRECUENCIAS_CONSUMO = %w(eventual semanal quincenal bimestral trimestral semestral anual)
-
+  # Validations --------------------------------------------------------------------------------------
   validates_presence_of :empresa, :sector, :rubro, :solicitante
   validates_inclusion_of :consumo, :in => FRECUENCIAS_CONSUMO
 
+  # Callbacks ----------------------------------------------------------------------------------------
+  before_create :establish_initial_state
+
+  # Scopes -------------------------------------------------------------------------------------------
 
   # Busca los requerimientos por razon social del proveedor
   # en los casos de que el estado sea aprobado por compras
@@ -92,6 +99,8 @@ class Requerimiento < ActiveRecord::Base
   }
 
   scope :pendientes_de_aprobacion_compras, where(:estado => Estado::PENDIENTE_APROBACION_COMPRAS)
+
+  # Methods ------------------------------------------------------------------------------------------------
 
 	# Finalizar el requerimiento
 	# @param [Usuario] responsable del sector que genera la finalización del requerimiento
@@ -230,11 +239,14 @@ class Requerimiento < ActiveRecord::Base
     prov_aux = ' '
     if self.presupuestos.any?
       self.presupuestos.each do |presup|
-        prov_aux = prov_aux + " | " + presup.proveedor.razon_social
+        prov_aux = prov_aux + presup.proveedor.razon_social + " | "
       end
     end
     return prov_aux
   end
 
+  private
+  def establish_initial_state
+    self.estado = Estado::APROBADO_X_SECTOR if sector.responsables.include?(solicitante)
+  end
 end
-

@@ -7,6 +7,28 @@ describe Requerimiento do
   it { should validate_presence_of :sector }
   it { should validate_presence_of :rubro }
   it { should validate_presence_of :solicitante }
+
+  context 'cuando es creado por un encargado del sector del requerimiento' do
+    before do
+      solicitante = build(:usuario)
+      sector = build(:sector, :responsables => [solicitante])
+      @requerimiento = build(:requerimiento, :sector => sector, :solicitante => solicitante)
+      @requerimiento.save
+    end
+    it 'debe quedar en estado aprobado por el sector' do
+      @requerimiento.estado.should == Estado::APROBADO_X_SECTOR
+    end
+  end
+
+  context 'cuando es creado por un usuario que no es encargado del sector del requerimiento' do
+    before do
+      @requerimiento = build(:requerimiento)
+      @requerimiento.save
+    end
+    it 'debe quedar en estado iniciado' do
+      @requerimiento.estado.should == Estado::INICIO
+    end
+  end
   
   describe '#consumo' do
     it "debe ser un valor entre: #{Requerimiento::FRECUENCIAS_CONSUMO.join(", ")}" do
