@@ -270,7 +270,7 @@ class RequerimientosController < ApplicationController
   end
 
 	private
-    
+
 		def obtener_rqm
 			@requerimiento = Requerimiento.find(params[:id])
 		end

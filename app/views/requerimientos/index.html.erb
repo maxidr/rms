@@ -3,7 +3,7 @@
   <%= link_to 'Exportar', params.merge(:format => 'xls'), :class => :export_xls %>
 </div>
 
-<h1>Requerimientos</h1>
+<h2>Requerimientos</h2>
 
 <%= render :partial => 'filters' %>
 
@@ -20,29 +20,31 @@
         <th title="ordenar por sector"><%= sort_link @search, :sector, 'Sector' %></th>
         <th title="ordenar por rubro"><%= sort_link @search, :rubro, 'Rubro' %></th>
         <th title="ordenar por estado"><%= sort_link @search, :estado, 'Estado' %></th>
-				<th></th>
+        <th>Proveedor</th>
+        <th></th>
 			</tr>
 		</thead>
 		<tbody>
 			<% @requerimientos.each do |requerimiento| %>
 				<tr id="<%= requerimiento.id %>">
-					<td><%= link_to "#{requerimiento.id}", requerimiento, :title => "Editar requerimiento n° #{requerimiento.id}"  %> <%= iva_mark(requerimiento) %> </td>
-					<td><%=	l requerimiento.created_at, :format => :short %></td>
-					<td><%= requerimiento.solicitante %></td>
-					<td><%= requerimiento.empresa %></td>
-					<td><%= requerimiento.sector %></td>
-					<td><%= requerimiento.rubro %></td>
-					<td><%= requerimiento.estado %></td>
-					<td class="actions">
-					  <%= link_to 'Ver', requerimiento %>
-					  <% if can? :edit, requerimiento %>
-						  <%= link_to 'Editar', edit_requerimiento_path(requerimiento) %>
-					  <% end %>
-					  <%= link_to 'Materiales', requerimiento_materiales_path(requerimiento), :remote => true  %>
-					  <% if can? :destroy, requerimiento %>
-					    <%= link_to 'Eliminar', requerimiento, :confirm => "Esta seguro que desea eliminar la petición #{requerimiento.id}?", :method => :delete, :class => :negative_action %>
-					  <% end %>
-					</td>
+          <td style="font-size:9px"><%= link_to "#{requerimiento.id}", requerimiento, :title => "Editar requerimiento n° #{requerimiento.id}"  %> <%= iva_mark(requerimiento) %> </td>
+					<td style="font-size:9px"><%=	l requerimiento.created_at, :format => :short %></td>
+					<td style="font-size:9px"><%= requerimiento.solicitante %></td>
+					<td style="font-size:9px"><%= requerimiento.empresa %></td>
+					<td style="font-size:9px"><%= requerimiento.sector %></td>
+					<td style="font-size:9px"><%= requerimiento.rubro %></td>
+					<td style="font-size:9px"><%= requerimiento.estado %></td>
+          <td style="font-size:9px"><%= requerimiento.first_proveedor %></td>
+          <td class="actions">
+            <%= link_to 'Ver', requerimiento %>
+            <% if can? :edit, requerimiento %>
+              <%= link_to 'Editar', edit_requerimiento_path(requerimiento) %>
+            <% end %>
+            <%= link_to 'Materiales', requerimiento_materiales_path(requerimiento), :remote => true  %>
+            <% if can? :destroy, requerimiento %>
+              <%= link_to 'Eliminar', requerimiento, :confirm => "Esta seguro que desea eliminar la petición #{requerimiento.id}?", :method => :delete, :class => :negative_action %>
+            <% end %>
+          </td>
 				</tr>
 				<tr class="row_details" style="display:none;">
 				  <td colspan='6'></td>
