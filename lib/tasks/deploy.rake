@@ -31,6 +31,7 @@ namespace :deploy do
   end
 
   def compile_stylesheets_for_production
+    print "compiling stylesheets...\n"
     run "bundle exec compass compile -e production --force"
   end
 
@@ -45,7 +46,7 @@ namespace :deploy do
     confirm('This will deploy your current HEAD to heroku dev')
     compile_stylesheets_for_production
     # create a new tag
-    print"Incrementing version..."
+    print "Incrementing version...\n"
     Rake::Task['version:bump'].invoke
     last_version = Version.current
     print "Versioned to #{last_version}\n"
@@ -55,6 +56,8 @@ namespace :deploy do
     #run "git push #{env} +#{last_version}~{}:master"
     print "Deploying version #{last_version} to #{ENVIRONMENTS[:staging]}...\n"
     run "git push #{ENVIRONMENTS[:staging]} #{last_version}^{}:master"
+    print "Push project to origin...\n"
+    run "git push origin master"
   end
 
 
