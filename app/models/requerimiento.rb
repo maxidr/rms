@@ -235,14 +235,8 @@ class Requerimiento < ActiveRecord::Base
 #			EstadoHistorico.create(:codigo_estado => estado.codigo, :requerimiento => self, :detalle => detalle)
   end
 
-  def first_proveedor
-    prov_aux = ' '
-    if self.presupuestos.any?
-      self.presupuestos.each do |presup|
-        prov_aux = prov_aux + presup.proveedor.razon_social + " | "
-      end
-    end
-    return prov_aux
+  def proveedores
+    presupuestos.map { |presupuesto| presupuesto.proveedor.razon_social }
   end
 
   private

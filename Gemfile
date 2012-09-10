@@ -17,7 +17,10 @@ gem "will_paginate", "~> 3.0.pre2"
 gem "meta_search"
 
 #gem "hassle"
-gem "compass", ">= 0.10.6"
+#gem "compass", ">= 0.10.6"
+group :assets do
+  gem 'compass-rails'
+end
 gem "wicked_pdf"
 
 gem "heroku", '>= 2.25.0'
