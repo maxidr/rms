@@ -18,3 +18,10 @@
 
 * Error #150: No se muestran todos los usuario
 * Funcionalidad #144: Aprobado de requerimiento en simultaneo
+
+## Version 0.1.10
+
+* Se corrige el error al intentar rechazar un requerimiento por compras.
+* Se visualiza, en el listado, los encargados de compras que faltan autorizar un requerimiento en estado pendiente de autorización por compras.
+* Se modifica el ancho de las columnas en el listado de requerimientos con el fin de mejorar la visibilidad y usabilidad.
+
