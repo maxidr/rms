@@ -30,6 +30,10 @@ namespace :deploy do
     tags.split(/\n/).include? tag
   end
 
+  def compile_stylesheets_for_production
+    run "bundle exec compass compile -e production --force"
+  end
+
   desc 'Show the environments configuration for deployment'
   task :show_environments do
     ENVIRONMENTS.keys.each do |env|
@@ -39,6 +43,7 @@ namespace :deploy do
 
   task :staging do
     confirm('This will deploy your current HEAD to heroku dev')
+    compile_stylesheets_for_production
     # create a new tag
     print"Incrementing version..."
     Rake::Task['version:bump'].invoke
