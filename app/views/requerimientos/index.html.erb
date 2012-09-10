@@ -10,7 +10,7 @@
 <% if @requerimientos.empty? %>
 	<p>Aun no hay requerimientos cargados.</p>
 <% else %>
-	<table>
+	<table class="requerimientos">
 		<thead>
 			<tr>
         <th title="ordenar por N°"><%= sort_link @search, :id, 'N°' %></th>
@@ -33,7 +33,9 @@
 					<td style="font-size:9px"><%= requerimiento.empresa %></td>
 					<td style="font-size:9px"><%= requerimiento.sector %></td>
 					<td style="font-size:9px"><%= requerimiento.rubro %></td>
-					<td style="font-size:9px"><%= requerimiento.estado %></td>
+          <td style="font-size:9px"><%= requerimiento.estado %></td>
+          <%# estado manejado en el helper de requerimientos %>
+          <td><%= estado(requerimiento) %></td>
           <td style="font-size:9px"><%= requerimiento.first_proveedor %></td>
           <td class="actions">
             <%= link_to 'Ver', requerimiento %>

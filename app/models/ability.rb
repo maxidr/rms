@@ -62,7 +62,7 @@ class Ability
 		can :rechazar_por_compras, Requerimiento do |rqm|
       rqm.estado == Estado::PENDIENTE_APROBACION_COMPRAS && 
         @compras.responsables.include?(usuario) && 
-        no_fue_verificado_por_usuario?(usuario)
+        no_fue_verificado_por_usuario?(rqm, usuario)
     end
 
 		can :gestionar_presupuesto, Requerimiento do |rqm|
