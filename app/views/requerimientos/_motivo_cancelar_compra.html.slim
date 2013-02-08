@@ -1,0 +1,7 @@
+h2 Cancelar compra
+= semantic_form_for 'cancelacion', :url => cancelar_compra_requerimiento_url, :html => {:method => :put} do |form|
+	= form.inputs do
+		= form.input :motivo, :required => true, :label => 'Motivo de la cancelación', :as => :text
+	= form.buttons do
+		= form.commit_button 'Cancelar la compra'
+

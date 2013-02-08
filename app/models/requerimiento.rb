@@ -135,6 +135,11 @@ class Requerimiento < ActiveRecord::Base
 		RequerimientosMailer.informar_prevision_pago(self, compra).deliver
   end
 
+  def cancelar_compra!(motivo, cancelado_por)
+    con_detalle = DetalleCancelacionDeLaCompra.new(:cancelado_por => cancelado_por, :motivo => motivo)
+    cambiar_estado_a Estado::PEDIDO_CANCELADO, con_detalle
+  end
+
   def rechazar_por_compras!(motivo, rechazado_por)
   	if motivo.blank?
   		errors[:base] = "Debe especificar un motivo para el rechazo" and return false

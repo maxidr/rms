@@ -2,13 +2,13 @@
 class RequerimientosController < ApplicationController
 
 	respond_to :html, :xml, :json
-	respond_to :js, :only => [:motivo_rechazo, :motivo_rechazo_compras]
+	respond_to :js, :only => [:motivo_rechazo, :motivo_rechazo_compras, :motivo_cancelar_compra]
 	respond_to :pdf, :only => [:show]
   respond_to :xls, :only => [:index]
 
 	before_filter :authenticate_usuario!
 	# IMPROVE: Utilizar el método de cancan load_and_authorize_resource (https://github.com/ryanb/cancan/wiki/authorizing-controller-actions)
-	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion, :check_state, :show, :update, :aprobar, :motivo_rechazo, :rechazar, :solicitar_aprobacion_compras, :motivo_rechazo_compras, :rechazar_por_compras, :recepcionar, :verificar_entrega, :finalizar, :motivo_rechazo_entrega, :rechazar_entrega, :cancelar_por_compras]
+	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion, :check_state, :show, :update, :aprobar, :motivo_rechazo, :rechazar, :solicitar_aprobacion_compras, :motivo_rechazo_compras, :rechazar_por_compras, :recepcionar, :verificar_entrega, :finalizar, :motivo_rechazo_entrega, :rechazar_entrega, :cancelar_por_compras, :cancelar_compra, :motivo_cancelar_compra]
 	before_filter :check_state, :only => [:edit, :update]
 	before_filter :puede_aprobar_por_sector, :only => [:rechazar, :aprobar, :motivo_rechazo]
 
@@ -86,8 +86,27 @@ class RequerimientosController < ApplicationController
   def cancelar_por_compras
     authorize! :cancelar_requerimiento, @requerimiento
     @requerimiento.cancelar_por_compras!(current_usuario)
-    flash[:notice] = "Se canceló el requerimiento"
+    flash[:notice] = "Se canceló la compra"
     redirect_to @requerimiento 
+  end
+
+  def motivo_cancelar_compra
+  end
+
+  def cancelar_compra
+    authorize! :cancelar_compra, @requerimiento
+    motivo = params[:cancelacion][:motivo]
+    respond_with @requerimiento do |format|
+      if motivo.blank?
+        flash[:error] = "Debe especificar un motivo para la cancelación"
+        format.html { render :motivo_cancelar_compra }
+      elsif @requerimiento.cancelar_compra!(motivo, current_usuario)
+        flash[:notice] = "Se canceló la compra"
+      	format.html { redirect_to @requerimiento }
+      else
+        format.html { render :motivo_cancelar_compra }
+      end
+    end
   end
 
 	# PUT /requerimientos/{id}/rechazar/presupuestos

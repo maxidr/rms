@@ -119,6 +119,11 @@
 	    <%= render "comprar" %>
     <% end %>
 
+    <% if can? :cancelar_compra, @requerimiento %>
+      <%= link_to 'Cancelar compra', cancelar_compra_requerimiento_path(@requerimiento), 
+        :class => 'negative_action', :remote => true %>
+    <% end %>
+    
     <% if can? :generar_reporte, @requerimiento %>
       <%= link_to "Generar reporte", requerimiento_path(@reporte, :format => :pdf) %>
     <% end %>

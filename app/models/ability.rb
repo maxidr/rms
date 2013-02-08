@@ -92,6 +92,11 @@ class Ability
       no_fue_verificado_por_usuario?(rqm, usuario)
     end
 
+    can :cancelar_compra, Requerimiento do |rqm|
+      rqm.solicitante == usuario && 
+        rqm.estado.in?(Estado::PENDIENTE_RECEPCION, Estado::APROBADO_X_COMPRAS)
+    end
+
 		can :comprar, Requerimiento, :solicitante => usuario, :estado => Estado::APROBADO_X_COMPRAS
 
 		#	El usuario que no es administrador puede modificar solos sus datos
@@ -130,7 +135,8 @@ class Ability
         Estado::PENDIENTE_VERIFICACION, 
         Estado::ENTREGADO, 
         Estado::FINALIZADO,
-        Estado::CANCELADO_POR_COMPRAS
+        Estado::CANCELADO_POR_COMPRAS,
+        Estado::PEDIDO_CANCELADO
       ]
 		  rqm.estado.in? estados
     end

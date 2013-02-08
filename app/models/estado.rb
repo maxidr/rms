@@ -22,7 +22,8 @@ class Estado
 										9 => 'Entrega verificada',
 										10 => 'Finalizado',
 										-1 => 'Cancelado', 
-                    -2 => 'Cancelado por compras'}
+                    -2 => 'Cancelado por compras',
+                    -3 => 'Pedido cancelado'}
 		@codigo = codigo
 		raise "El valor #{codigo} es un código de estado inválido" unless @@estados.key? codigo
 		@nombre = @@estados[@codigo]
@@ -41,6 +42,7 @@ class Estado
 	FINALIZADO										= Estado.new 10
 	CANCELADO 										= Estado.new -1
   CANCELADO_POR_COMPRAS         = Estado.new -2
+  PEDIDO_CANCELADO              = Estado.new -3
 
 
 	def <=>(other_estado)
@@ -65,13 +67,13 @@ class Estado
 	end
 
 	def rechazo?
-		in? RECHAZO_X_COMPRAS, RECHAZO_X_SECTOR, CANCELADO, CANCELADO_POR_COMPRAS
+    in? Estado.estados_rechazados
 	end
 
 	# Indica el listado de posibles estados rechazados
 	# @return [Array] estados rechazados
 	def self.estados_rechazados
-		[RECHAZO_X_COMPRAS, RECHAZO_X_SECTOR, CANCELADO, CANCELADO_POR_COMPRAS]
+		[RECHAZO_X_COMPRAS, RECHAZO_X_SECTOR, CANCELADO, CANCELADO_POR_COMPRAS, PEDIDO_CANCELADO]
 	end
 
 	def to_s
