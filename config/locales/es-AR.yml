@@ -176,4 +176,5 @@
   meta_search:
     predicates:
       contains: "%{attribute}"
-
+  will_paginate:
+    page_gap: "..."
