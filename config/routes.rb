@@ -35,6 +35,7 @@ Rms::Application.routes.draw do
     	put 'aprobacion/compras', :action => 'solicitar_aprobacion_compras'
     	get 'rechazar/presupuestos', :action => 'motivo_rechazo_compras'
     	put 'rechazar/presupuestos', :action => 'rechazar_por_compras'
+      put 'cancelar', :action => 'cancelar_por_compras'
     	put 'comprar'
     	put 'recepcionar'
     	put 'verificar_entrega', :action => 'verificar_entrega'

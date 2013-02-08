@@ -65,6 +65,12 @@ class Ability
         no_fue_verificado_por_usuario?(rqm, usuario)
     end
 
+    # Compras puede cancelar un requerimiento luego de aprobarlo (o incluso antes de ello)
+    can :cancelar_requerimiento, Requerimiento do |rqm|
+      rqm.estado.in?(Estado::PENDIENTE_APROBACION_COMPRAS, Estado::APROBADO_X_COMPRAS) &&
+      @compras.responsables.include?(usuario) 
+    end
+
 		can :gestionar_presupuesto, Requerimiento do |rqm|
 			if rqm.estado == Estado::PENDIENTE_APROBACION_COMPRAS
 				@compras.responsables.include?(usuario)
@@ -118,8 +124,16 @@ class Ability
 		end
 
 		can :generar_reporte, Requerimiento do |rqm|
-		  rqm.estado.in? Estado::APROBADO_X_COMPRAS, Estado::PENDIENTE_RECEPCION, Estado::PENDIENTE_VERIFICACION, Estado::ENTREGADO, Estado::FINALIZADO
-		end
+      estados = [
+        Estado::APROBADO_X_COMPRAS, 
+        Estado::PENDIENTE_RECEPCION, 
+        Estado::PENDIENTE_VERIFICACION, 
+        Estado::ENTREGADO, 
+        Estado::FINALIZADO,
+        Estado::CANCELADO_POR_COMPRAS
+      ]
+		  rqm.estado.in? estados
+    end
 
 	end
 

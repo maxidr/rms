@@ -8,7 +8,7 @@ class RequerimientosController < ApplicationController
 
 	before_filter :authenticate_usuario!
 	# IMPROVE: Utilizar el método de cancan load_and_authorize_resource (https://github.com/ryanb/cancan/wiki/authorizing-controller-actions)
-	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion, :check_state, :show, :update, :aprobar, :motivo_rechazo, :rechazar, :solicitar_aprobacion_compras, :motivo_rechazo_compras, :rechazar_por_compras, :recepcionar, :verificar_entrega, :finalizar, :motivo_rechazo_entrega, :rechazar_entrega]
+	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion, :check_state, :show, :update, :aprobar, :motivo_rechazo, :rechazar, :solicitar_aprobacion_compras, :motivo_rechazo_compras, :rechazar_por_compras, :recepcionar, :verificar_entrega, :finalizar, :motivo_rechazo_entrega, :rechazar_entrega, :cancelar_por_compras]
 	before_filter :check_state, :only => [:edit, :update]
 	before_filter :puede_aprobar_por_sector, :only => [:rechazar, :aprobar, :motivo_rechazo]
 
@@ -81,6 +81,14 @@ class RequerimientosController < ApplicationController
 			end
 		end
 	end
+
+  # PUT /requerimientos/{id}/cancelar
+  def cancelar_por_compras
+    authorize! :cancelar_requerimiento, @requerimiento
+    @requerimiento.cancelar_por_compras!(current_usuario)
+    flash[:notice] = "Se canceló el requerimiento"
+    redirect_to @requerimiento 
+  end
 
 	# PUT /requerimientos/{id}/rechazar/presupuestos
 	def rechazar_por_compras

@@ -30,7 +30,7 @@
         <dt>Fecha de carga</dt>
         <dd><%= l @requerimiento.created_at %></dd>
       </dl>
-      <% if @requerimiento.estado.rechazo? %>
+      <% if @requerimiento.estado.rechazo? && @requerimiento %>
         <dl>
           <dt>Motivo del rechazo</dt>
           <dd class="estado_rechazado_title"><%= @requerimiento.motivo_rechazo %></dd>
@@ -90,8 +90,12 @@
 		  <%= link_to 'Solicitar aprobación de compras', aprobacion_compras_requerimiento_path(@requerimiento), :method => :put  %>
 	  <% end %>
 
-	  <% if can? :aprobar_presupuestos, @requerimiento %>
+	  <% if can?(:aprobar_presupuestos, @requerimiento) || can?(:rechazar_por_compras, @requerimiento) %>
 		  <%= link_to 'Rechazar presupuestos', rechazar_presupuestos_requerimiento_path(@requerimiento) , :class => 'negative_action reject', :remote => true %>
+    <% end %>
+
+    <% if can?(:cancelar_requerimiento, @requerimiento) %>
+      <%= link_to 'Cancelar requerimiento', cancelar_requerimiento_path(@requerimiento), :class => 'negative_action', :method => :put %>
     <% end %>
 
     <% if can? :aprobar_presupuesto_seleccionado, @requerimiento %>

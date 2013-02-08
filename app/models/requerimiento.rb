@@ -140,7 +140,7 @@ class Requerimiento < ActiveRecord::Base
   		errors[:base] = "Debe especificar un motivo para el rechazo" and return false
   	end
   	if rechazado_por.nil?
-  		errors[:base] = "Debe especificar un usuario como reposable del rechazo" and return false
+  		errors[:base] = "Debe especificar un usuario como responsable del rechazo" and return false
   	end
 
 		con_detalle = DetalleRechazoCompras.new(:rechazado_por => rechazado_por, :motivo => motivo)
@@ -148,14 +148,25 @@ class Requerimiento < ActiveRecord::Base
 		RequerimientosMailer.informar_rechazo_compras(self, rechazado_por, motivo).deliver
   end
 
+  # El requerimiento puede ser cancelado por compras una vez aprobado (por compras tambien).
+  # Suele aplicarse a los casos en que luego de aprobado se determina que existe una mejor oferta
+  # o se quiere comprar en otras condiciones (solicitado por Emilio el 30/01/2013)
+  def cancelar_por_compras!(cancelado_por)
+    con_detalle = DetalleCancelacionCompras.new(:cancelado_por => cancelado_por)
+    cambiar_estado_a Estado::CANCELADO_POR_COMPRAS, con_detalle
+  end
+
   def aprobar_presupuesto_por_compras!(presupuesto, autorizante = nil)
     detalle = DetalleVerificacionCompras.para_el_presupuesto(presupuesto)
     detalle.aprobar_por(autorizante) if autorizante
 
     responsables_de_compras = Sector.compras.responsables
+    logger.debug  "---------------> Aprobar presupuesto #{presupuesto.id} del requerimiento: #{id}"
     if detalle.aprobacion_finalizada?(responsables_de_compras)
       cambiar_estado_a(Estado::APROBADO_X_COMPRAS, detalle) do
         presupuesto.aprobado = true
+        presupuesto.valid?
+        logger.debug "------------> #{presupuesto.errors}"
         presupuesto.save!
       end
     end
