@@ -33,3 +33,6 @@ form.formtastic.search > fieldset.buttons > ol { margin: 0; }
 form.formtastic.search > fieldset.buttons > ol > li { margin: 0 0 0.5em 0; }
 form.formtastic.search > fieldset.inputs { margin: 0; }
 
+#rqm_actions a {
+  padding-left: 10px;
+}
