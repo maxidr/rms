@@ -23,10 +23,8 @@ group :assets do
 end
 gem "wicked_pdf"
 
-gem "heroku", '>= 2.25.0'
 gem 'version'
 gem 'spreadsheet'
-
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -60,4 +58,5 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
   gem 'capybara'
+  gem 'pg'
 end
