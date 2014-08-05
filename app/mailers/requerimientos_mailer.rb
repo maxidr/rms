@@ -72,7 +72,8 @@ class RequerimientosMailer < ActionMailer::Base
   def informar_notificacion(rqm, usr )
     @requerimiento = rqm
     mail :to => usr.email,
-      :subject => "Se cargo una nueva notificacion en el requerimiento n° #{rqm.id}"
+      :subject => "Se cargo una nueva notificacion en el requerimiento n° #{rqm.id}",
+      :body => "requerimiento numero #{rqm.id}"
   end
 
 	# Se informa que la entrega fue verificada por el solicitante y es correcta
