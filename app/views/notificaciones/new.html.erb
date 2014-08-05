@@ -1,4 +1,15 @@
-<h1>Nuevo notificacion</h1>
+<h1>Requerimiento N° <%= @requerimiento.id %></h1>
+
+<h2>Nuevo notificacion</h2>
+
+  <div class="estado <%= @requerimiento.estado.rechazo? ? 'estado_rechazado' : '' %>">
+    <%= @requerimiento.estado.to_s %>
+    <%- if @requerimiento.estado == Estado::PENDIENTE_RECEPCION %>
+      <i>
+        <%= " (Fecha probable de entrega: \n #{l @requerimiento.compra.fecha_probable_entrega})" %>
+      </i>
+    <% end -%>
+  </div>
 
 <%= render 'form' %>
 
