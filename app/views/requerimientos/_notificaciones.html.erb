@@ -1,4 +1,7 @@
 <h2>Notificaciones</h2>
+<div class="contextual">
+  <%= link_to 'Agregar notificacion', new_requerimiento_notificacion_path(@requerimiento) %>
+</div>
 <% if @requerimiento.notificaciones.empty? %>
 <p>Aun no posee notificaciones cargadas</p>
 <% else %>
@@ -12,7 +15,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @requerimiento.notificaciones.each do |notificacion| %>
+      <% @requerimiento.notificaciones.order('created_at desc').each do |notificacion| %>
         <tr>
           <td><%= notificacion.subject %></td>
           <td><%= notificacion.body %></td>
@@ -23,4 +26,3 @@
     </tbody>
   </table>
 <% end %>
-<%= link_to 'Agregar notificacion', new_requerimiento_notificacion_path(@requerimiento) %>
