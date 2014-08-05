@@ -1,0 +1,10 @@
+<%= semantic_form_for([@requerimiento, @notificacion]) do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :subject , :label => "Motivo" %>
+    <%= f.input :body , :label => "Mensaje" %>
+  <% end %>
+  <%= f.buttons do %>
+    <% f.commit_button "Continuar" %>
+  <% end %>
+<% end %>
+

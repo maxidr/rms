@@ -26,6 +26,7 @@ Rms::Application.routes.draw do
 		# requerimientos/3/materiales/new
     resources :materiales, :only => [:new, :create, :index]
     resources :presupuestos, :only => [:new, :create]
+    resources :notificaciones, :only => [:new, :create, :index]
 
     member do
     	put 'solicitar_aprobacion'
@@ -69,7 +70,7 @@ Rms::Application.routes.draw do
       put 'enable'
     end
   end
-  
+
 
   resources :sectores do
     member do

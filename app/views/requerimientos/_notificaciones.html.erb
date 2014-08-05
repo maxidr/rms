@@ -1,0 +1,26 @@
+<h2>Notificaciones</h2>
+<% if @requerimiento.notificaciones.empty? %>
+<p>Aun no posee notificaciones cargadas</p>
+<% else %>
+  <table>
+    <thead>
+      <tr>
+        <th>Motivo</th>
+        <th>Mensaje</th>
+        <th>Fecha</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @requerimiento.notificaciones.each do |notificacion| %>
+        <tr>
+          <td><%= notificacion.subject %></td>
+          <td><%= notificacion.body %></td>
+          <td><%= notificacion.created_at %></td>
+          <td><%= notificacion.usuario.nil? ? 'no tengo usuario' : notificacion.usuario.nombre_completo %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+<%= link_to 'Agregar notificacion', new_requerimiento_notificacion_path(@requerimiento) %>

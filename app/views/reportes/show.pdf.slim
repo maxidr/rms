@@ -78,6 +78,22 @@ table
         td.label(colspan=5) Monto total final
         td #{presupuesto.moneda.simbolo} #{ number_with_precision(presupuesto.monto_total, :precision => 2) }
 
+h2 Notificaciones
+
+table
+  thead
+    tr
+      th Motivo
+      th Mensaje
+      th Fecha
+      th Usuario
+  tbody
+    - @requerimiento.notificaciones.each do |notificacion|
+      tr
+        td = notificacion.subject
+        td = notificacion.body
+        td = notificacion.created_at
+        td = "#{notificacion.usuario.nil? ? 'no tengo usuario' : notificacion.usuario.nombre_completo}"
 
 h2 Historial de cambios
 - estado_anterior = Estado::INICIO
@@ -93,4 +109,3 @@ h2 Historial de cambios
     dd = l historico.created_at
     - if historico.detalle
       = render "/reportes/#{historico.detalle.class.to_s.underscore}", { :detalle => historico.detalle }
-
