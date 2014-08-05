@@ -202,6 +202,14 @@ class Requerimiento < ActiveRecord::Base
 		RequerimientosMailer.informar_autorizacion_sector(self, autorizante).deliver
 	end
 
+  def informar_notificacion( usuario )
+    RequerimientosMailer.informar_notificacion(self, self.solicitante).deliver
+
+    if usuario.email != self.solicitante.email
+      RequerimientosMailer.informar_notificacion(self, usuario).deliver
+    end
+  end
+
 	def rechazar_por_sector!(motivo, autorizante)
 		if motivo.blank?
 			errors[:base] = "Debe especificar un motivo para el rechazo"
