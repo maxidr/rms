@@ -22,11 +22,9 @@ class NotificacionesController < ApplicationController
   # POST /presupuestos
   # POST /presupuestos.xml
   def create
-    @notificacion = Notificacion.new(params[:notificacion])
-    @notificacion.requerimiento_id = @requerimiento.id
-    @notificacion.usuario_id = current_usuario.id
-
-    Rails.logger.info("current_usuario.id =>  #{current_usuario.id}")
+    @notificacion                   = Notificacion.new(params[:notificacion])
+    @notificacion.requerimiento_id  = @requerimiento.id
+    @notificacion.usuario_id        = current_usuario.id
 
     respond_to do |format|
       if @notificacion.save
