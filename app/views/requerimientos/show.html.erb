@@ -129,8 +129,6 @@
       <%= link_to "Generar reporte", requerimiento_path(@reporte, :format => :pdf) %>
     <% end %>
 
-
-
     <% if can? :edit, @requerimiento %>
   	  <%= link_to 'Editar', edit_requerimiento_path(@requerimiento), :class => 'edit' %>
     <% end %>

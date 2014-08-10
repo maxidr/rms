@@ -26,10 +26,12 @@ class NotificacionesController < ApplicationController
     @notificacion.requerimiento_id = @requerimiento.id
     @notificacion.usuario_id = current_usuario
 
-    @requerimiento.informar_notificacion(current_usuario)
 
     respond_to do |format|
       if @notificacion.save
+
+        @requerimiento.informar_notificacion(current_usuario)
+
         format.html { redirect_to(@requerimiento, :notice => 'Se agregó la notificación.') }
         format.xml  { render :xml => @notificacion, :status => :created, :location => @notificacion }
       else
