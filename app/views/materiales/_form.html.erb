@@ -5,7 +5,7 @@
     <%= f.input :cantidad, params.merge({:label => 'Cantidad/Unidad'}) %>
     <%= f.input :detalle %>
   <% end %>
-  <%= f.buttons %>
+  <%= f.buttons do %>
+    <% f.commit_button "Crear",:button_html => { :disable_with => 'Procesando...' } %>
+  <% end %>
 <% end %>
-
-
