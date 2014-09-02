@@ -6,7 +6,7 @@
     <%= f.input :consumo,:collection => Requerimiento::FRECUENCIAS_CONSUMO %>
   <% end %>
   <%= f.buttons do %>
-    <% f.commit_button "Continuar" %>
+    <% f.commit_button "Continuar", data: { disable_with: "Procesando..." } %>
   <% end %>
 <% end %>
 
