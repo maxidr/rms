@@ -1,3 +1,7 @@
+<head>
+<meta charset="UTF-8">
+</head>
+
 <h2>Presupuesto del requerimiento n° <%= @presupuesto.requerimiento.id %></h2>
 <dl>
   <dt>Proveedor</dt>
@@ -30,7 +34,7 @@
   <tbody>
   <% @presupuesto.desgloses.each do |desglose| %>
     <tr>
-      <td><%= link_to desglose.material.nombre, desglose.material, html_options: { target: '_blank'}  %></td>
+      <td><%= link_to desglose.material.try(:nombre), desglose.material, html_options: { target: '_blank'}  %></td>
       <td><%= iva(desglose) %></td>
       <td>
         <%= precio_unitario(desglose, @presupuesto.moneda) %>
