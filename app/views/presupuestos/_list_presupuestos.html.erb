@@ -1,0 +1,28 @@
+<h2>Presupuestos</h2>
+<% if presupuestos.empty? %>
+  <p>Aun no posee presupuestos cargados</p>
+<% else %>
+  <table class="presupuestos">
+    <thead>
+      <tr>
+        <th>Proveedor</th>
+        <th>Monto total final</th>
+        <th>Condición de pago</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% presupuestos.each do |presupuesto| %>
+        <tr>
+          <td><%= presupuesto.proveedor.razon_social %></td>
+          <td><%= presupuesto.moneda.simbolo %> <%= number_with_precision presupuesto.monto_total %></td>
+          <td><%= presupuesto.condicion_pago.nombre %></td>
+          <td class="actions">
+            <%= link_to 'Ver', presupuesto_path(presupuesto) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
