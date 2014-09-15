@@ -1,0 +1,11 @@
+a#comprar href="#" Pagar
+- content_for :javascript do
+  = javascript_include_tag "rqm_show"
+
+= semantic_form_for @pagar.nil? ? Pagar.new(:fecha_pago => Date.today) : @pagar, :url => pagar_requerimiento_url, :html => {:method => :put} ,:id => 'pagar' do |form|
+  = form.inputs do
+    = form.input :fecha_pago, :required => true, :label => 'Fecha de pago', :as => :date, :hint => "Indicar fecha pago proveedor"
+    = form.input :requerimiento_id, :as => :hidden, :input_html => { :value => @requerimiento.id }
+
+  = form.buttons do
+    = form.commit_button "Confirmar fecha"

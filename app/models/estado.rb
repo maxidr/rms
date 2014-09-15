@@ -21,7 +21,7 @@ class Estado
 										8 => 'Entregado, pendiente de verificación',
 										9 => 'Entrega verificada',
 										10 => 'Finalizado',
-										-1 => 'Cancelado', 
+										-1 => 'Cancelado',
                     -2 => 'Cancelado por compras',
                     -3 => 'Pedido cancelado'}
 		@codigo = codigo

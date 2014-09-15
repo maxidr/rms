@@ -82,12 +82,32 @@ class RequerimientosController < ApplicationController
 		end
 	end
 
+  # marcar como pago
+  def pagar
+    @pago = Pagar.new(params[:pagar])
+
+    logger.debug("Se confirma el pago del requerimiento n° #{@pago.requerimiento.id}")
+    logger.debug("Fecha de pago: #{@pago.fecha_pago}")
+
+    @requerimiento = @pago.requerimiento
+    @pago.presupuesto = @requerimiento.presupuestos.aprobado
+    respond_with @pago, :location => @requerimiento  do |format|
+      # FIXME: Esta parte debería ser una transacción
+      if @pago.save
+        #@requerimiento.realizar_pago!(@pago)
+        flash[:notice] = "Se confirmó el pago con fecha al #{localize @pago.fecha_pago}"
+      else
+        format.html{ render :show }
+      end
+    end
+  end
+
   # PUT /requerimientos/{id}/cancelar
   def cancelar_por_compras
     authorize! :cancelar_requerimiento, @requerimiento
     @requerimiento.cancelar_por_compras!(current_usuario)
     flash[:notice] = "Se canceló la compra"
-    redirect_to @requerimiento 
+    redirect_to @requerimiento
   end
 
   def motivo_cancelar_compra
@@ -180,6 +200,7 @@ class RequerimientosController < ApplicationController
 			end
 		end
 	end
+
 
 	# PUT /requerimientos/{id}/rechazar
 	def rechazar

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140805145147) do
+ActiveRecord::Schema.define(:version => 20140909202131) do
 
   create_table "caracteristicas", :force => true do |t|
     t.string   "nombre"
@@ -141,6 +141,14 @@ ActiveRecord::Schema.define(:version => 20140805145147) do
     t.integer  "usuario_id"
   end
 
+  create_table "pagares", :force => true do |t|
+    t.date     "fecha_pago"
+    t.integer  "requerimiento_id"
+    t.integer  "presupuesto_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "presupuestos", :force => true do |t|
     t.integer  "proveedor_id"
     t.integer  "moneda_id"
@@ -207,6 +215,7 @@ ActiveRecord::Schema.define(:version => 20140805145147) do
     t.datetime "updated_at"
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "password_salt",                       :default => "", :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
@@ -216,6 +225,7 @@ ActiveRecord::Schema.define(:version => 20140805145147) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.integer  "sector_id"
+    t.integer  "roles_mask"
     t.integer  "rol_id",                              :default => 0,  :null => false
   end
 

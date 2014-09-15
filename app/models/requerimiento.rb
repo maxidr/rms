@@ -137,6 +137,12 @@ class Requerimiento < ActiveRecord::Base
 		RequerimientosMailer.informar_prevision_pago(self, compra).deliver
   end
 
+  def realizar_pago!(pago)
+    cambiar_estado_a Estado::PAGADO
+    #RequerimientosMailer.informar_recepcion_pendiente(self, compra).deliver
+    #RequerimientosMailer.informar_prevision_pago(self, compra).deliver
+  end
+
   def cancelar_compra!(motivo, cancelado_por)
     con_detalle = DetalleCancelacionDeLaCompra.new(:cancelado_por => cancelado_por, :motivo => motivo)
     cambiar_estado_a Estado::PEDIDO_CANCELADO, con_detalle

@@ -15,29 +15,29 @@ class Ability
 		end
 
 		can [:edit, :add_material], Requerimiento do |rqm|
-      # El que puede agregar materiales es el solicitante, cuando: 
+      # El que puede agregar materiales es el solicitante, cuando:
       # el requerimiento está en estado iniciado o rechazado por el sector
       # ó cuando está en estado aprobado por el sector y el solicitante es responsable de dicho sector
       rqm.solicitante == usuario &&
-        ( iniciado_or_rechazado(rqm) || 
+        ( iniciado_or_rechazado(rqm) ||
          (rqm.estado == Estado::APROBADO_X_SECTOR && rqm.sector.responsables.include?(rqm.solicitante) ))
 		end
-		
+
     #can :edit_only_details, Material do |material|
-    #  iniciado_or_rechazado(material.requerimiento)      
+    #  iniciado_or_rechazado(material.requerimiento)
     #end
-    
+
     # El material se puede modificar en cualquier momento. Si el pedido no se encuentra
-    # en estado iniciado o rechazado entonces solo se puede editar el detalle.    
+    # en estado iniciado o rechazado entonces solo se puede editar el detalle.
     can [:edit, :update], Material do |material|
       true
     end
-    
+
     can :destroy, Material do |material|
       can? :edit, material.requerimiento
     end
 
-		
+
 		can [:add_caracteristica, :edit_caracteristica, :edit_only_details], Material do |m|
       #can?(:add_material, m.requerimiento)
       rqm = m.requerimiento
@@ -60,15 +60,15 @@ class Ability
 		end
 
 		can :rechazar_por_compras, Requerimiento do |rqm|
-      rqm.estado == Estado::PENDIENTE_APROBACION_COMPRAS && 
-        @compras.responsables.include?(usuario) && 
+      rqm.estado == Estado::PENDIENTE_APROBACION_COMPRAS &&
+        @compras.responsables.include?(usuario) &&
         no_fue_verificado_por_usuario?(rqm, usuario)
     end
 
     # Compras puede cancelar un requerimiento luego de aprobarlo (o incluso antes de ello)
     can :cancelar_requerimiento, Requerimiento do |rqm|
       rqm.estado.in?(Estado::PENDIENTE_APROBACION_COMPRAS, Estado::APROBADO_X_COMPRAS) &&
-      @compras.responsables.include?(usuario) 
+      @compras.responsables.include?(usuario)
     end
 
 		can :gestionar_presupuesto, Requerimiento do |rqm|
@@ -80,10 +80,10 @@ class Ability
 		end
 
 		can :aprobar_presupuestos, Requerimiento do |rqm|
-			rqm.estado == Estado::PENDIENTE_APROBACION_COMPRAS && 
+			rqm.estado == Estado::PENDIENTE_APROBACION_COMPRAS &&
         @compras.responsables.include?(usuario) &&
         no_fue_verificado_por_usuario?(rqm, usuario)
-        #usuario.sector == @compras 
+        #usuario.sector == @compras
 		end
 
     can :aprobar_presupuesto_seleccionado, Requerimiento do |rqm|
@@ -93,11 +93,23 @@ class Ability
     end
 
     can :cancelar_compra, Requerimiento do |rqm|
-      rqm.solicitante == usuario && 
+      rqm.solicitante == usuario &&
         rqm.estado.in?(Estado::PENDIENTE_RECEPCION, Estado::APROBADO_X_COMPRAS)
     end
 
 		can :comprar, Requerimiento, :solicitante => usuario, :estado => Estado::APROBADO_X_COMPRAS
+
+    can :pagar, Requerimiento do |rqm|
+      estados = [
+        Estado::PENDIENTE_RECEPCION,
+        Estado::PENDIENTE_VERIFICACION,
+        Estado::ENTREGADO,
+        Estado::FINALIZADO
+      ]
+      rqm.estado.in? estados
+    end
+
+
 
 		#	El usuario que no es administrador puede modificar solos sus datos
 
@@ -108,8 +120,8 @@ class Ability
 
     can :destroy, Requerimiento do |rqm|
       rqm.estado == Estado::INICIO and (usuario.admin? or rqm.solicitante == usuario )
-    end    
-    
+    end
+
 		can :recepcionar, Requerimiento do |rqm|
 			unless usuario.sector.nil?
 				usuario.sector.expedicion? and rqm.estado == Estado::PENDIENTE_RECEPCION
@@ -130,10 +142,10 @@ class Ability
 
 		can :generar_reporte, Requerimiento do |rqm|
       estados = [
-        Estado::APROBADO_X_COMPRAS, 
-        Estado::PENDIENTE_RECEPCION, 
-        Estado::PENDIENTE_VERIFICACION, 
-        Estado::ENTREGADO, 
+        Estado::APROBADO_X_COMPRAS,
+        Estado::PENDIENTE_RECEPCION,
+        Estado::PENDIENTE_VERIFICACION,
+        Estado::ENTREGADO,
         Estado::FINALIZADO,
         Estado::CANCELADO_POR_COMPRAS,
         Estado::PEDIDO_CANCELADO
@@ -150,7 +162,7 @@ class Ability
   def verificadores_de_presupuesto(rqm)
     return [] unless rqm.presupuestos && rqm.presupuestos.seleccionado
     seleccionado = rqm.presupuestos.seleccionado
-    seleccionado.verificaciones.verificadores    
+    seleccionado.verificaciones.verificadores
   end
 
   def no_fue_verificado_por_usuario?(rqm, usuario)
