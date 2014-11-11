@@ -89,7 +89,7 @@ class ProveedoresController < ApplicationController
     if @proveedor.blank?
       @presupuestos = []
     else
-      @presupuestos = @proveedor.presupuestos
+      @presupuestos = @proveedor.presupuestos.order('created_at desc').first(10)
     end
 
     render :json => @presupuestos
