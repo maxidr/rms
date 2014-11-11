@@ -2,7 +2,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :authenticate_user!, :except => [:get_by_cuit]
+  before_filter :authenticate_usuario!, :except => [:get_by_cuit]
 
   def current_ability
   	@current_ability ||= Ability.new(current_usuario)

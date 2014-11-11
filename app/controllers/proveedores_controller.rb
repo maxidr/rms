@@ -1,10 +1,10 @@
 # coding: utf-8
 class ProveedoresController < ApplicationController
 
-	respond_to :html, :xml
+	respond_to :html, :xml, :json
 
-	before_filter :authenticate_usuario!
-	load_and_authorize_resource
+	before_filter :authenticate_usuario!, :except => [:get_by_cuit]
+	#load_and_authorize_resource
 
   # GET /proveedores
   # GET /proveedores.xml
