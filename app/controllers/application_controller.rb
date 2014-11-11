@@ -2,6 +2,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  before_filter :authenticate_user!, :except => [:get_by_cuit]
+
   def current_ability
   	@current_ability ||= Ability.new(current_usuario)
   end
@@ -10,7 +12,7 @@ class ApplicationController < ActionController::Base
   # en el request se utilizará la columna recibida como parámetro (default_sort).
   def search_params(default_sort = nil)
     return params[:search] if params[:search] && params[:search][:meta_sort]
-    {'meta_sort' => default_sort }.merge(params[:search] || {}).symbolize_keys 
+    {'meta_sort' => default_sort }.merge(params[:search] || {}).symbolize_keys
   end
 
   rescue_from CanCan::AccessDenied do |exception|
