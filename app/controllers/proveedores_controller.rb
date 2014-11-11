@@ -82,7 +82,9 @@ class ProveedoresController < ApplicationController
   end
 
   def get_by_cuit
-    @proveedor = Proveedor.find_by_cuit(params[:cuit])
+    cuit_con_guiones = params[:cuit]
+    cuit_con_guiones = "#{cuit_con_guiones[0..1]}-#{cuit_con_guiones[2..9]}-#{cuit_con_guiones[10..10]}"
+    @proveedor = Proveedor.find_by_cuit(cuit_con_guiones)
 
     if @proveedor.blank?
       @presupuestos = []
