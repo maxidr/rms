@@ -8,7 +8,7 @@ class ProveedoresController < ApplicationController
 
   # GET /proveedores
   # GET /proveedores.xml
-  def index    
+  def index
   	@search = Proveedor.search(search_params('razon_social.asc'))
     # FIXME: No está funcionando la cantidad de páginas (per_page) en el modelo.
 		respond_with @proveedores = @search.paginate(:page => params[:page], :per_page => 15)
@@ -80,5 +80,16 @@ class ProveedoresController < ApplicationController
     redirect_to proveedores_path
   end
 
-end
+  def get_by_cuit
+    @proveedor = Proveedor.find_by_cuit(params[:cuit])
 
+    if @proveedor.blank?
+      @presupuestos = []
+    else
+      @presupuestos = @proveedor.presupuestos
+    end
+
+    render :json => @presupuestos
+  end
+
+end

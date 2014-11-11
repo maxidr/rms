@@ -14,25 +14,26 @@
 #
 
 class Proveedor < ActiveRecord::Base
-  
+
+  has_many :presupuestos, :class_name => "Presupuesto", :foreign_key => "proveedor_id"
+
 	validates_presence_of :razon_social, :cuit
 	validates_uniqueness_of :razon_social
 
 	attr_accessible :razon_social, :domicilio, :telefono, :cuit,
-										:localidad, :cod_postal,
-										:representante, :jefe_ventas, :memo
-	
+									:localidad, :cod_postal,
+									:representante, :jefe_ventas, :memo
+
   scope :enabled, where('proveedores.disabled_at IS NULL')
   scope :sorted, order('razon_social ASC')
-  
+
 	def enabled?
     self.disabled_at.nil?
 	end
-  
+
   # Evita que el sector sea eliminado físicamente de la base.
   def destroy
     self.update_attribute(:disabled_at, Time.now)
-  end									
+  end
 
 end
-
