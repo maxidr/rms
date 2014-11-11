@@ -5,6 +5,7 @@ class ProveedoresController < ApplicationController
 
 	before_filter :authenticate_usuario!, :except => [:get_by_cuit]
 	#load_and_authorize_resource
+  load_resource
 
   # GET /proveedores
   # GET /proveedores.xml
