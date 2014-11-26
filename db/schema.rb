@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140909202131) do
+ActiveRecord::Schema.define(:version => 20141126153805) do
 
   create_table "caracteristicas", :force => true do |t|
     t.string   "nombre"
@@ -159,6 +159,7 @@ ActiveRecord::Schema.define(:version => 20140909202131) do
     t.string   "detalle"
     t.boolean  "aprobado",          :default => false
     t.boolean  "seleccionado",      :default => false
+    t.date     "fecha_entrega"
   end
 
   create_table "proveedores", :force => true do |t|

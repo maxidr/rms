@@ -17,6 +17,12 @@
     <dd><%= @presupuesto.detalle %></dd>
   </dl>
 <% end %>
+<% unless @presupuesto.fecha_entrega.blank? %>
+  <dl>
+    <dt>Fecha vencimiento</dt>
+    <dd><%= @presupuesto.fecha_entrega %></dd>
+  </dl>
+<% end %>
 
 <br />
 
