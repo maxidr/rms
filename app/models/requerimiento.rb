@@ -170,6 +170,8 @@ class Requerimiento < ActiveRecord::Base
   end
 
   def aprobar_presupuesto_por_compras!(presupuesto, autorizante = nil)
+
+
     detalle = DetalleVerificacionCompras.para_el_presupuesto(presupuesto)
     detalle.aprobar_por(autorizante) if autorizante
 

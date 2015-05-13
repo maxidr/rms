@@ -11,6 +11,10 @@
 	    <%= f.input :rubro_id_eq, :label => 'Rubro', :as => :select, :collection => Rubro.enabled %>
       <%= f.input :estado_eq, :label => 'Estado', :as => :select, :collection => estados_for_collection %>
       <%= f.input :by_supplier, :label => 'Proveedor', :as => :select, :collection => Proveedor.enabled.sorted, :label_method => :razon_social %>
+      <li class="string optional">
+        <label for="search">Autorizaciones de responsables faltantes</label>
+        <input type="text" name="responsables_faltantes" value=''>
+      </li>
     <% end %>
     <%= f.buttons do %>
       <%= f.commit_button :search %>

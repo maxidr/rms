@@ -225,9 +225,14 @@ class RequerimientosController < ApplicationController
   def index
 #    @requerimientos = Requerimiento.where(:solicitante_id => current_usuario)
 		#	FIXME: El usuario puede ver sus requerimientos y los que debe autorizar
+    @falta = params[:responsables_faltantes].to_s
+
+    Rails.logger.info("--------------- #{params} -------------- #{@falta}")
+
 		@search = Requerimiento.para_usuario(current_usuario)
       .joins(:empresa, :solicitante, :sector, :rubro)
       .search(search_params('id.desc'))
+
     respond_with do |format|
       format.html { @requerimientos = @search.paginate(:page => params[:page], :per_page => 15) }
       format.xls { send_data RequerimientosPresenter.new(@search).to_xls, :filename => 'requerimientos.xls' }

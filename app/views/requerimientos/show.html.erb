@@ -91,7 +91,7 @@
 	  <% end %>
 
 	  <% if can? :solicitar_aprobacion_compras, @requerimiento %>
-		  <%= link_to 'Solicitar aprobación de compras', aprobacion_compras_requerimiento_path(@requerimiento), :method => :put  %>
+		  <%= link_to 'Solicitar aprobación de compras', aprobacion_compras_requerimiento_path(@requerimiento), :method => :put, :disable_with => 'Procesando...'  %>
 	  <% end %>
 
 	  <% if can?(:aprobar_presupuestos, @requerimiento) || can?(:rechazar_por_compras, @requerimiento) %>
@@ -103,7 +103,7 @@
     <% end %>
 
     <% if can? :aprobar_presupuesto_seleccionado, @requerimiento %>
-      <%= link_to 'Aprobar presupuesto', aprobar_presupuesto_path(@requerimiento.presupuestos.seleccionado), :method => :put %>
+      <%= link_to 'Aprobar presupuesto', aprobar_presupuesto_path(@requerimiento.presupuestos.seleccionado), :method => :put, :disable_with => 'Procesando...' %>
     <% end %>
 
 	  <% if can? :recepcionar, @requerimiento %>

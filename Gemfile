@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 ruby '1.9.3'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.5' #'3.0.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -11,10 +11,10 @@ gem 'rails', '3.0.3'
 gem 'devise'
 
 gem 'cancan'
-gem 'formtastic', '~> 1.2.3'
+gem 'formtastic', '~> 1.2.5'
 gem 'show_for'
-gem 'slim'
-gem "slim-rails"
+gem 'slim', '1.2.1'
+gem "slim-rails", '1.0.3'
 gem "will_paginate", "~> 3.0.pre2"
 gem "meta_search"
 
