@@ -5,7 +5,6 @@ require 'version'
 namespace :deploy do
 
   ENVIRONMENTS = {
-    #dev: 'heroku-dev',
     staging: 'staging',
     production: 'production'
   }
@@ -43,8 +42,8 @@ namespace :deploy do
   end
 
   task :staging do
-    confirm('This will deploy your current HEAD to heroku dev')
-    compile_stylesheets_for_production
+    #confirm('This will deploy your current HEAD to heroku dev')
+    #compile_stylesheets_for_production
     # create a new tag
     print "Incrementing version...\n"
     Rake::Task['version:bump'].invoke
@@ -95,7 +94,7 @@ namespace :deploy do
   #  from_tag = ENV['tag']
 
   #end
-  
+
   #desc "Deploy to staging (heroku application name: #{STAGING_APP})"
   #task :staging do
   #  confirm('This will deploy your current HEAD to staging.')
