@@ -201,7 +201,6 @@ class RequerimientosController < ApplicationController
 		end
 	end
 
-
 	# PUT /requerimientos/{id}/rechazar
 	def rechazar
 		logger.debug("Se rechaza el requerimiento")
@@ -223,11 +222,11 @@ class RequerimientosController < ApplicationController
 	end
 
   def index
-#    @requerimientos = Requerimiento.where(:solicitante_id => current_usuario)
+    # @requerimientos = Requerimiento.where(:solicitante_id => current_usuario)
 		#	FIXME: El usuario puede ver sus requerimientos y los que debe autorizar
     @falta = params[:responsables_faltantes].to_s
 
-    Rails.logger.info("--------------- #{params} -------------- #{@falta}")
+    #Rails.logger.info("--------------- #{params} -------------- #{@falta}")
 
 		@search = Requerimiento.para_usuario(current_usuario)
       .joins(:empresa, :solicitante, :sector, :rubro)

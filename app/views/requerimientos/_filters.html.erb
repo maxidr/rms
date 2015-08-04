@@ -10,6 +10,8 @@
 	    <%= f.input :sector_id_eq, :label => 'Sector', :as => :select, :collection => Sector.enabled %>
 	    <%= f.input :rubro_id_eq, :label => 'Rubro', :as => :select, :collection => Rubro.enabled %>
       <%= f.input :estado_eq, :label => 'Estado', :as => :select, :collection => estados_for_collection %>
+      <%= f.input :created_at_gte, :label => 'Fecha desde aaaa/mm/dd hh:mm:ss' %>
+      <%= f.input :created_at_lte, :label => 'Fecha hasta aaaa/mm/dd hh:mm:ss' %>
       <%= f.input :by_supplier, :label => 'Proveedor', :as => :select, :collection => Proveedor.enabled.sorted, :label_method => :razon_social %>
       <li class="string optional">
         <label for="search">Autorizaciones de responsables faltantes</label>
