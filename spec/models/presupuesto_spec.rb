@@ -8,12 +8,12 @@ describe Presupuesto do
   it { should respond_to(:aprobado) }
 
   context 'con los parametros correctos' do
-    it 'debe ser valido' do  
-      presupuesto.should be_valid 
+    it 'debe ser valido' do
+      presupuesto.should be_valid
     end
   end
 
-  describe '#seleccionado. Un presupuesto es seleccionado cuando al menos un usuario verificador lo selecciona' do    
+  describe '#seleccionado. Un presupuesto es seleccionado cuando al menos un usuario verificador lo selecciona' do
     context 'cuando se agrega una verificacion al presupuesto' do
       before do
         @presupuesto = presupuesto
@@ -21,7 +21,7 @@ describe Presupuesto do
         v.save!
       end
       it 'debe quedar seleccionado' do
-        @presupuesto.seleccionado.should be_true 
+        @presupuesto.seleccionado.should be_truthy
       end
     end
   end

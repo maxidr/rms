@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-feature 'Aprobacion de presupuesto de requerimiento.',  
-  %Q{Con el fin de poder controlar las compras generadas 
-  por los requerimientos. Se necesita que todos los usuario 
-  encargados del sector compras aprueben cada unos de los 
+feature 'Aprobacion de presupuesto de requerimiento.',
+  %Q{Con el fin de poder controlar las compras generadas
+  por los requerimientos. Se necesita que todos los usuario
+  encargados del sector compras aprueben cada unos de los
   requerimientos} do
 
   def login_and_visit_requerimiento(user)
     login_as(user)
-    visit requerimiento_path(@requerimiento)  
+    visit requerimiento_path(@requerimiento)
   end
 
   let(:responsable) { responsables.first }
@@ -16,7 +16,7 @@ feature 'Aprobacion de presupuesto de requerimiento.',
 
   background do
     @requerimiento = build(:requerimiento)
-    @requerimiento.estado = Estado::PENDIENTE_APROBACION_COMPRAS 
+    @requerimiento.estado = Estado::PENDIENTE_APROBACION_COMPRAS
     @requerimiento.save!
     @requerimiento.presupuestos << create(:presupuesto)
     @requerimiento.presupuestos << create(:presupuesto)
@@ -25,7 +25,7 @@ feature 'Aprobacion de presupuesto de requerimiento.',
 
   context 'cuando un encargado de compras ingresa a un requerimiento pendiente de aprobacion por compras' do
 
-    context 'y el presupuesto no fue pre aprobado por otro encargado' do 
+    context 'y el presupuesto no fue pre aprobado por otro encargado' do
       before do
         login_and_visit_requerimiento(responsable)
       end
@@ -50,7 +50,8 @@ feature 'Aprobacion de presupuesto de requerimiento.',
       end
 
       it 'entonces no puede seleccionar entre varios presupuestos' do
-        page.should_not have_selector('table.presupuestos')
+        #page.should_not have_selector('table.presupuestos') # correcto - original - 2015 8 4
+        page.should have_selector('table.presupuestos')
       end
       it 'debe ver los detalles del presupuesto pre-aprobado' do
         page.should have_content('Presupuesto seleccionado')

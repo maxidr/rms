@@ -10,6 +10,9 @@ require 'capybara/rspec'
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
+
+  config.infer_spec_type_from_file_location!
+
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
@@ -32,5 +35,10 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
   config.include FactoryGirl::Syntax::Methods
   config.include Warden::Test::Helpers
+
+  config.include Rails.application.routes.url_helpers
+
+  config.include Capybara::DSL
+
   Warden.test_mode!
 end

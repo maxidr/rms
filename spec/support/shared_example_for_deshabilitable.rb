@@ -6,7 +6,7 @@ shared_examples 'deshabilitable' do
     end
     context 'cuando se destruye' do
       it 'deja de estar habilitada' do
-        @object.enabled?.should be_false
+        @object.enabled?.should be_falsey
       end
 
       it 'debe seguir existiendo' do

@@ -3,12 +3,12 @@ require 'spec_helper'
 describe DetalleVerificacionCompras do
 
   describe '.para_el_presupuesto' do
-    context 'cuando el presupuesto tiene un detalleVerficacionCompras' do 
+    context 'cuando el presupuesto tiene un detalleVerficacionCompras' do
       before do
         @presupuesto = Presupuesto.new
         @detalle = DetalleVerificacionCompras.new(:presupuesto => @presupuesto)
         @detalle.id = 10
-        DetalleVerificacionCompras.stub!(:where) { [@detalle] }
+        DetalleVerificacionCompras.stub(:where) { [@detalle] }
       end
 
       it "debe retornar dicho detalle" do
@@ -28,7 +28,7 @@ describe DetalleVerificacionCompras do
       end
 
       it "el detalleVerficacioCompras no debe estar aprobado" do
-        @detalle_para_el_presupuesto.aprobado.should be_false
+        @detalle_para_el_presupuesto.aprobado.should be_falsey
       end
 
       it "el detalleVerficacioCompras debe estar relacionado con el presupuesto" do
@@ -42,10 +42,10 @@ describe DetalleVerificacionCompras do
       #@presupuesto = Presupuesto.new
       @presupuesto = create(:presupuesto)
       @detalle = DetalleVerificacionCompras.new(:presupuesto => @presupuesto)
-      #@autorizante = Usuario.new(:nombre => 'Julian', :apellido => 'Alvarez') 
+      #@autorizante = Usuario.new(:nombre => 'Julian', :apellido => 'Alvarez')
       @autorizante = create(:usuario)
       @now = DateTime.now
-      DateTime.stub!(:now) { @now }
+      DateTime.stub(:now) { @now }
     end
     it 'debe crear una verificacionEncargadoCompras para el presupuesto del DetalleVerificacionCompras' do
       @detalle.aprobar_por(@autorizante)
@@ -56,7 +56,7 @@ describe DetalleVerificacionCompras do
 
   describe '#aprobacion_finalizada?' do
     let(:responsables_de_compras) do
-      (1..3).map do |id| 
+      (1..3).map do |id|
         user = double('user')
         user.stub(:id) { id }
         user
@@ -74,13 +74,13 @@ describe DetalleVerificacionCompras do
     before do
       @detalle = DetalleVerificacionCompras.new
       verificaciones = double(Array)
-      verificaciones.stub!(:count).and_return(verificaciones_responsables_de_compras.count)
-      verificaciones.stub!(:select).and_return(verificaciones_responsables_de_compras)
+      verificaciones.stub(:count).and_return(verificaciones_responsables_de_compras.count)
+      verificaciones.stub(:select).and_return(verificaciones_responsables_de_compras)
       @detalle.stub_chain(:presupuesto, :verificaciones).and_return(verificaciones)
     end
     context 'si todos los responsables de compras autorizaron el presupuesto' do
       it 'debe retornar true' do
-        @detalle.aprobacion_finalizada?(responsables_de_compras).should be_true
+        @detalle.aprobacion_finalizada?(responsables_de_compras).should be_truthy
       end
     end
 
@@ -89,20 +89,20 @@ describe DetalleVerificacionCompras do
       before do
         algunas_verificaciones = verificaciones_responsables_de_compras.first(2)
         verificaciones = double(Array)
-        verificaciones.stub!(:select).and_return(algunas_verificaciones)
-        verificaciones.stub!(:count).and_return(algunas_verificaciones.size)
+        verificaciones.stub(:select).and_return(algunas_verificaciones)
+        verificaciones.stub(:count).and_return(algunas_verificaciones.size)
         @detalle.stub_chain(:presupuesto, :verificaciones).and_return(verificaciones)
       end
 
       it 'debe retornar false' do
-        @detalle.aprobacion_finalizada?(responsables_de_compras).should be_false
+        @detalle.aprobacion_finalizada?(responsables_de_compras).should be_falsey
       end
     end
 
     context 'si uno de los autorizantes ya no es responsable y todos lo demas ya aprobaron el presupuesto' do
       it 'debe retornar true' do
         responsables_actuales = responsables_de_compras.first(2)
-        @detalle.aprobacion_finalizada?(responsables_actuales).should be_true
+        @detalle.aprobacion_finalizada?(responsables_actuales).should be_truthy
       end
     end
 

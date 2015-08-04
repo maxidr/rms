@@ -239,9 +239,6 @@ class RequerimientosController < ApplicationController
   end
 
   def show
-#   	respond_with @requerimiento do |format|
-#   	  format.pdf{ render :pdf => "requerimiento.pdf" }
-#   	end
 
    	respond_to do |format|
       format.html

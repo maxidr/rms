@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ComprasResponsablesObserver do
-  
+
   let(:requerimiento) do
     rqm = create(:requerimiento)
     rqm.estado = Estado::PENDIENTE_APROBACION_COMPRAS
@@ -27,9 +27,9 @@ describe ComprasResponsablesObserver do
   let(:responsables_compras) do
     [ create(:usuario), create(:usuario), create(:usuario) ]
   end
-  
+
   let(:compras) do
-    create(:sector, :nombre => 'Compras', :responsables => responsables_compras)
+    create(:sector, :nombre => 'Compras test', :responsables => responsables_compras)
   end
 
   context 'cuando un usuario es eliminado de los responsables del sector compras' do
@@ -53,16 +53,16 @@ describe ComprasResponsablesObserver do
       rqm.estado.should_not == Estado::APROBADO_X_COMPRAS
     end
 
-    it %q(los requerimientos que estan pendientes de aprobacion por compras pero que 
+    it %q(los requerimientos que estan pendientes de aprobacion por compras pero que
           les falta la validacion de mas de un encargado no se aprueban) do
       rqm3 = Requerimiento.find(otro_requerimiento_pendiente.id)
       rqm3.estado.should_not == Estado::APROBADO_X_COMPRAS
     end
 
-    it %q(se deben aprobar todos los requerimientos que esten en 
-          estado 'pendiente de aprobacion por compras' y que solo faltaba 
+    it %q(se deben aprobar todos los requerimientos que esten en
+          estado 'pendiente de aprobacion por compras' y que solo faltaba
           la validacion de dicho usuario) do
-      rqm = Requerimiento.find(requerimiento.id) 
+      rqm = Requerimiento.find(requerimiento.id)
       rqm.estado.should == Estado::APROBADO_X_COMPRAS
     end
   end

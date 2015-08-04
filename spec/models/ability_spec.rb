@@ -2,25 +2,25 @@ require 'spec_helper'
 
 describe Ability do
   context 'para un requerimiento pendiente de aprobacion por el sector' do
-  
+
     let(:usuario){ create(:usuario) }
     let(:sector) { build(:sector) }
 
     before do
-      Sector.stub(:compras) { build(:sector) }      
+      Sector.stub(:compras) { build(:sector) }
       sector.stub_chain(:responsables, :exists?) { true }
       @rqm = build(:requerimiento, :solicitante => usuario, :sector => sector, :estado => Estado::PENDIENTE_APROBACION_SECTOR)
       @ability = Ability.new(usuario)
     end
 
     it 'puede ser aprobado por un encargado del sector, incluso si es el creador del requerimiento' do
-      @ability.can?(:aprobar_por_sector, @rqm).should be_true
+      @ability.can?(:aprobar_por_sector, @rqm).should be_truthy
     end
 
     it 'no puede ser aprobado por un usuario que no es encargado del sector' do
       sector.stub_chain(:responsables, :exists?) { false }
       @rqm.sector = sector
-      @ability.can?(:aprobar_por_sector, @rqm).should be_false
+      @ability.can?(:aprobar_por_sector, @rqm).should be_falsey
     end
   end
 
@@ -39,7 +39,7 @@ describe Ability do
         let(:sector) { build(:sector) }
         let(:estado) { Estado::INICIO }
         it 'puede hacerlo' do
-          @ability.can?(:add_material, @requerimiento).should be_true
+          @ability.can?(:add_material, @requerimiento).should be_truthy
         end
       end
 
@@ -47,7 +47,7 @@ describe Ability do
         let(:sector) { build(:sector, :responsables => [solicitante]) }
         let(:estado) { Estado::APROBADO_X_SECTOR }
         it 'puede hacerlo' do
-          @ability.can?(:add_material, @requerimiento).should be_true
+          @ability.can?(:add_material, @requerimiento).should be_truthy
         end
       end
     end
@@ -58,7 +58,7 @@ describe Ability do
       let(:estado) { Estado::INICIO }
       let(:sector) { build(:sector) }
       it 'no puede hacerlo' do
-        @ability.can?(:add_material, @requerimiento).should be_false
+        @ability.can?(:add_material, @requerimiento).should be_falsey
       end
     end
 
