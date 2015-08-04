@@ -5,7 +5,7 @@ class Desglose < ActiveRecord::Base
   belongs_to :material
 
   validates_presence_of :unidades, :precio_unitario, :iva, :material
-  validates_numericality_of :unidades, :precio_unitario, :greater_than => 0
+  validates_numericality_of :unidades, :precio_unitario, :greater_than_or_equal_to => 0
   validates_inclusion_of :iva, :in => Presupuesto::IVA
 
   def precio_unitario_final

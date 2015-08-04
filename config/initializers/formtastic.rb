@@ -54,5 +54,5 @@ Formtastic::SemanticFormBuilder.i18n_lookups_by_default = true
 # specifying that class here.  Defaults to SemanticFormBuilder.
 # Formtastic::SemanticFormHelper.builder = MyCustomBuilder
 require 'custom/semantic_form_builder'
-Formtastic::SemanticFormHelper.builder = Custom::SemanticFormBuilder
-
+#Formtastic::SemanticFormHelper.builder = Custom::SemanticFormBuilder
+Formtastic::Helpers::FormHelper.builder = Custom::SemanticFormBuilder

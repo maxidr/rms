@@ -1,12 +1,12 @@
 source 'http://rubygems.org'
 ruby '1.9.3'
 
-gem 'rails', '3.0.5' #'3.0.3'
+gem 'rails', '3.0.20' #'3.0.5'
 
 gem 'devise'
 
 gem 'cancan'
-gem 'formtastic', '~> 1.2.5'
+gem 'formtastic', '~> 2.0.0' #'~> 1.2.5'
 gem 'show_for'
 gem 'slim', '1.2.1'
 gem "slim-rails", '1.0.3'

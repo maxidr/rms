@@ -1,14 +1,12 @@
-<p>
-  <b>Simbolo:</b>
-  <%= @moneda.simbolo %>
-</p>
+<h1>Moneda</h1>
 
-<p>
-  <b>Nombre:</b>
-  <%= @moneda.nombre %>
-</p>
+<dl>
+  <dt>Simbolo:</dt>
+  <dd><%= @moneda.simbolo %></dd>
 
+  <dt>Nombre:</dt>
+  <dd><%= @moneda.nombre %></dd>
+</dl>
 
-<%= link_to 'Editar', edit_moneda_path(@moneda) %> |
-<%= link_to 'Volver', monedas_path %>
-
+<%= link_to 'Editar', edit_sector_path(@moneda), :class => 'boton' %>
+<%= link_to 'Volver', monedas_path, :class => 'back_button' %>

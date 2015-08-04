@@ -2,7 +2,8 @@
 	= f.inputs do
 		= f.input :nombre
 		= f.input :email
-		= f.input :responsables, :as => :comboselect
+		= f.input :responsables, :as => :select
+    / :as => :comboselect /:as => :check_boxes
 		/ TODO: ver: http://diminishing.org/extending-formtastic-with-a-sprinkle-of-jquery
 
 	= f.buttons do
