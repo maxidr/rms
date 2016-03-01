@@ -1,6 +1,6 @@
 class Ability
 	include	CanCan::Ability
-
+  
 	def initialize(usuario)
 #		can :read, :all
 #		cannot :write, :all
