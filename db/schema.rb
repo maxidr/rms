@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141126153805) do
+ActiveRecord::Schema.define(:version => 20160817181319) do
 
   create_table "caracteristicas", :force => true do |t|
     t.string   "nombre"
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(:version => 20141126153805) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "disabled_at"
+    t.string   "url_poseidon"
   end
 
   create_table "estados_historicos", :force => true do |t|

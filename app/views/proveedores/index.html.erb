@@ -1,6 +1,11 @@
 <div class="contextual">
   <%= link_to 'Nuevo proveedor', new_proveedor_path %>
 </div>
+<div class="contextual">
+  <% unless Empresa.first.url_poseidon.blank? %>
+    <%= link_to 'Nuevo proveedor desde Poseidon', new_proveedor_path %>
+  <% end %>
+</div>
 
 <h1>Proveedores</h1>
 

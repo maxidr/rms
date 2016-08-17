@@ -95,4 +95,8 @@ class ProveedoresController < ApplicationController
     render :json => @presupuestos
   end
 
+  def get_by_poseidon
+    @supplier_poseidon = JSON.load(open("#{Empresa.first.url_poseidon}/index_for_perseus"))
+  end
+
 end

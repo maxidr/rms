@@ -3,10 +3,12 @@ Rms::Application.routes.draw do
 	devise_for :usuarios
 	resources :usuarios
 
-  get "proveedores/get_by_cuit", to: "proveedores#get_by_cuit", as: :cuit
+  get 'proveedores/get_by_cuit', to: "proveedores#get_by_cuit", as: :cuit
+
+  get 'proveedores/poseidon', to: 'proveedores#get_by_poseidon'
 
   resources :proveedores do
-    #get 'get_by_cuit', :action => 'get_by_cuit', as: :cuit
+
     member do
       put 'enable'
     end
