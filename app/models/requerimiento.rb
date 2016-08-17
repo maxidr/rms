@@ -16,7 +16,7 @@
 #
 class Requerimiento < ActiveRecord::Base
 
-  FRECUENCIAS_CONSUMO = %w(eventual semanal quincenal bimestral trimestral semestral anual)
+  FRECUENCIAS_CONSUMO = %w(eventual semanal quincenal mensual bimestral trimestral semestral anual)
 
   # Relations ----------------------------------------------------------------------------------------
   belongs_to :solicitante, :class_name => "Usuario"
