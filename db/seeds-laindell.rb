@@ -11,43 +11,56 @@
 
 # En principio las empresas serian  Laindell SRL  y  Metalurgica La Toma SA
 # Los sectores : Tejeduria /  Mantenimiento / Recubrimiento / Embalaje / Fabrica de piletas / Caños /
-#                Expedicion / Administracion / Compras / Ventas.
+# 							 Expedicion / Administracion / Compras / Ventas.
 # Los rubros: Materias Primas / Insumos / Consumibles / Varios / Servicios / Maquinas y herramientas
 
 
 # USUARIOS -------------------------------------------------------------------------------------------
-unless usr = Usuario.find_by_identificador('lmpetek')
-  usr = Usuario.create({:nombre => 'luis', :apellido => 'petek',
-    :identificador => 'lmpetek',
-    :email => 'lmpetek@gmail.com',
-    :password => 'Nicolas92'})
-# usr.sector = Sector.where(:nombre => 'Mantenimiento').first
-# puts "El usuario mdellorusso no pudo ser creado" unless usr.save
+unless usr = Usuario.find_by_identificador('mdellorusso')
+	usr = Usuario.create({:nombre => 'Maximiliano', :apellido => 'Dello Russo',
+		:identificador => 'mdellorusso',
+		:email => 'maxidr@gmail.com',
+		:password => 'lucas12'})
+#	usr.sector = Sector.where(:nombre => 'Mantenimiento').first
+#	puts "El usuario mdellorusso no pudo ser creado" unless usr.save
   usr.rol = :administrador
-  usr.save
+	usr.save
+end
+
+responsable = Usuario.find_by_identificador('epuche')
+if responsable.nil?
+	responsable = Usuario.create({:nombre => 'Emilio', :apellido => 'Puche',
+		:identificador => 'epuche',
+		:email => 'epuche@laindell.com',
+		:password => '123456'})
+#	responsable.sector = Sector.where(:nombre => 'Compras').first
+#	puts "El usuario jlopez no pudo ser creado" unless responsable.save
+  responsable.rol = :administrador
+	responsable.save
 end
 
 # SECTORES -------------------------------------------------------------------------------------------
 # ES MUY IMPORTANTE QUE "Expedición", "Administración" y "Compras" reciban como ID el 7, 8 y 9 respectivamente.
 # Ver modelo sector
 unless responsable.valid?
-  responsable = Usuario.first
+	responsable = Usuario.first
 end
 
-sectores = ["Consultorios", "Mantenimiento", "Limpieza",
-  "Expedición",
-  "Administración", "Compras", "Ventas" ]
+sectores = ["Tejeduría", "Mantenimiento", "Recubrimiento",
+	"Embalaje", "Fábrica de piletas", "Caños", "Expedición",
+	"Administración", "Compras", "Ventas" ]
 
 sectores.each do |sector|
-  unless Sector.find_by_nombre(sector)
-    sector = Sector.new({:nombre => sector})
-    sector.responsables << responsable
-    sector.save
-  end
+	unless Sector.find_by_nombre(sector)
+		sector = Sector.new({:nombre => sector})
+		sector.responsables << responsable
+		sector.save
+	end
 end
 
 # EMPRESAS -------------------------------------------------------------------------------------------
-Empresa.find_or_create_by_nombre('CNSDP')
+Empresa.find_or_create_by_nombre('Laindell SRL')
+Empresa.find_or_create_by_nombre('Metalúrgica La Toma SA')
 Empresa.find_or_create_by_nombre('Empresa de Prueba')
 
 # RUBROS ---------------------------------------------------------------------------------------------
@@ -71,16 +84,16 @@ Moneda.find_or_create_by_simbolo(:simbolo => "€", :nombre => 'Euros')
 require 'csvimport'
 CSVImport.new(RAILS_ROOT + '/db/proveedores.csv').load do |row|
   row[9] = "-" if row[9].nil?
-  Proveedor.find_or_create_by_razon_social(
-    :razon_social   => row[1],
-    :domicilio      => row[2],
-    :telefono       => row[6],
-    :cuit           => row[9],
-    :localidad      => row[3],
-    :cod_postal     => row[5],
-    :representante  => row[7],
-    :jefe_ventas    => row[8],
-    :memo           => row[14])
+	Proveedor.find_or_create_by_razon_social(
+		:razon_social 	=> row[1],
+		:domicilio 			=> row[2],
+		:telefono 			=> row[6],
+		:cuit 					=> row[9],
+		:localidad 			=> row[3],
+		:cod_postal 		=> row[5],
+		:representante 	=> row[7],
+		:jefe_ventas 		=> row[8],
+		:memo 					=> row[14])
 end
 
 # CONDICIONES DE PAGO ---------------------------------------------------------------------------------
@@ -95,5 +108,5 @@ CondicionPago.find_or_create_by_nombre(:nombre => 'Fecha Factura 30', :descripci
 CondicionPago.find_or_create_by_nombre(:nombre => 'Fecha Factura 45', :descripcion => 'Vencimiento factura 45 dias')
 CondicionPago.find_or_create_by_nombre(:nombre => 'Efectivo anticipado en dólares', :descripcion => 'u$s')
 CondicionPago.find_or_create_by_nombre(:nombre => 'Efectivo anticipado en pesos', :descripcion => '$')
-CondicionPago.find_or_create_by_nombre(:nombre => 'Anticipado 45 dias ', :descripcion => 'Cheque 45 dias')
+CondicionPago.find_or_create_by_nombre(:nombre => 'Anticipado 45 dias	', :descripcion => 'Cheque 45 dias')
 
