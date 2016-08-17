@@ -27,6 +27,18 @@ unless usr = Usuario.find_by_identificador('lmpetek')
   usr.save
 end
 
+responsable = Usuario.find_by_identificador('mmartin')
+if responsable.nil?
+  responsable = Usuario.create({:nombre => 'matias', :apellido => 'martin',
+    :identificador => 'mmartin',
+    :email => 'matias@ap-sys.com.ar',
+    :password => '123456'})
+# responsable.sector = Sector.where(:nombre => 'Compras').first
+# puts "El usuario jlopez no pudo ser creado" unless responsable.save
+  responsable.rol = :administrador
+  responsable.save
+end
+
 # SECTORES -------------------------------------------------------------------------------------------
 # ES MUY IMPORTANTE QUE "Expedición", "Administración" y "Compras" reciban como ID el 7, 8 y 9 respectivamente.
 # Ver modelo sector
@@ -35,7 +47,7 @@ unless responsable.valid?
 end
 
 sectores = ["Consultorios", "Mantenimiento", "Limpieza",
-  "Expedición",
+  "Pabellon 1", "Pabellon 2", "Pabellon 3", "Expedición",
   "Administración", "Compras", "Ventas" ]
 
 sectores.each do |sector|
