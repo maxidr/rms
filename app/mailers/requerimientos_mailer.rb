@@ -1,6 +1,7 @@
 # coding: utf-8
 class RequerimientosMailer < ActionMailer::Base
-  default :from => "rms.perseus@gmail.com"
+  #default :from => "rms.perseus@gmail.com"
+  default :from => "auth@ap-sys.com.ar"
 
   def solicitar_aprobacion_sector(requerimiento)
    	@requerimiento = requerimiento
