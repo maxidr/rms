@@ -206,8 +206,7 @@ class Requerimiento < ActiveRecord::Base
 	def aprobar_por_sector!(autorizante)
 		con_detalle = DetalleAprobacionSector.new(:autorizante => autorizante)
 		# cambiar_estado_a Estado::APROBADO_X_SECTOR, con_detalle
-
-    cambiar_estado_a Estado::PENDIENTE_APROBACION_COMPRAS
+    cambiar_estado_a Estado::PENDIENTE_APROBACION_COMPRAS, con_detalle
 		RequerimientosMailer.informar_autorizacion_sector(self, autorizante).deliver
 	end
 
