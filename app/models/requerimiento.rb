@@ -16,8 +16,6 @@
 #
 class Requerimiento < ActiveRecord::Base
 
-  before_validation :prueba
-
   FRECUENCIAS_CONSUMO = %w(eventual semanal quincenal mensual bimestral trimestral semestral anual)
 
   # Relations ----------------------------------------------------------------------------------------
@@ -105,12 +103,6 @@ class Requerimiento < ActiveRecord::Base
   scope :pendientes_de_aprobacion_compras, where(:estado => Estado::PENDIENTE_APROBACION_COMPRAS)
 
   # Methods ------------------------------------------------------------------------------------------------
-
-
-  def prueba
-    self.solicitante_id = @@usuario
-  end
-
 
 	# Finalizar el requerimiento
 	# @param [Usuario] responsable del sector que genera la finalización del requerimiento
