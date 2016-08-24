@@ -29,17 +29,33 @@ Rms::Application.configure do
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
-  config.serve_static_assets = true
-  config.action_mailer.default_url_options = { :host => 'perseus.heroku.com' }
+  #config.serve_static_assets = true
+  #config.action_mailer.default_url_options = { :host => 'perseus.heroku.com' }
+  #config.action_mailer.delivery_method = :smtp
+	#config.action_mailer.smtp_settings = {
+  #		:address              => "smtp.gmail.com",
+  #		:port                 => 587,
+	#	:user_name            => 'rms.perseus@gmail.com',
+	#	:password             => 'gmdr1133',
+	#	:authentication       => 'plain',
+	#	:enable_starttls_auto => true  }
 
-  config.action_mailer.delivery_method = :smtp
-	config.action_mailer.smtp_settings = {
-		:address              => "smtp.gmail.com",
-		:port                 => 587,
-		:user_name            => 'rms.perseus@gmail.com',
-		:password             => 'gmdr1133',
-		:authentication       => 'plain',
-		:enable_starttls_auto => true  }
+    # devise mailer
+    config.action_mailer.default_url_options = { host: 'perseus.heroku.com' }
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.smtp_settings = {
+        :enable_starttls_auto => true ,
+        :address            => 'smtp.gmail.com',
+        :port               => 587,
+        #:tls                => true,
+        :domain             => 'gmail.com', #you can also use google.com
+        :authentication     => :plain,
+        :user_name          => 'auth@ap-sys.com.ar',
+        :password           => 'Helguera123456'
+    }
+
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
@@ -56,6 +72,6 @@ Rms::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-  
+
 end
 
