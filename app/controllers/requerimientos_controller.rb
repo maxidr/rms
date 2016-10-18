@@ -1,8 +1,8 @@
 # coding: utf-8
 class RequerimientosController < ApplicationController
 
-	respond_to :html, :xml, :json
-	respond_to :js, :only => [:motivo_rechazo, :motivo_rechazo_compras, :motivo_cancelar_compra]
+  respond_to :html, :xml, :json
+  respond_to :js, :only => [:motivo_rechazo, :motivo_rechazo_compras, :motivo_cancelar_compra]
 	respond_to :pdf, :only => [:show]
   respond_to :xls, :only => [:index]
 
@@ -190,11 +190,12 @@ class RequerimientosController < ApplicationController
 
 	# PUT /requerimientos/{id}/aprobar
 	def aprobar
-		logger.debug("Se aprueba el requerimiento")
-		if @requerimiento.aprobar_por_sector! current_usuario
-			flash[:notice] = "Se autorizó el requerimiento"
-			respond_with @requerimiento
-		else
+		logger.debug('Se aprueba el requerimiento')
+
+    if @requerimiento.aprobar_por_sector! current_usuario
+  		flash[:notice] = 'Se autorizo el requerimiento'
+  		respond_with @requerimiento
+  	else
 			respond_with @requerimiento.errors, :status => :unprocessable_entity do |format|
 				format.html{ render :show }
 			end

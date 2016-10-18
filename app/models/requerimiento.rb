@@ -19,12 +19,12 @@ class Requerimiento < ActiveRecord::Base
   FRECUENCIAS_CONSUMO = %w(eventual semanal quincenal mensual bimestral trimestral semestral anual)
 
   # Relations ----------------------------------------------------------------------------------------
-  belongs_to :solicitante, :class_name => "Usuario"
+  belongs_to :solicitante, class_name: 'Usuario'
   belongs_to :empresa
   belongs_to :sector
   belongs_to :rubro
   has_many :notificaciones
-
+  has_many :autorizantes, class_name: 'AutorizacionSector', foreign_key: 'requerimiento_id'
   has_many :materiales
   has_many :presupuestos do
     def aprobado
@@ -170,8 +170,6 @@ class Requerimiento < ActiveRecord::Base
   end
 
   def aprobar_presupuesto_por_compras!(presupuesto, autorizante = nil)
-
-
     detalle = DetalleVerificacionCompras.para_el_presupuesto(presupuesto)
     detalle.aprobar_por(autorizante) if autorizante
 
@@ -197,22 +195,44 @@ class Requerimiento < ActiveRecord::Base
 
 	#	RequerimientosMailer.informar_autorizacion_compras(self, autorizante, presupuesto).deliver
   #end
-
 	def solicitar_aprobacion_compras!
-		cambiar_estado_a Estado::PENDIENTE_APROBACION_COMPRAS
-		RequerimientosMailer.solicitar_aprobacion_compras(self).deliver
-	end
+    cambiar_estado_a Estado::PENDIENTE_APROBACION_COMPRAS
+  	RequerimientosMailer.solicitar_aprobacion_compras(self).deliver
+  end
 
-	def aprobar_por_sector!(autorizante)
-		con_detalle = DetalleAprobacionSector.new(:autorizante => autorizante)
-		# cambiar_estado_a Estado::APROBADO_X_SECTOR, con_detalle
-    cambiar_estado_a Estado::PENDIENTE_APROBACION_COMPRAS, con_detalle
-		RequerimientosMailer.informar_autorizacion_sector(self, autorizante).deliver
-	end
+  def aprobar_por_sector!(autorizante)
+    #responsables_de_sector = sector.responsables
 
-  def informar_notificacion( usuario )
+    AutorizacionSector.requerimiento_autorizado(autorizante.id, self.id) if autorizante
+
+    if aprobacion_finalizada? #(autorizantes)
+      cambiar_estado_a(Estado::PENDIENTE_APROBACION_COMPRAS) do
+        aprobado = true
+        valid?
+        logger.debug "------------> #{errors}"
+        save!
+     end
+   end
+  end
+
+  # def aprobar_por_sector!(autorizante)
+  #   con_detalle = DetalleAprobacionSector.new(autorizante: autorizante)
+  #   # cambiar_estado_a Estado::APROBADO_X_SECTOR, con_detalle
+  #   cambiar_estado_a Estado::PENDIENTE_APROBACION_COMPRAS, con_detalle
+  #   RequerimientosMailer.informar_autorizacion_sector(self, autorizante).deliver
+  # end
+
+  def aprobacion_finalizada? # (responsables)
+    responsables_faltantes_para_aprobacion.empty?
+  end
+
+  def responsables_faltantes_para_aprobacion
+    ids_de_verificaciones = autorizantes.select(:autorizante_id).map { |v| v.autorizante_id }
+    sector.responsables.select { |responsable| !ids_de_verificaciones.include?(responsable.id) }
+  end
+
+  def informar_notificacion(usuario)
     RequerimientosMailer.informar_notificacion(self, self.solicitante).deliver
-
     if usuario.email != self.solicitante.email
       RequerimientosMailer.informar_notificacion(self, usuario).deliver
     end
@@ -228,7 +248,6 @@ class Requerimiento < ActiveRecord::Base
 		cambiar_estado_a Estado::RECHAZO_X_SECTOR, con_detalle
 
 		RequerimientosMailer.rqm_rechazado_por_sector(self, motivo).deliver
-
 	end
 
 	def solicitar_aprobacion_sector!

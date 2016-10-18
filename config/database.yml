@@ -1,7 +1,7 @@
 development:
   adapter:  postgresql
   encoding: unicode
-  database: perseus-cnsdplujan-dev
+  database: perseus-dev
   host: localhost
   pool: 5
   username: postgres
@@ -10,7 +10,7 @@ development:
 test:
   adapter:  postgresql
   encoding: unicode
-  database: perseus-cnsdplujan-test
+  database: perseus-test
   host: localhost
   pool: 5
   username: postgres
@@ -19,7 +19,7 @@ test:
 production:
   adapter:  postgresql
   encoding: unicode
-  database: perseus-cnsdplujan
+  database: perseus
   host: localhost
   pool: 5
   username: postgres

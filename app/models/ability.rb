@@ -1,6 +1,6 @@
 class Ability
 	include	CanCan::Ability
-  
+
 	def initialize(usuario)
 #		can :read, :all
 #		cannot :write, :all
@@ -8,6 +8,10 @@ class Ability
     return false if usuario.nil?
 
 		@compras ||= Sector.compras
+
+    if usuario.master?
+      can :manage, [Sector, Rubro, Empresa, Proveedor, Moneda, CondicionPago, Usuario, Sector]
+    end
 
 		if usuario.admin?
 			can :manage, [Sector, Rubro, Empresa, Proveedor, Moneda, CondicionPago, Usuario]
@@ -109,14 +113,12 @@ class Ability
       rqm.estado.in? estados
     end
 
-
-
 		#	El usuario que no es administrador puede modificar solos sus datos
 
 		can [:edit, :update, :show], Usuario, :identificador => usuario.identificador
 
 		# Solo los administradores puede modificar su rol o sector, o el de otros usuarios
-		can :change_rol_and_sector, Usuario, :admin? => true
+		can :change_rol_and_sector, Usuario, (usuario.admin? || usurio.master?)
 
     can :destroy, Requerimiento do |rqm|
       rqm.estado == Estado::INICIO and (usuario.admin? or rqm.solicitante == usuario )
