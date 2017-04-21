@@ -21,6 +21,7 @@
         <th title="ordenar por rubro"><%= sort_link @search, :rubro, 'Rubro' %></th>
         <th title="ordenar por estado"><%= sort_link @search, :estado, 'Estado' %></th>
         <th>Proveedor</th>
+        <th title="ordenar por fecha"><%= sort_link @search, :updated_at, 'Fecha Ac' %></th>
         <th></th>
 			</tr>
 		</thead>
@@ -37,6 +38,7 @@
           <%# estado manejado en el helper de requerimientos %>
           <td class="estado"><%= estado(requerimiento) %></td>
           <td class="proveedor"><%= requerimiento.proveedores.join(" | ") %></td>
+          <td class="fecha"><%= l requerimiento.updated_at, :format => :short %></td>
           <td class="actions">
             <%= link_to 'Ver', requerimiento %>
             <% if can? :edit, requerimiento %>
