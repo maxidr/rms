@@ -22,7 +22,8 @@
         <th title="ordenar por estado"><%= sort_link @search, :estado, 'Estado' %></th>
         <th>Proveedor</th>
         <!-- <th title="ordenar por fecha"><%#= sort_link @search, :updated_at, 'Fecha Ac' %></th> -->
-        <th title="ordenar por fecha"><%= sort_link(@search, :updated_at, ['updated_at', 'start asc'], 'Fecha') %></th>
+
+        <th title="ordenar por fecha"><%= sort_link @search, :updated_at, "Fecha Ac", :default_order => :desc %></th>
         <th></th>
 			</tr>
 		</thead>
