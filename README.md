@@ -22,7 +22,7 @@ Crear y poblar BBDD:
 Los depliegues se realizan en dos ambientes: staging y production.  Se require desplegar primero en staging y luego en production.  Al desplegar en staging automáticamente se incrementa la versión del proyecto.  Para desplegar en production se requiere tener una version ya generada (realizada por el despliegue en staging).
 
 ### Despliegue a staging
-    
+
     rake deploy:staging
 
 Esto genera una nueva versión y crea un tag (en git) para contenerlo.  Cuando se utiliza este comando, automáticamente incrementa el número de versión (la sección de revisión, ver [semantic versioning](http://semver.org/)).  Luego de ello, la tarea, despliega el proyecto en heroku usando la rama.
@@ -42,7 +42,7 @@ Para listar la información de los ambientes que maneja la tarea rake puede ejec
 
 
 
--------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
 
 Fugue icons from http://p.yusukekamiyamane.com/
 
