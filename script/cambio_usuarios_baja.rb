@@ -9,6 +9,6 @@ Requerimiento.all.each do |item|
 end
 
 Requerimiento.where(:solicitante_id => 39).where('estado < 5').each do |item|
-  item.estado = 10
+  item.estado = Estado::FINALIZADO
   item.save
 end
