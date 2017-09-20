@@ -7,8 +7,8 @@ class RequerimientosController < ApplicationController
   respond_to :json, :only => [:show]
   respond_to :xls, :only => [:index]
 
-	#before_filter :authenticate_usuario!
-  before_filter :login_required, :except => [:show]
+	before_filter :authenticate_usuario!, :except => [:show]
+  # before_filter :login_required, :except => [:show]
   # load_resource
 	# IMPROVE: Utilizar el método de cancan load_and_authorize_resource (https://github.com/ryanb/cancan/wiki/authorizing-controller-actions)
 	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion, :check_state, :show, :update, :aprobar, :motivo_rechazo, :rechazar, :solicitar_aprobacion_compras, :motivo_rechazo_compras, :rechazar_por_compras, :recepcionar, :verificar_entrega, :finalizar, :motivo_rechazo_entrega, :rechazar_entrega, :cancelar_por_compras, :cancelar_compra, :motivo_cancelar_compra]
