@@ -256,7 +256,8 @@ class RequerimientosController < ApplicationController
       format.json do
         render :json => {cabecera: @requerimiento,
                          materiales: @requerimiento.materiales,
-                         presupuesto: @requerimiento.presupuestos.aprobado}
+                         presupuesto: @requerimiento.presupuestos.aprobado,
+                         presupuesto_detalle: @requerimiento.presupuesto.aprobado.desgloses}
       end
     end
   end
