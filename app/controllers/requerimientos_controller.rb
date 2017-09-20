@@ -6,7 +6,8 @@ class RequerimientosController < ApplicationController
 	respond_to :pdf, :only => [:show]
   respond_to :xls, :only => [:index]
 
-	before_filter :authenticate_usuario!
+	# before_filter :authenticate_usuario!
+  load_resource
 	# IMPROVE: Utilizar el método de cancan load_and_authorize_resource (https://github.com/ryanb/cancan/wiki/authorizing-controller-actions)
 	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion, :check_state, :show, :update, :aprobar, :motivo_rechazo, :rechazar, :solicitar_aprobacion_compras, :motivo_rechazo_compras, :rechazar_por_compras, :recepcionar, :verificar_entrega, :finalizar, :motivo_rechazo_entrega, :rechazar_entrega, :cancelar_por_compras, :cancelar_compra, :motivo_cancelar_compra]
 	before_filter :check_state, :only => [:edit, :update]
@@ -239,7 +240,6 @@ class RequerimientosController < ApplicationController
   end
 
   def show
-
    	respond_to do |format|
       format.html
       format.pdf do
@@ -250,6 +250,9 @@ class RequerimientosController < ApplicationController
                  :footer => {
                     :right => "Reporte generado el #{l DateTime.current}"
                  }
+      end
+      format.json do
+        render :json => {cabecera: @requerimiento, materiales: @requerimiento.materiales}
       end
     end
   end
@@ -304,8 +307,6 @@ class RequerimientosController < ApplicationController
       end
     end
   end
-
-
 
   # DELETE /requerimientos/1
   # DELETE /requerimientos/1.xml
