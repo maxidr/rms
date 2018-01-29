@@ -1,9 +1,11 @@
 <%= semantic_form_for(@requerimiento) do |f| %>
   <%= f.inputs do %>
-    <%= f.input :empresa, :collection => Empresa.enabled %>
-    <%= f.input :sector, :collection => Sector.enabled %>
-    <%= f.input :rubro, :collection => Rubro.enabled %>
-    <%= f.input :consumo,:collection => Requerimiento::FRECUENCIAS_CONSUMO %>
+    <%= f.input :empresa, :collection => Empresa.enabled, :label => I18n.t('activerecord.attributes.requerimiento.empresa_id') %>
+    <%= f.input :sector, :collection => Sector.enabled, :label => I18n.t('activerecord.attributes.requerimiento.sector_id') %>
+    <%= f.input :rubro, :collection => Rubro.enabled, :label => I18n.t('activerecord.attributes.requerimiento.rubro_id') %>
+    <%= f.input :consumo, :collection => Requerimiento::FRECUENCIAS_CONSUMO, :label => I18n.t('activerecord.attributes.requerimiento.consumo') %>
+    <%= f.input :descripcion, :label => I18n.t('activerecord.attributes.requerimiento.descripcion') %>
+
   <% end %>
   <%= f.buttons do %>
     <% f.commit_button "Continuar",:button_html => { :disable_with => 'Procesando...' } %>

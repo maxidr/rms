@@ -1,0 +1,12 @@
+'es-AR':
+  activerecord:
+    models:
+      requerimiento: Requerimiento
+    attributes:
+      requerimiento:
+        id: Id
+        empresa_id: Empresa
+        sector_id: Centro de costo
+        rubro_id: Rubro
+        consumo: Consumo
+        descripcion: Descripcion

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160817181319) do
+ActiveRecord::Schema.define(:version => 20180129184715) do
 
   create_table "caracteristicas", :force => true do |t|
     t.string   "nombre"
@@ -188,6 +188,7 @@ ActiveRecord::Schema.define(:version => 20160817181319) do
     t.datetime "updated_at"
     t.integer  "estado",         :default => 0, :null => false
     t.string   "consumo"
+    t.text     "descripcion"
   end
 
   create_table "rubros", :force => true do |t|
@@ -218,6 +219,7 @@ ActiveRecord::Schema.define(:version => 20160817181319) do
     t.datetime "updated_at"
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "password_salt",                       :default => "", :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
@@ -227,6 +229,7 @@ ActiveRecord::Schema.define(:version => 20160817181319) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.integer  "sector_id"
+    t.integer  "roles_mask"
     t.integer  "rol_id",                              :default => 0,  :null => false
   end
 

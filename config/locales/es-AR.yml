@@ -178,3 +178,11 @@
       contains: "%{attribute}"
   will_paginate:
     page_gap: "..."
+  menu:
+    sectores: "Centro de costo"
+    rubros: "Rubros"
+    empresas: "Empresas"
+    proveedores: "Proveedores"
+    monedas: "Monedas"
+    condiciones_pagos: "Condiciones de pagos"
+
