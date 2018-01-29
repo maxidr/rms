@@ -3,7 +3,9 @@
     <%= f.input :proveedor_id, :as => :select, :collection => Proveedor.enabled.sorted, :label_method => :razon_social %>
     <%= f.input :moneda, :label_method => :simbolo, :selected => Moneda.find_by_simbolo('$').id, :collection => Moneda.enabled %>
     <%= f.input :condicion_pago, :label_method => :nombre, :collection => CondicionPago.enabled %>
-    <%= f.input :fecha_entrega, :required => true, :label => 'Fecha de entrega', :as => :date, :hint => "Indicar fecha pautada con el proveedor" %>
+
+    <%= f.input :fecha_entrega, as: :string, input_html: { class: 'datepicker' }, :required => true, :label => 'Fecha de entrega', :hint => "Indicar fecha pautada con el proveedor" %>
+
     <%= f.input :detalle, :as => :text %>
     <%= f.inputs :for => :desgloses, :class => :desglose do |desglose| %>
       <li class="title">
