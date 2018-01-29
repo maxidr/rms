@@ -30,6 +30,14 @@
         <dt>Fecha de carga</dt>
         <dd><%= l @requerimiento.created_at %></dd>
       </dl>
+      <dl>
+        <dt>Fecha requerido</dt>
+        <dd><b><%= l @requerimiento.fecha_requerido %></b></dd>
+      </dl>
+      <dl>
+        <dt>Descripcion</dt>
+        <dd><%= @requerimiento.descripcion %></dd>
+      </dl>
       <% if @requerimiento.estado.rechazo? && @requerimiento %>
         <dl>
           <dt>Motivo del rechazo</dt>
@@ -39,19 +47,19 @@
     </div>
     <div class="right">
       <dl>
-        <dt>Empresa</dt>
+        <dt><%= "#{I18n.t('activerecord.attributes.requerimiento.empresa_id')}" %></dt>
         <dd><%= @requerimiento.empresa %></dd>
       </dl>
       <dl>
-        <dt>Sector</dt>
+        <dt><%= "#{I18n.t('activerecord.attributes.requerimiento.sector_id')}" %></dt>
         <dd><%= @requerimiento.sector %></dd>
       </dl>
       <dl>
-        <dt>Rubro</dt>
+        <dt><%= "#{I18n.t('activerecord.attributes.requerimiento.rubro_id')}" %></dt>
         <dd><%= @requerimiento.rubro %></dd>
       </dl>
       <dl>
-        <dt>Consumo</dt>
+        <dt><%= "#{I18n.t('activerecord.attributes.requerimiento.consumo')}" %></dt>
         <dd><%= @requerimiento.consumo %></dd>
       </dl>
     </div>

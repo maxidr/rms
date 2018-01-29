@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180129184715) do
+ActiveRecord::Schema.define(:version => 20180129190534) do
 
   create_table "caracteristicas", :force => true do |t|
     t.string   "nombre"
@@ -186,9 +186,10 @@ ActiveRecord::Schema.define(:version => 20180129184715) do
     t.integer  "rubro_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "estado",         :default => 0, :null => false
+    t.integer  "estado",          :default => 0, :null => false
     t.string   "consumo"
     t.text     "descripcion"
+    t.date     "fecha_requerido"
   end
 
   create_table "rubros", :force => true do |t|

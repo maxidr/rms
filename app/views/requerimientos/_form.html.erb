@@ -5,7 +5,7 @@
     <%= f.input :rubro, :collection => Rubro.enabled, :label => I18n.t('activerecord.attributes.requerimiento.rubro_id') %>
     <%= f.input :consumo, :collection => Requerimiento::FRECUENCIAS_CONSUMO, :label => I18n.t('activerecord.attributes.requerimiento.consumo') %>
     <%= f.input :descripcion, :label => I18n.t('activerecord.attributes.requerimiento.descripcion') %>
-
+    <%= f.input :fecha_requerido, :required => true, :label => I18n.t('activerecord.attributes.requerimiento.fecha_requerido'), :as => :date, :hint => "Indicar fecha requerida" %>
   <% end %>
   <%= f.buttons do %>
     <% f.commit_button "Continuar",:button_html => { :disable_with => 'Procesando...' } %>
