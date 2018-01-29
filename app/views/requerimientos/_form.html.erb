@@ -4,7 +4,7 @@
     <%= f.input :sector, :collection => Sector.enabled, :label => I18n.t('activerecord.attributes.requerimiento.sector_id') %>
     <%= f.input :rubro, :collection => Rubro.enabled, :label => I18n.t('activerecord.attributes.requerimiento.rubro_id') %>
     <%= f.input :consumo, :collection => Requerimiento::FRECUENCIAS_CONSUMO, :label => I18n.t('activerecord.attributes.requerimiento.consumo') %>
-    <%= f.input :descripcion, :label => I18n.t('activerecord.attributes.requerimiento.descripcion') %>
+    <%= f.input :descripcion, :label => I18n.t('activerecord.attributes.requerimiento.descripcion'), :required => true %>
     <%= f.input :fecha_requerido, as: :string, input_html: { class: 'datepicker' }, :required => true %>
   <% end %>
   <%= f.buttons do %>
