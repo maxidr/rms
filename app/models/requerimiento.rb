@@ -24,6 +24,7 @@ class Requerimiento < ActiveRecord::Base
   belongs_to :sector
   belongs_to :rubro
   has_many :notificaciones
+  has_many :attachments, as: :attachable, dependent: :destroy
 
   has_many :materiales
   has_many :presupuestos do

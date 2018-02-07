@@ -1,0 +1,20 @@
+<div class="field-documentos">
+  <h3>Documentos adjuntos</h3>
+  <table class="table">
+    <tr>
+      <th><%= f.label "Detalle" %></th>
+      <th><%= f.label "Fecha Recepcion" %></th>
+      <th><%= f.label "Nombre Adjunto" %></th>
+      <th><%= f.label "Cambiar Adjunto" %></th>
+      <th>&nbsp;</th>
+    </tr>
+    <tbody id="nested-holder4">
+      <%= f.fields_for :attachments do |a| %>
+        <%= render 'attachment_fields', f: a %>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="links">
+    <%= link_to_add_association 'Documento adjunto', f, :attachments,'data-association-insertion-position' => :append, 'data-association-insertion-node' => '#nested-holder4' %>
+  </div>
+</div>

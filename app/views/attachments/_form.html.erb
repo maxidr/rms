@@ -1,0 +1,9 @@
+<%= semantic_form_for [@requerimiento, @attachment], :html => { :multipart => true } do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :name %>
+    <%= f.input :reception_date, as: :string, input_html: { class: 'datepicker' }, label: false %>
+    <%= content_tag(:span, f.object.attachment_file_name) %>
+    <%= f.file_field :attachment %>
+  <% end %>
+  <%= f.buttons %>
+<% end %>

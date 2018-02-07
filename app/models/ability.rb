@@ -1,6 +1,6 @@
 class Ability
 	include	CanCan::Ability
-  
+
 	def initialize(usuario)
 #		can :read, :all
 #		cannot :write, :all
@@ -14,10 +14,10 @@ class Ability
 			can :enable, Sector
 		end
 
-		can [:edit, :add_material], Requerimiento do |rqm|
+		can [:edit, :add_material, :add_attachment], Requerimiento do |rqm|
       # El que puede agregar materiales es el solicitante, cuando:
       # el requerimiento está en estado iniciado o rechazado por el sector
-      # ó cuando está en estado aprobado por el sector y el solicitante es responsable de dicho sector
+      # o cuando está en estado aprobado por el sector y el solicitante es responsable de dicho sector
       rqm.solicitante == usuario &&
         ( iniciado_or_rechazado(rqm) ||
          (rqm.estado == Estado::APROBADO_X_SECTOR && rqm.sector.responsables.include?(rqm.solicitante) ))
@@ -36,7 +36,6 @@ class Ability
     can :destroy, Material do |material|
       can? :edit, material.requerimiento
     end
-
 
 		can [:add_caracteristica, :edit_caracteristica, :edit_only_details], Material do |m|
       #can?(:add_material, m.requerimiento)

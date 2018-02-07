@@ -31,11 +31,13 @@ class Presupuesto < ActiveRecord::Base
   belongs_to :moneda
   belongs_to :condicion_pago
   has_many :desgloses
+  has_many :attachments, as: :attachable, dependent: :destroy
+
   # Las verificaciones son las que indican que los encargados aprobaron o rechazaron el presupuesto.
   # Cuando un responsable verifica un presupuesto dentro de la lista que contiene el requerimiento, dicho
   # presupuesto pasa a estar "seleccionado".
-  has_many :verificaciones, :class_name => 'VerificacionEncargadoCompras', 
-    :after_add => :add_presupuesto_as_selected do
+  has_many :verificaciones, class_name: 'VerificacionEncargadoCompras',
+           after_add: :add_presupuesto_as_selected do
 
     def verificadores
       map { |v| v.verificador }
@@ -51,21 +53,24 @@ class Presupuesto < ActiveRecord::Base
 
   accepts_nested_attributes_for :desgloses
 
-  
+  attr_accessible :proveedor_id, :moneda_id, :monto, :condicion_pago_id,
+                  :requerimiento_id, :detalle,
+                  :aprobado, :seleccionado
+
   def monto_total
     desgloses.inject(0) { |sum, d| sum += d.monto_total }
   end
   memoize :monto_total
-  
+
   def con_iva?
     desgloses.any? { |d| d.iva > 0 }
-  end  
+  end
   memoize :con_iva?
 
   # ---------------------------------------------------------------------------------------------------------
-  
+
   private
-  
+
   def add_presupuesto_as_selected(verificacion)
     self.update_attribute(:seleccionado, true)
   end

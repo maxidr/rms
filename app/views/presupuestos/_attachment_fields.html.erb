@@ -1,0 +1,17 @@
+<tr class="nested-fields">
+  <td>
+    <%= f.text_field :name %>
+  </td>
+  <td>
+    <%= f.input :reception_date, as: :string, input_html: { class: 'datepicker' }, label: false %>
+  </td>
+  <td>
+    <%= content_tag(:span, f.object.attachment_file_name) %>
+  </td>
+  <td>
+    <%= f.file_field :attachment %>
+  </td>
+  <td>
+    <%= link_to_remove_association("" , f,html_options = { class: 'fa fa-trash-o fa-lg' }) %>
+  </td>
+</tr>

@@ -1,0 +1,24 @@
+- if can? :add_attachment, @requerimiento
+  .contextual
+    = link_to 'Agregar adjunto', new_requerimiento_attachment_path(@requerimiento)
+
+h2 Adjuntos
+
+- if @requerimiento.attachments.empty?
+  p Aun no posee adjuntos cargados
+- else
+  table
+    thead
+      tr
+        th Nombre
+        th
+    tbody
+      - @requerimiento.attachments.each do |attachment|
+        tr
+          td = attachment.name
+          td.actions
+            = link_to 'Ver', attachment_path(attachment)
+            = link_to 'Editar', edit_attachment_path(attachment) if can? :edit, attachment
+            = link_to 'Eliminar', attachment, :confirm => 'Esta seguro?', :method => :delete if can? :destroy, attachment
+
+
