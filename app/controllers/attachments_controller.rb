@@ -34,4 +34,13 @@ class AttachmentsController < ApplicationController
     end
   end
 
+  def destroy
+    @attachment = Attachment.find(params[:id])
+    @attachment.delete
+    respond_to do |format|
+      format.html { redirect_to(requerimiento_url(@attachment.attachable_id)) }
+      format.xml  { head :ok }
+    end
+  end
+
 end

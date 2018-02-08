@@ -72,8 +72,6 @@
   </div>
   <%= render "materiales.html.erb" %>
 
-  <%= render "attachments.html.erb" %>
-
   <% if (@requerimiento.estado >= Estado::APROBADO_X_COMPRAS && @requerimiento.estado != Estado::RECHAZO_X_COMPRAS) || (@requerimiento.estado == Estado::PENDIENTE_APROBACION_COMPRAS && @requerimiento.presupuestos.seleccionado) %>
 	  <%= render "presupuestos/aprobado.html.erb", :presupuesto => @requerimiento.presupuestos.aprobado ? @requerimiento.presupuestos.aprobado : @requerimiento.presupuestos.seleccionado %>
 
@@ -94,6 +92,8 @@
     <% end %>
 
    <% end %>
+
+   <%= render "attachments.html.erb" %>
 
   <div id="rqm_actions">
 	  <% if can? :solicitar_aprobacion, @requerimiento %>

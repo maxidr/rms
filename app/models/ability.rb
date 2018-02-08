@@ -12,6 +12,7 @@ class Ability
 		if usuario.admin?
 			can :manage, [Sector, Rubro, Empresa, Proveedor, Moneda, CondicionPago, Usuario]
 			can :enable, Sector
+      can [:read, :destroy], Attachment
 		end
 
 		can [:edit, :add_material, :add_attachment], Requerimiento do |rqm|
