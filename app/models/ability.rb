@@ -16,6 +16,7 @@ class Ability
 		end
 
     can :add_attachment, Requerimiento
+    can :add_attachment, Presupuesto
 
 		can [:edit, :add_material, :add_attachment], Requerimiento do |rqm|
       # El que puede agregar materiales es el solicitante, cuando:

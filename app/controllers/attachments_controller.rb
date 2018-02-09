@@ -6,22 +6,31 @@ class AttachmentsController < ApplicationController
   # GET /materiales/new.xml
   def new
     logger.debug("requerimiento #{params[:requerimiento_id]}")
-    @requerimiento = Requerimiento.find params[:requerimiento_id].to_i
+    @requerimiento = Requerimiento.find params[:requerimiento_id].to_i unless params[:requerimiento_id].blank?
+    @requerimiento = Presupuesto.find params[:presupuesto_id].to_i unless params[:presupuesto_id].blank?
+
+    #@requerimiento = @presupuesto.requerimiento unless @presupuesto.blank?
+
     @attachment = Attachment.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @attachment }
+      format.xml  { render xml: @attachment }
     end
   end
 
   def create
-    @requerimiento = Requerimiento.find params[:requerimiento_id].to_i
+    @requerimiento = Requerimiento.find params[:requerimiento_id].to_i unless params[:requerimiento_id].blank?
+    @requerimiento = Presupuesto.find params[:presupuesto_id].to_i unless params[:presupuesto_id].blank?
+
     @attachment = @requerimiento.attachments.build(params[:attachment])
     if @attachment.save
-      respond_with @requerimieto, :status => :created, :location => requerimiento_url(@requerimiento)
+      #respond_with @requerimieto, status: :created, :location => requerimiento_url(@requerimiento)
+      respond_to do |format|
+        format.html { render :show }
+      end
     else
-      respond_with @attachment.errors, :status => :unprocessable_entity do |format|
+      respond_with @attachment.errors, status: :unprocessable_entity do |format|
         format.html{ render :new }
       end
     end
@@ -42,5 +51,4 @@ class AttachmentsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-
 end
