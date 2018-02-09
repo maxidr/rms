@@ -12,8 +12,10 @@ class Ability
 		if usuario.admin?
 			can :manage, [Sector, Rubro, Empresa, Proveedor, Moneda, CondicionPago, Usuario]
 			can :enable, Sector
-      can [:read, :destroy], Attachment
+      can [:read, :destroy, :add_attachment], Attachment
 		end
+
+    can :add_attachment, Requerimiento
 
 		can [:edit, :add_material, :add_attachment], Requerimiento do |rqm|
       # El que puede agregar materiales es el solicitante, cuando:
