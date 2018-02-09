@@ -30,10 +30,11 @@ Rms::Application.routes.draw do
   resources :requerimientos do
 		# Rutea materiales con referencia a requerimientos para new y para create (post)
 		# requerimientos/3/materiales/new
+    #
     resources :materiales, :only => [:new, :create, :index]
     resources :presupuestos, :only => [:new, :create]
     resources :notificaciones, :only => [:new, :create, :index]
-    resources :attachments, :only => [:new, :create]
+    resources :attachments, :only => [:show, :new, :create]
     member do
     	put 'solicitar_aprobacion'
     	put 'rechazar'
@@ -56,6 +57,7 @@ Rms::Application.routes.draw do
   end
 
   resources :presupuestos, :only => [:destroy, :update, :edit, :show] do
+    resources :attachments, :only => [:new, :create]
   	member do
   		put 'aprobar'
   	end

@@ -44,7 +44,7 @@
   </dd>
 </dl>
 
-<% if @attachment.attachment_content_type.include?('image') %>
+<% if @attachment.attachment_content_type.include?('image') || @attachment.attachment_content_type.include?('message') %>
 <dl>
   <dt>
     Preview

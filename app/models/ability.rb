@@ -24,9 +24,8 @@ class Ability
          (rqm.estado == Estado::APROBADO_X_SECTOR && rqm.sector.responsables.include?(rqm.solicitante) ))
 		end
 
-    can [:edit, :add_attachment], Presupuesto do |pres|
-
-    end
+    #can [:edit, :add_attachment], Presupuesto do |pres|
+    #end
 
     #can :edit_only_details, Material do |material|
     #  iniciado_or_rechazado(material.requerimiento)
