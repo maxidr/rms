@@ -32,7 +32,7 @@
       </dl>
       <dl>
         <dt>Fecha requerido</dt>
-        <dd><b><%= l @requerimiento.fecha_requerido %></b></dd>
+        <dd><b><%= "#{@requerimiento.fecha_requerido}" unless @requerimiento.fecha_requerido.blank? %></b></dd>
       </dl>
       <% if @requerimiento.estado.rechazo? && @requerimiento %>
         <dl>
