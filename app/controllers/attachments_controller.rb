@@ -19,7 +19,7 @@ class AttachmentsController < ApplicationController
     @requerimiento = Requerimiento.find params[:requerimiento_id].to_i
     @attachment = @requerimiento.attachments.build(params[:attachment])
     if @attachment.save
-      respond_with @attachment, :status => :created, :location => new_requerimiento_attachment_url(@requerimiento)
+      respond_with @requerimieto, :status => :created, :location => requerimiento_url(@requerimiento)
     else
       respond_with @attachment.errors, :status => :unprocessable_entity do |format|
         format.html{ render :new }

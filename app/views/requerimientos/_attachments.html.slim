@@ -11,11 +11,13 @@ h2 Adjuntos
     thead
       tr
         th Nombre
+        th Fecha subida
         th
     tbody
       - @requerimiento.attachments.each do |attachment|
         tr
           td = attachment.name
+          td = attachment.created_at
           td.actions
             = link_to 'Ver', attachment_path(attachment)
             = link_to 'Editar', edit_attachment_path(attachment) if can? :edit, attachment
