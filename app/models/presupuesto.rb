@@ -53,9 +53,9 @@ class Presupuesto < ActiveRecord::Base
 
   accepts_nested_attributes_for :desgloses
 
-  attr_accessible :proveedor_id, :moneda_id, :monto, :condicion_pago_id,
-                  :requerimiento_id, :detalle,
-                  :aprobado, :seleccionado
+  # attr_accessible :proveedor_id, :moneda_id, :monto, :condicion_pago_id,
+  #                 :requerimiento_id, :detalle,
+  #                 :aprobado, :seleccionado
 
   def monto_total
     desgloses.inject(0) { |sum, d| sum += d.monto_total }
@@ -67,14 +67,11 @@ class Presupuesto < ActiveRecord::Base
   end
   memoize :con_iva?
 
-  # ---------------------------------------------------------------------------------------------------------
+  # ------------------------------------------------------
 
   private
 
   def add_presupuesto_as_selected(verificacion)
     self.update_attribute(:seleccionado, true)
   end
-
-
 end
-

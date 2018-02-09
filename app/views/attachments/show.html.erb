@@ -1,65 +1,65 @@
 <h3>Documentos adjuntos <%= link_to @attachment.attachable_id.to_s, requerimiento_path(@attachment.attachable_id) %></h3>
-  <dl>
-    <dt>
-      Nombre
-    </dt>
-    <dd>
-      <%= @attachment.name %>
-    </dd>
-  </dl>
+<dl>
+  <dt>
+    Nombre
+  </dt>
+  <dd>
+    <%= @attachment.name %>
+  </dd>
+</dl>
 
-  <dl>
-    <dt>
-      Fecha de recepcion
-    </dt>
-    <dd>
-      <%= @attachment.reception_date %>
-    </dd>
-  </dl>
+<dl>
+  <dt>
+    Fecha de recepcion
+  </dt>
+  <dd>
+    <%= @attachment.reception_date %>
+  </dd>
+</dl>
 
-  <dl>
-    <dt>
-      Nombre del adjunto
-    </dt>
-    <dd>
-      <%= @attachment.attachment_file_name.to_s %>
-    </dd>
-  </dl>
+<dl>
+  <dt>
+    Nombre del adjunto
+  </dt>
+  <dd>
+    <%= @attachment.attachment_file_name.to_s %>
+  </dd>
+</dl>
 
-  <dl>
-    <dt>
-      Tamaño
-    </dt>
-    <dd>
-      <%= @attachment.attachment_file_size %> bytes
-    </dd>
-  </dl>
+<dl>
+  <dt>
+    Tamaño
+  </dt>
+  <dd>
+    <%= @attachment.attachment_file_size %> bytes
+  </dd>
+</dl>
 
-  <dl>
-    <dt>
-      Tipo
-    </dt>
-    <dd>
-      <%= @attachment.attachment_content_type %>
-    </dd>
-  </dl>
+<dl>
+  <dt>
+    Tipo
+  </dt>
+  <dd>
+    <%= @attachment.attachment_content_type %>
+  </dd>
+</dl>
 
-  <% if @attachment.attachment_content_type.include?('image') %>
-  <dl>
-    <dt>
-      Preview
-    </dt>
-    <dd>
-      <%= image_tag @attachment.attachment.url(:original) %>
-    </dd>
-  </dl>
-  <% else %>
-  <dl>
-    <dt>
-      Preview
-    </dt>
-    <dd><a href="<%= @attachment.attachment.url %>" target="_blank" >ver </a></dd> <iframe src="https://docs.google.com/viewer?url=<%= @attachment.attachment.url(:original) %>&embedded=true" width='100%' height='450'> <p>Su navegador no soporta iframes.</p></iframe>
-  </dl>
-  <% end %>
-  <%= link_to 'Descarga', @attachment.attachment.url(:original, false), :class => "fa fa-cloud-download fa-lg" %>
-</table>
+<% if @attachment.attachment_content_type.include?('image') %>
+<dl>
+  <dt>
+    Preview
+  </dt>
+  <dd>
+    <%= image_tag @attachment.attachment.url(:original) %>
+  </dd>
+</dl>
+<% else %>
+<dl>
+  <dt>
+    Preview
+  </dt>
+  <dd><!--<a href="<%= @attachment.attachment.url %>" target="_blank" >ver </a>--></dd>
+  <iframe src="https://docs.google.com/viewer?url=<%= @attachment.attachment.url(:original) %>&embedded=true" width='100%' height='450'> <p>Su navegador no soporta iframes.</p></iframe>
+</dl>
+<% end %>
+<%= link_to 'Descarga', @attachment.attachment.url(:original, false), :class => "fa fa-cloud-download fa-lg" %>
