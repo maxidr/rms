@@ -24,6 +24,7 @@ class Requerimiento < ActiveRecord::Base
   belongs_to :sector
   belongs_to :rubro
   belongs_to :estado_pago, :class_name => "EstadoPago"
+  #belongs_to :pago, :class_name => 'Pagar'
 
   has_many :notificaciones
   has_many :attachments, as: :attachable, dependent: :destroy
@@ -106,6 +107,18 @@ class Requerimiento < ActiveRecord::Base
   scope :pendientes_de_aprobacion_compras, where(:estado => Estado::PENDIENTE_APROBACION_COMPRAS)
 
   # Methods ------------------------------------------------------------------------------------------------
+
+  def pago?
+    Pagar.where(:requerimiento_id => self.id).any?
+  end
+
+  def fecha_del_pago
+    if pago?
+      Pagar.where(:requerimiento_id => self.id).order(:fecha_pago).first.fecha_pago
+    else
+      ' '
+    end
+  end
 
   def entregado?
     entregado_at.blank? ? 'No' : 'Si'

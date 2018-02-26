@@ -42,7 +42,7 @@
           <td class="estado"><%= estado(requerimiento) %></td>
           <td class="proveedor"><%= requerimiento.proveedores.join(" | ") %></td>
           <td class="fecha"><%= l requerimiento.updated_at, :format => :short %></td>
-          <td class="estado"><%= "#{requerimiento.estado_pago}" %></td>
+          <td class="estado"><%= "#{requerimiento.estado_pago} #{requerimiento.fecha_del_pago}" %></td>
           <td class="entrega"><%= "#{requerimiento.entregado?}" %></td>
 
           <td class="actions">

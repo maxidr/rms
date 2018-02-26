@@ -112,7 +112,7 @@ class Ability
         Estado::ENTREGADO,
         Estado::FINALIZADO
       ]
-      rqm.estado.in? estados
+      rqm.estado.in? estados && !rqm.pago?
     end
 
 		#	El usuario que no es administrador puede modificar solos sus datos
