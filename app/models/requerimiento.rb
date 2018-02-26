@@ -23,6 +23,8 @@ class Requerimiento < ActiveRecord::Base
   belongs_to :empresa
   belongs_to :sector
   belongs_to :rubro
+  belongs_to :estado_pago, :class_name => "EstadoPago"
+
   has_many :notificaciones
   has_many :attachments, as: :attachable, dependent: :destroy
 
@@ -105,13 +107,20 @@ class Requerimiento < ActiveRecord::Base
 
   # Methods ------------------------------------------------------------------------------------------------
 
+  def entregado?
+    entregado_at.blank? ? 'No' : 'Si'
+  end
+
+  def entregado
+    self.update_attribute(:entregado_at, Time.now)
+  end
+
 	# Finalizar el requerimiento
 	# @param [Usuario] responsable del sector que genera la finalización del requerimiento
   def finalizar!(responsable)
   	con_detalle = DetalleFinalizacion.new(:responsable => responsable)
   	cambiar_estado_a Estado::FINALIZADO, con_detalle
   end
-
 
   def rechazar_entrega!(con_detalle)
   	return false unless con_detalle.valid?

@@ -1,7 +1,7 @@
 class EstadoPago < ActiveRecord::Base
 
     def enabled?
-      self.disabled_at.nil?
+      disabled_at.nil?
     end
 
     # Evita que el sector sea eliminado físicamente de la base.
@@ -9,4 +9,7 @@ class EstadoPago < ActiveRecord::Base
       self.update_attribute(:disabled_at, Time.now)
     end
 
+    def to_s
+      "#{nombre}"
+    end
 end

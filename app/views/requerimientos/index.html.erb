@@ -22,8 +22,9 @@
         <th title="ordenar por estado"><%= sort_link @search, :estado, 'Estado' %></th>
         <th>Proveedor</th>
         <!-- <th title="ordenar por fecha"><%#= sort_link @search, :updated_at, 'Fecha Ac' %></th> -->
-
         <th title="ordenar por fecha"><%= sort_link @search, :updated_at, "Fecha Ac", :default_order => :desc %></th>
+        <th title="ordenar por estado pago"><%= sort_link @search, :estado_pago, "Estado del pago", :default_order => :desc %></th>
+        <th title="ordenar por entrega"><%= sort_link @search, :entregado_at, "Estado de entrega", :default_order => :desc %></th>
         <th></th>
 			</tr>
 		</thead>
@@ -41,6 +42,9 @@
           <td class="estado"><%= estado(requerimiento) %></td>
           <td class="proveedor"><%= requerimiento.proveedores.join(" | ") %></td>
           <td class="fecha"><%= l requerimiento.updated_at, :format => :short %></td>
+          <td class="estado"><%= "#{requerimiento.estado_pago}" %></td>
+          <td class="entrega"><%= "#{requerimiento.entregado?}" %></td>
+
           <td class="actions">
             <%= link_to 'Ver', requerimiento %>
             <% if can? :edit, requerimiento %>
