@@ -1,0 +1,13 @@
+<%= link_to "Pagar", "#", id: 'comprar' %>
+<% content_for :javascript do %>
+  <%= javascript_include_tag "rqm_show" %>
+<% end %>
+<%= semantic_form_for @pagar.nil? ? Pagar.new(:fecha_pago => Date.today) : @pagar, :url => pagar_requerimiento_url, :html => {:method => :put} ,:id => 'pagar' do |form| %>
+  <%= form.inputs do %>
+    <%= form.input :fecha_pago, :required => true, :label => 'Fecha de pago', :as => :string, :hint => "Indicar fecha pago proveedor", :input_html => { :class => 'datepicker'} %>
+    <%= form.input :requerimiento_id, :as => :hidden, :input_html => { :value => @requerimiento.id } %>
+  <% end %>
+  <%= form.buttons do %>
+    <%= form.commit_button "Confirmar fecha" %>
+  <% end %>
+<% end %>

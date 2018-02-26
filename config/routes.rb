@@ -7,8 +7,13 @@ Rms::Application.routes.draw do
 
   get 'proveedores/poseidon', to: 'proveedores#get_by_poseidon'
 
-  resources :proveedores do
+  resources :estados_pagos do
+    member do
+      put 'enable'
+    end
+  end
 
+  resources :proveedores do
     member do
       put 'enable'
     end

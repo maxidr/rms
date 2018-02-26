@@ -1,0 +1,9 @@
+p#notice = notice
+
+p
+  strong Nombre:
+  = @estado_pago.nombre
+
+= link_to 'Edit', edit_estado_pago_path(@estado_pago)
+'|
+= link_to 'Back', estados_pagos_path

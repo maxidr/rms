@@ -1,0 +1,13 @@
+<%= link_to "Comprar", "#", id: 'comprar' %>
+<% content_for :javascript do %>
+  <%= javascript_include_tag "rqm_show" %>
+<% end %>
+<%= semantic_form_for @compra.nil? ? Compra.new(:fecha_probable_entrega => Date.today) : @compra, :url => comprar_requerimiento_url, :html => {:method => :put} ,:id => 'entrega' do |form| %>
+  <%= form.inputs do %>
+    <%= form.input :fecha_probable_entrega, :required => true, :label => 'Fecha aproximada de entrega', :as => :string, :hint => "Indicar fecha pautada con el proveedor",:input_html => { class: 'datepicker'}  %>
+    <%= form.input :requerimiento_id, :as => :hidden, :input_html => { :value => @requerimiento.id } %>
+  <% end %>
+  <%= form.buttons do %>
+    <%= form.commit_button "Confirmar fecha" %>
+  <% end %>
+<% end %>

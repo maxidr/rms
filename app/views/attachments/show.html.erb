@@ -1,47 +1,28 @@
-<h3>Documentos adjuntos <%= link_to @attachment.attachable_id.to_s, requerimiento_path(@attachment.attachable_id) %></h3>
+<h3>Documento adjunto</h3>
+<%= link_to "Volver al #{@attachment.attachable_type}, ID #{@attachment.attachable_id}", "/#{@attachment.attachable_type.downcase.pluralize}/#{@attachment.attachable_id}", :class => 'back_button'%>
 <dl>
-  <dt>
-    Nombre
-  </dt>
-  <dd>
-    <%= @attachment.name %>
-  </dd>
+  <dt>Nombre</dt>
+  <dd><%= @attachment.name %></dd>
 </dl>
 
 <dl>
-  <dt>
-    Fecha de recepcion
-  </dt>
-  <dd>
-    <%= @attachment.reception_date %>
-  </dd>
+  <dt>Fecha de recepcion</dt>
+  <dd><%= @attachment.reception_date %></dd>
 </dl>
 
 <dl>
-  <dt>
-    Nombre del adjunto
-  </dt>
-  <dd>
-    <%= @attachment.attachment_file_name.to_s %>
-  </dd>
+  <dt>Nombre del adjunto</dt>
+  <dd><%= @attachment.attachment_file_name.to_s %></dd>
 </dl>
 
 <dl>
-  <dt>
-    Tamaño
-  </dt>
-  <dd>
-    <%= @attachment.attachment_file_size %> bytes
-  </dd>
+  <dt>Tamaño</dt>
+  <dd><%= @attachment.attachment_file_size %> bytes</dd>
 </dl>
 
 <dl>
-  <dt>
-    Tipo
-  </dt>
-  <dd>
-    <%= @attachment.attachment_content_type %>
-  </dd>
+  <dt>Tipo</dt>
+  <dd><%= @attachment.attachment_content_type %></dd>
 </dl>
 
 <% if @attachment.attachment_content_type.include?('image') || @attachment.attachment_content_type.include?('message') %>

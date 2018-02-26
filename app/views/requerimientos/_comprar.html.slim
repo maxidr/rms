@@ -4,9 +4,9 @@ a#comprar href="#" Comprar
 
 = semantic_form_for @compra.nil? ? Compra.new(:fecha_probable_entrega => Date.today) : @compra, :url => comprar_requerimiento_url, :html => {:method => :put} ,:id => 'entrega' do |form|
 	= form.inputs do
+    = form.input :fecha_probable_entrega, :as => :date
 		= form.input :fecha_probable_entrega, :required => true, :label => 'Fecha aproximada de entrega', :as => :date, :hint => "Indicar fecha pautada con el proveedor"
 		= form.input :requerimiento_id, :as => :hidden, :input_html => { :value => @requerimiento.id }
 
 	= form.buttons do
 		= form.commit_button "Confirmar fecha"
-

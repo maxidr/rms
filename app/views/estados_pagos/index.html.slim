@@ -1,0 +1,20 @@
+h1 Listing estados_pagos
+
+table
+  tr
+    th Nombre
+    th
+    th
+    th
+
+  - @estados_pagos.each do |estado_pago|
+    tr
+      td = estado_pago.nombre
+      td = link_to 'Ver', estado_pago
+      td = link_to 'Editar', edit_estado_pago_path(estado_pago)
+      - if estado_pago.enabled?
+        td = link_to '', estado_pago, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Estado pago', new_estado_pago_path

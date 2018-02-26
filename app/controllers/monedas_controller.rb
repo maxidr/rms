@@ -67,7 +67,7 @@ class MonedasController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   def enable
     @moneda.disabled_at = nil
     if @moneda.save
@@ -78,4 +78,3 @@ class MonedasController < ApplicationController
     redirect_to monedas_path
   end
 end
-

@@ -1,0 +1,12 @@
+= form_for @estado_pago do |f|
+  - if @estado_pago.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@estado_pago.errors.count, "error")} prohibited this estado_pago from being saved:"
+      ul
+        - @estado_pago.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :nombre
+    = f.text_field :nombre
+  .actions = f.submit 'Save'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180207154851) do
+ActiveRecord::Schema.define(:version => 20180225212630) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "attachable_id"
@@ -132,6 +132,13 @@ ActiveRecord::Schema.define(:version => 20180207154851) do
     t.datetime "created_at"
   end
 
+  create_table "estados_pagos", :force => true do |t|
+    t.string   "nombre"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "disabled_at"
+  end
+
   create_table "materiales", :force => true do |t|
     t.string   "nombre"
     t.string   "cantidad"
@@ -205,6 +212,7 @@ ActiveRecord::Schema.define(:version => 20180207154851) do
     t.string   "consumo"
     t.text     "descripcion"
     t.date     "fecha_requerido"
+    t.integer  "estado_pago_id"
   end
 
   create_table "rubros", :force => true do |t|

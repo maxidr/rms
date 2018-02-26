@@ -1,9 +1,15 @@
 source 'http://rubygems.org'
 ruby '1.9.3'
+#ruby '2.0.0'
+#ruby '2.1.10'
 
-gem 'rails', '3.0.20'
+gem 'rails', '~> 3.0.20'
 
 gem 'devise'
+
+gem 'nokogiri', '1.6.1'
+gem 'public_suffix', '1.4.6'
+gem 'ffi', '1.9.10'
 
 gem 'cancan'
 gem 'formtastic', '~> 2.0.0'
@@ -29,14 +35,14 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
-  gem 'sqlite3'
+  #gem 'sqlite3'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
   gem 'capybara'
 end
 
 group :production do
-  gem 'pg'
+  gem 'pg', '0.18.2'
 end
 
 gem 'rails_12factor'

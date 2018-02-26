@@ -1,0 +1,32 @@
+<div class="contextual">
+  <%= link_to 'Nuevo estado de pago', new_estado_pago_path %>
+</div>
+<h1>Estados de pago</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>¿Está habilitado?</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @estados_pagos.each do |estado_pago| %>
+    <tr>
+      <td><%= link_to estado_pago.nombre, edit_estado_pago_path(estado_pago), :title => "Editar #{estado_pago.nombre}" %></td>
+      <td><%= estado_pago.enabled? ? 'Si' : 'No' %></td>
+      <td class="actions">
+        <%= link_to 'Editar', edit_estado_pago_path(estado_pago) %>
+        <% if estado_pago.enabled? %>
+          <%= link_to 'Deshabilitar', estado_pago, :confirm => 'Esta seguro?', :method => :delete %>
+        <% else %>
+          <%= link_to 'Habilitar', enable_estado_pago_path(estado_pago), :confirm => 'Esta seguro?', :method => :put %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= will_paginate @estados_pagos %>
+
