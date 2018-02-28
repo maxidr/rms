@@ -28,8 +28,11 @@ class RequerimientosController < ApplicationController
     Rails.logger.info("estado final ----------> #{params}")
 
     respond_to do |format|
-      if @requerimiento.update_attributes(params[:requerimiento])
-        flash[:notice] = "El requerimiento fue finalizado con éxito."
+      @requerimiento.entregado = params[:requerimiento][:entregado]
+      @requerimiento.estado_pago_id = params[:requerimiento][:estado_pago_id]
+      @requerimiento.comentario = params[:requerimiento][:comentario]
+      if @requerimiento.save #update_attributes(params[:requerimiento])
+        flash[:notice] = "El requerimiento fue finalizado con exito."
         format.html { render :show }
         format.xml  { head :ok }
       else
