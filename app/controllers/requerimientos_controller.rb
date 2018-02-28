@@ -25,15 +25,25 @@ class RequerimientosController < ApplicationController
 	before_filter :puede_aprobar_por_sector, :only => [:rechazar, :aprobar, :motivo_rechazo]
 
   def estado_final
-
     Rails.logger.info("estado final ----------> #{params}")
 
-    respond_with @requerimiento do |format|
-      if @requerimiento.estado_final
-        flash[:notice] = "Se completo estado final del requerimiento"
+    respond_to do |format|
+      if @requerimiento.update_attributes(params[:requerimiento])
+        flash[:notice] = "El requerimiento fue finalizado con éxito."
+        format.html { render :show }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @requerimiento.errors, :status => :unprocessable_entity }
       end
-      format.html{ render :show }
     end
+
+    #respond_with @requerimiento do |format|
+    #  if @requerimiento.estado_final
+    #    flash[:notice] = "Se completo estado final del requerimiento"
+    #  end
+    #  format.html{ render :show }
+    #end
   end
 
 	def finalizar

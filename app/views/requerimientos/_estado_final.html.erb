@@ -8,9 +8,9 @@
 
     <%= form.input :comentario, :required => true, :label => 'Comentarios', :as => :text, :hint => 'ingresar comentarios' %>
 
-    <%= form.input :entregado, :label => 'Entregado', :collection => ['Si', 'No'] %>
+    <%= form.input :entregado, :label => 'Entregado', :collection => [['Si', true],['No',false]] %>
 
-    <%= form.input :requerimiento_id, :as => :hidden, :input_html => { :value => @requerimiento.id } %>
+    <%= form.input :id, :as => :hidden, :input_html => { :value => @requerimiento.id } %>
   <% end %>
   <%= form.buttons do %>
     <%= form.commit_button "Confirmar" %>

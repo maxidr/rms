@@ -71,13 +71,12 @@
       </tbody>
     </table>
   </div>
-  <%= render "materiales.html.erb" %>
+
+  <%= render "materiales.html.slim" %>
 
   <% if (@requerimiento.estado >= Estado::APROBADO_X_COMPRAS && @requerimiento.estado != Estado::RECHAZO_X_COMPRAS) || (@requerimiento.estado == Estado::PENDIENTE_APROBACION_COMPRAS && @requerimiento.presupuestos.seleccionado) %>
 	  <%= render "presupuestos/aprobado.html.erb", :presupuesto => @requerimiento.presupuestos.aprobado ? @requerimiento.presupuestos.aprobado : @requerimiento.presupuestos.seleccionado %>
-
     <%= render "presupuestos/list_presupuestos.html.erb", :presupuestos => @requerimiento.presupuestos %>
-
   <% else %>
 	  <%= render "presupuestos/list.html.erb", :presupuestos => @requerimiento.presupuestos %>
   <% end %>
@@ -91,10 +90,26 @@
         Para aprobar el requerimiento debe seleccionar un presupuesto y aprobarlo
       </p>
     <% end %>
+  <% end %>
 
-   <% end %>
+  <%= render "attachments.html.erb" %>
 
-   <%= render "attachments.html.erb" %>
+  <div class="left">
+    <h2>Estado final</h2>
+    <dl>
+      <dt>Estado de pago</dt>
+       <dd><%= @requerimiento.estado_pago %></dd>
+    </dl>
+    <dl>
+       <dt>Entregado</dt>
+       <dd><%= @requerimiento.entregado %></dd>
+    </dl>
+    <dl>
+      <dt>Comentario</dt>
+      <dd><%= @requerimiento.comentario %></dd>
+    </dl>
+  </div>
+
 
   <div id="rqm_actions">
 	  <% if can? :solicitar_aprobacion, @requerimiento %>
@@ -159,7 +174,6 @@
     <% if can? :estado_final, @requerimiento %>
       <%= render 'estado_final' %>
     <% end %>
-
 
   </div>
 
