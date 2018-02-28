@@ -120,7 +120,8 @@ class Ability
         Estado::PENDIENTE_RECEPCION,
         Estado::PENDIENTE_VERIFICACION,
         Estado::ENTREGADO,
-        Estado::FINALIZADO
+        Estado::FINALIZADO,
+        Estado::APROBADO_X_COMPRAS
       ]
       rqm.estado.in? estados
     end
