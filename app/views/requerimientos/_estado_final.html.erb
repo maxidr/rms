@@ -1,0 +1,18 @@
+<%= link_to "Estado_final", "#", id: 'comprar' %>
+<% content_for :javascript do %>
+  <%= javascript_include_tag "rqm_show" %>
+<% end %>
+<%= semantic_form_for @requerimiento, :url => estado_final_requerimiento_url, :html => {:method => :put} ,:id => 'estado_final' do |form| %>
+  <%= form.inputs do %>
+    <%= form.input :estado_pago, :label_method => :nombre, :collection => EstadoPago.enabled %>
+
+    <%= form.input :comentario, :required => true, :label => 'Comentarios', :as => :text, :hint => 'ingresar comentarios' %>
+
+    <%= form.input :entregado, :label => 'Entregado', :collection => ['Si', 'No'] %>
+
+    <%= form.input :requerimiento_id, :as => :hidden, :input_html => { :value => @requerimiento.id } %>
+  <% end %>
+  <%= form.buttons do %>
+    <%= form.commit_button "Confirmar" %>
+  <% end %>
+<% end %>

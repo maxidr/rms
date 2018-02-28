@@ -156,6 +156,11 @@
       <%= render "pagar" %>
     <% end %>
 
+    <% if can? :estado_final, @requerimiento %>
+      <%= render 'estado_final' %>
+    <% end %>
+
+
   </div>
 
   <%= link_to 'Volver', requerimientos_path, :class => 'back_button' %>

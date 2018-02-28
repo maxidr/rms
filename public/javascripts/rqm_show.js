@@ -6,6 +6,7 @@ $(document).ready(function() {
 	$("#comprar").click(function(event){
 		$("#new_compra").fadeIn('slow', function(){
 			$("#compra_fecha_probable_entrega_3i").focus();
+      $("#estado_pago").focus();
 		});
 		event.preventDefault();
 	});

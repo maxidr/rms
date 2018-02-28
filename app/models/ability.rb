@@ -115,6 +115,16 @@ class Ability
       rqm.estado.in? estados && !rqm.pago?
     end
 
+    can :estado_final, Requerimiento do |rqm|
+      estados = [
+        Estado::PENDIENTE_RECEPCION,
+        Estado::PENDIENTE_VERIFICACION,
+        Estado::ENTREGADO,
+        Estado::FINALIZADO
+      ]
+      rqm.estado.in? estados
+    end
+
 		#	El usuario que no es administrador puede modificar solos sus datos
 
 		can [:edit, :update, :show], Usuario, :identificador => usuario.identificador

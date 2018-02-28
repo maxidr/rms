@@ -1,5 +1,7 @@
 class EstadoPago < ActiveRecord::Base
 
+  scope :enabled, where('estados_pagos.disabled_at IS NULL')
+
     def enabled?
       disabled_at.nil?
     end

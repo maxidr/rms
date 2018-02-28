@@ -11,9 +11,30 @@ class RequerimientosController < ApplicationController
   # before_filter :login_required, :except => [:show]
   # load_resource
 	# IMPROVE: Utilizar el método de cancan load_and_authorize_resource (https://github.com/ryanb/cancan/wiki/authorizing-controller-actions)
-	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion, :check_state, :show, :update, :aprobar, :motivo_rechazo, :rechazar, :solicitar_aprobacion_compras, :motivo_rechazo_compras, :rechazar_por_compras, :recepcionar, :verificar_entrega, :finalizar, :motivo_rechazo_entrega, :rechazar_entrega, :cancelar_por_compras, :cancelar_compra, :motivo_cancelar_compra]
+	before_filter :obtener_rqm, :only => [:edit, :solicitar_aprobacion,
+                                        :check_state, :show, :update, :aprobar,
+                                        :motivo_rechazo, :rechazar,
+                                        :solicitar_aprobacion_compras,
+                                        :motivo_rechazo_compras,
+                                        :rechazar_por_compras, :recepcionar,
+                                        :verificar_entrega, :finalizar,
+                                        :motivo_rechazo_entrega, :rechazar_entrega,
+                                        :cancelar_por_compras, :cancelar_compra,
+                                        :motivo_cancelar_compra, :estado_final]
 	before_filter :check_state, :only => [:edit, :update]
 	before_filter :puede_aprobar_por_sector, :only => [:rechazar, :aprobar, :motivo_rechazo]
+
+  def estado_final
+
+    Rails.logger.info("estado final ----------> #{params}")
+
+    respond_with @requerimiento do |format|
+      if @requerimiento.estado_final
+        flash[:notice] = "Se completo estado final del requerimiento"
+      end
+      format.html{ render :show }
+    end
+  end
 
 	def finalizar
 		authorize! :finalizar, @requerimiento

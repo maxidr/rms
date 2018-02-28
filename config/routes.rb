@@ -58,6 +58,7 @@ Rms::Application.routes.draw do
     	get 'rechazar_entrega', :action => 'motivo_rechazo_entrega'
     	put 'rechazar_entrega'
     	put 'finalizar'
+      put 'estado_final'
     end
   end
 

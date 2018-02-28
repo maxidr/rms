@@ -18,12 +18,14 @@ class Requerimiento < ActiveRecord::Base
 
   FRECUENCIAS_CONSUMO = %w(eventual semanal quincenal mensual bimestral trimestral semestral anual)
 
+  attr_accessor :entregado
+
   # Relations ----------------------------------------------------------------------------------------
-  belongs_to :solicitante, :class_name => "Usuario"
+  belongs_to :solicitante, :class_name => 'Usuario'
   belongs_to :empresa
   belongs_to :sector
   belongs_to :rubro
-  belongs_to :estado_pago, :class_name => "EstadoPago"
+  belongs_to :estado_pago, :class_name => 'EstadoPago'
   #belongs_to :pago, :class_name => 'Pagar'
 
   has_many :notificaciones
@@ -107,6 +109,9 @@ class Requerimiento < ActiveRecord::Base
   scope :pendientes_de_aprobacion_compras, where(:estado => Estado::PENDIENTE_APROBACION_COMPRAS)
 
   # Methods ------------------------------------------------------------------------------------------------
+  def estado_final
+    self.save
+  end
 
   def pago?
     Pagar.where(:requerimiento_id => self.id).any?

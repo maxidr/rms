@@ -31,7 +31,7 @@
 		<tbody>
 			<% @requerimientos.each do |requerimiento| %>
         <% if responsables_faltantes(requerimiento).include?(@falta.downcase) %>
-				<tr id="<%= requerimiento.id %>">
+        <tr id="<%= requerimiento.id %>">
           <td class="nro"><%= link_to "#{requerimiento.id}", requerimiento, :title => "Editar requerimiento n° #{requerimiento.id}" %> <%= iva_mark(requerimiento) %> </td>
 					<td class="fecha"><%= l requerimiento.created_at, :format => :short %></td>
 					<td class="solicitante"><%= requerimiento.solicitante %></td>

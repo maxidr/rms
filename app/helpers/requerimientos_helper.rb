@@ -23,5 +23,4 @@ module RequerimientosHelper
     end
     estado
   end
-
 end
