@@ -213,7 +213,7 @@ ActiveRecord::Schema.define(:version => 20180228012329) do
     t.text     "descripcion"
     t.date     "fecha_requerido"
     t.integer  "estado_pago_id"
-    t.datetime "entregado_at"
+    t.boolean  "entregado"
     t.text     "comentario"
   end
 

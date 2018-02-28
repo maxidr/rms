@@ -18,7 +18,7 @@ class Requerimiento < ActiveRecord::Base
 
   FRECUENCIAS_CONSUMO = %w(eventual semanal quincenal mensual bimestral trimestral semestral anual)
 
-  attr_accessor :entregado
+  #attr_accessor :entregado
 
   # Relations ----------------------------------------------------------------------------------------
   belongs_to :solicitante, :class_name => 'Usuario'
@@ -110,7 +110,17 @@ class Requerimiento < ActiveRecord::Base
 
   # Methods ------------------------------------------------------------------------------------------------
   def estado_final
-    self.save
+    respond_to do |format|
+      if @caracteristica.update_attributes(params[:caracteristica])
+        format.html { redirect_to(@caracteristica.material, :notice => 'La característica fue actualizada.') }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @caracteristica.errors, :status => :unprocessable_entity }
+      end
+    end
+
+    #self.save
   end
 
   def pago?
@@ -126,12 +136,12 @@ class Requerimiento < ActiveRecord::Base
   end
 
   def entregado?
-    entregado_at.blank? ? 'No' : 'Si'
+    entregado ? 'Si' : 'No'
   end
 
-  def entregado
-    self.update_attribute(:entregado_at, Time.now)
-  end
+  #def entregado
+  #  self.update_attribute(:entregado_at, Time.now)
+  #end
 
 	# Finalizar el requerimiento
 	# @param [Usuario] responsable del sector que genera la finalización del requerimiento
