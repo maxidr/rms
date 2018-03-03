@@ -62,13 +62,14 @@ class Ability
 		end
 
 		can :solicitar_aprobacion_compras, Requerimiento do |rqm|
-			rqm.solicitante == usuario && rqm.estado.in?(Estado::APROBADO_X_SECTOR, Estado::RECHAZO_X_COMPRAS)
+			rqm.solicitante == usuario && 
+      rqm.estado.in?(Estado::APROBADO_X_SECTOR, Estado::RECHAZO_X_COMPRAS)
 		end
 
 		can :rechazar_por_compras, Requerimiento do |rqm|
       rqm.estado == Estado::PENDIENTE_APROBACION_COMPRAS &&
-        @compras.responsables.include?(usuario) &&
-        no_fue_verificado_por_usuario?(rqm, usuario)
+                    @compras.responsables.include?(usuario) &&
+                    no_fue_verificado_por_usuario?(rqm, usuario)
     end
 
     # Compras puede cancelar un requerimiento luego de aprobarlo (o incluso antes de ello)
@@ -78,11 +79,20 @@ class Ability
     end
 
 		can :gestionar_presupuesto, Requerimiento do |rqm|
-			if rqm.estado == Estado::PENDIENTE_APROBACION_COMPRAS
-				@compras.responsables.include?(usuario)
-			else
-				rqm.estado.in? Estado::INICIO, Estado::RECHAZO_X_SECTOR, Estado::PENDIENTE_APROBACION_SECTOR, Estado::APROBADO_X_SECTOR, Estado::RECHAZO_X_COMPRAS
-			end
+      if usuario.super? 
+        true
+      else
+  			if rqm.estado == Estado::PENDIENTE_APROBACION_COMPRAS
+  				@compras.responsables.include?(usuario)
+  			else
+          estados = [Estado::INICIO, 
+                     Estado::RECHAZO_X_SECTOR, 
+                     Estado::PENDIENTE_APROBACION_SECTOR, 
+                     Estado::APROBADO_X_SECTOR, 
+                     Estado::RECHAZO_X_COMPRAS]
+  				rqm.estado.in? estados
+  			end
+      end
 		end
 
 		can :aprobar_presupuestos, Requerimiento do |rqm|

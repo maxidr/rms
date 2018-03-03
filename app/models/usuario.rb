@@ -33,7 +33,7 @@ class Usuario < ActiveRecord::Base
 
   # TODO: Generar una migracion para quitar la columna roles_mask de usuarios
 
-  ROLES = %w[operador administrador]
+  ROLES = %w[operador administrador super]
 
 	# Include default devise modules. Others available are:
   # :token_authenticatable, :lockable, :timeoutable and :activatable
@@ -62,6 +62,10 @@ class Usuario < ActiveRecord::Base
 
   def admin?
   	ROLES[rol_id] == "administrador"
+  end
+
+  def super?
+    ROLES[rol_id] == "super"
   end
 
 end

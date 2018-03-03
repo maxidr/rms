@@ -81,6 +81,10 @@
 	  <%= render "presupuestos/list.html.erb", :presupuestos => @requerimiento.presupuestos %>
   <% end %>
 
+  <div class="contextual">
+    <%= link_to 'Agregar presupuesto', new_requerimiento_presupuesto_path(@requerimiento)  %>
+  </div>
+
   <%= render "notificaciones.html.erb" %>
 
   <% if can? :aprobar_presupuestos, @requerimiento %>
