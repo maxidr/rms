@@ -74,16 +74,18 @@
 
   <%= render "materiales.html.slim" %>
 
-  <% if (@requerimiento.estado >= Estado::APROBADO_X_COMPRAS && @requerimiento.estado != Estado::RECHAZO_X_COMPRAS) || (@requerimiento.estado == Estado::PENDIENTE_APROBACION_COMPRAS && @requerimiento.presupuestos.seleccionado) %>
+  <% if (@requerimiento.estado >= Estado::APROBADO_X_COMPRAS && @requerimiento.estado != Estado::RECHAZO_X_COMPRAS) || (@requerimiento.estado == Estado::PENDIENTE_APROBACION_COMPRAS && @requerimiento.presupuestos.seleccionado) || usuario.super? %>
 	  <%= render "presupuestos/aprobado.html.erb", :presupuesto => @requerimiento.presupuestos.aprobado ? @requerimiento.presupuestos.aprobado : @requerimiento.presupuestos.seleccionado %>
     <%= render "presupuestos/list_presupuestos.html.erb", :presupuestos => @requerimiento.presupuestos %>
   <% else %>
 	  <%= render "presupuestos/list.html.erb", :presupuestos => @requerimiento.presupuestos %>
   <% end %>
 
-  <div class="contextual">
-    <%= link_to 'Agregar presupuesto', new_requerimiento_presupuesto_path(@requerimiento)  %>
-  </div>
+  <% if can? :gestionar_presupuesto, @requerimiento %>
+    <div class="contextual">
+      <%= link_to 'Agregar presupuesto', new_requerimiento_presupuesto_path(@requerimiento)  %>
+    </div>
+  <% end %>
 
   <%= render "notificaciones.html.erb" %>
 

@@ -47,7 +47,7 @@
             <% unless current_usuario.admin? %>
               <li><%= link_to 'Nuevo requerimiento', new_requerimiento_path %></li>
             <% end %>
-            <%- if current_usuario.admin? %>
+            <%- if current_usuario.admin? || current_usuario.super? %>
               <%= tab :sectores, I18n.t('menu.sectores') %>
               <%= tab :rubros, I18n.t('menu.rubros') %>
               <%= tab :empresas, I18n.t('menu.empresas') %>

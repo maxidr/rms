@@ -1,7 +1,7 @@
 <div id="menu">
   <ul id="nav">
     <li><%= link_to "Requerimientos", requerimientos_path %></li>
-    <%- if current_usuario.admin? %>
+    <%- if current_usuario.admin? || current_usuario.super? %>
 		  <li>
 		    <a href="#">Configuración</a>
 		    <ul>

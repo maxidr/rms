@@ -9,7 +9,7 @@ class Ability
 
 		@compras ||= Sector.compras
 
-		if usuario.admin?
+		if (usuario.admin? || usuario.super?)
 			can :manage, [Sector, Rubro, Empresa, Proveedor, Moneda, CondicionPago, Usuario]
 			can :enable, Sector
       can [:read, :destroy, :add_attachment], Attachment
@@ -79,7 +79,7 @@ class Ability
     end
 
 		can :gestionar_presupuesto, Requerimiento do |rqm|
-      if usuario.super? 
+      if usuario.super?
         true
       else
   			if rqm.estado == Estado::PENDIENTE_APROBACION_COMPRAS
