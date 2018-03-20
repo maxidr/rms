@@ -57,6 +57,7 @@ namespace :deploy do
     run "git push #{ENVIRONMENTS[:staging]} #{last_version}^{}:master"
     print "Push project to origin...\n"
     run "git push origin master"
+    run "git push bb master"
   end
 
 

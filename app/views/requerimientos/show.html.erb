@@ -74,7 +74,7 @@
 
   <%= render "materiales.html.slim" %>
 
-  <% if (@requerimiento.estado >= Estado::APROBADO_X_COMPRAS && @requerimiento.estado != Estado::RECHAZO_X_COMPRAS) || (@requerimiento.estado == Estado::PENDIENTE_APROBACION_COMPRAS && @requerimiento.presupuestos.seleccionado) || usuario.super? %>
+  <% if (@requerimiento.estado >= Estado::APROBADO_X_COMPRAS && @requerimiento.estado != Estado::RECHAZO_X_COMPRAS) || (@requerimiento.estado == Estado::PENDIENTE_APROBACION_COMPRAS && @requerimiento.presupuestos.seleccionado) || current_usuario.super? %>
 	  <%= render "presupuestos/aprobado.html.erb", :presupuesto => @requerimiento.presupuestos.aprobado ? @requerimiento.presupuestos.aprobado : @requerimiento.presupuestos.seleccionado %>
     <%= render "presupuestos/list_presupuestos.html.erb", :presupuestos => @requerimiento.presupuestos %>
   <% else %>
