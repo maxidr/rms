@@ -74,20 +74,25 @@
 
   <%= render "materiales.html.slim" %>
 
-  <% if (@requerimiento.estado >= Estado::APROBADO_X_COMPRAS && @requerimiento.estado != Estado::RECHAZO_X_COMPRAS) || (@requerimiento.estado == Estado::PENDIENTE_APROBACION_COMPRAS && @requerimiento.presupuestos.seleccionado) || current_usuario.super? %>
-    <% if @requerimiento.presupuestos.any? %>
-	  <%= render "presupuestos/aprobado.html.erb", :presupuesto => @requerimiento.presupuestos.aprobado ? @requerimiento.presupuestos.aprobado : @requerimiento.presupuestos.seleccionado %>
-    <%= render "presupuestos/list_presupuestos.html.erb", :presupuestos => @requerimiento.presupuestos %>
-    <% end %>
+  <% if current_usuario.super? %>
+    <%= render "presupuestos/list.html.erb", :presupuestos => @requerimiento.presupuestos %>
   <% else %>
-	  <%= render "presupuestos/list.html.erb", :presupuestos => @requerimiento.presupuestos %>
+    <% if (@requerimiento.estado >= Estado::APROBADO_X_COMPRAS && @requerimiento.estado != Estado::RECHAZO_X_COMPRAS) || (@requerimiento.estado == Estado::PENDIENTE_APROBACION_COMPRAS && @requerimiento.presupuestos.seleccionado) %>
+      <% if @requerimiento.presupuestos.any? %>
+  	  <%= render "presupuestos/aprobado.html.erb", :presupuesto => @requerimiento.presupuestos.aprobado ? @requerimiento.presupuestos.aprobado : @requerimiento.presupuestos.seleccionado %>
+      <%= render "presupuestos/list_presupuestos.html.erb", :presupuestos => @requerimiento.presupuestos %>
+      <% end %>
+    <% else %>
+  	  <%= render "presupuestos/list.html.erb", :presupuestos => @requerimiento.presupuestos %>
+    <% end %>
   <% end %>
 
-  <% if can? :gestionar_presupuesto, @requerimiento %>
+<!--  <%# if can? :gestionar_presupuesto, @requerimiento %>
     <div class="contextual">
-      <%= link_to 'Agregar presupuesto', new_requerimiento_presupuesto_path(@requerimiento)  %>
+      <%#= link_to 'Agregar presupuesto', new_requerimiento_presupuesto_path(@requerimiento)  %>
     </div>
-  <% end %>
+  <%# end %>
+-->
 
   <%= render "notificaciones.html.erb" %>
 

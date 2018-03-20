@@ -62,7 +62,7 @@ class Ability
 		end
 
 		can :solicitar_aprobacion_compras, Requerimiento do |rqm|
-			rqm.solicitante == usuario && 
+			rqm.solicitante == usuario &&
       rqm.estado.in?(Estado::APROBADO_X_SECTOR, Estado::RECHAZO_X_COMPRAS)
 		end
 
@@ -85,10 +85,10 @@ class Ability
   			if rqm.estado == Estado::PENDIENTE_APROBACION_COMPRAS
   				@compras.responsables.include?(usuario)
   			else
-          estados = [Estado::INICIO, 
-                     Estado::RECHAZO_X_SECTOR, 
-                     Estado::PENDIENTE_APROBACION_SECTOR, 
-                     Estado::APROBADO_X_SECTOR, 
+          estados = [Estado::INICIO,
+                     Estado::RECHAZO_X_SECTOR,
+                     Estado::PENDIENTE_APROBACION_SECTOR,
+                     Estado::APROBADO_X_SECTOR,
                      Estado::RECHAZO_X_COMPRAS]
   				rqm.estado.in? estados
   			end
@@ -97,14 +97,14 @@ class Ability
 
 		can :aprobar_presupuestos, Requerimiento do |rqm|
 			rqm.estado == Estado::PENDIENTE_APROBACION_COMPRAS &&
-        @compras.responsables.include?(usuario) &&
+        @compras.responsables.include?(usuario) # &&
         no_fue_verificado_por_usuario?(rqm, usuario)
         #usuario.sector == @compras
 		end
 
     can :aprobar_presupuesto_seleccionado, Requerimiento do |rqm|
       rqm.presupuestos.seleccionado &&
-      can?(:aprobar_presupuestos, rqm) &&
+      can?(:aprobar_presupuestos, rqm) # &&
       no_fue_verificado_por_usuario?(rqm, usuario)
     end
 

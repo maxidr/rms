@@ -22,13 +22,13 @@ class Sector < ActiveRecord::Base
   scope :with_responsable, lambda { |usuario| joins(:responsables).where('usuarios.id' => usuario.id ) }
   scope :enabled, where('sectores.disabled_at IS NULL')
 
-	# IMPROVE: Mejorar el modo de fijar estos datos (tal vez se mejor generar una pantalla donde un 
+	# IMPROVE: Mejorar el modo de fijar estos datos (tal vez se mejor generar una pantalla donde un
   # usuario pueda indicar donde mandar los mails en cada estado del requerimiento).
 	#	Se fijan estos valores ya que es importante identificar inequivocamente estos sectores
 	# para el resto de los procesos (enviar notificaciones a compras, a administración y a expedición)
-  COMPRAS_ID = 9
-  ADMINISTRACION_ID = 8
-  EXPEDICION_ID = 7
+  COMPRAS_ID = 37 # 9
+  ADMINISTRACION_ID = 28 # 8
+  EXPEDICION_ID = 31 # 7
 
 	def self.compras
 		find(COMPRAS_ID)
