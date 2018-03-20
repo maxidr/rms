@@ -1,5 +1,5 @@
 
-h2 Presupuesto #{presupuesto.aprobado ? 'aprobado' : 'seleccionado'}
+h2 Presupuesto #{!presupuesto.blank? && presupuesto.aprobado ? 'aprobado' : 'seleccionado'}
 
 .rqm-info
   dl
@@ -23,5 +23,5 @@ h2 Presupuesto #{presupuesto.aprobado ? 'aprobado' : 'seleccionado'}
       dt Falta aprobación de
       dd = listar_usuarios( Sector.compras.responsables - presupuesto.verificaciones.verificadores )
   = link_to 'Ver detalles del presupuesto', presupuesto
-  
+
 
