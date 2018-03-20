@@ -1,27 +1,27 @@
+- unless presupuesto.blank?
+  h2 Presupuesto #{presupuesto.aprobado ? 'aprobado' : 'seleccionado'}
 
-h2 Presupuesto #{!presupuesto.blank? && presupuesto.aprobado ? 'aprobado' : 'seleccionado'}
-
-.rqm-info
-  dl
-    dt Razón social
-    dd = presupuesto.proveedor.razon_social
-  dl
-    dt Monto total final
-    dd = "#{presupuesto.moneda.simbolo} #{number_with_precision presupuesto.monto_total}"
-  dl
-    dt Condición de pago
-    dd = presupuesto.condicion_pago.nombre
-  - unless presupuesto.detalle.blank?
+  .rqm-info
     dl
-      dt Detalle
-      dd = presupuesto.detalle
-  - unless presupuesto.aprobado
+      dt Razón social
+      dd = presupuesto.proveedor.razon_social
     dl
-      dt Aprobado por
-      dd = listar_usuarios(presupuesto.verificaciones.verificadores)
+      dt Monto total final
+      dd = "#{presupuesto.moneda.simbolo} #{number_with_precision presupuesto.monto_total}"
     dl
-      dt Falta aprobación de
-      dd = listar_usuarios( Sector.compras.responsables - presupuesto.verificaciones.verificadores )
-  = link_to 'Ver detalles del presupuesto', presupuesto
+      dt Condición de pago
+      dd = presupuesto.condicion_pago.nombre
+    - unless presupuesto.detalle.blank?
+      dl
+        dt Detalle
+        dd = presupuesto.detalle
+    - unless presupuesto.aprobado
+      dl
+        dt Aprobado por
+        dd = listar_usuarios(presupuesto.verificaciones.verificadores)
+      dl
+        dt Falta aprobación de
+        dd = listar_usuarios( Sector.compras.responsables - presupuesto.verificaciones.verificadores )
+    = link_to 'Ver detalles del presupuesto', presupuesto
 
 
