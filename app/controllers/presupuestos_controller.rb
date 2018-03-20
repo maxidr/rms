@@ -67,6 +67,12 @@ class PresupuestosController < ApplicationController
   def update
     respond_to do |format|
       if @presupuesto.update_attributes(params[:presupuesto])
+        if @presupuesto.aprobado == false && @presupuesto.requerimiento.estado == 5
+          rqm = @presupuesto.requerimiento
+          rqm.estado = Estado::PENDIENTE_APROBACION_COMPRAS
+          rqm.save!
+        end
+
         format.html { redirect_to(@presupuesto.requerimiento, :notice => 'Presupuesto actualizado.') }
         format.xml  { head :ok }
       else

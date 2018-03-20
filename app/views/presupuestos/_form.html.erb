@@ -7,6 +7,9 @@
     <%= f.input :fecha_entrega, as: :string, input_html: { class: 'datepicker' }, :required => true, :label => 'Fecha de entrega', :hint => "Indicar fecha pautada con el proveedor" %>
 
     <%= f.input :detalle, :as => :text %>
+    <% if @presupuesto.aprobado %>
+    <%= f.input :aprobado, :as => :boolean %>
+    <% end %>
     <%= f.inputs :for => :desgloses, :class => :desglose do |desglose| %>
       <li class="title">
         <h3><%= desglose.object.material.nombre %></h3>
