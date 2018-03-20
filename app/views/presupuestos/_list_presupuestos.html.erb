@@ -7,7 +7,7 @@
       <tr>
         <th>Proveedor</th>
         <th>Monto total final</th>
-        <th>Condición de pago</th>
+        <!-- <th>Condición de pago</th> -->
         <th>Detalle</th>
         <th></th>
       </tr>
@@ -17,7 +17,7 @@
         <tr>
           <td><%= presupuesto.proveedor.razon_social %></td>
           <td><%= presupuesto.moneda.simbolo %> <%= number_with_precision presupuesto.monto_total %></td>
-          <td><%= presupuesto.condicion_pago.nombre %></td>
+          <!-- <td><%#= presupuesto.condicion_pago.nombre %></td> -->
           <td><%= presupuesto.detalle %></td>
           <td class="actions">
             <%= link_to 'Ver', presupuesto_path(presupuesto) %>
