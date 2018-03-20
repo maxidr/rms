@@ -146,9 +146,9 @@
       <%= link_to 'Cancelar requerimiento', cancelar_requerimiento_path(@requerimiento), :class => 'negative_action', :method => :put %>
     <% end %>
 
-    <% if can? :aprobar_presupuesto_seleccionado, @requerimiento %>
-      <%= link_to 'Aprobar presupuesto', aprobar_presupuesto_path(@requerimiento.presupuestos.seleccionado), :method => :put, :disable_with => 'Procesando...' %>
-    <% end %>
+    <%# if can? :aprobar_presupuesto_seleccionado, @requerimiento %>
+      <%#= link_to 'Aprobar presupuesto', aprobar_presupuesto_path(@requerimiento.presupuestos.seleccionado), :method => :put, :disable_with => 'Procesando...' %>
+    <%# end %>
 
 	  <% if can? :recepcionar, @requerimiento %>
 		  <%= link_to 'Recepcionar materiales', recepcionar_requerimiento_path(@requerimiento), :method => :put %>
